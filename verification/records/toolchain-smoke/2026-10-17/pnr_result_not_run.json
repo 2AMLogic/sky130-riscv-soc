@@ -1,0 +1,14 @@
+{
+  "schema": "toolchain-smoke.pnr_not_run/1",
+  "status": "not_run",
+  "command": "klt place-and-route pnr_request.json --format json",
+  "host": "loom-worker-4",
+  "failed_stage": "floorplan",
+  "error": "permission denied while trying to connect to the docker API at unix:///var/run/docker.sock",
+  "cause": "the host's openroad is a docker wrapper (image pinned by digest) and the agent user could not reach the docker socket",
+  "provenance": {
+    "origin": "error text transcribed from the 2026-10-17 run of loom-worker-4 as quoted in README.md",
+    "caveat": "this file was first committed empty (0 bytes), so the original klt output was not retained; this is NOT a verbatim capture of klt stdout/stderr",
+    "reproduction": "re-run on loom-worker-5 (agent user in the docker group, klt 0.7.1.dev1774+ge88f211fa485): the same request ran to status ok, so the failure is host-specific and could not be reproduced; no figure from that re-run is recorded here"
+  }
+}

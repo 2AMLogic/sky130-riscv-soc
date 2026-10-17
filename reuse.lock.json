@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "imports": [
+    {
+      "from": "openhwgroup/cve2",
+      "commit": "d7f21568028a1114be663599bd42145dccf28928",
+      "mode": "fetched",
+      "files": [
+        { "upstream": "rtl/cve2_top.sv", "sha256": "d7bdb559738c0ccbe8f92ee3f194e92d7f9223f1066ed63f3a2bb1850e240b82" },
+        { "upstream": "rtl/cve2_pkg.sv", "sha256": "b656d1bae7dd486e7a4a87eb67f9d99a473988212d988f19ce2753c83645c038" },
+        { "upstream": "syn/README.md", "sha256": "f109a143f2cdd4d9de5fdedf4bb111c3f7a38609f653c02a1b97ffd31381d4bd" },
+        { "upstream": "LICENSE", "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30" }
+      ]
+    },
+    {
+      "from": "efabless/sky130_sram_macros",
+      "commit": "ebfbf5775c8cd433ad38a4d825e46c2275231511",
+      "mode": "fetched",
+      "files": [
+        { "upstream": "sky130_sram_2kbyte_1rw1r_32x512_8/sky130_sram_2kbyte_1rw1r_32x512_8.gds", "sha256": "c91d35525d6aa4f42053773eef80ecfc9e3e6eba20c6c6f3ca792a2a1422bb2c" },
+        { "upstream": "sky130_sram_2kbyte_1rw1r_32x512_8/sky130_sram_2kbyte_1rw1r_32x512_8.lef", "sha256": "e35072ac14a991285619477f13c80fd3837e76ef7ed354ae6ab80d9232ce7a2e" },
+        { "upstream": "sky130_sram_2kbyte_1rw1r_32x512_8/sky130_sram_2kbyte_1rw1r_32x512_8.v", "sha256": "2712357fbc3d1ee3343c4bcb7d630de92ca87d869fb5d50d1d3cea967f288208" },
+        { "upstream": "sky130_sram_2kbyte_1rw1r_32x512_8/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib", "sha256": "8656384775f5e10b44bed97b7193dd3188ce8cd60b7c8e02a5a4ad9e35ed03ba" }
+      ]
+    },
+    {
+      "from": "VLSIDA/OpenRAM",
+      "commit": "b2b069ce119d1488cbe6883b2240bceb5c7ce29a",
+      "mode": "fetched",
+      "files": [
+        { "upstream": "macros/sram_configs/sky130_sram_4kbyte_1rw_32x1024_8.py", "sha256": "de1e58826bc268db9cc232fcb6b4856db44fa8147a2df7195e655118ca323009" },
+        { "upstream": "macros/sram_configs/sky130_sram_common.py", "sha256": "cc03f93addf4582f04531110f801a8ec28ff71a3d0f8456928d834009c671959" }
+      ]
+    }
+  ],
+  "in_tree": [
+    {
+      "block": "sram-macro",
+      "sibling": "2AMLogic/sky130-sram-compiler",
+      "status": "evaluate"
+    }
+  ]
+}

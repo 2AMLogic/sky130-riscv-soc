@@ -22,7 +22,8 @@ is never cited for a T1 item, an Fmax, or any design claim.
 - Request: `synth_request.json` (sources path is relative to `flow/smoke/`)
 - Result: `synth_result.json`; mapped netlist: `counter_synth.v`
 - Result: status `ok`, **22 cells** (8 `dfrtp_1`, 14 combinational), area
-  296.5344 um^2, liberty `sky130_fd_sc_hd__tt_025C_1v80`.
+  296.5344 um^2 (of which 200.192 um^2 sequential), liberty
+  `sky130_fd_sc_hd__tt_025C_1v80`.
 - The `abc_stime` critical path in the report is a pre-placement synthesis
   estimate, not an Fmax and not a signoff figure.
 - `sta` is `null`: the optional `klt_statime_native` extension is not
@@ -37,6 +38,9 @@ is never cited for a T1 item, an Fmax, or any design claim.
 `floorplan` stage before any OpenROAD code ran. The host's `openroad` is a
 docker wrapper (image pinned by digest) and the agent user cannot reach the
 docker socket: `permission denied while trying to connect to the docker API at
-unix:///var/run/docker.sock`. The error is kept in `pnr_result_not_run.json`.
+unix:///var/run/docker.sock`. The error text is kept in `pnr_result_not_run.json`; the file was first
+committed empty, so it is transcribed from this README, not a verbatim `klt`
+capture, and a re-run on a host with docker access succeeded (see the file's
+`provenance`).
 No P&R figure exists for this module. The fix is host provisioning (docker
 access or a native OpenROAD for the worker spec), not a change here.

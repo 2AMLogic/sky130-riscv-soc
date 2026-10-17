@@ -59,23 +59,28 @@ reported separately and never conflated with the first.
   record, not a patch), designing a bitcell or SRAM macro, a PLL (the clock
   is an input), and the pad ring.
 
-## Target specification (DRAFT — engineering to ratify, see issue #1)
+## Target specification (ratified — see [spec/soc.md](spec/soc.md))
 
 | Parameter | Target | Fallback | Stretch |
 |---|---|---|---|
-| Core | RV32IMC, Ibex/CVE2-class | RV32EC | + RISC-V debug module over JTAG |
+| Core | RV32IMC, CVE2 (pinned, unmodified) | RV32EC | + RISC-V debug module over JTAG |
 | Interconnect | OBI crossbar, instruction + data managers | single shared OBI bus | — |
-| SRAM | 8 KB instruction + 8 KB data | 4 KB unified | 32 KB total |
-| Peripherals | boot ROM, UART, GPIO, timer | boot ROM, UART, GPIO | SPI flash execute-in-place |
-| Signoff Fmax (post-route STA, slow corner) | 50 MHz | 25 MHz | 100 MHz |
+| SRAM | 8 KB instruction + 8 KB data, OpenRAM sky130 macros (macro instance deferred) | 4 KB unified | 32 KB total |
+| Peripherals | boot ROM, UART, 8-bit GPIO, timer | boot ROM, UART, GPIO | SPI flash execute-in-place |
+| Signoff Fmax (post-route STA, slow corner `ss_100C_1v60`) | 50 MHz | 25 MHz | 100 MHz |
 | Standard cells | `sky130_fd_sc_hd` | — | — |
-| Signoff | DRC + LVS clean, STA closed at every ratified corner | — | — |
+| Signoff | DRC + LVS clean, STA closed at every ratified corner that has a macro view (see spec) | — | — |
+
+All frequencies are targets for a signoff Fmax from static timing, not
+measurements. The macro Liberty views cover only the typical corner today;
+`spec/soc.md` § STA corners states what that means for the slow and fast
+corners.
 
 Maturity ladder: spec ratified → SoC RTL passing the architectural tests and
 firmware tests in simulation → synthesized with timing met at the target →
 placed and routed with the SRAM macros, DRC/LVS-clean → post-route
 multi-corner STA closed → shuttle seat → measured silicon (bench Fmax).
-**Current position: pre-spec.**
+**Current position: spec ratified.**
 
 ## Repo layout
 

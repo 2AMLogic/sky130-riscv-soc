@@ -1,0 +1,47 @@
+name: CI
+
+# Records lint, RTL lint and the cocotb smoke. PDK-heavy legs (synthesis,
+# place-and-route, DRC, LVS) stay local: see verification/README.md.
+# No path filters; a started main run is never cancelled (.loom/docs/ci-principles.md).
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.event_name == 'pull_request' && format('ci-pr-{0}', github.event.pull_request.number) || 'ci-main' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Verilator
+        run: sudo apt-get update && sudo apt-get install -y verilator
+      - name: Record linter and fixture test
+        run: |
+          python3 -I verification/tools/lint_records.py
+          python3 -I verification/tools/tests/test_lint_records.py
+      - name: RTL lint
+        run: verification/tools/lint_rtl.sh
+
+  smoke:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Icarus Verilog
+        run: sudo apt-get update && sudo apt-get install -y iverilog
+      - name: Install cocotb at the pinned version
+        run: |
+          pin="$(sed -n 's/^PIN_COCOTB="\([^"]*\)".*/\1/p' scripts/setup-env.sh)"
+          test -n "$pin"
+          python3 -m venv .venv
+          .venv/bin/pip install "cocotb==${pin}"
+      - name: cocotb smoke
+        run: |
+          . .venv/bin/activate
+          make -C verification smoke

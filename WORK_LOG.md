@@ -3,6 +3,10 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-10-21
+
+- **PR #15**: Bump Repo Skills 0.24.3 -> 0.24.7
+
 ### 2026-10-18
 
 - **PR #10**: fix(env): bump klt pin and record the smoke P&R leg

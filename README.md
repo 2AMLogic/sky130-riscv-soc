@@ -87,10 +87,27 @@ multi-corner STA closed → shuttle seat → measured silicon (bench Fmax).
 ```
 spec/          ratified spec + decision records
 rtl/           SoC integration RTL (the core is pinned upstream, not copied in by hand)
-verification/  cocotb testbenches, architectural-test and firmware runs
+verification/  cocotb testbenches, evidence records, architectural-test and firmware runs
 layout/        GDS + DRC/LVS reports + STA reports (klayout-tools driven)
 measurements/  silicon characterization (empty until tape-out)
 ```
+
+## Reproduce
+
+Cold-start commands, from a clean checkout (tool and PDK pins are in
+[`scripts/setup-env.sh`](scripts/setup-env.sh); setup notes in
+[`docs/environment.md`](docs/environment.md)):
+
+```
+scripts/setup-env.sh --check                    # environment matches the pins
+python3 -m venv .venv && .venv/bin/pip install cocotb==2.0.1
+. .venv/bin/activate && make -C verification smoke   # cocotb + Icarus harness
+npm run lint                                    # record linter, its fixture test, RTL lint
+npm run test                                    # the same smoke as above
+```
+
+CI runs the lint and the smoke; synthesis, place-and-route, DRC and LVS stay
+local (see [`verification/README.md`](verification/README.md)).
 
 ## License
 

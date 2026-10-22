@@ -3,6 +3,11 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-10-22
+
+- **PR #12**: feat(verification): add cocotb smoke harness, record linter and CI
+- **Issue #6** (closed): Verification harness and CI skeleton (T1 items 9 and 10)
+
 ### 2026-10-21
 
 - **PR #15**: Bump Repo Skills 0.24.3 -> 0.24.7

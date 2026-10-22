@@ -7,7 +7,7 @@ Roadmap generated from GitHub label state by the Loom Guide role.
 
 Judge-approved PRs under a hold (`loom:blocked` or `loom:operator`) — only a human merge decision is missing.
 
-- **#12**: feat(verification): add cocotb smoke harness, record linter and CI
+_None._
 
 ## Very Important
 
@@ -19,7 +19,7 @@ _None._
 
 `loom:important`; taken before unlabelled work.
 
-- **#6**: Verification harness and CI skeleton (T1 items 9 and 10)
+_None._
 
 ## Ready
 
@@ -31,7 +31,7 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-- **#6**: Verification harness and CI skeleton (T1 items 9 and 10)
+_None._
 
 ## PRs Awaiting Review
 
@@ -43,14 +43,13 @@ _None._
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-- **#12**: feat(verification): add cocotb smoke harness, record linter and CI
+_None._
 
 ## Proposed
 
 Issues carrying `loom:curated`.
 
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
-- **#6**: Verification harness and CI skeleton (T1 items 9 and 10) *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -64,14 +63,14 @@ _None._
 
 | Bucket | Count |
 |------|-------|
-| Operator merge-risk holds | 1 |
+| Operator merge-risk holds | 0 |
 | Very important | 0 |
-| Important | 1 |
+| Important | 0 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 1 |
+| In Progress (`loom:building`) | 0 |
 | PRs awaiting review | 0 |
-| Approved PRs awaiting merge | 1 |
-| Curated | 2 |
+| Approved PRs awaiting merge | 0 |
+| Curated | 1 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

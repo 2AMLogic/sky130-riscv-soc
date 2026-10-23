@@ -24,6 +24,8 @@ PIN_YOSYS="0.67+post"
 PIN_YOSYS_SHA="b8e7da6f40ae8f552c116bf6c359b07c6533e159"
 PIN_IVERILOG="13.0"
 PIN_SV2V="v0.0.13"        # SystemVerilog -> Verilog for CVE2 (record 0001); scripts/convert-cve2.sh
+PIN_RISCV_GCC="14.2.0"    # xPack riscv-none-elf-gcc 14.2.0-3 (boot firmware, firmware/boot/build.sh)
+PIN_RISCV_GCC_SHA256="f574415b63f12b09bdd3475223ab492a465d23810646c90c13a4c3b676c83503"  # xpack-riscv-none-elf-gcc-14.2.0-3-linux-x64.tar.gz
 PIN_COCOTB="2.0.1"       # not needed until the harness (#6); optional here
 PIN_OPENROAD="26Q3-1510-g6cb3f2b704"
 PIN_OPENROAD_IMAGE="openroad/orfs@sha256:bb7f31697fb8466ab61852fc796376cc16d9df38f762ccb733218b8a5e55824b"
@@ -93,6 +95,7 @@ run_check() {
     check_tool klt "$PIN_KLT" klt --version
     check_tool yosys "Yosys ${PIN_YOSYS} (git sha1 ${PIN_YOSYS_SHA}" yosys -V
     check_tool sv2v "sv2v ${PIN_SV2V}" sv2v --version
+    check_tool riscv-gcc "xPack GNU RISC-V Embedded GCC x86_64) ${PIN_RISCV_GCC}" riscv-none-elf-gcc --version
     check_tool iverilog "version ${PIN_IVERILOG} " iverilog -V
     check_openroad
     check_cocotb

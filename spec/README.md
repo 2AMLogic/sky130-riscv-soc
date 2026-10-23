@@ -6,5 +6,6 @@
 - [`decision-records/`](decision-records/) — one record per decision:
   - [0001 core choice](decision-records/0001-core-choice.md)
   - [0002 SRAM source](decision-records/0002-sram-source.md)
+  - [0003 trap-vector offset](decision-records/0003-trap-vector-offset.md)
 
 Imports are pinned in [`../reuse.lock.json`](../reuse.lock.json).

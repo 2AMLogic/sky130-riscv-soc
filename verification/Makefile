@@ -2,6 +2,8 @@
 #
 #   make -C verification smoke      run the placeholder DUT test
 #   make -C verification xbar       OBI crossbar/decode + reset synchroniser tests
+#   make -C verification boot       SoC top boots firmware/boot (needs build/cve2/cve2_top.v:
+#                                   scripts/fetch-cve2.sh && scripts/convert-cve2.sh)
 #
 # A new test directory under tests/<name>/ adds a target by setting the three
 # variables below; nothing here needs restructuring when the SoC top lands.
@@ -38,3 +40,16 @@ xbar-rst:
 	    TESTDIR=$(ROOT)/tests/xbar TOPLEVEL=rst_sync MODULE=test_rst_sync \
 	    VERILOG_SOURCES=$(RTL)/rst_sync.sv \
 	    SIM_BUILD=$(ROOT)/sim_build/rst_sync
+
+CVE2_V := $(abspath $(ROOT)/../$(or $(CVE2_BUILD_REL),build/cve2))/cve2_top.v
+BOOT_HEX := $(abspath $(ROOT)/../firmware/boot/boot_rom.hex)
+
+.PHONY: boot
+boot:
+	@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
+	@test -r $(CVE2_V) || { echo "$(CVE2_V) missing: run scripts/fetch-cve2.sh && scripts/convert-cve2.sh" >&2; exit 1; }
+	$(MAKE) -f $(ROOT)/cocotb.mk \
+	    TESTDIR=$(ROOT)/tests/boot TOPLEVEL=soc_top MODULE=test_boot \
+	    VERILOG_SOURCES="$(RTL)/obi_err_resp.sv $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/soc_sram_d.sv $(RTL)/soc_fabric.sv $(RTL)/rst_sync.sv $(CVE2_V) $(RTL)/soc_top.sv" \
+	    PLUSARGS=+rom_hex=$(BOOT_HEX) \
+	    SIM_BUILD=$(ROOT)/sim_build/boot

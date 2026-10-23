@@ -3,6 +3,13 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-10-23
+
+- **PR #25**: feat: add block manifest, signoff record and CI re-grade
+- **PR #24**: feat: fetch, verify and sv2v-convert pinned CVE2 sources
+- **Issue #20** (closed): SoC RTL step 1a: fetch CVE2 at the pin, sha256-verify against the lock, sv2v conversion
+- **Issue #18** (closed): T1 verdict of record: commit a klt signoff block manifest and a CI job that keeps its report fresh
+
 ### 2026-10-22
 
 - **PR #12**: feat(verification): add cocotb smoke harness, record linter and CI

@@ -110,3 +110,7 @@ results.xml
 
 # klt scratch (per-run synthesis / P&R artifacts; evidence is copied into verification/records/)
 .klt/
+
+# fetched CVE2 sources and sv2v output (scripts/fetch-cve2.sh, scripts/convert-cve2.sh);
+# generated, never committed
+build/

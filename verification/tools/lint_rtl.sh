@@ -7,5 +7,6 @@ cd "$(dirname "$0")/../.."
 mapfile -t files < <(find rtl \( -name '*.v' -o -name '*.sv' \) -type f | sort)
 if [[ ${#files[@]} -eq 0 ]]; then echo "rtl lint: ok (no RTL files yet)"; exit 0; fi
 command -v verilator >/dev/null || { echo "rtl lint: verilator not on PATH" >&2; exit 1; }
-verilator --lint-only "${files[@]}"
+# several independent tops (rst_sync, soc_fabric, ...) until the SoC top lands
+verilator --lint-only -Wno-MULTITOP "${files[@]}"
 echo "rtl lint: ok (${#files[@]} files)"

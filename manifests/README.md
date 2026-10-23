@@ -1,0 +1,35 @@
+# Block manifest and signoff record
+
+- `sky130-riscv-soc.json` — the block manifest. `evidence` is empty: nothing
+  is cited yet. The `verification/records/toolchain-smoke/` records are
+  toolchain evidence only and must not be cited.
+- `sky130-riscv-soc.signoff.json` — the verbatim output of `klt signoff` on
+  that manifest, on the klt pinned in `scripts/setup-env.sh`
+  (`PIN_KLT_SHA`, the only place the pin lives).
+
+## Regenerate
+
+Use a throwaway environment, never a host-wide install:
+
+```bash
+SHA="$(sed -n 's/^PIN_KLT_SHA="\([0-9a-f]\{40\}\)".*/\1/p' scripts/setup-env.sh)"
+uvx --from "klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@${SHA}" \
+  klt signoff --manifest manifests/sky130-riscv-soc.json --format json \
+  > manifests/sky130-riscv-soc.signoff.json
+```
+
+A plain render exits **3** while any T1 item is unmet. That is expected, not
+an error: the tier is `null` until evidence is cited.
+
+## Check (what CI runs)
+
+```bash
+uvx --from "klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@${SHA}" \
+  klt signoff --manifest manifests/sky130-riscv-soc.json \
+  --check manifests/sky130-riscv-soc.signoff.json
+```
+
+Exit 0 means the committed report reproduces (the `build` block is excluded
+from the comparison). With `--check`, exit **3 means drift** and fails the job.
+
+A klt pin bump lands in the same change as a regenerated report.

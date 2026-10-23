@@ -1,0 +1,34 @@
+name: signoff
+
+# Re-grades the block manifest with the pinned klt and fails on drift from the
+# committed report. The klt pin lives only in scripts/setup-env.sh (PIN_KLT_SHA).
+# No path filters; a started main run is never cancelled (.loom/docs/ci-principles.md).
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.event_name == 'pull_request' && format('signoff-pr-{0}', github.event.pull_request.number) || 'signoff-main' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  signoff:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read the klt pin
+        run: |
+          sha="$(sed -n 's/^PIN_KLT_SHA="\([0-9a-f]\{40\}\)".*/\1/p' scripts/setup-env.sh)"
+          test "${#sha}" -eq 40
+          echo "KLT_SHA=${sha}" >> "$GITHUB_ENV"
+      - uses: astral-sh/setup-uv@v5
+      - name: Grade the manifest against the committed report
+        run: |
+          # --check: exit 0 = report reproduces; 3 = drift (a failure here).
+          uvx --from "klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@${KLT_SHA}" \
+            klt signoff --manifest manifests/sky130-riscv-soc.json \
+            --check manifests/sky130-riscv-soc.signoff.json

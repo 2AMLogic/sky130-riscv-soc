@@ -70,8 +70,9 @@ The peripheral window is `0x4000_0000`–`0x4000_FFFF`; unused pages answer
 with an OBI error. **Reset vector: `0x0000_0000`** — `boot_addr_i` is tied to
 the boot ROM base (CVE2 fetches from `boot_addr_i[31:2]` on reset,
 `rtl/cve2_if_stage.sv:140`, and the port comment says it is also used for
-`mtvec`, `rtl/cve2_if_stage.sv:20`; the exact trap-vector offset is
-*unverified* and settled by the first RTL boot test). Boot flow: ROM firmware
+`mtvec`, `rtl/cve2_if_stage.sv:20`; the trap-vector offset is 0 from
+`boot_addr_i`, resolved by the first RTL boot test, see
+[record 0003](decision-records/0003-trap-vector-offset.md)). Boot flow: ROM firmware
 initialises the UART, copies or receives code into instruction SRAM, and
 jumps to it. Interrupts: timer → `irq_timer_i`; UART → `irq_fast_i[0]`;
 GPIO → `irq_fast_i[1]`; other lines tied 0.
@@ -187,5 +188,5 @@ reference. The right column is re-derived per PDK.
 | Macro Liberty at `ss_100C_1v60` and `ff_n40C_1v95` | a regenerated or sibling-produced view; until then slow/fast macro-path claims are not signoff |
 | Icarus accepts the sv2v output | RTL issue elaboration smoke test |
 | `MHPMCounterNum` trim, `RV32MFast` vs `RV32MSlow` | synthesis issue timing/area result |
-| Trap-vector offset from `boot_addr_i` | first RTL boot test |
+| Trap-vector offset from `boot_addr_i` | resolved: 0, [record 0003](decision-records/0003-trap-vector-offset.md) |
 | Liberty file names in the pinned PDK, sv2v version | #5 (PDK/toolchain pin) |

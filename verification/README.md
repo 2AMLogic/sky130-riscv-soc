@@ -7,6 +7,7 @@ cold-start command a third party can run.
 | Path | Holds |
 | --- | --- |
 | `Makefile`, `cocotb.mk` | the single runner entry point (cocotb + Icarus Verilog) |
+| `tests/boot/` | SoC top boot test (`make boot`): CVE2 + fabric run `firmware/boot`; needs the converted core |
 | `tests/<name>/` | one directory per testbench (DUT sources + cocotb module); `tests/smoke/` is a placeholder register that proves the harness runs |
 | `tools/lint_records.py` | linter for `records/` (stdlib only) |
 | `tools/lint_rtl.sh` | Verilator lint over `../rtl/`; a no-op while it is empty |

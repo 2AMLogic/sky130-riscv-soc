@@ -16,6 +16,7 @@ if the two disagree, the script wins.
 | Icarus Verilog | `13.0` | `iverilog -V` |
 | OpenROAD | `26Q3-1510-g6cb3f2b704`, image `openroad/orfs@sha256:bb7f31697fb8466ab61852fc796376cc16d9df38f762ccb733218b8a5e55824b` | `openroad -version`; the wrapper's image digest |
 | sv2v | `v0.0.13` (SystemVerilog to Verilog for CVE2) | `sv2v --version` |
+| RISC-V GCC | xPack `riscv-none-elf-gcc` `14.2.0` (release `v14.2.0-3`, tarball sha256 in `PIN_RISCV_GCC_SHA256`), builds `firmware/boot` | `riscv-none-elf-gcc --version` |
 | cocotb | `2.0.1` (needed from #6; reported, not required) | `import cocotb` |
 
 The `open_pdks` revision matches the one `2AMLogic/sky130-modexp` records in
@@ -81,3 +82,9 @@ with width warnings from the sv2v output, which are not treated as fatal.
 `convert-cve2.sh` uses `sv2v` from `PATH` or `$SV2V`. sv2v is not provisioned on
 the dispatch workers; verification for this change used a throwaway download of
 the v0.0.13 release outside the repo.
+
+The RISC-V GCC is likewise not on the workers. For `firmware/boot/build.sh` and
+`make boot` use a throwaway unpack of the xPack tarball (sha256 in
+`scripts/setup-env.sh`) under `build/tools/` and put its `bin/` on `PATH`; the
+checked-in `firmware/boot/boot_rom.hex` lets `make boot` run without it.
+A worker-spec change would provision both tools.

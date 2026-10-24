@@ -31,7 +31,7 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-- **#21**: SoC RTL step 1b: OBI crossbar, error responder, boot ROM, behavioural SRAM wrappers, reset sync
+_None._
 
 ## PRs Awaiting Review
 
@@ -43,13 +43,12 @@ _None._
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-- **#23**: feat(rtl): add OBI crossbar, error responder, boot ROM, SRAM wrappers, reset sync
+_None._
 
 ## Proposed
 
 Issues carrying `loom:curated`.
 
-- **#21**: SoC RTL step 1b: OBI crossbar, error responder, boot ROM, behavioural SRAM wrappers, reset sync *(curated)*
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
 
 ## Proposed (Architect / Hermit)
@@ -68,10 +67,10 @@ _None._
 | Very important | 0 |
 | Important | 0 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 1 |
+| In Progress (`loom:building`) | 0 |
 | PRs awaiting review | 0 |
-| Approved PRs awaiting merge | 1 |
-| Curated | 2 |
+| Approved PRs awaiting merge | 0 |
+| Curated | 1 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

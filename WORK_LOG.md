@@ -5,6 +5,10 @@ Maintained by the Loom Guide role.
 
 ### 2026-10-23
 
+- **PR #27**: feat: add SoC top, boot firmware and RTL boot test
+- **PR #23**: feat(rtl): add OBI crossbar, error responder, boot ROM, SRAM wrappers, reset sync
+- **Issue #22** (closed): SoC RTL step 1c: SoC top with CVE2 and firmware boot test
+- **Issue #21** (closed): SoC RTL step 1b: OBI crossbar, error responder, boot ROM, behavioural SRAM wrappers, reset sync
 - **PR #25**: feat: add block manifest, signoff record and CI re-grade
 - **PR #24**: feat: fetch, verify and sv2v-convert pinned CVE2 sources
 - **Issue #20** (closed): SoC RTL step 1a: fetch CVE2 at the pin, sha256-verify against the lock, sv2v conversion

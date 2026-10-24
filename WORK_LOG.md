@@ -3,6 +3,10 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-10-24
+
+- **Issue #19** (closed): SoC integration RTL, step 1: fetch CVE2 at the pin and boot it on the OBI crossbar with boot ROM and behavioural SRAMs
+
 ### 2026-10-23
 
 - **PR #27**: feat: add SoC top, boot firmware and RTL boot test

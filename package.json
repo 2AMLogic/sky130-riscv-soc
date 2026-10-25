@@ -6,7 +6,7 @@
     "worktree:return": "./.loom/scripts/worktree-return.sh",
     "check:ci": "npm run lint && npm run test",
     "check:all": "npm run check:ci",
-    "test": "make -C verification smoke",
+    "test": "make -C verification xbar",
     "lint": "python3 -I verification/tools/lint_records.py && python3 -I verification/tools/tests/test_lint_records.py && verification/tools/lint_rtl.sh"
   }
 }

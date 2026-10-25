@@ -1,6 +1,6 @@
 name: CI
 
-# Records lint, RTL lint and the cocotb smoke. PDK-heavy legs (synthesis,
+# Records lint, RTL lint and the cocotb xbar/reset-synchroniser tests. PDK-heavy legs (synthesis,
 # place-and-route, DRC, LVS) stay local: see verification/README.md.
 # No path filters; a started main run is never cancelled (.loom/docs/ci-principles.md).
 on:
@@ -29,7 +29,7 @@ jobs:
       - name: RTL lint
         run: verification/tools/lint_rtl.sh
 
-  smoke:
+  sim:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -41,7 +41,7 @@ jobs:
           test -n "$pin"
           python3 -m venv .venv
           .venv/bin/pip install "cocotb==${pin}"
-      - name: cocotb smoke
+      - name: cocotb xbar and reset-synchroniser tests
         run: |
           . .venv/bin/activate
-          make -C verification smoke
+          make -C verification xbar

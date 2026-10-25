@@ -101,12 +101,13 @@ Cold-start commands, from a clean checkout (tool and PDK pins are in
 ```
 scripts/setup-env.sh --check                    # environment matches the pins
 python3 -m venv .venv && .venv/bin/pip install cocotb==2.0.1
-. .venv/bin/activate && make -C verification smoke   # cocotb + Icarus harness
+. .venv/bin/activate && make -C verification xbar    # cocotb + Icarus: OBI crossbar, fabric, reset sync
 npm run lint                                    # record linter, its fixture test, RTL lint
-npm run test                                    # the same smoke as above
+npm run test                                    # the same xbar tests as above
 ```
 
-CI runs the lint and the smoke; synthesis, place-and-route, DRC and LVS stay
+CI runs the lint and the xbar tests (`make boot` needs the converted CVE2 and
+stays local); synthesis, place-and-route, DRC and LVS stay
 local (see [`verification/README.md`](verification/README.md)).
 
 ## License

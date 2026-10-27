@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "kind": "t1-attestation-inventory",
+  "t1_item": 9,
+  "description": "Every cocotb bench under verification/tests/. Cold start after scripts/setup-env.sh --check, scripts/fetch-cve2.sh and scripts/convert-cve2.sh (boot needs build/cve2/cve2_top.v): make -C verification xbar boot. xbar = tests/xbar/test_xbar.py (xbar-fabric) + tests/xbar/test_rst_sync.py (xbar-rst). A new bench under verification/tests/ must be added here.",
+  "testbenches": [
+    "verification/tests/boot/test_boot.py",
+    "verification/tests/xbar/test_rst_sync.py",
+    "verification/tests/xbar/test_xbar.py"
+  ],
+  "cold_start": {
+    "argv": ["make", "-C", "verification", "xbar", "boot"],
+    "local_only": true
+  },
+  "pins": {
+    "pdk": {"name": "sky130A", "revision": "f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7"},
+    "tools": {
+      "cocotb": "2.0.1",
+      "iverilog": "13.0",
+      "sv2v": "v0.0.13",
+      "klt": "0.7.1.dev2517+g6bb7cf233677"
+    }
+  }
+}

@@ -32,3 +32,25 @@ jobs:
           uvx --from "klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@${KLT_SHA}" \
             klt signoff --manifest manifests/sky130-riscv-soc.json \
             --check manifests/sky130-riscv-soc.signoff.json
+      - name: Re-attest item 9 (testbenches shipped)
+        run: |
+          # Every file/hash check and the pins re-run; the cold_start is local_only (it needs
+          # cocotb, sv2v and the converted CVE2), so it is carried from the committed
+          # envelope and shown as [SKIP]. klt only checks what the inventory lists, so the
+          # next step catches a bench that is on disk but missing from it.
+          uvx --from "klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@${KLT_SHA}" \
+            klt signoff --attest 9 \
+            --inventory manifests/sky130-riscv-soc.attest9.inventory.json \
+            --check manifests/sky130-riscv-soc.attest9.json
+      - name: Every bench under verification/tests is in the item-9 inventory
+        run: |
+          python3 -I - <<'PY'
+          import json, pathlib, sys
+          inv = json.load(open("manifests/sky130-riscv-soc.attest9.inventory.json"))
+          listed = set(inv["testbenches"])
+          found = {p.as_posix() for p in pathlib.Path("verification/tests").rglob("test_*.py")}
+          missing = sorted(found - listed)
+          if missing:
+              sys.exit("benches missing from the item-9 inventory: " + ", ".join(missing))
+          print("inventory lists all", len(found), "benches")
+          PY

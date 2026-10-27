@@ -27,6 +27,9 @@ make -C verification xbar       # fabric + reset-synchroniser tests; fails if co
 
 Adding a testbench: put it in `tests/<name>/` and add a target to the
 `Makefile` that sets `TESTDIR`, `TOPLEVEL`, `MODULE` and `VERILOG_SOURCES`.
+A new bench must also be added to
+[`../manifests/sky130-riscv-soc.attest9.inventory.json`](../manifests/sky130-riscv-soc.attest9.inventory.json)
+and re-attested ([`../manifests/README.md`](../manifests/README.md)); CI fails otherwise.
 
 ## What CI runs, and what stays local
 

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "kind": "generic",
+  "status": "pass",
+  "t1_item": 9,
+  "summary": "T1 item 9 (Testbenches shipped): 6/6 attestation checks passed (klt signoff --attest)",
+  "source": "manifests/sky130-riscv-soc.attest9.inventory.json",
+  "attestation": {
+    "producer": "klt signoff --attest",
+    "inventory_schema_version": 1,
+    "hash_algorithm": "sha256-raw-bytes",
+    "check_count": 6,
+    "passed_count": 6,
+    "checks": [
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/tests/boot/test_boot.py",
+        "passed": true,
+        "content_hash": "sha256:c0db82b44c0e74f6c79986453d1b0c9e594247f28a8e23b4b3393b7b23d512dc"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/tests/xbar/test_rst_sync.py",
+        "passed": true,
+        "content_hash": "sha256:45f887886605e071fc438fa79b6e1edc6378567b9cf848e2d177464edcbc9c49"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/tests/xbar/test_xbar.py",
+        "passed": true,
+        "content_hash": "sha256:33a7a96ea941aad7bdffbe8244ee5648bc53cf0434b1b383d95d35ddd7ed9214"
+      },
+      {
+        "check": "command",
+        "role": "cold_start",
+        "argv": [
+          "make",
+          "-C",
+          "verification",
+          "xbar",
+          "boot"
+        ],
+        "cwd": ".",
+        "exit_status": 0,
+        "passed": true,
+        "local_only": true
+      },
+      {
+        "check": "pin",
+        "role": "pdk",
+        "passed": true,
+        "value": {
+          "name": "sky130A",
+          "revision": "f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7"
+        }
+      },
+      {
+        "check": "pin",
+        "role": "tools",
+        "passed": true,
+        "value": {
+          "cocotb": "2.0.1",
+          "iverilog": "13.0",
+          "klt": "0.7.1.dev2517+g6bb7cf233677",
+          "sv2v": "v0.0.13"
+        }
+      }
+    ]
+  },
+  "provenance": {
+    "klt_version": "0.7.1.dev2517+g6bb7cf233677",
+    "klayout_version": null,
+    "pdk": null,
+    "deck": null,
+    "input": {
+      "path": {
+        "path": "manifests/sky130-riscv-soc.attest9.inventory.json",
+        "scope": "repo"
+      },
+      "content_hash": "sha256:e5c13db24cf7791e63e92f09a8c6a3aac8e6bd6f049c851774c7c1269b8e5fd6"
+    }
+  }
+}

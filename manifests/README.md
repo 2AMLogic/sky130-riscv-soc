@@ -9,15 +9,15 @@
   toolchain evidence only and must not be cited.
 - `sky130-riscv-soc.signoff.json` — the verbatim output of `klt signoff` on
   that manifest, on the klt pinned in `scripts/setup-env.sh`
-  (`PIN_KLT_SHA`, the only place the pin lives).
+  (`PIN_KLT`, the only place the pin lives).
 
 ## Regenerate
 
 Use a throwaway environment, never a host-wide install:
 
 ```bash
-SHA="$(sed -n 's/^PIN_KLT_SHA="\([0-9a-f]\{40\}\)".*/\1/p' scripts/setup-env.sh)"
-uvx --from "klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@${SHA}" \
+VER="$(sed -n 's/^PIN_KLT="\([0-9][0-9.]*\)".*/\1/p' scripts/setup-env.sh)"
+uvx --from "klayout-tools==${VER}" \
   klt signoff --manifest manifests/sky130-riscv-soc.json --format json \
   > manifests/sky130-riscv-soc.signoff.json
 ```
@@ -28,7 +28,7 @@ an error: the tier is `null` until evidence is cited.
 ## Check (what CI runs)
 
 ```bash
-uvx --from "klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@${SHA}" \
+uvx --from "klayout-tools==${VER}" \
   klt signoff --manifest manifests/sky130-riscv-soc.json \
   --check manifests/sky130-riscv-soc.signoff.json
 ```

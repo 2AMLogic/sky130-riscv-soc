@@ -107,8 +107,8 @@ npm run test                                    # the same xbar tests as above
 scripts/fetch-cve2.sh && scripts/convert-cve2.sh     # pinned CVE2 -> build/cve2/cve2_top.v (needs sv2v)
 make -C verification boot                       # SoC top boots firmware/boot (needs the converted core)
 firmware/boot/build.sh --check                  # boot_rom.hex matches boot.S (needs the pinned RISC-V GCC)
-SHA="$(sed -n 's/^PIN_KLT_SHA="\([0-9a-f]\{40\}\)".*/\1/p' scripts/setup-env.sh)"
-KLT=(uvx --from "klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@${SHA}" klt)
+VER="$(sed -n 's/^PIN_KLT="\([0-9][0-9.]*\)".*/\1/p' scripts/setup-env.sh)"
+KLT=(uvx --from "klayout-tools==${VER}" klt)
 "${KLT[@]}" signoff --manifest manifests/sky130-riscv-soc.json \
   --check manifests/sky130-riscv-soc.signoff.json         # evidence report reproduces
 "${KLT[@]}" signoff --attest 10 --inventory attest/item10.json \

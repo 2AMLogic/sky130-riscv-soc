@@ -1,7 +1,7 @@
 name: signoff
 
 # Re-grades the block manifest with the pinned klt and fails on drift from the
-# committed report. The klt pin lives only in scripts/setup-env.sh (PIN_KLT_SHA).
+# committed report, and re-attests T1 item 10. The klt pin lives only in scripts/setup-env.sh (PIN_KLT_SHA).
 # No path filters; a started main run is never cancelled (.loom/docs/ci-principles.md).
 on:
   pull_request:
@@ -32,3 +32,10 @@ jobs:
           uvx --from "klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@${KLT_SHA}" \
             klt signoff --manifest manifests/sky130-riscv-soc.json \
             --check manifests/sky130-riscv-soc.signoff.json
+      - name: Re-attest T1 item 10 (repo hygiene)
+        run: |
+          # --attest --check: exit 0 = envelope reproduces; 3 = drift (a failure here).
+          # local_only checks (RTL lint, xbar tests) are skipped here; ci.yml runs them.
+          uvx --from "klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@${KLT_SHA}" \
+            klt signoff --attest 10 --inventory attest/item10.json \
+            --check evidence/item10.json

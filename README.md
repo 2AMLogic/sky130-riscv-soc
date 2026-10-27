@@ -104,11 +104,32 @@ python3 -m venv .venv && .venv/bin/pip install cocotb==2.0.1
 . .venv/bin/activate && make -C verification xbar    # cocotb + Icarus: OBI crossbar, fabric, reset sync
 npm run lint                                    # record linter, its fixture test, RTL lint
 npm run test                                    # the same xbar tests as above
+scripts/fetch-cve2.sh && scripts/convert-cve2.sh     # pinned CVE2 -> build/cve2/cve2_top.v (needs sv2v)
+make -C verification boot                       # SoC top boots firmware/boot (needs the converted core)
+firmware/boot/build.sh --check                  # boot_rom.hex matches boot.S (needs the pinned RISC-V GCC)
+SHA="$(sed -n 's/^PIN_KLT_SHA="\([0-9a-f]\{40\}\)".*/\1/p' scripts/setup-env.sh)"
+KLT=(uvx --from "klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@${SHA}" klt)
+"${KLT[@]}" signoff --manifest manifests/sky130-riscv-soc.json \
+  --check manifests/sky130-riscv-soc.signoff.json         # evidence report reproduces
+"${KLT[@]}" signoff --attest 10 --inventory attest/item10.json \
+  --check evidence/item10.json                            # repo-hygiene attestation reproduces
 ```
 
-CI runs the lint and the xbar tests (`make boot` needs the converted CVE2 and
-stays local); synthesis, place-and-route, DRC and LVS stay
-local (see [`verification/README.md`](verification/README.md)).
+The toolchain-smoke records under
+[`verification/records/toolchain-smoke/`](verification/records/toolchain-smoke/)
+(and the `flow/smoke/` inputs they ran) prove the synthesis and place-and-route
+tools run; each dated record's README gives the commands that produced it.
+They are toolchain evidence, not design evidence.
+
+CI runs the lint, the xbar tests and the two `klt signoff` checks above.
+`make boot` and `firmware/boot/build.sh --check` stay local: CI does not
+install `sv2v` or the pinned RISC-V GCC, nor fetch the CVE2 sources.
+Synthesis, place-and-route, DRC and LVS also stay local (see
+[`verification/README.md`](verification/README.md)). Regenerating the
+attestation after an edit to an attested file (including this README):
+`klt signoff --attest 10 --inventory attest/item10.json -o evidence/item10.json`,
+then regenerate the signoff report as described in
+[`manifests/README.md`](manifests/README.md).
 
 ## License
 

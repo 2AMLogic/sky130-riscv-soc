@@ -13,6 +13,7 @@
           "content_hash": "sha256:561697cd0afcb450d74fb2e20e6a16fb7890dc196ca258fa8986344b26bb70f4"
         }
       }
-    }
+    },
+    "10": {"file": "evidence/item10.json", "content_hash": "sha256:03268fa1dd7eb62b1c5b90ea7dd485bb588149b05b711809d2f9254d96fd3125"}
   }
 }

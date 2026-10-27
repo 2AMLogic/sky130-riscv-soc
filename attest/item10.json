@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "kind": "t1-attestation-inventory",
+  "t1_item": 10,
+  "description": "Repo hygiene: README, LICENSE, both workflows, and the commands CI runs. RTL lint and xbar tests need Verilator/Icarus/cocotb, which the signoff runner lacks, so they are local_only there (ci.yml runs them).",
+  "hygiene": ["README.md", "LICENSE", ".github/workflows/ci.yml", ".github/workflows/signoff.yml"],
+  "checks": [
+    {"name": "record-lint", "argv": ["python3", "-I", "verification/tools/lint_records.py"]},
+    {"name": "record-lint-fixtures", "argv": ["python3", "-I", "verification/tools/tests/test_lint_records.py"]},
+    {"name": "rtl-lint", "argv": ["verification/tools/lint_rtl.sh"], "local_only": true},
+    {"name": "xbar-tests", "argv": ["make", "-C", "verification", "xbar"], "local_only": true}
+  ]
+}

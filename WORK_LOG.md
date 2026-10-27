@@ -5,6 +5,7 @@ Maintained by the Loom Guide role.
 
 ### 2026-10-27
 
+- **PR #62**: test: add boot-1rw make target for the 1RW/1024-word SoC boot configuration
 - **PR #56**: feat: attest T1 item 10 repo hygiene and complete README reproduce steps
 - **Issue #44** (closed): T1 item 10 (Repo hygiene): README reproduction steps and klt signoff --attest 10
 - **PR #58**: feat: parametrize SRAM depth and add single-port I-SRAM mode in soc_fabric

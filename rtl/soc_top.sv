@@ -1,16 +1,21 @@
 // SoC top: CVE2 (converted by scripts/convert-cve2.sh, never edited) wired to
-// the memory fabric, with the reset synchroniser. No peripherals yet: the
-// peripheral window inside soc_fabric answers every access with an OBI error.
+// the memory fabric, with the reset synchroniser. The peripheral window inside
+// soc_fabric holds GPIO and the machine timer; the UART page still answers
+// with an OBI error.
 // Core configuration per spec/soc.md: RV32IMC, RV32MFast, debug tied off,
 // boot_addr_i at the boot ROM base (the reset vector).
 module soc_top (
     input  logic clk_i,
     input  logic rst_ni,
+    input  logic [7:0] gpio_i,
+    output logic [7:0] gpio_o,
+    output logic [7:0] gpio_oe_o,
     output logic core_sleep_o
 );
   localparam logic [31:0] BootAddr = 32'h0000_0000;
 
   logic        rst_n;
+  logic        irq_timer, irq_gpio;
 
   logic        instr_req, instr_gnt, instr_rvalid, instr_err;
   logic [31:0] instr_addr, instr_rdata;
@@ -64,9 +69,9 @@ module soc_top (
       .x_result_ready_o   (),
       .x_result_i         ('0),
       .irq_software_i     (1'b0),
-      .irq_timer_i        (1'b0),
+      .irq_timer_i        (irq_timer),
       .irq_external_i     (1'b0),
-      .irq_fast_i         (16'h0),
+      .irq_fast_i         ({14'h0, irq_gpio, 1'b0}),  // [0] UART (not yet), [1] GPIO
       .irq_nm_i           (1'b0),
       .debug_req_i        (1'b0),
       .debug_halted_o     (),
@@ -97,6 +102,11 @@ module soc_top (
       .d_wdata_i (data_wdata),
       .d_rvalid_o(data_rvalid),
       .d_rdata_o (data_rdata),
-      .d_err_o   (data_err)
+      .d_err_o   (data_err),
+      .gpio_i,
+      .gpio_o,
+      .gpio_oe_o,
+      .irq_gpio_o (irq_gpio),
+      .irq_timer_o(irq_timer)
   );
 endmodule

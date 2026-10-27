@@ -8,7 +8,7 @@ cold-start command a third party can run.
 | --- | --- |
 | `Makefile`, `cocotb.mk` | the single runner entry point (cocotb + Icarus Verilog) |
 | `tests/boot/` | SoC top boot test (`make boot`): CVE2 + fabric run `firmware/boot`; needs the converted core |
-| `tests/<name>/` | one directory per testbench (DUT sources + cocotb module); `tests/xbar/` holds the fabric and reset-synchroniser tests |
+| `tests/<name>/` | one directory per testbench (DUT sources + cocotb module); `tests/xbar/` holds the fabric and reset-synchroniser tests, `tests/periph/` the GPIO, timer and peripheral-window decode tests |
 | `tools/lint_records.py` | linter for `records/` (stdlib only) |
 | `tools/lint_rtl.sh` | Verilator lint over `../rtl/`; a no-op while it is empty |
 | `tools/tests/` | good and bad record fixtures plus the linter's own test |
@@ -23,6 +23,7 @@ Needs `iverilog` 13.0 and `cocotb` 2.0.1 (pins in
 python3 -m venv .venv && .venv/bin/pip install cocotb==2.0.1
 . .venv/bin/activate
 make -C verification xbar       # fabric + reset-synchroniser tests; fails if cocotb is missing
+make -C verification periph     # GPIO, timer and peripheral-window decode tests
 ```
 
 Adding a testbench: put it in `tests/<name>/` and add a target to the
@@ -31,8 +32,8 @@ Adding a testbench: put it in `tests/<name>/` and add a target to the
 ## What CI runs, and what stays local
 
 CI (`.github/workflows/ci.yml`, on pull requests and `main`) runs the record
-linter and its fixture test, RTL lint, and the cocotb `xbar` tests (OBI
-crossbar, fabric and reset synchroniser). `make boot` needs the converted CVE2
+linter and its fixture test, RTL lint, and the cocotb `xbar` (OBI
+crossbar, fabric and reset synchroniser) and `periph` tests. `make boot` needs the converted CVE2
 core, so it stays local.
 
 The PDK-heavy legs stay **local**, run by hand and recorded under `records/`:

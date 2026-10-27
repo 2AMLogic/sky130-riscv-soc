@@ -1,6 +1,6 @@
 name: CI
 
-# Records lint, RTL lint and the cocotb xbar/reset-synchroniser tests. PDK-heavy legs (synthesis,
+# Records lint, RTL lint and the cocotb xbar, reset-synchroniser and peripheral tests. PDK-heavy legs (synthesis,
 # place-and-route, DRC, LVS) stay local: see verification/README.md.
 # No path filters; a started main run is never cancelled (.loom/docs/ci-principles.md).
 on:
@@ -45,3 +45,7 @@ jobs:
         run: |
           . .venv/bin/activate
           make -C verification xbar
+      - name: cocotb peripheral tests (GPIO, timer, window decode)
+        run: |
+          . .venv/bin/activate
+          make -C verification periph

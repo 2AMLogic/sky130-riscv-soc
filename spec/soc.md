@@ -88,6 +88,9 @@ GPIO → `irq_fast_i[1]`; other lines tied 0.
   spec change.
 - **Timer** — RISC-V machine-timer style 64-bit `mtime`/`mtimecmp`, drives
   `irq_timer_i`.
+
+Register offsets, widths, reset values and interrupt semantics for GPIO and the
+timer, and the peripheral-window decode: [record 0004](decision-records/0004-peripheral-register-map.md).
 - **SPI flash XIP** — stretch, not ratified into the target.
 
 ## Clock and reset

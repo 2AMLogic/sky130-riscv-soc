@@ -8,6 +8,10 @@
 # generated file (sv2v output we never edit) are ignored, any warning or error
 # located in rtl/ fails. When it is absent soc_top.sv is skipped with a
 # notice, or the script fails if LINT_REQUIRE_CORE=1.
+#
+# SRAM_MACRO_V=<path to sky130_sram_2kbyte_1rw1r_32x512_8.v> lints the
+# -DSOC_SRAM_MACRO build (decision record 0004); the macro model is not ours,
+# so its warnings are ignored like the generated core's.
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 CORE="${CVE2_BUILD:-build/cve2}/cve2_top.v"
@@ -27,6 +31,11 @@ else
     kept=()
     for f in "${files[@]}"; do [[ "$f" == rtl/soc_top.sv ]] || kept+=("$f"); done
     files=("${kept[@]}")
+fi
+if [[ -n "${SRAM_MACRO_V:-}" ]]; then
+    [[ -r "$SRAM_MACRO_V" ]] || { echo "rtl lint: SRAM_MACRO_V=$SRAM_MACRO_V not readable" >&2; exit 1; }
+    args+=(-Wno-fatal -DSOC_SRAM_MACRO --timing "$SRAM_MACRO_V")
+    core_note="${core_note}, SOC_SRAM_MACRO build"
 fi
 # several independent tops (rst_sync, soc_fabric, ...) besides soc_top
 out="$(mktemp)"; trap 'rm -f "$out"' EXIT

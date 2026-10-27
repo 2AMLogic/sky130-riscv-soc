@@ -5,6 +5,8 @@ Maintained by the Loom Guide role.
 
 ### 2026-10-27
 
+- **PR #65**: chore: pin klayout-tools to PyPI 0.8.0 and regenerate signoff records
+- **Issue #64** (closed): Bump klayout-tools pin 6bb7cf233677 → 0.8.0
 - **PR #62**: test: add boot-1rw make target for the 1RW/1024-word SoC boot configuration
 - **PR #56**: feat: attest T1 item 10 repo hygiene and complete README reproduce steps
 - **Issue #44** (closed): T1 item 10 (Repo hygiene): README reproduction steps and klt signoff --attest 10

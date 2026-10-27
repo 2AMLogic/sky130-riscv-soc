@@ -19,13 +19,13 @@ _None._
 
 `loom:important`; taken before unlabelled work.
 
-_None._
+- **#36**: T1 item 2 (Layout): settle SRAM macro organisation (spec row 8a) and die budget, instantiate the macros
 
 ## Ready
 
 Human-approved issues ready for implementation (`loom:issue`).
 
-_None._
+- **#36**: T1 item 2 (Layout): settle SRAM macro organisation (spec row 8a) and die budget, instantiate the macros
 
 ## In Progress
 
@@ -50,6 +50,10 @@ _None._
 Issues carrying `loom:curated`.
 
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
+- **#36**: T1 item 2 (Layout): settle SRAM macro organisation (spec row 8a) and die budget, instantiate the macros *(curated)*
+- **#41**: T1 item 6 (Monte Carlo): record "not applicable" as a hash-bound statement covering every spec/soc.md row *(curated)*
+- **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9 *(curated)*
+- **#44**: T1 item 10 (Repo hygiene): README reproduction steps and klt signoff --attest 10 *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -65,12 +69,12 @@ _None._
 |------|-------|
 | Operator merge-risk holds | 0 |
 | Very important | 0 |
-| Important | 0 |
-| Ready (`loom:issue`) | 0 |
+| Important | 1 |
+| Ready (`loom:issue`) | 1 |
 | In Progress (`loom:building`) | 0 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
-| Curated | 1 |
+| Curated | 5 |
 | Architect / Hermit proposals | 1 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

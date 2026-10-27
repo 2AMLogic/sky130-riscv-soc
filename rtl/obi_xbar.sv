@@ -12,7 +12,16 @@
 // Timing contract: every subordinate grants a request and responds exactly one
 // cycle after the grant, so responses return in order with no id tracking.
 // Subordinates raise no error except the peripheral window (periph_err_i).
-module obi_xbar (
+// SRAM size: ISRAM_AW / DSRAM_AW are the word-address widths (default 11 = 2048
+// words = 8 KB). The region decode derives from them, so an address past the
+// configured size inside the old 8 KB region is unmapped and gets an error.
+// A subordinate may deassert its grant (soc_fabric does for the I-SRAM when it
+// is a single port, ISRAM_1RW=1: the data manager wins, the fetch is held and
+// retries). A response is only expected one cycle after a granted request.
+module obi_xbar #(
+    parameter int ISRAM_AW = 11,
+    parameter int DSRAM_AW = 11
+) (
     input  logic        clk_i,
     input  logic        rst_ni,
 
@@ -87,8 +96,8 @@ module obi_xbar (
   // Raw address decode per the memory map.
   function automatic logic [2:0] decode(input logic [31:0] a);
     if (a[31:12] == 20'h00000) return T_ROM;
-    else if (a[31:13] == 19'h08000) return T_ISR;  // 0x1000_0000, 8 KB
-    else if (a[31:13] == 19'h10000) return T_DSR;  // 0x2000_0000, 8 KB
+    else if ((a >> (ISRAM_AW + 2)) == (32'h1000_0000 >> (ISRAM_AW + 2))) return T_ISR;  // 0x1000_0000
+    else if ((a >> (DSRAM_AW + 2)) == (32'h2000_0000 >> (DSRAM_AW + 2))) return T_DSR;  // 0x2000_0000
     else if (a[31:16] == 16'h4000) return T_PER;  // 0x4000_0000-0x4000_FFFF
     else return T_ERR;
   endfunction

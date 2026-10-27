@@ -62,3 +62,17 @@ boot:
 	    VERILOG_SOURCES="$(RTL)/obi_err_resp.sv $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/soc_sram_i_1rw.sv $(RTL)/soc_sram_d.sv $(RTL)/soc_fabric.sv $(RTL)/rst_sync.sv $(CVE2_V) $(RTL)/soc_top.sv" \
 	    PLUSARGS=+rom_hex=$(BOOT_HEX) \
 	    SIM_BUILD=$(ROOT)/sim_build/boot
+
+# Same firmware and test as `boot`, with the single-port I-SRAM and 4 KB SRAMs
+# (1024 words). The -P flags show in the iverilog command line of the sim log.
+.PHONY: boot-1rw
+boot-1rw:
+	@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
+	@test -r $(CVE2_V) || { echo "$(CVE2_V) missing: run scripts/fetch-cve2.sh && scripts/convert-cve2.sh" >&2; exit 1; }
+	COMPILE_ARGS="-Psoc_top.ISRAM_1RW=1 -Psoc_top.ISRAM_AW=10 -Psoc_top.DSRAM_AW=10" \
+	$(MAKE) -f $(ROOT)/cocotb.mk \
+	    TESTDIR=$(ROOT)/tests/boot TOPLEVEL=soc_top MODULE=test_boot \
+	    VERILOG_SOURCES="$(RTL)/obi_err_resp.sv $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/soc_sram_i_1rw.sv $(RTL)/soc_sram_d.sv $(RTL)/soc_fabric.sv $(RTL)/rst_sync.sv $(CVE2_V) $(RTL)/soc_top.sv" \
+	    PLUSARGS=+rom_hex=$(BOOT_HEX) \
+	    SIM_BUILD=$(ROOT)/sim_build/boot_1rw \
+	    COCOTB_RESULTS_FILE=$(ROOT)/sim_build/boot_1rw/results.xml

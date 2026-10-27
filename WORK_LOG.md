@@ -3,6 +3,17 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-10-27
+
+- **PR #56**: feat: attest T1 item 10 repo hygiene and complete README reproduce steps
+- **Issue #44** (closed): T1 item 10 (Repo hygiene): README reproduction steps and klt signoff --attest 10
+- **PR #58**: feat: parametrize SRAM depth and add single-port I-SRAM mode in soc_fabric
+- **Issue #52** (closed): Parametrize SRAM depth and allow a single-port instruction SRAM in soc_fabric
+- **PR #57**: feat: record T1 item 6 as hash-bound not-applicable statement over all spec rows
+- **Issue #41** (closed): T1 item 6 (Monte Carlo): record "not applicable" as a hash-bound statement covering every spec/soc.md row
+- **PR #53**: feat: bank 2 KB sky130 SRAM macros behind SOC_SRAM_MACRO, record row 8a and die budget
+- **Issue #36** (closed): T1 item 2 (Layout): settle SRAM macro organisation (spec row 8a) and die budget, instantiate the macros
+
 ### 2026-10-25
 
 - **PR #31**: refactor(verification): retire placeholder smoke DUT, run xbar tests in CI

@@ -1,0 +1,79 @@
+{
+  "rows": [
+    {
+      "id": "1",
+      "class": "design-choice",
+      "reason": "a pinned upstream commit is selected by identity; there is no measured quantity"
+    },
+    {
+      "id": "2",
+      "class": "design-choice",
+      "reason": "a parameter selection fixed at elaboration; there is no measured quantity"
+    },
+    {
+      "id": "3",
+      "class": "design-choice",
+      "reason": "a parameter selection fixed at elaboration; its effect is observed through timing rows, not as a row of its own"
+    },
+    {
+      "id": "4",
+      "class": "scope-exclusion",
+      "reason": "the module is excluded, so there is nothing to measure"
+    },
+    {
+      "id": "5",
+      "class": "functional-behaviour",
+      "reason": "pass/fail functional behaviour checked by directed simulation tests"
+    },
+    {
+      "id": "6",
+      "class": "functional-behaviour",
+      "reason": "fixed addresses checked pass/fail by simulation; each address either decodes or it does not"
+    },
+    {
+      "id": "7",
+      "class": "sourcing-decision",
+      "reason": "an adopt-or-record choice of where the macros come from, pinned in reuse.lock.json"
+    },
+    {
+      "id": "8",
+      "class": "capacity-and-area-budget",
+      "reason": "a fixed capacity plus a deterministic die-area budget evaluated from the layout; deferred as an assumption until place-and-route reports the area reached, and still non-random once settled"
+    },
+    {
+      "id": "8a",
+      "class": "design-choice",
+      "reason": "deferred macro count and size per memory; once settled it is a fixed instance list read from the netlist"
+    },
+    {
+      "id": "9",
+      "class": "functional-behaviour",
+      "reason": "pass/fail register and interrupt behaviour checked by directed simulation tests"
+    },
+    {
+      "id": "10",
+      "class": "functional-behaviour",
+      "reason": "a single clock domain and a reset synchroniser checked pass/fail by simulation and by STA constraints"
+    },
+    {
+      "id": "11",
+      "class": "timing-corner-bounded",
+      "reason": "a frequency from static timing at a named corner and layout state; STA bounds the path delay at the ratified corners, with no random variable to sample"
+    },
+    {
+      "id": "12",
+      "class": "timing-corner-bounded",
+      "reason": "an enumerated list of the characterised corners that bound STA; the corners are the coverage, not a sampled population"
+    },
+    {
+      "id": "13",
+      "class": "library-selection",
+      "reason": "a library chosen by name; there is no measured quantity"
+    },
+    {
+      "id": "14",
+      "class": "pass-fail-checks",
+      "reason": "DRC and LVS return zero violations or they do not, and STA closes at each corner that has a macro view or it does not"
+    }
+  ]
+}

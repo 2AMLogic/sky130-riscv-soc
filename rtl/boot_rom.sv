@@ -1,10 +1,11 @@
 // Boot ROM, 4 KB (1024 x 32), one-cycle synchronous read.
-// The image is a checked-in hex source (INIT_FILE, one 32-bit word per line,
-// $readmemh format); a +rom_hex=<path> plusarg overrides it in simulation.
+// The image is a hex file (one 32-bit word per line, $readmemh format) given by
+// the INIT_FILE parameter or, in simulation, a +rom_hex=<path> plusarg that
+// overrides it. There is no default image: with neither, simulation stops.
 // A synthesis flow replaces this behavioural array with the generated
 // standard-cell ROM (spec/soc.md § Memory map).
 module boot_rom #(
-    parameter string INIT_FILE = "boot_rom.hex"
+    parameter string INIT_FILE = ""
 ) (
     input  logic        clk_i,
     input  logic        req_i,
@@ -17,6 +18,7 @@ module boot_rom #(
   initial begin
     for (int i = 0; i < 1024; i++) mem[i] = 32'h0;
     if (!$value$plusargs("rom_hex=%s", path)) path = INIT_FILE;
+    if (path == "") $fatal(1, "boot_rom: no image (set INIT_FILE or pass +rom_hex=<path>)");
     $readmemh(path, mem);
   end
 

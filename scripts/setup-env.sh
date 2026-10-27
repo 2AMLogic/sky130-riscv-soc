@@ -18,8 +18,7 @@ PIN_PDK_FAMILY="sky130"
 PIN_PDK_VARIANT="sky130A"
 PIN_OPEN_PDKS_REV="f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7"
 PIN_CIEL="3.1.0"
-PIN_KLT="0.7.1.dev2517+g6bb7cf233677"
-PIN_KLT_SHA="6bb7cf2336776b9f768fab21c678ee8a2c54e709"   # full commit for `uvx --from git+...@SHA`; CI signoff reads it
+PIN_KLT="0.8.0"   # PyPI release: `uvx --from "klayout-tools==${PIN_KLT}"`; CI signoff reads it
 PIN_YOSYS="0.67+post"
 PIN_YOSYS_SHA="b8e7da6f40ae8f552c116bf6c359b07c6533e159"
 PIN_IVERILOG="13.0"
@@ -92,7 +91,7 @@ check_cocotb() {
 
 run_check() {
     check_pdk
-    check_tool klt "$PIN_KLT" klt --version
+    check_tool klt "klt ${PIN_KLT}" klt --version
     check_tool yosys "Yosys ${PIN_YOSYS} (git sha1 ${PIN_YOSYS_SHA}" yosys -V
     check_tool sv2v "sv2v ${PIN_SV2V}" sv2v --version
     check_tool riscv-gcc "xPack GNU RISC-V Embedded GCC x86_64) ${PIN_RISCV_GCC}" riscv-none-elf-gcc --version

@@ -1,6 +1,8 @@
-// Instruction SRAM wrapper, 8 KB (2048 x 32), 1rw1r, 8-bit write granularity.
+// Instruction SRAM wrapper, 2**AW x 32 (default AW=11: 8 KB), 1rw1r, 8-bit write
+// granularity.
 // Port interface follows the OpenRAM convention (active-low csb/web, one-cycle
 // registered read). Port 0 reads and writes; port 1 reads.
+// AW is the word-address width; the macro build supports AW=11 only.
 // Default build: behavioural model. With -DSOC_SRAM_MACRO: four
 // sky130_sram_2kbyte_1rw1r_32x512_8 macros, bank = addr[10:9] (decision record
 // 0004). Under the macro build a bank's dout is only valid for the cycle after
@@ -8,20 +10,26 @@
 // bank select is what the output mux uses.
 // A port-1 read of the word port 0 writes in the same cycle returns the old
 // data (the macro leaves that case undefined; the fabric does not rely on it).
-module soc_sram_i (
+module soc_sram_i #(
+    parameter int AW = 11
+) (
     input  logic        clk0,
     input  logic        csb0,
     input  logic        web0,
     input  logic [3:0]  wmask0,
-    input  logic [10:0] addr0,
+    input  logic [AW-1:0] addr0,
     input  logic [31:0] din0,
     output logic [31:0] dout0,
     input  logic        clk1,
     input  logic        csb1,
-    input  logic [10:0] addr1,
+    input  logic [AW-1:0] addr1,
     output logic [31:0] dout1
 );
 `ifdef SOC_SRAM_MACRO
+  if (AW != 11) begin : g_aw_check
+    $error("SOC_SRAM_MACRO build is 4 x 512 words: AW must be 11");
+  end
+
   logic [31:0] bank_dout0[4], bank_dout1[4];
   logic [1:0] bsel0, bsel1;
 
@@ -47,7 +55,7 @@ module soc_sram_i (
   assign dout0 = bank_dout0[bsel0];
   assign dout1 = bank_dout1[bsel1];
 `else
-  logic [31:0] mem[2048];
+  logic [31:0] mem[2**AW];
 
   always_ff @(posedge clk0) begin
     if (!csb0) begin

@@ -3,7 +3,11 @@
 // peripheral window inside soc_fabric answers every access with an OBI error.
 // Core configuration per spec/soc.md: RV32IMC, RV32MFast, debug tied off,
 // boot_addr_i at the boot ROM base (the reset vector).
-module soc_top (
+module soc_top #(
+    parameter int ISRAM_AW  = 11,
+    parameter int DSRAM_AW  = 11,
+    parameter bit ISRAM_1RW = 1'b0
+) (
     input  logic clk_i,
     input  logic rst_ni,
     output logic core_sleep_o
@@ -77,7 +81,11 @@ module soc_top (
       .core_sleep_o
   );
 
-  soc_fabric u_fabric (
+  soc_fabric #(
+      .ISRAM_AW (ISRAM_AW),
+      .DSRAM_AW (DSRAM_AW),
+      .ISRAM_1RW(ISRAM_1RW)
+  ) u_fabric (
       .clk_i,
       .rst_ni    (rst_n),
       .i_req_i   (instr_req),

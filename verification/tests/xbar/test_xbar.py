@@ -5,14 +5,20 @@ grants (combinational) are sampled 1 ns later, the rising edge accepts, and the
 registered response of the previous accepted request is sampled at the next
 falling edge.  All subordinates respond exactly one cycle after the grant.
 """
+import os
+
 import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import FallingEdge, RisingEdge, Timer
 
 ROM, ISRAM, DSRAM, PERI = 0x0000_0000, 0x1000_0000, 0x2000_0000, 0x4000_0000
+# Build under test (verification/Makefile): default 8 KB 1rw1r, or xbar-1rw.
+ONE_RW = os.environ.get("FABRIC_ISRAM_1RW", "0") == "1"
+SRAM_BYTES = 4 << int(os.environ.get("FABRIC_SRAM_AW", "11"))
 ROM_IMG = [0xB0070000 + i for i in range(16)]  # rtl/boot_rom.hex
 UNMAPPED = [0x0000_1000, 0x0FFF_FFFC, 0x1000_2000, 0x2000_2000, 0x3000_0000,
-            0x4001_0000, 0x8000_0000, 0xFFFF_FFFC]
+            0x4001_0000, 0x8000_0000, 0xFFFF_FFFC,
+            ISRAM + SRAM_BYTES, DSRAM + SRAM_BYTES]
 
 
 def req(addr, we=False, be=0xF, wdata=0):
@@ -116,9 +122,9 @@ async def isram_reach_and_partial_writes(dut):
     assert not await f.write("d", ISRAM + 0x10, 0x5566_7788, be=0b1100)
     rd, err, _ = await f.read("d", ISRAM + 0x10)
     assert rd == 0x5566CC44, f"{rd:#x}"
-    # last word of the 8 KB window
-    assert not await f.write("d", ISRAM + 0x1FFC, 0xCAFEF00D)
-    rd, err, _ = await f.read("i", ISRAM + 0x1FFC)
+    # last word of the window
+    assert not await f.write("d", ISRAM + SRAM_BYTES - 4, 0xCAFEF00D)
+    rd, err, _ = await f.read("i", ISRAM + SRAM_BYTES - 4)
     assert not err and rd == 0xCAFEF00D
 
 
@@ -127,10 +133,10 @@ async def dsram_reachable_by_data_manager_only(dut):
     f = Fab(dut)
     await f.reset()
     assert not await f.write("d", DSRAM, 0x12345678)
-    assert not await f.write("d", DSRAM + 0x1FFC, 0x9ABCDEF0)
+    assert not await f.write("d", DSRAM + SRAM_BYTES - 4, 0x9ABCDEF0)
     rd, err, _ = await f.read("d", DSRAM)
     assert not err and rd == 0x12345678
-    rd, err, _ = await f.read("d", DSRAM + 0x1FFC)
+    rd, err, _ = await f.read("d", DSRAM + SRAM_BYTES - 4)
     assert not err and rd == 0x9ABCDEF0
     _, err, _ = await f.read("i", DSRAM)
     assert err, "instruction manager must not reach D-SRAM"
@@ -197,7 +203,7 @@ async def rom_contention_gives_instruction_manager_priority(dut):
     assert f.resp["d"] == (ROM_IMG[9], False)
 
 
-@cocotb.test()
+@cocotb.test(skip=ONE_RW)
 async def isram_write_and_fetch_in_same_cycle(dut):
     f = Fab(dut)
     await f.reset()
@@ -238,3 +244,107 @@ async def back_to_back_and_error_between_accesses(dut):
     await f.cycle(); got_i.append(f.resp["i"]); got_d.append(f.resp["d"])
     assert [x is not None for x in got_i] == [False, True, True, True, True]
     assert [x[1] if x else None for x in got_d] == [None, False, False, True, True]
+
+
+# ---- single-port I-SRAM (ISRAM_1RW=1): data side wins, fetch retries ----
+
+@cocotb.test()
+async def sram_boundary_errors_and_does_not_alias(dut):
+    """First address past each SRAM errors and leaves the memory untouched."""
+    f = Fab(dut)
+    await f.reset()
+    for base in (ISRAM, DSRAM):
+        assert not await f.write("d", base, 0xA5A5_0001)
+        for off in (SRAM_BYTES, SRAM_BYTES + 4, 0x1FFC):
+            if off < SRAM_BYTES:
+                continue
+            for m in ("d", "i") if base == ISRAM else ("d",):
+                _, err, n = await f.read(m, base + off)
+                assert err and n <= 3, f"{m} read {base + off:#x} must error"
+            assert await f.write("d", base + off, 0xDEAD_BEEF)
+        rd, err, _ = await f.read("d", base)
+        assert not err and rd == 0xA5A5_0001, "past-the-end access aliased into the SRAM"
+        rd, err, _ = await f.read("d", base + SRAM_BYTES - 4)
+        assert not err
+
+
+@cocotb.test(skip=not ONE_RW)
+async def isram_1rw_same_cycle_store_and_fetch(dut):
+    f = Fab(dut)
+    await f.reset()
+    assert not await f.write("d", ISRAM + 0x40, 0x0BADF00D)
+    ri, rw = req(ISRAM + 0x40), req(ISRAM + 0x80, True, 0xF, 0x600DCAFE)
+    g = await f.cycle(i=ri, d=rw)
+    assert g == (0, 1), f"data store must win the single port, got {g}"
+    g = await f.cycle(i=ri)  # store response is sampled now; fetch retries
+    assert f.resp["d"] is not None and f.resp["d"][1] is False
+    assert f.resp["i"] is None, "no response for a request that was not granted"
+    assert g == (1, 0), f"fetch granted once the port is free, got {g}"
+    await f.cycle()
+    assert f.resp["i"] == (0x0BADF00D, False), "response is one cycle after the grant"
+    assert f.resp["d"] is None
+    rd, err, _ = await f.read("i", ISRAM + 0x80)
+    assert not err and rd == 0x600DCAFE, "the contended store landed"
+
+
+@cocotb.test(skip=not ONE_RW)
+async def isram_1rw_data_read_vs_fetch_and_one_cycle_response(dut):
+    f = Fab(dut)
+    await f.reset()
+    await f.write("d", ISRAM + 0x10, 0x1111_1111)
+    await f.write("d", ISRAM + 0x14, 0x2222_2222)
+    g = await f.cycle(i=req(ISRAM + 0x10), d=req(ISRAM + 0x14))
+    assert g == (0, 1)
+    g = await f.cycle(i=req(ISRAM + 0x10))
+    assert f.resp["d"] == (0x2222_2222, False), "data response one cycle after its grant"
+    assert g == (1, 0)
+    await f.cycle()
+    assert f.resp["i"] == (0x1111_1111, False), "fetch response one cycle after its grant"
+
+
+@cocotb.test(skip=not ONE_RW)
+async def isram_1rw_fetch_stream_with_store_no_starvation(dut):
+    f = Fab(dut)
+    await f.reset()
+    for k in range(8):
+        await f.write("d", ISRAM + 4 * k, 0xC0DE_0000 + k)
+    # continuous fetch stream (retries held until granted) while a store arrives
+    pc, fetched, store_gnt_cycle, delayed = 0, [], None, 0
+    store = req(ISRAM + 0x100, True, 0xF, 0x5702_E000)
+    for cyc in range(10):
+        r_i = req(ISRAM + 4 * (pc % 8))
+        r_d = store if (cyc == 3 and store_gnt_cycle is None) else None
+        g = await f.cycle(i=r_i, d=r_d)
+        if f.resp["i"] is not None:
+            fetched.append(f.resp["i"])
+        if g[0]:
+            pc += 1
+        if r_d is not None:
+            assert g[1] == 1, "store must be granted at once, not starved by the fetch stream"
+            store_gnt_cycle = cyc
+            delayed += int(not g[0])
+    assert delayed == 1, "fetch is delayed by the store"
+    assert fetched and all(e is False for _, e in fetched)
+    assert [d for d, _ in fetched] == [0xC0DE_0000 + (k % 8) for k in range(len(fetched))]
+    rd, err, _ = await f.read("d", ISRAM + 0x100)
+    assert not err and rd == 0x5702_E000
+
+
+@cocotb.test(skip=not ONE_RW)
+async def isram_1rw_reset_mid_contention(dut):
+    f = Fab(dut)
+    await f.reset()
+    await f.write("d", ISRAM, 0x0123_4567)
+    g = await f.cycle(i=req(ISRAM), d=req(ISRAM + 4, True, 0xF, 0xFFFF_FFFF))
+    assert g == (0, 1)
+    dut.rst_ni.value = 0
+    await f.cycle()
+    await f.cycle()
+    dut.rst_ni.value = 1
+    await f.cycle()
+    # fabric recovered: no stale response, fetch of the old word works, the
+    # store that was granted in the reset cycle's predecessor landed
+    rd, err, _ = await f.read("i", ISRAM)
+    assert not err and rd == 0x0123_4567
+    rd, err, _ = await f.read("d", ISRAM + 4)
+    assert not err

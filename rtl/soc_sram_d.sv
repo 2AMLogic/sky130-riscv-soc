@@ -1,18 +1,25 @@
-// Data SRAM wrapper, 8 KB (2048 x 32), 1rw, 8-bit write granularity.
+// Data SRAM wrapper, 2**AW x 32 (default AW=11: 8 KB), 1rw, 8-bit write
+// granularity. The macro build supports AW=11 only.
 // OpenRAM-style port (active-low csb/web, one-cycle registered read).
 // Default build: behavioural model. With -DSOC_SRAM_MACRO: four
 // sky130_sram_2kbyte_1rw1r_32x512_8 macros, bank = addr[10:9], port 1 of each
 // tied off (csb1 high, unused; decision record 0004: no 1rw view exists).
-module soc_sram_d (
+module soc_sram_d #(
+    parameter int AW = 11
+) (
     input  logic        clk0,
     input  logic        csb0,
     input  logic        web0,
     input  logic [3:0]  wmask0,
-    input  logic [10:0] addr0,
+    input  logic [AW-1:0] addr0,
     input  logic [31:0] din0,
     output logic [31:0] dout0
 );
 `ifdef SOC_SRAM_MACRO
+  if (AW != 11) begin : g_aw_check
+    $error("SOC_SRAM_MACRO build is 4 x 512 words: AW must be 11");
+  end
+
   logic [31:0] bank_dout0[4];
   logic [1:0] bsel0;
 
@@ -36,7 +43,7 @@ module soc_sram_d (
 
   assign dout0 = bank_dout0[bsel0];
 `else
-  logic [31:0] mem[2048];
+  logic [31:0] mem[2**AW];
 
   always_ff @(posedge clk0) begin
     if (!csb0) begin

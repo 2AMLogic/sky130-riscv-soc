@@ -52,7 +52,10 @@ access to an unmapped address returns an OBI error response, never a hang.
 Arbitration where both managers target the same subordinate in one cycle:
 instruction SRAM has separate ports so a data-side write and an instruction
 fetch proceed in parallel; at the boot ROM the data manager yields to the
-instruction manager (fetch-priority, fixed). The single-shared-bus fallback is
+instruction manager (fetch-priority, fixed). A build with a single-port instruction SRAM
+(`ISRAM_1RW=1`, a port-compatibility option, not the ratified row 8a organization)
+arbitrates the data-side access against the fetch onto that one port with fixed
+data-side priority; the fetch's grant is held low and it retries. The single-shared-bus fallback is
 taken only by a record, if the crossbar cannot close timing.
 
 ## Memory map

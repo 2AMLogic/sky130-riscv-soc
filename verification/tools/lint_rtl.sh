@@ -44,4 +44,16 @@ if ! verilator "${args[@]}" "${files[@]}" >"$out" 2>&1; then cat "$out" >&2; exi
 if grep -E '^%(Warning|Error)[^:]*: rtl/' "$out" >&2; then
     echo "rtl lint: FAIL (warnings in rtl/)" >&2; exit 1
 fi
+# Alternate fabric configuration (single-port I-SRAM, 1024-word SRAMs): the
+# parameterized memories only elaborate their other branches here. Behavioural
+# only; the macro build supports the default depth alone.
+if [[ -z "${SRAM_MACRO_V:-}" ]]; then
+    fab=()
+    for f in "${files[@]}"; do [[ "$f" == rtl/soc_top.sv ]] || fab+=("$f"); done
+    if ! verilator --lint-only --top-module soc_fabric "-GISRAM_1RW=1'b1" -GISRAM_AW=10 -GDSRAM_AW=10 \
+            "${fab[@]}" >"$out" 2>&1; then
+        cat "$out" >&2; echo "rtl lint: FAIL (soc_fabric ISRAM_1RW=1, 1024 words)" >&2; exit 1
+    fi
+    core_note="${core_note}, soc_fabric 1rw/1024 words"
+fi
 echo "rtl lint: ok (${#files[@]} files${core_note})"

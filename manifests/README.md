@@ -1,7 +1,11 @@
 # Block manifest and signoff record
 
-- `sky130-riscv-soc.json` — the block manifest. `evidence` cites only T1 item 10
-  (`evidence/item10.json`, produced from `attest/item10.json`). The `verification/records/toolchain-smoke/` records are
+- `sky130-riscv-soc.json` — the block manifest. `evidence` cites T1 item 10
+  (`evidence/item10.json`, produced from `attest/item10.json`) and item 6 as a
+  hash-bound "not applicable" (`spec/soc.rows.json` +
+  `spec/statistical-claims-na.json`; human-readable
+  `spec/statistical-claims-na.md`). Edit either JSON and the hashes here must
+  be refreshed in the same change. The `verification/records/toolchain-smoke/` records are
   toolchain evidence only and must not be cited.
 - `sky130-riscv-soc.signoff.json` — the verbatim output of `klt signoff` on
   that manifest, on the klt pinned in `scripts/setup-env.sh`

@@ -1,5 +1,7 @@
 {
   "block": "sky130-riscv-soc",
   "kind": "digital",
-  "evidence": {}
+  "evidence": {
+    "10": {"file": "evidence/item10.json", "content_hash": "sha256:03268fa1dd7eb62b1c5b90ea7dd485bb588149b05b711809d2f9254d96fd3125"}
+  }
 }

@@ -1,7 +1,11 @@
 # Block manifest and signoff record
 
-- `sky130-riscv-soc.json` — the block manifest. `evidence` cites item 9 only
-  (the envelope below). The `verification/records/toolchain-smoke/` records are
+- `sky130-riscv-soc.json` — the block manifest. `evidence` cites item 6 as a
+  hash-bound "not applicable" (`spec/soc.rows.json` +
+  `spec/statistical-claims-na.json`; human-readable
+  `spec/statistical-claims-na.md`) and item 9 (the envelope below). Edit either
+  item-6 JSON and the hashes here must be refreshed in the same change. The
+  `verification/records/toolchain-smoke/` records are
   toolchain evidence only and must not be cited.
 - `sky130-riscv-soc.attest9.inventory.json` — the T1 item 9 inventory: every
   bench under `verification/tests/`, the cold-start command, the PDK revision

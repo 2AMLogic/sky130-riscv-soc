@@ -2,6 +2,18 @@
   "block": "sky130-riscv-soc",
   "kind": "digital",
   "evidence": {
+    "6": {
+      "not_applicable": {
+        "spec": {
+          "file": "spec/soc.rows.json",
+          "content_hash": "sha256:0a1bcef91309225d65c3f4f90c3a97dd7720698a684afe3a6eaf9e8f1ce6941f"
+        },
+        "statement": {
+          "file": "spec/statistical-claims-na.json",
+          "content_hash": "sha256:561697cd0afcb450d74fb2e20e6a16fb7890dc196ca258fa8986344b26bb70f4"
+        }
+      }
+    },
     "9": {
       "file": "manifests/sky130-riscv-soc.attest9.json",
       "content_hash": "sha256:e5c13db24cf7791e63e92f09a8c6a3aac8e6bd6f049c851774c7c1269b8e5fd6"

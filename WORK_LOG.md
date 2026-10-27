@@ -5,6 +5,8 @@ Maintained by the Loom Guide role.
 
 ### 2026-10-27
 
+- **PR #67**: refactor: generate xbar test ROM image and drop boot_rom.hex placeholder
+- **Issue #32** (closed): Remove rtl/boot_rom.hex placeholder: firmware image has landed
 - **PR #65**: chore: pin klayout-tools to PyPI 0.8.0 and regenerate signoff records
 - **Issue #64** (closed): Bump klayout-tools pin 6bb7cf233677 → 0.8.0
 - **PR #62**: test: add boot-1rw make target for the 1RW/1024-word SoC boot configuration

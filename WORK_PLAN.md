@@ -25,7 +25,7 @@ _None._
 
 Human-approved issues ready for implementation (`loom:issue`).
 
-- **#32**: Remove rtl/boot_rom.hex placeholder: firmware image has landed
+_None._
 
 ## In Progress
 
@@ -54,6 +54,7 @@ Issues carrying `loom:curated`.
 - **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9 *(curated)*
 - **#46**: T1 item 1: peripheral window decoder, GPIO and machine timer RTL, register-map record, with tests *(curated)*
 - **#49**: T1 item 5: riscv-arch-test on the RTL SoC via klt functional-verification *(curated)*
+- **#59**: Run firmware boot at default and ISRAM_1RW=1 / 1024-word parameters once the converted CVE2 core is available *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -70,11 +71,11 @@ _None._
 | Operator merge-risk holds | 1 |
 | Very important | 0 |
 | Important | 1 |
-| Ready (`loom:issue`) | 1 |
+| Ready (`loom:issue`) | 0 |
 | In Progress (`loom:building`) | 2 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 1 |
-| Curated | 4 |
+| Curated | 5 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

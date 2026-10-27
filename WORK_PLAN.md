@@ -7,7 +7,7 @@ Roadmap generated from GitHub label state by the Loom Guide role.
 
 Judge-approved PRs under a hold (`loom:blocked` or `loom:operator`) — only a human merge decision is missing.
 
-_None._
+- **#54**: feat(rtl): add peripheral window decoder, GPIO and machine timer
 
 ## Very Important
 
@@ -19,19 +19,20 @@ _None._
 
 `loom:important`; taken before unlabelled work.
 
-- **#36**: T1 item 2 (Layout): settle SRAM macro organisation (spec row 8a) and die budget, instantiate the macros
+- **#46**: T1 item 1: peripheral window decoder, GPIO and machine timer RTL, register-map record, with tests
 
 ## Ready
 
 Human-approved issues ready for implementation (`loom:issue`).
 
-- **#36**: T1 item 2 (Layout): settle SRAM macro organisation (spec row 8a) and die budget, instantiate the macros
+_None._
 
 ## In Progress
 
 Issues currently being built (`loom:building`).
 
-_None._
+- **#46**: T1 item 1: peripheral window decoder, GPIO and machine timer RTL, register-map record, with tests
+- **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9
 
 ## PRs Awaiting Review
 
@@ -43,17 +44,16 @@ _None._
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-_None._
+- **#54**: feat(rtl): add peripheral window decoder, GPIO and machine timer
 
 ## Proposed
 
 Issues carrying `loom:curated`.
 
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
-- **#36**: T1 item 2 (Layout): settle SRAM macro organisation (spec row 8a) and die budget, instantiate the macros *(curated)*
-- **#41**: T1 item 6 (Monte Carlo): record "not applicable" as a hash-bound statement covering every spec/soc.md row *(curated)*
 - **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9 *(curated)*
-- **#44**: T1 item 10 (Repo hygiene): README reproduction steps and klt signoff --attest 10 *(curated)*
+- **#46**: T1 item 1: peripheral window decoder, GPIO and machine timer RTL, register-map record, with tests *(curated)*
+- **#49**: T1 item 5: riscv-arch-test on the RTL SoC via klt functional-verification *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -67,14 +67,14 @@ _None._
 
 | Bucket | Count |
 |------|-------|
-| Operator merge-risk holds | 0 |
+| Operator merge-risk holds | 1 |
 | Very important | 0 |
 | Important | 1 |
-| Ready (`loom:issue`) | 1 |
-| In Progress (`loom:building`) | 0 |
+| Ready (`loom:issue`) | 0 |
+| In Progress (`loom:building`) | 2 |
 | PRs awaiting review | 0 |
-| Approved PRs awaiting merge | 0 |
-| Curated | 5 |
+| Approved PRs awaiting merge | 1 |
+| Curated | 4 |
 | Architect / Hermit proposals | 1 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

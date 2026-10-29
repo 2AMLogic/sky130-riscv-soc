@@ -1,0 +1,17 @@
+{
+  "commit": "27fc6f5160e370a8c6cbf8a1a1134cf12c592b54",
+  "pdk_revision": "f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7 (pinned; the sky130 PDK is not used by this simulation record)",
+  "tool_versions": {
+    "iverilog": "13.0",
+    "sv2v": "v0.0.13",
+    "cocotb": "2.0.1",
+    "verilator": "5.050",
+    "host": "loom-worker-3"
+  },
+  "command": "scripts/fetch-cve2.sh && scripts/convert-cve2.sh; make -C verification boot; make -C verification boot-1rw; LINT_REQUIRE_CORE=1 verification/tools/lint_rtl.sh",
+  "converted_core": {
+    "file": "build/cve2/cve2_top.v",
+    "sha256": "f2a58b0721e99f53c5121c0a192e54ea26721bd800f95aed955c196250c7ab81",
+    "cve2_commit": "d7f21568028a1114be663599bd42145dccf28928"
+  }
+}

@@ -1,0 +1,1 @@
+rtl lint: ok (9 files, generated core not gated, soc_fabric 1rw/1024 words)

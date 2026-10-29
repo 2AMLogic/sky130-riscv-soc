@@ -1,0 +1,53 @@
+make: Entering directory '<worktree>/verification'
+COMPILE_ARGS="-Psoc_top.ISRAM_1RW=1 -Psoc_top.ISRAM_AW=10 -Psoc_top.DSRAM_AW=10" \
+make -f <worktree>/verification/cocotb.mk \
+    TESTDIR=<worktree>/verification/tests/boot TOPLEVEL=soc_top MODULE=test_boot \
+    VERILOG_SOURCES="<worktree>/rtl/obi_err_resp.sv <worktree>/rtl/obi_xbar.sv <worktree>/rtl/boot_rom.sv <worktree>/rtl/soc_sram_i.sv <worktree>/rtl/soc_sram_i_1rw.sv <worktree>/rtl/soc_sram_d.sv <worktree>/rtl/soc_fabric.sv <worktree>/rtl/rst_sync.sv <worktree>/build/cve2/cve2_top.v <worktree>/rtl/soc_top.sv" \
+    PLUSARGS=+rom_hex=<worktree>/firmware/boot/boot_rom.hex \
+    SIM_BUILD=<worktree>/verification/sim_build/boot_1rw \
+    COCOTB_RESULTS_FILE=<worktree>/verification/sim_build/boot_1rw/results.xml
+make[1]: Entering directory '<worktree>/verification'
+rm -f <worktree>/verification/sim_build/boot_1rw/results.xml
+"make" -f <worktree>/verification/cocotb.mk <worktree>/verification/sim_build/boot_1rw/results.xml
+make[2]: Entering directory '<worktree>/verification'
+mkdir -p <worktree>/verification/sim_build/boot_1rw
+/home/ubuntu/.local/bin/iverilog -o <worktree>/verification/sim_build/boot_1rw/sim.vvp -s soc_top -g2012 -Psoc_top.ISRAM_1RW=1 -Psoc_top.ISRAM_AW=10 -Psoc_top.DSRAM_AW=10 -f <worktree>/verification/sim_build/boot_1rw/cmds.f -f <worktree>/verification/sim_build/boot_1rw/cmds.f  <worktree>/rtl/obi_err_resp.sv <worktree>/rtl/obi_xbar.sv <worktree>/rtl/boot_rom.sv <worktree>/rtl/soc_sram_i.sv <worktree>/rtl/soc_sram_i_1rw.sv <worktree>/rtl/soc_sram_d.sv <worktree>/rtl/soc_fabric.sv <worktree>/rtl/rst_sync.sv <worktree>/build/cve2/cve2_top.v <worktree>/rtl/soc_top.sv
+Command File: Warning: default timescale is being set multiple times.
+                     : using the last valid +timescale found.
+<worktree>/rtl/obi_xbar.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'a[31:0]').
+<worktree>/rtl/obi_xbar.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'a[31:0]').
+<worktree>/rtl/obi_xbar.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'a[31:0]').
+<worktree>/rtl/obi_xbar.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 'a[31:0]').
+<worktree>/.venv/lib/python3.13/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
+<worktree>/.venv/lib/python3.13/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using PLUSARGS is deprecated, please use COCOTB_PLUSARGS instead.
+rm -f <worktree>/verification/sim_build/boot_1rw/results.xml
+COCOTB_TEST_MODULES=test_boot COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=soc_top TOPLEVEL_LANG=verilog \
+         /home/ubuntu/.local/bin/vvp -M <worktree>/.venv/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   <worktree>/verification/sim_build/boot_1rw/sim.vvp  +rom_hex=<worktree>/firmware/boot/boot_rom.hex 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at <worktree>/.venv/bin/python
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1793300573
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from <worktree>/.venv/lib/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_boot.boot_signature_and_unmapped_read (1/3)
+  1920.00ns INFO     cocotb.soc_top                     unmapped-access trace (cycle, addr): [(34, '0x40003000'), (65, '0x30000000')]
+  1920.00ns INFO     cocotb.soc_top                     mtvec readback 0x1, last mepc 0xc0, mtval 0x30000000
+  1920.00ns INFO     cocotb.regression                  test_boot.boot_signature_and_unmapped_read passed
+  1920.00ns INFO     cocotb.regression                  running test_boot.trap_vector_behaviour (2/3)
+                                                            Records what the boot test observes about mtvec (spec/soc.md 'unverified').
+  3860.00ns INFO     cocotb.regression                  test_boot.trap_vector_behaviour passed
+  3860.00ns INFO     cocotb.regression                  running test_boot.reset_mid_run_restarts_from_zero (3/3)
+  8420.00ns INFO     cocotb.regression                  test_boot.reset_mid_run_restarts_from_zero passed
+  8420.00ns INFO     cocotb.regression                  ****************************************************************************************************
+                                                        ** TEST                                        STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ****************************************************************************************************
+                                                        ** test_boot.boot_signature_and_unmapped_read   PASS        1920.00           0.03      60117.23  **
+                                                        ** test_boot.trap_vector_behaviour              PASS        1940.00           0.03      56304.06  **
+                                                        ** test_boot.reset_mid_run_restarts_from_zero   PASS        4560.00           0.07      64271.88  **
+                                                        ****************************************************************************************************
+                                                        ** TESTS=3 PASS=3 FAIL=0 SKIP=0                             8420.00           0.14      60182.59  **
+                                                        ****************************************************************************************************
+make[2]: Leaving directory '<worktree>/verification'
+make[1]: Leaving directory '<worktree>/verification'
+make: Leaving directory '<worktree>/verification'

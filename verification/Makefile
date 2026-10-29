@@ -20,7 +20,7 @@ RTL := $(abspath $(ROOT)/../rtl)
 .PHONY: xbar xbar-fabric xbar-1rw xbar-rst
 xbar: xbar-fabric xbar-1rw xbar-rst
 
-FABRIC_SRC := $(RTL)/obi_err_resp.sv $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/soc_sram_i_1rw.sv $(RTL)/soc_sram_d.sv $(RTL)/soc_fabric.sv
+FABRIC_SRC := $(RTL)/obi_err_resp.sv $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/soc_sram_d.sv $(RTL)/soc_fabric.sv
 
 # 16-word ROM image for the fabric test (0xB0070000 + i; test_xbar.py ROM_IMG), generated.
 XBAR_ROM_HEX := $(ROOT)/sim_build/xbar_rom.hex
@@ -66,7 +66,7 @@ boot:
 	@test -r $(CVE2_V) || { echo "$(CVE2_V) missing: run scripts/fetch-cve2.sh && scripts/convert-cve2.sh" >&2; exit 1; }
 	$(MAKE) -f $(ROOT)/cocotb.mk \
 	    TESTDIR=$(ROOT)/tests/boot TOPLEVEL=soc_top MODULE=test_boot \
-	    VERILOG_SOURCES="$(RTL)/obi_err_resp.sv $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/soc_sram_i_1rw.sv $(RTL)/soc_sram_d.sv $(RTL)/soc_fabric.sv $(RTL)/rst_sync.sv $(CVE2_V) $(RTL)/soc_top.sv" \
+	    VERILOG_SOURCES="$(RTL)/obi_err_resp.sv $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/soc_sram_d.sv $(RTL)/soc_fabric.sv $(RTL)/rst_sync.sv $(CVE2_V) $(RTL)/soc_top.sv" \
 	    PLUSARGS=+rom_hex=$(BOOT_HEX) \
 	    SIM_BUILD=$(ROOT)/sim_build/boot
 
@@ -79,7 +79,7 @@ boot-1rw:
 	COMPILE_ARGS="-Psoc_top.ISRAM_1RW=1 -Psoc_top.ISRAM_AW=10 -Psoc_top.DSRAM_AW=10" \
 	$(MAKE) -f $(ROOT)/cocotb.mk \
 	    TESTDIR=$(ROOT)/tests/boot TOPLEVEL=soc_top MODULE=test_boot \
-	    VERILOG_SOURCES="$(RTL)/obi_err_resp.sv $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/soc_sram_i_1rw.sv $(RTL)/soc_sram_d.sv $(RTL)/soc_fabric.sv $(RTL)/rst_sync.sv $(CVE2_V) $(RTL)/soc_top.sv" \
+	    VERILOG_SOURCES="$(RTL)/obi_err_resp.sv $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/soc_sram_d.sv $(RTL)/soc_fabric.sv $(RTL)/rst_sync.sv $(CVE2_V) $(RTL)/soc_top.sv" \
 	    PLUSARGS=+rom_hex=$(BOOT_HEX) \
 	    SIM_BUILD=$(ROOT)/sim_build/boot_1rw \
 	    COCOTB_RESULTS_FILE=$(ROOT)/sim_build/boot_1rw/results.xml

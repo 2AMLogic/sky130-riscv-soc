@@ -7,7 +7,7 @@ cold-start command a third party can run.
 | Path | Holds |
 | --- | --- |
 | `Makefile`, `cocotb.mk` | the single runner entry point (cocotb + Icarus Verilog) |
-| `tests/boot/` | SoC top boot test (`make boot`): CVE2 + fabric run `firmware/boot`; needs the converted core |
+| `tests/boot/` | SoC top boot test (`make boot`, `make boot-1rw`): CVE2 + fabric run `firmware/boot`; needs the converted core |
 | `tests/<name>/` | one directory per testbench (DUT sources + cocotb module); `tests/xbar/` holds the fabric and reset-synchroniser tests, `tests/periph/` the GPIO, timer and peripheral-window decode tests |
 | `tools/lint_records.py` | linter for `records/` (stdlib only) |
 | `tools/lint_rtl.sh` | Verilator lint over `../rtl/`; a no-op while it is empty |
@@ -33,8 +33,9 @@ Adding a testbench: put it in `tests/<name>/` and add a target to the
 
 CI (`.github/workflows/ci.yml`, on pull requests and `main`) runs the record
 linter and its fixture test, RTL lint, and the cocotb `xbar` (OBI
-crossbar, fabric and reset synchroniser) and `periph` tests. `make boot` needs the converted CVE2
-core, so it stays local.
+crossbar, fabric and reset synchroniser) and `periph` tests. `make boot` and `make boot-1rw` (the
+same test with the single-port I-SRAM and 1024-word SRAMs) need the converted
+CVE2 core, so they stay local.
 
 The PDK-heavy legs stay **local**, run by hand and recorded under `records/`:
 synthesis, place-and-route, DRC and LVS (they need the pinned sky130 PDK, Yosys,

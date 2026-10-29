@@ -1,7 +1,7 @@
 name: signoff
 
 # Re-grades the block manifest with the pinned klt and fails on drift from the
-# committed report. The klt pin lives only in scripts/setup-env.sh (PIN_KLT_SHA).
+# committed report, and re-attests T1 item 10. The klt pin lives only in scripts/setup-env.sh (PIN_KLT).
 # No path filters; a started main run is never cancelled (.loom/docs/ci-principles.md).
 on:
   pull_request:
@@ -22,13 +22,25 @@ jobs:
       - uses: actions/checkout@v4
       - name: Read the klt pin
         run: |
-          sha="$(sed -n 's/^PIN_KLT_SHA="\([0-9a-f]\{40\}\)".*/\1/p' scripts/setup-env.sh)"
-          test "${#sha}" -eq 40
-          echo "KLT_SHA=${sha}" >> "$GITHUB_ENV"
+          ver="$(sed -n 's/^PIN_KLT="\([0-9][0-9.]*\)".*/\1/p' scripts/setup-env.sh)"
+          test -n "${ver}"
+          echo "KLT_VERSION=${ver}" >> "$GITHUB_ENV"
       - uses: astral-sh/setup-uv@v5
+      - name: Confirm the pinned klt version
+        run: |
+          out="$(uvx --from "klayout-tools==${KLT_VERSION}" klt --version)"
+          echo "${out}"
+          test "${out}" = "klt ${KLT_VERSION}"
       - name: Grade the manifest against the committed report
         run: |
           # --check: exit 0 = report reproduces; 3 = drift (a failure here).
-          uvx --from "klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@${KLT_SHA}" \
+          uvx --from "klayout-tools==${KLT_VERSION}" \
             klt signoff --manifest manifests/sky130-riscv-soc.json \
             --check manifests/sky130-riscv-soc.signoff.json
+      - name: Re-attest T1 item 10 (repo hygiene)
+        run: |
+          # --attest --check: exit 0 = envelope reproduces; 3 = drift (a failure here).
+          # local_only checks (RTL lint, xbar tests) are skipped here; ci.yml runs them.
+          uvx --from "klayout-tools==${KLT_VERSION}" \
+            klt signoff --attest 10 --inventory attest/item10.json \
+            --check evidence/item10.json

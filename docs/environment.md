@@ -11,7 +11,7 @@ if the two disagree, the script wins.
 | PDK | `sky130A`, open_pdks `f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7` | `$PDK_ROOT/sky130A/SOURCES` |
 | Standard cells | `sky130_fd_sc_hd`, corner `tt_025C_1v80` for the smoke run | named in each request |
 | PDK fetcher | ciel `3.1.0`, run through `uvx` | used by the fetch step only |
-| klayout-tools | `klt 0.7.1.dev2517+g6bb7cf233677`, git `6bb7cf2336776b9f768fab21c678ee8a2c54e709` (has `signoff --check` and `--attest`) | `klt --version`; CI `signoff` job installs from the SHA |
+| klayout-tools | `klt 0.8.0` (PyPI `klayout-tools==0.8.0`; has `signoff --check` and `--attest`) | `klt --version`; CI `signoff` job installs `klayout-tools==0.8.0` and checks `klt --version` |
 | Yosys | `0.67+post`, git `b8e7da6f40ae8f552c116bf6c359b07c6533e159` | `yosys -V` |
 | Icarus Verilog | `13.0` | `iverilog -V` |
 | OpenROAD | `26Q3-1510-g6cb3f2b704`, image `openroad/orfs@sha256:bb7f31697fb8466ab61852fc796376cc16d9df38f762ccb733218b8a5e55824b` | `openroad -version`; the wrapper's image digest |

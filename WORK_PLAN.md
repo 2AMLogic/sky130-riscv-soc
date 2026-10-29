@@ -7,7 +7,7 @@ Roadmap generated from GitHub label state by the Loom Guide role.
 
 Judge-approved PRs under a hold (`loom:blocked` or `loom:operator`) — only a human merge decision is missing.
 
-_None._
+- **#54**: feat(rtl): add peripheral window decoder, GPIO and machine timer
 
 ## Very Important
 
@@ -19,7 +19,7 @@ _None._
 
 `loom:important`; taken before unlabelled work.
 
-_None._
+- **#46**: T1 item 1: peripheral window decoder, GPIO and machine timer RTL, register-map record, with tests
 
 ## Ready
 
@@ -31,7 +31,8 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-_None._
+- **#46**: T1 item 1: peripheral window decoder, GPIO and machine timer RTL, register-map record, with tests
+- **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9
 
 ## PRs Awaiting Review
 
@@ -43,17 +44,22 @@ _None._
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-_None._
+- **#54**: feat(rtl): add peripheral window decoder, GPIO and machine timer
 
 ## Proposed
 
 Issues carrying `loom:curated`.
 
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
+- **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9 *(curated)*
+- **#46**: T1 item 1: peripheral window decoder, GPIO and machine timer RTL, register-map record, with tests *(curated)*
+- **#49**: T1 item 5: riscv-arch-test on the RTL SoC via klt functional-verification *(curated)*
+- **#59**: Run firmware boot at default and ISRAM_1RW=1 / 1024-word parameters once the converted CVE2 core is available *(curated)*
+- **#69**: T1 item 8 (characterization): per-row report with Fmax, area and power per ratified corner, attested with klt signoff --attest 8 *(curated)*
 
 ## Proposed (Architect / Hermit)
 
-- **#32**: Remove rtl/boot_rom.hex placeholder: firmware image has landed *(hermit)*
+_None._
 
 ## Epics
 
@@ -63,14 +69,14 @@ _None._
 
 | Bucket | Count |
 |------|-------|
-| Operator merge-risk holds | 0 |
+| Operator merge-risk holds | 1 |
 | Very important | 0 |
-| Important | 0 |
+| Important | 1 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 0 |
+| In Progress (`loom:building`) | 2 |
 | PRs awaiting review | 0 |
-| Approved PRs awaiting merge | 0 |
-| Curated | 1 |
-| Architect / Hermit proposals | 1 |
+| Approved PRs awaiting merge | 1 |
+| Curated | 6 |
+| Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

@@ -33,16 +33,12 @@ Issues currently being built (`loom:building`).
 
 - **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9
 - **#46**: T1 item 1: peripheral window decoder, GPIO and machine timer RTL, register-map record, with tests
-- **#59**: Run firmware boot at default and ISRAM_1RW=1 / 1024-word parameters once the converted CVE2 core is available
-- **#72**: Remove soc_sram_i_1rw: duplicate of soc_sram_d behavioural model
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
 - **#54**: feat(rtl): add peripheral window decoder, GPIO and machine timer
-- **#71**: test: record boot and boot-1rw simulation evidence
-- **#73**: refactor: reuse soc_sram_d for ISRAM_1RW=1, drop duplicate soc_sram_i_1rw
 
 ## Approved (Awaiting Merge)
 
@@ -58,7 +54,6 @@ Issues carrying `loom:curated`.
 - **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9 *(curated)*
 - **#46**: T1 item 1: peripheral window decoder, GPIO and machine timer RTL, register-map record, with tests *(curated)*
 - **#49**: T1 item 5: riscv-arch-test on the RTL SoC via klt functional-verification *(curated)*
-- **#59**: Run firmware boot at default and ISRAM_1RW=1 / 1024-word parameters once the converted CVE2 core is available *(curated)*
 - **#69**: T1 item 8 (characterization): per-row report with Fmax, area and power per ratified corner, attested with klt signoff --attest 8 *(curated)*
 
 ## Proposed (Architect / Hermit)
@@ -77,10 +72,10 @@ _None._
 | Very important | 0 |
 | Important | 1 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 4 |
-| PRs awaiting review | 3 |
+| In Progress (`loom:building`) | 2 |
+| PRs awaiting review | 1 |
 | Approved PRs awaiting merge | 0 |
-| Curated | 6 |
+| Curated | 5 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

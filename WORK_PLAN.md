@@ -7,7 +7,7 @@ Roadmap generated from GitHub label state by the Loom Guide role.
 
 Judge-approved PRs under a hold (`loom:blocked` or `loom:operator`) — only a human merge decision is missing.
 
-- **#54**: feat(rtl): add peripheral window decoder, GPIO and machine timer
+_None._
 
 ## Very Important
 
@@ -31,20 +31,24 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-- **#46**: T1 item 1: peripheral window decoder, GPIO and machine timer RTL, register-map record, with tests
 - **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9
+- **#46**: T1 item 1: peripheral window decoder, GPIO and machine timer RTL, register-map record, with tests
+- **#59**: Run firmware boot at default and ISRAM_1RW=1 / 1024-word parameters once the converted CVE2 core is available
+- **#72**: Remove soc_sram_i_1rw: duplicate of soc_sram_d behavioural model
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
-_None._
+- **#54**: feat(rtl): add peripheral window decoder, GPIO and machine timer
+- **#71**: test: record boot and boot-1rw simulation evidence
+- **#73**: refactor: reuse soc_sram_d for ISRAM_1RW=1, drop duplicate soc_sram_i_1rw
 
 ## Approved (Awaiting Merge)
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-- **#54**: feat(rtl): add peripheral window decoder, GPIO and machine timer
+_None._
 
 ## Proposed
 
@@ -69,13 +73,13 @@ _None._
 
 | Bucket | Count |
 |------|-------|
-| Operator merge-risk holds | 1 |
+| Operator merge-risk holds | 0 |
 | Very important | 0 |
 | Important | 1 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 2 |
-| PRs awaiting review | 0 |
-| Approved PRs awaiting merge | 1 |
+| In Progress (`loom:building`) | 4 |
+| PRs awaiting review | 3 |
+| Approved PRs awaiting merge | 0 |
 | Curated | 6 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |

@@ -37,9 +37,9 @@
         "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
       },
       "x_um": 10.12,
-      "y_um": 10.88,
-      "orientation": "R0",
-      "halo": 0
+      "y_um": 21.76,
+      "orientation": "R180",
+      "halo": 2.0
     },
     {
       "instance": "u_fabric/g_isram_1rw1r.u_isram/g_bank_1_u_macro",
@@ -50,9 +50,9 @@
         "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
       },
       "x_um": 10.12,
-      "y_um": 514.08,
-      "orientation": "R0",
-      "halo": 0
+      "y_um": 516.8,
+      "orientation": "MY",
+      "halo": 2.0
     },
     {
       "instance": "u_fabric/g_isram_1rw1r.u_isram/g_bank_2_u_macro",
@@ -63,9 +63,9 @@
         "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
       },
       "x_um": 10.12,
-      "y_um": 1017.28,
-      "orientation": "R0",
-      "halo": 0
+      "y_um": 1011.84,
+      "orientation": "R180",
+      "halo": 2.0
     },
     {
       "instance": "u_fabric/g_isram_1rw1r.u_isram/g_bank_3_u_macro",
@@ -76,9 +76,9 @@
         "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
       },
       "x_um": 10.12,
-      "y_um": 1520.48,
-      "orientation": "R0",
-      "halo": 0
+      "y_um": 1506.88,
+      "orientation": "MY",
+      "halo": 2.0
     },
     {
       "instance": "u_fabric/u_dsram/g_bank_0_u_macro",
@@ -89,9 +89,9 @@
         "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
       },
       "x_um": 1256.72,
-      "y_um": 10.88,
-      "orientation": "R0",
-      "halo": 0
+      "y_um": 21.76,
+      "orientation": "MX",
+      "halo": 2.0
     },
     {
       "instance": "u_fabric/u_dsram/g_bank_1_u_macro",
@@ -102,9 +102,9 @@
         "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
       },
       "x_um": 1256.72,
-      "y_um": 514.08,
+      "y_um": 516.8,
       "orientation": "R0",
-      "halo": 0
+      "halo": 2.0
     },
     {
       "instance": "u_fabric/u_dsram/g_bank_2_u_macro",
@@ -115,9 +115,9 @@
         "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
       },
       "x_um": 1256.72,
-      "y_um": 1017.28,
-      "orientation": "R0",
-      "halo": 0
+      "y_um": 1011.84,
+      "orientation": "MX",
+      "halo": 2.0
     },
     {
       "instance": "u_fabric/u_dsram/g_bank_3_u_macro",
@@ -128,9 +128,9 @@
         "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
       },
       "x_um": 1256.72,
-      "y_um": 1520.48,
+      "y_um": 1506.88,
       "orientation": "R0",
-      "halo": 0
+      "halo": 2.0
     }
   ],
   "power": {
@@ -143,12 +143,6 @@
         "pitch_um": 5.44,
         "offset_um": 0,
         "followpins": true
-      },
-      {
-        "layer": "met3",
-        "width_um": 1.6,
-        "pitch_um": 27.2,
-        "offset_um": 13.6
       },
       {
         "layer": "met4",
@@ -169,7 +163,7 @@
     "clock_period_ns": 20.0
   },
   "seed": 1,
-  "target_stage": "floorplan",
+  "target_stage": "route",
   "outputs": {
     "dir": "../../build/pnr"
   },

@@ -4,6 +4,10 @@
 #                                   at default parameters and at ISRAM_1RW=1 / 1024-word SRAMs
 #   make -C verification xbar-1rw   just the alternate-parameter fabric run
 #   make -C verification periph    UART, GPIO, timer and peripheral-window decode tests
+#   make -C verification soc        firmware tests on the SoC: banner, echo, GPIO, timer
+#                                   interrupt (checked-in firmware/soc/*.hex; needs the
+#                                   same converted CVE2 as boot, no RISC-V compiler)
+#   make -C verification soc-negative  the banner test with one expected byte perturbed must fail
 #   make -C verification boot       SoC top boots firmware/boot (needs build/cve2/cve2_top.v:
 #                                   scripts/fetch-cve2.sh && scripts/convert-cve2.sh)
 #
@@ -116,3 +120,28 @@ boot-1rw:
 	    PLUSARGS=+rom_hex=$(BOOT_HEX) \
 	    SIM_BUILD=$(ROOT)/sim_build/boot_1rw \
 	    COCOTB_RESULTS_FILE=$(ROOT)/sim_build/boot_1rw/results.xml
+
+# SoC firmware tests (issue #48): one simulation per ROM image firmware/soc/<name>.hex,
+# because the image is fixed at elaboration (+rom_hex). The images are checked in;
+# `firmware/soc/build.sh --check` (needs the pinned RISC-V GCC) verifies them locally.
+SOC_SRC := $(RTL)/obi_err_resp.sv $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/soc_sram_d.sv $(RTL)/uart.sv $(RTL)/gpio.sv $(RTL)/timer.sv $(RTL)/soc_fabric.sv $(RTL)/rst_sync.sv $(CVE2_V) $(RTL)/soc_top.sv
+SOC_TESTS := banner echo gpio timer
+
+.PHONY: soc soc-negative $(addprefix soc-,$(SOC_TESTS))
+soc: $(addprefix soc-,$(SOC_TESTS))
+
+$(addprefix soc-,$(SOC_TESTS)): soc-%:
+	@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
+	@test -r $(CVE2_V) || { echo "$(CVE2_V) missing: run scripts/fetch-cve2.sh && scripts/convert-cve2.sh" >&2; exit 1; }
+	$(MAKE) -f $(ROOT)/cocotb.mk \
+	    TESTDIR=$(ROOT)/tests/soc TOPLEVEL=soc_top MODULE=test_$* \
+	    VERILOG_SOURCES="$(SOC_SRC)" \
+	    PLUSARGS=+rom_hex=$(abspath $(ROOT)/../firmware/soc/$*.hex) \
+	    SIM_BUILD=$(ROOT)/sim_build/soc_$*
+
+# The transcript comparison must be able to fail: perturb the expected banner's first byte.
+soc-negative:
+	@rm -rf $(ROOT)/sim_build/soc_banner
+	@if SOC_PERTURB=1 $(MAKE) soc-banner >$(ROOT)/sim_build/soc-negative.log 2>&1; then \
+	    echo "soc-negative: the perturbed transcript was accepted" >&2; exit 1; \
+	else grep -m1 'AssertionError' $(ROOT)/sim_build/soc-negative.log; echo "soc-negative: perturbed transcript rejected, as required"; fi

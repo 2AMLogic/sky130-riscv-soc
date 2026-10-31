@@ -1,8 +1,9 @@
 name: CI
 
 # Records lint, RTL lint (soc_top.sv included, against the converted CVE2 core) and the cocotb xbar, reset-synchroniser,
-# peripheral and SoC boot tests. The core is fetched (hash-verified) and converted with sv2v at the pin in
-# scripts/setup-env.sh on every run; the converted output is never checked in. PDK-heavy legs (synthesis,
+# peripheral, SoC boot and SoC firmware tests. The core is fetched (hash-verified) and converted with sv2v at the pin in
+# scripts/setup-env.sh on every run; the converted output is never checked in. The boot and firmware tests simulate the
+# checked-in firmware/boot and firmware/soc hex images: no RISC-V compiler in CI. PDK-heavy legs (synthesis,
 # place-and-route, DRC, LVS) stay local: see verification/README.md.
 # No path filters; a started main run is never cancelled (.loom/docs/ci-principles.md).
 on:
@@ -92,3 +93,8 @@ jobs:
           . .venv/bin/activate
           make -C verification boot
           make -C verification boot-1rw
+      - name: cocotb SoC firmware tests (banner, echo, GPIO, timer interrupt)
+        run: |
+          . .venv/bin/activate
+          make -C verification soc
+          make -C verification soc-negative

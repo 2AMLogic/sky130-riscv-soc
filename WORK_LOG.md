@@ -5,6 +5,11 @@ Maintained by the Loom Guide role.
 
 ### 2026-10-31
 
+- **PR #82**: feat: add SoC firmware tests (banner, echo, GPIO, timer interrupt) and CI leg
+- **Issue #48** (closed): T1 item 1: SoC firmware tests (banner, echo, GPIO, timer interrupt) and CI leg
+- **PR #80**: ci: build pinned CVE2 core and run soc_top lint and boot tests
+- **Issue #79** (closed): CI does not build or simulate soc_top (make boot, soc_top lint skipped)
+- **Issue #34** (closed): T1 item 1 (Design sources): UART, GPIO and machine-timer RTL per spec/soc.md Peripherals, with tests
 - **PR #78**: feat: add 8N1 UART peripheral and register-map record 0005
 - **Issue #47** (closed): T1 item 1: UART RTL (8N1, baud divisor, TX/RX interrupt) with tests
 - **PR #54**: feat(rtl): add peripheral window decoder, GPIO and machine timer

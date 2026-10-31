@@ -19,7 +19,7 @@ _None._
 
 `loom:important`; taken before unlabelled work.
 
-- **#47**: T1 item 1: UART RTL (8N1, baud divisor, TX/RX interrupt) with tests
+- **#37**: T1 item 2 (Layout): klt place-and-route of soc_top with macros and PDN, committed routed GDS
 
 ## Ready
 
@@ -56,7 +56,7 @@ Issues carrying `loom:curated`.
 
 ## Proposed (Architect / Hermit)
 
-_None._
+- **#77**: Dedupe verification/Makefile boot source lists (boot-1rw omits gpio/timer) *(hermit)*
 
 ## Epics
 
@@ -74,6 +74,6 @@ _None._
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
 | Curated | 4 |
-| Architect / Hermit proposals | 0 |
+| Architect / Hermit proposals | 1 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

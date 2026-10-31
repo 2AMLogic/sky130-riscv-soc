@@ -30,6 +30,7 @@ class Soc:
         return int(self.mem[OFF[name]].value)
 
     def start(self):
+        self.dut.uart_rxd_i.value = 1
         self.dut.gpio_i.value = 0  # GPIO pins undriven would feed X into the irq inputs
         cocotb.start_soon(Clock(self.dut.clk_i, 20, unit="ns").start())
         cocotb.start_soon(self._monitor())

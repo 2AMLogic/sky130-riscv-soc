@@ -11,6 +11,8 @@ module soc_top #(
 ) (
     input  logic clk_i,
     input  logic rst_ni,
+    input  logic uart_rxd_i,
+    output logic uart_txd_o,
     input  logic [7:0] gpio_i,
     output logic [7:0] gpio_o,
     output logic [7:0] gpio_oe_o,
@@ -19,7 +21,7 @@ module soc_top #(
   localparam logic [31:0] BootAddr = 32'h0000_0000;
 
   logic        rst_n;
-  logic        irq_timer, irq_gpio;
+  logic        irq_timer, irq_gpio, irq_uart;
 
   logic        instr_req, instr_gnt, instr_rvalid, instr_err;
   logic [31:0] instr_addr, instr_rdata;
@@ -75,7 +77,7 @@ module soc_top #(
       .irq_software_i     (1'b0),
       .irq_timer_i        (irq_timer),
       .irq_external_i     (1'b0),
-      .irq_fast_i         ({14'h0, irq_gpio, 1'b0}),  // [0] UART (not yet), [1] GPIO
+      .irq_fast_i         ({14'h0, irq_gpio, irq_uart}),  // [0] UART, [1] GPIO
       .irq_nm_i           (1'b0),
       .debug_req_i        (1'b0),
       .debug_halted_o     (),
@@ -114,6 +116,9 @@ module soc_top #(
       .gpio_i,
       .gpio_o,
       .gpio_oe_o,
+      .uart_rxd_i,
+      .uart_txd_o,
+      .irq_uart_o (irq_uart),
       .irq_gpio_o (irq_gpio),
       .irq_timer_o(irq_timer)
   );

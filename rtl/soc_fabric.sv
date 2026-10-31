@@ -50,6 +50,9 @@ module soc_fabric #(
     input  logic [7:0]  gpio_i,
     output logic [7:0]  gpio_o,
     output logic [7:0]  gpio_oe_o,
+    input  logic        uart_rxd_i,
+    output logic        uart_txd_o,
+    output logic        irq_uart_o,
     output logic        irq_gpio_o,
     output logic        irq_timer_o
 );
@@ -154,14 +157,22 @@ module soc_fabric #(
       .dout0 (dsr_rdata)
   );
 
-  // Peripheral window. Pages: 0 UART (not yet present: error), 1 GPIO, 2 timer.
-  localparam logic [3:0] PageGpio = 4'd1, PageTimer = 4'd2;
+  // Peripheral window. Pages: 0 UART, 1 GPIO, 2 timer, the rest error.
+  localparam logic [3:0] PageUart = 4'd0, PageGpio = 4'd1, PageTimer = 4'd2;
+  wire        uart_sel = per_req && per_addr[15:12] == PageUart;
   wire        gpio_sel = per_req && per_addr[15:12] == PageGpio;
   wire        timer_sel = per_req && per_addr[15:12] == PageTimer;
-  logic [31:0] gpio_rdata, timer_rdata;
-  logic        gpio_err, timer_err, page_err_q;
+  logic [31:0] uart_rdata, gpio_rdata, timer_rdata;
+  logic        uart_err, gpio_err, timer_err, page_err_q;
 
   assign per_gnt = 1'b1;
+
+  uart u_uart (
+      .clk_i, .rst_ni,
+      .req_i(uart_sel), .we_i(per_we), .be_i(per_be), .addr_i(per_addr[11:0]),
+      .wdata_i(per_wdata), .rdata_o(uart_rdata), .err_o(uart_err),
+      .rxd_i(uart_rxd_i), .txd_o(uart_txd_o), .irq_uart_o
+  );
 
   gpio u_gpio (
       .clk_i, .rst_ni,
@@ -177,13 +188,13 @@ module soc_fabric #(
       .irq_o(irq_timer_o)
   );
 
-  // Both peripherals register rdata (zero when not addressed) and err, so the
+  // All peripherals register rdata (zero when not addressed) and err, so the
   // response is the OR of the pages plus the error for the unmapped pages.
   always_ff @(posedge clk_i or negedge rst_ni) begin
     if (!rst_ni) page_err_q <= 1'b0;
-    else page_err_q <= per_req && !gpio_sel && !timer_sel;
+    else page_err_q <= per_req && !uart_sel && !gpio_sel && !timer_sel;
   end
 
-  assign per_rdata = gpio_rdata | timer_rdata;
-  assign per_err   = page_err_q | gpio_err | timer_err;
+  assign per_rdata = uart_rdata | gpio_rdata | timer_rdata;
+  assign per_err   = page_err_q | uart_err | gpio_err | timer_err;
 endmodule

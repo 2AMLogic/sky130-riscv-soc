@@ -1,0 +1,235 @@
+{
+  "schema": "klt.place_and_route.request/1",
+  "engine": "openroad",
+  "netlist": "../../build/pnr_in/soc_top_pnr.v",
+  "hdl_toplevel": "soc_top",
+  "pdk": {
+    "cell_library": "sky130_fd_sc_hd",
+    "corner": "tt_025C_1v80"
+  },
+  "floorplan": {
+    "method": "explicit",
+    "die_area_um": [
+      0,
+      0,
+      1950,
+      1950
+    ],
+    "core_area_um": [
+      10,
+      10,
+      1940,
+      1940
+    ],
+    "site": "unithd"
+  },
+  "io": {
+    "layer_h": "met3",
+    "layer_v": "met2"
+  },
+  "macros": [
+    {
+      "instance": "u_fabric/g_isram_1rw1r.u_isram/g_bank_0_u_macro",
+      "cell": "sky130_sram_2kbyte_1rw1r_32x512_8",
+      "lef": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.lef",
+      "gds": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.gds",
+      "lib": {
+        "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
+      },
+      "x_um": 10.12,
+      "y_um": 10.88,
+      "orientation": "R0",
+      "halo": 0
+    },
+    {
+      "instance": "u_fabric/g_isram_1rw1r.u_isram/g_bank_1_u_macro",
+      "cell": "sky130_sram_2kbyte_1rw1r_32x512_8",
+      "lef": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.lef",
+      "gds": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.gds",
+      "lib": {
+        "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
+      },
+      "x_um": 10.12,
+      "y_um": 514.08,
+      "orientation": "R0",
+      "halo": 0
+    },
+    {
+      "instance": "u_fabric/g_isram_1rw1r.u_isram/g_bank_2_u_macro",
+      "cell": "sky130_sram_2kbyte_1rw1r_32x512_8",
+      "lef": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.lef",
+      "gds": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.gds",
+      "lib": {
+        "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
+      },
+      "x_um": 10.12,
+      "y_um": 1017.28,
+      "orientation": "R0",
+      "halo": 0
+    },
+    {
+      "instance": "u_fabric/g_isram_1rw1r.u_isram/g_bank_3_u_macro",
+      "cell": "sky130_sram_2kbyte_1rw1r_32x512_8",
+      "lef": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.lef",
+      "gds": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.gds",
+      "lib": {
+        "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
+      },
+      "x_um": 10.12,
+      "y_um": 1520.48,
+      "orientation": "R0",
+      "halo": 0
+    },
+    {
+      "instance": "u_fabric/u_dsram/g_bank_0_u_macro",
+      "cell": "sky130_sram_2kbyte_1rw1r_32x512_8",
+      "lef": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.lef",
+      "gds": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.gds",
+      "lib": {
+        "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
+      },
+      "x_um": 1256.72,
+      "y_um": 10.88,
+      "orientation": "R0",
+      "halo": 0
+    },
+    {
+      "instance": "u_fabric/u_dsram/g_bank_1_u_macro",
+      "cell": "sky130_sram_2kbyte_1rw1r_32x512_8",
+      "lef": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.lef",
+      "gds": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.gds",
+      "lib": {
+        "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
+      },
+      "x_um": 1256.72,
+      "y_um": 514.08,
+      "orientation": "R0",
+      "halo": 0
+    },
+    {
+      "instance": "u_fabric/u_dsram/g_bank_2_u_macro",
+      "cell": "sky130_sram_2kbyte_1rw1r_32x512_8",
+      "lef": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.lef",
+      "gds": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.gds",
+      "lib": {
+        "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
+      },
+      "x_um": 1256.72,
+      "y_um": 1017.28,
+      "orientation": "R0",
+      "halo": 0
+    },
+    {
+      "instance": "u_fabric/u_dsram/g_bank_3_u_macro",
+      "cell": "sky130_sram_2kbyte_1rw1r_32x512_8",
+      "lef": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.lef",
+      "gds": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.gds",
+      "lib": {
+        "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
+      },
+      "x_um": 1256.72,
+      "y_um": 1520.48,
+      "orientation": "R0",
+      "halo": 0
+    }
+  ],
+  "power": {
+    "power_net": "VDD",
+    "ground_net": "VSS",
+    "straps": [
+      {
+        "layer": "met1",
+        "width_um": 0.48,
+        "pitch_um": 5.44,
+        "offset_um": 0,
+        "followpins": true
+      },
+      {
+        "layer": "met3",
+        "width_um": 1.6,
+        "pitch_um": 27.2,
+        "offset_um": 13.6
+      },
+      {
+        "layer": "met4",
+        "width_um": 1.6,
+        "pitch_um": 27.14,
+        "offset_um": 13.57
+      },
+      {
+        "layer": "met5",
+        "width_um": 1.6,
+        "pitch_um": 27.2,
+        "offset_um": 13.6
+      }
+    ]
+  },
+  "constraints": {
+    "clock_port": "clk_i",
+    "clock_period_ns": 20.0
+  },
+  "seed": 1,
+  "target_stage": "floorplan",
+  "outputs": {
+    "dir": "../../build/pnr"
+  },
+  "library": {
+    "power_pins": [
+      {
+        "net_role": "power",
+        "pattern": "^VDD$",
+        "primary": true
+      },
+      {
+        "net_role": "power",
+        "pattern": "^VDDPE$",
+        "primary": false
+      },
+      {
+        "net_role": "power",
+        "pattern": "^VDDCE$",
+        "primary": false
+      },
+      {
+        "net_role": "power",
+        "pattern": "VPWR",
+        "primary": false
+      },
+      {
+        "net_role": "power",
+        "pattern": "VPB",
+        "primary": false
+      },
+      {
+        "net_role": "power",
+        "pattern": "^vccd1$",
+        "primary": false
+      },
+      {
+        "net_role": "ground",
+        "pattern": "^VSS$",
+        "primary": true
+      },
+      {
+        "net_role": "ground",
+        "pattern": "^VSSE$",
+        "primary": false
+      },
+      {
+        "net_role": "ground",
+        "pattern": "VGND",
+        "primary": false
+      },
+      {
+        "net_role": "ground",
+        "pattern": "VNB",
+        "primary": false
+      },
+      {
+        "net_role": "ground",
+        "pattern": "^vssd1$",
+        "primary": false
+      }
+    ]
+  }
+}

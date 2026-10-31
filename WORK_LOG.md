@@ -5,6 +5,12 @@ Maintained by the Loom Guide role.
 
 ### 2026-10-31
 
+- **PR #87**: chore: drop tracked synth_result.json, default scratch result to flow/build
+- **Issue #85** (closed): Remove flow/soc/synth_result.json: byte-identical duplicate of the committed synthesis record
+- **PR #88**: build: reuse SOC_SRC in boot and boot-1rw sim targets
+- **Issue #77** (closed): Dedupe verification/Makefile boot source lists (boot-1rw omits gpio/timer)
+- **PR #84**: feat: synthesize soc_top with gate-level banner regression and T1 item 1 attestation
+- **Issue #35** (closed): T1 item 1 (Design sources): synthesize soc_top to sky130_fd_sc_hd and attest RTL plus netlist
 - **PR #82**: feat: add SoC firmware tests (banner, echo, GPIO, timer interrupt) and CI leg
 - **Issue #48** (closed): T1 item 1: SoC firmware tests (banner, echo, GPIO, timer interrupt) and CI leg
 - **PR #80**: ci: build pinned CVE2 core and run soc_top lint and boot tests

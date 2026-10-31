@@ -13,6 +13,14 @@ module boot_rom #(
     output logic [31:0] rdata_o
 );
   logic [31:0] mem[1024];
+`ifdef SYNTHESIS
+  // Synthesis flow: the image path is the SOC_ROM_HEX define (a bare path; a
+  // parameter override cannot reach this module, Yosys reads it before chparam),
+  // and Yosys turns the $readmemh into the ROM contents. No plusarg, no $fatal
+  // (neither synthesizes).
+`define SOC_STR(x) `"x`"
+  initial $readmemh(`SOC_STR(`SOC_ROM_HEX), mem);
+`else
   string       path;
 
   initial begin
@@ -21,6 +29,7 @@ module boot_rom #(
     if (path == "") $fatal(1, "boot_rom: no image (set INIT_FILE or pass +rom_hex=<path>)");
     $readmemh(path, mem);
   end
+`endif
 
   always_ff @(posedge clk_i) begin
     if (req_i) rdata_o <= mem[addr_i];

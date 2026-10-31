@@ -1,0 +1,23 @@
+{
+  "commit": "3c1fd5aa2b8b6b7169ad0882d0c875c87b538747",
+  "pdk_revision": "f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7",
+  "tool_versions": {
+    "klt": "0.8.1.dev909+gaaf8fbf68b2b",
+    "yosys": "0.67+post (b8e7da6f40ae8f552c116bf6c359b07c6533e159)",
+    "sv2v": "v0.0.13",
+    "iverilog": "13.0",
+    "cocotb": "2.0.1",
+    "host": "loom-worker (AWS dispatch worker)"
+  },
+  "command": "scripts/synth-soc.sh; make -C verification soc-gate",
+  "note": "commit is the base the change was written on; the change itself (rtl/boot_rom.sv SYNTHESIS branch, flow/soc, scripts/synth-soc.sh, scripts/fetch-sram-macro.sh, verification/models, the soc-gate target) was uncommitted when the run was made. Every input is bound by sha256 in attest/item1.json.",
+  "netlist": {
+    "file": "netlist/soc_top_synth.v",
+    "sha256": "0e03ac74ce0f93691735437e96d910f56cb9bf5d789082ed83a0b72c7d4403c0"
+  },
+  "pinned_inputs": {
+    "cve2_commit": "d7f21568028a1114be663599bd42145dccf28928",
+    "sram_macro_commit": "ebfbf5775c8cd433ad38a4d825e46c2275231511",
+    "sram_macro_liberty_sha256": "8656384775f5e10b44bed97b7193dd3188ce8cd60b7c8e02a5a4ad9e35ed03ba"
+  }
+}

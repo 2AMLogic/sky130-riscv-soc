@@ -107,6 +107,8 @@ npm run test                                    # the same xbar tests as above
 scripts/fetch-cve2.sh && scripts/convert-cve2.sh     # pinned CVE2 -> build/cve2/cve2_top.v (needs sv2v)
 make -C verification boot                       # SoC top boots firmware/boot (needs the converted core)
 make -C verification soc                        # firmware tests: banner, echo, GPIO, timer interrupt (checked-in firmware/soc/*.hex)
+scripts/synth-soc.sh                            # fetch, convert, klt synthesize soc_top -> netlist/soc_top_synth.v, rewrites attest/item1.json (needs klt, Yosys, sv2v, the sky130A PDK)
+make -C verification soc-gate                   # banner on the synthesized netlist, ~6 min, local only (needs the PDK cell models)
 firmware/soc/build.sh --check                   # soc hex files match their .S sources (needs the pinned RISC-V GCC)
 firmware/boot/build.sh --check                  # boot_rom.hex matches boot.S (needs the pinned RISC-V GCC)
 VER="$(sed -n 's/^PIN_KLT="\([0-9][0-9.]*\)".*/\1/p' scripts/setup-env.sh)"
@@ -115,6 +117,8 @@ KLT=(uvx --from "klayout-tools==${VER}" klt)
   --check manifests/sky130-riscv-soc.signoff.json         # evidence report reproduces
 "${KLT[@]}" signoff --attest 10 --inventory attest/item10.json \
   --check evidence/item10.json                            # repo-hygiene attestation reproduces
+"${KLT[@]}" signoff --attest 1 --inventory attest/item1.json \
+  --check evidence/item1.json                             # sources + synthesized netlist attestation reproduces
 ```
 
 The toolchain-smoke records under
@@ -131,8 +135,9 @@ simulates the checked-in hex images.
 Synthesis, place-and-route, DRC and LVS also stay local (see
 [`verification/README.md`](verification/README.md)). Regenerating the
 attestation after an edit to an attested file (including this README):
-`klt signoff --attest 10 --inventory attest/item10.json -o evidence/item10.json`,
-then regenerate the signoff report as described in
+`klt signoff --attest 10 --inventory attest/item10.json -o evidence/item10.json`
+(item 1 the same way after `scripts/synth-soc.sh`, with `--attest 1 --inventory
+attest/item1.json -o evidence/item1.json`), then regenerate the signoff report as described in
 [`manifests/README.md`](manifests/README.md).
 
 ## License

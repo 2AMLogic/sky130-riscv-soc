@@ -116,7 +116,7 @@ boot-1rw:
 	COMPILE_ARGS="-Psoc_top.ISRAM_1RW=1 -Psoc_top.ISRAM_AW=10 -Psoc_top.DSRAM_AW=10" \
 	$(MAKE) -f $(ROOT)/cocotb.mk \
 	    TESTDIR=$(ROOT)/tests/boot TOPLEVEL=soc_top MODULE=test_boot \
-	    VERILOG_SOURCES="$(RTL)/obi_err_resp.sv $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/soc_sram_d.sv $(RTL)/soc_fabric.sv $(RTL)/rst_sync.sv $(CVE2_V) $(RTL)/soc_top.sv" \
+	    VERILOG_SOURCES="$(RTL)/obi_err_resp.sv $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/soc_sram_d.sv $(RTL)/uart.sv $(RTL)/gpio.sv $(RTL)/timer.sv $(RTL)/soc_fabric.sv $(RTL)/rst_sync.sv $(CVE2_V) $(RTL)/soc_top.sv" \
 	    PLUSARGS=+rom_hex=$(BOOT_HEX) \
 	    SIM_BUILD=$(ROOT)/sim_build/boot_1rw \
 	    COCOTB_RESULTS_FILE=$(ROOT)/sim_build/boot_1rw/results.xml

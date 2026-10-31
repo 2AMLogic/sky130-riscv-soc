@@ -3,6 +3,11 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-10-31
+
+- **PR #54**: feat(rtl): add peripheral window decoder, GPIO and machine timer
+- **Issue #46** (closed): T1 item 1: peripheral window decoder, GPIO and machine timer RTL, register-map record, with tests
+
 ### 2026-10-30
 
 - **PR #71**: test: record boot and boot-1rw simulation evidence

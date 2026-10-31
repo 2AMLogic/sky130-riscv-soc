@@ -5,6 +5,8 @@ Maintained by the Loom Guide role.
 
 ### 2026-10-31
 
+- **PR #78**: feat: add 8N1 UART peripheral and register-map record 0005
+- **Issue #47** (closed): T1 item 1: UART RTL (8N1, baud divisor, TX/RX interrupt) with tests
 - **PR #54**: feat(rtl): add peripheral window decoder, GPIO and machine timer
 - **Issue #46** (closed): T1 item 1: peripheral window decoder, GPIO and machine timer RTL, register-map record, with tests
 

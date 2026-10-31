@@ -106,6 +106,8 @@ npm run lint                                    # record linter, its fixture tes
 npm run test                                    # the same xbar tests as above
 scripts/fetch-cve2.sh && scripts/convert-cve2.sh     # pinned CVE2 -> build/cve2/cve2_top.v (needs sv2v)
 make -C verification boot                       # SoC top boots firmware/boot (needs the converted core)
+make -C verification soc                        # firmware tests: banner, echo, GPIO, timer interrupt (checked-in firmware/soc/*.hex)
+firmware/soc/build.sh --check                   # soc hex files match their .S sources (needs the pinned RISC-V GCC)
 firmware/boot/build.sh --check                  # boot_rom.hex matches boot.S (needs the pinned RISC-V GCC)
 VER="$(sed -n 's/^PIN_KLT="\([0-9][0-9.]*\)".*/\1/p' scripts/setup-env.sh)"
 KLT=(uvx --from "klayout-tools==${VER}" klt)
@@ -121,9 +123,11 @@ The toolchain-smoke records under
 tools run; each dated record's README gives the commands that produced it.
 They are toolchain evidence, not design evidence.
 
-CI runs the lint, the xbar tests and the two `klt signoff` checks above.
-`make boot` and `firmware/boot/build.sh --check` stay local: CI does not
-install `sv2v` or the pinned RISC-V GCC, nor fetch the CVE2 sources.
+CI runs the lint, the xbar and peripheral tests, `make -C verification soc`
+(it installs `sv2v` at the pin and fetches and converts the CVE2 sources) and
+the two `klt signoff` checks above. `make boot`, `firmware/boot/build.sh --check`
+and `firmware/soc/build.sh --check` stay local: CI installs no RISC-V GCC and
+simulates the checked-in hex images.
 Synthesis, place-and-route, DRC and LVS also stay local (see
 [`verification/README.md`](verification/README.md)). Regenerating the
 attestation after an edit to an attested file (including this README):

@@ -1,7 +1,9 @@
 name: CI
 
-# Records lint, RTL lint and the cocotb xbar, reset-synchroniser and peripheral tests. PDK-heavy legs (synthesis,
-# place-and-route, DRC, LVS) stay local: see verification/README.md.
+# Records lint, RTL lint and the cocotb xbar, reset-synchroniser, peripheral and SoC firmware tests. The CVE2 core is
+# fetched (hash-verified) and converted with sv2v at the pin in scripts/setup-env.sh on every run; the converted output
+# is never checked in. The firmware tests simulate the checked-in firmware/soc/*.hex: no RISC-V compiler in CI.
+# PDK-heavy legs (synthesis, place-and-route, DRC, LVS) stay local: see verification/README.md.
 # No path filters; a started main run is never cancelled (.loom/docs/ci-principles.md).
 on:
   pull_request:
@@ -53,3 +55,24 @@ jobs:
         run: |
           . .venv/bin/activate
           make -C verification periph
+      - name: Install sv2v at the pinned version
+        run: |
+          pin="$(sed -n 's/^PIN_SV2V="\([^"]*\)".*/\1/p' scripts/setup-env.sh)"
+          sha="$(sed -n 's/^PIN_SV2V_SHA256="\([^"]*\)".*/\1/p' scripts/setup-env.sh)"
+          test -n "$pin" && test -n "$sha"
+          d="$(mktemp -d)"
+          curl -fsSL --retry 2 -o "$d/sv2v.zip" "https://github.com/zachjs/sv2v/releases/download/${pin}/sv2v-Linux.zip"
+          echo "${sha}  $d/sv2v.zip" | sha256sum -c -
+          unzip -q "$d/sv2v.zip" -d "$d"
+          mkdir -p "$HOME/.local/bin"
+          install -m 755 "$d/sv2v-Linux/sv2v" "$HOME/.local/bin/sv2v"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Fetch and convert the pinned CVE2 core
+        run: |
+          scripts/fetch-cve2.sh
+          scripts/convert-cve2.sh
+      - name: cocotb SoC firmware tests (banner, echo, GPIO, timer interrupt)
+        run: |
+          . .venv/bin/activate
+          make -C verification soc
+          make -C verification soc-negative

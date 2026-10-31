@@ -136,7 +136,7 @@
         "role": "source",
         "path": "scripts/synth-soc.sh",
         "passed": true,
-        "content_hash": "sha256:7b86d693bfc47e6a2be848352d6072a1aa0b6903d7e27d9bc5c1c27c776b192e"
+        "content_hash": "sha256:101e830450618374bf2b900970331eed88235fa8ce7eb1a8f440a9625bb1abc8"
       },
       {
         "check": "present",

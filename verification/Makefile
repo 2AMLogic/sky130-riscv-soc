@@ -3,6 +3,7 @@
 #   make -C verification xbar       OBI crossbar/decode + reset synchroniser tests, fabric
 #                                   at default parameters and at ISRAM_1RW=1 / 1024-word SRAMs
 #   make -C verification xbar-1rw   just the alternate-parameter fabric run
+#   make -C verification periph    GPIO, timer and peripheral-window decode tests
 #   make -C verification boot       SoC top boots firmware/boot (needs build/cve2/cve2_top.v:
 #                                   scripts/fetch-cve2.sh && scripts/convert-cve2.sh)
 #
@@ -20,7 +21,7 @@ RTL := $(abspath $(ROOT)/../rtl)
 .PHONY: xbar xbar-fabric xbar-1rw xbar-rst
 xbar: xbar-fabric xbar-1rw xbar-rst
 
-FABRIC_SRC := $(RTL)/obi_err_resp.sv $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/soc_sram_d.sv $(RTL)/soc_fabric.sv
+FABRIC_SRC := $(RTL)/obi_err_resp.sv $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/soc_sram_d.sv $(RTL)/gpio.sv $(RTL)/timer.sv $(RTL)/soc_fabric.sv
 
 # 16-word ROM image for the fabric test (0xB0070000 + i; test_xbar.py ROM_IMG), generated.
 XBAR_ROM_HEX := $(ROOT)/sim_build/xbar_rom.hex
@@ -57,6 +58,31 @@ xbar-rst:
 	    VERILOG_SOURCES=$(RTL)/rst_sync.sv \
 	    SIM_BUILD=$(ROOT)/sim_build/rst_sync
 
+.PHONY: periph periph-gpio periph-timer periph-decode
+periph: periph-gpio periph-timer periph-decode
+
+periph-gpio:
+	@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
+	$(MAKE) -f $(ROOT)/cocotb.mk \
+	    TESTDIR=$(ROOT)/tests/periph TOPLEVEL=gpio MODULE=test_gpio \
+	    VERILOG_SOURCES=$(RTL)/gpio.sv \
+	    SIM_BUILD=$(ROOT)/sim_build/periph_gpio
+
+periph-timer:
+	@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
+	$(MAKE) -f $(ROOT)/cocotb.mk \
+	    TESTDIR=$(ROOT)/tests/periph TOPLEVEL=timer MODULE=test_timer \
+	    VERILOG_SOURCES=$(RTL)/timer.sv \
+	    SIM_BUILD=$(ROOT)/sim_build/periph_timer
+
+periph-decode: $(XBAR_ROM_HEX)
+	@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
+	$(MAKE) -f $(ROOT)/cocotb.mk \
+	    TESTDIR=$(ROOT)/tests/periph TOPLEVEL=soc_fabric MODULE=test_decode \
+	    VERILOG_SOURCES="$(FABRIC_SRC)" \
+	    PLUSARGS=+rom_hex=$(XBAR_ROM_HEX) \
+	    SIM_BUILD=$(ROOT)/sim_build/periph_decode
+
 CVE2_V := $(abspath $(ROOT)/../$(or $(CVE2_BUILD_REL),build/cve2))/cve2_top.v
 BOOT_HEX := $(abspath $(ROOT)/../firmware/boot/boot_rom.hex)
 
@@ -66,7 +92,7 @@ boot:
 	@test -r $(CVE2_V) || { echo "$(CVE2_V) missing: run scripts/fetch-cve2.sh && scripts/convert-cve2.sh" >&2; exit 1; }
 	$(MAKE) -f $(ROOT)/cocotb.mk \
 	    TESTDIR=$(ROOT)/tests/boot TOPLEVEL=soc_top MODULE=test_boot \
-	    VERILOG_SOURCES="$(RTL)/obi_err_resp.sv $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/soc_sram_d.sv $(RTL)/soc_fabric.sv $(RTL)/rst_sync.sv $(CVE2_V) $(RTL)/soc_top.sv" \
+	    VERILOG_SOURCES="$(RTL)/obi_err_resp.sv $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/soc_sram_d.sv $(RTL)/gpio.sv $(RTL)/timer.sv $(RTL)/soc_fabric.sv $(RTL)/rst_sync.sv $(CVE2_V) $(RTL)/soc_top.sv" \
 	    PLUSARGS=+rom_hex=$(BOOT_HEX) \
 	    SIM_BUILD=$(ROOT)/sim_build/boot
 

@@ -1,4 +1,4 @@
-"""Crossbar / decode tests for rtl/soc_fabric.sv (xbar + ROM + SRAMs + periph stub).
+"""Crossbar / decode tests for rtl/soc_fabric.sv (xbar + ROM + SRAMs + periph window).
 
 Managers are driven cycle by cycle: requests are applied at the falling edge,
 grants (combinational) are sampled 1 ns later, the rising edge accepts, and the
@@ -35,6 +35,7 @@ class Fab:
         d = self.dut
         cocotb.start_soon(Clock(d.clk_i, 10, unit="ns").start())
         d.rst_ni.value = 0
+        d.gpio_i.value = 0
         for m in "id":
             getattr(d, f"{m}_req_i").value = 0
             getattr(d, f"{m}_addr_i").value = 0
@@ -150,11 +151,19 @@ async def dsram_reachable_by_data_manager_only(dut):
 async def peripheral_window_errors_and_forbidden_accesses(dut):
     f = Fab(dut)
     await f.reset()
+    # UART page (no UART yet), unused pages and past-the-end offsets error;
+    # the GPIO and timer pages are mapped (tests/periph covers them)
     for m in "id":
-        for a in (PERI, PERI + 0x1000, PERI + 0x2000, PERI + 0xFFFC):
+        for a in (PERI, PERI + 0x3000, PERI + 0xF000, PERI + 0xFFFC, PERI + 0x1100):
             _, err, n = await f.read(m, a)
             assert err, f"{m} read {a:#x} must be an OBI error"
             assert n <= 3, "error response must be bounded"
+    # the instruction manager never reaches the window, mapped pages included
+    for a in (PERI + 0x1000, PERI + 0x2000):
+        _, err, _ = await f.read("i", a)
+        assert err, f"i read {a:#x} must be an OBI error"
+        _, err, _ = await f.read("d", a)
+        assert not err, f"d read {a:#x} must succeed"
     assert await f.write("d", PERI, 1)
     # instruction manager is read-only; boot ROM is read-only
     assert await f.write("i", ISRAM, 0x1234)

@@ -9,7 +9,7 @@
 //   ISRAM_AW, DSRAM_AW  word-address width of each SRAM (11 = 2048 words).
 //   ISRAM_1RW           0: two-port I-SRAM (soc_sram_i), data-side write and
 //                          fetch proceed in the same cycle, both grants 1.
-//                       1: single-port I-SRAM (soc_sram_i_1rw). isd and isi
+//                       1: single-port I-SRAM (soc_sram_d). isd and isi
 //                          share the port with fixed priority: the data side
 //                          wins and the fetch's grant is held low for as long
 //                          as a data-side access targets the I-SRAM; it
@@ -110,7 +110,7 @@ module soc_fabric #(
     assign isd_rdata = port_dout;
     assign isi_rdata = port_dout;
 
-    soc_sram_i_1rw #(
+    soc_sram_d #(
         .AW(ISRAM_AW)
     ) u_isram (
         .clk0  (clk_i),

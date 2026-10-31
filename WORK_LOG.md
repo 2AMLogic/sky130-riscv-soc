@@ -3,6 +3,13 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-10-30
+
+- **PR #71**: test: record boot and boot-1rw simulation evidence
+- **Issue #59** (closed): Run firmware boot at default and ISRAM_1RW=1 / 1024-word parameters once the converted CVE2 core is available
+- **PR #73**: refactor: reuse soc_sram_d for ISRAM_1RW=1, drop duplicate soc_sram_i_1rw
+- **Issue #72** (closed): Remove soc_sram_i_1rw: duplicate of soc_sram_d behavioural model
+
 ### 2026-10-27
 
 - **PR #67**: refactor: generate xbar test ROM image and drop boot_rom.hex placeholder

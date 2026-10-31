@@ -1,6 +1,7 @@
 # Block manifest and signoff record
 
-- `sky130-riscv-soc.json` — the block manifest. `evidence` cites T1 item 10
+- `sky130-riscv-soc.json` — the block manifest. `evidence` cites T1 item 1
+  (`evidence/item1.json`, produced from `attest/item1.json` by `scripts/synth-soc.sh` + `klt signoff --attest 1`), T1 item 10
   (`evidence/item10.json`, produced from `attest/item10.json`) and item 6 as a
   hash-bound "not applicable" (`spec/soc.rows.json` +
   `spec/statistical-claims-na.json`; human-readable
@@ -39,6 +40,7 @@ from the comparison). With `--check`, exit **3 means drift** and fails the job.
 The `signoff` workflow also re-attests item 10 with
 `klt signoff --attest 10 --inventory attest/item10.json --check evidence/item10.json`
 (exit 3 = drift, e.g. after editing `README.md` or a workflow without
-re-attesting). `local_only` checks are skipped there and run by `ci.yml`.
+re-attesting) and item 1 with `--attest 1 --inventory attest/item1.json --check evidence/item1.json`
+(drift = a source, the request or the netlist no longer matches `flow/soc/synth.sha256`; re-run `scripts/synth-soc.sh`). Generating item 10 locally runs its `local_only` checks: put the cocotb venv's `python3` in `PYTHON_BIN` (klt scrubs `PATH`). `local_only` checks are skipped there and run by `ci.yml`.
 
 A klt pin bump lands in the same change as a regenerated report.

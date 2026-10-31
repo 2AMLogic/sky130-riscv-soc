@@ -1,7 +1,7 @@
 name: signoff
 
 # Re-grades the block manifest with the pinned klt and fails on drift from the
-# committed report, and re-attests T1 item 10. The klt pin lives only in scripts/setup-env.sh (PIN_KLT).
+# committed report, and re-attests T1 items 1 and 10. The klt pin lives only in scripts/setup-env.sh (PIN_KLT).
 # No path filters; a started main run is never cancelled (.loom/docs/ci-principles.md).
 on:
   pull_request:
@@ -44,3 +44,9 @@ jobs:
           uvx --from "klayout-tools==${KLT_VERSION}" \
             klt signoff --attest 10 --inventory attest/item10.json \
             --check evidence/item10.json
+      - name: Re-attest T1 item 1 (sources and synthesized netlist)
+        run: |
+          # recorded freshness: re-hashes the sources and the committed netlist, runs no tool.
+          uvx --from "klayout-tools==${KLT_VERSION}" \
+            klt signoff --attest 1 --inventory attest/item1.json \
+            --check evidence/item1.json

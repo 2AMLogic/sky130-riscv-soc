@@ -4,6 +4,10 @@ Each test module runs one image from firmware/soc/ (picked by the Makefile
 through +rom_hex). Every wait is bounded by a cycle count so a missing byte or
 interrupt fails the test instead of hanging it.
 
+Set SOC_GATE=1 when the DUT is the synthesized netlist (make -C verification
+soc-gate): the D-SRAM is then the macro stand-in, not soc_sram_d.mem, so the
+RTL-only memory peeks are skipped; only tests that decode the UART (banner) run.
+
 Set SOC_PERTURB=1 to flip one byte of every expected transcript; the tests
 must then fail (make -C verification soc-negative checks that).
 """
@@ -29,7 +33,8 @@ def golden(name):
 class Soc:
     def __init__(self, dut):
         self.dut = dut
-        self.mem = dut.u_fabric.u_dsram.mem
+        self.gate = os.environ.get("SOC_GATE") == "1"
+        self.mem = None if self.gate else dut.u_fabric.u_dsram.mem
         self.cycles = 0
 
     def word(self, i):
@@ -39,8 +44,9 @@ class Soc:
         d = self.dut
         d.uart_rxd_i.value = 1
         d.gpio_i.value = 0
-        for i in range(8):
-            self.mem[i].value = 0
+        if not self.gate:
+            for i in range(8):
+                self.mem[i].value = 0
         cocotb.start_soon(Clock(d.clk_i, 20, unit="ns").start())
         cocotb.start_soon(self._count())
         d.rst_ni.value = 0

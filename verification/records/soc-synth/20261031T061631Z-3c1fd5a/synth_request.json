@@ -1,0 +1,37 @@
+{
+  "schema": "klt.synthesize.request/1",
+  "engine": "yosys",
+  "sv_frontend": "sv2v",
+  "sources": [
+    "../../rtl/rst_sync.sv",
+    "../../rtl/obi_err_resp.sv",
+    "../../rtl/obi_xbar.sv",
+    "../../rtl/boot_rom.sv",
+    "../../rtl/soc_sram_i.sv",
+    "../../rtl/soc_sram_d.sv",
+    "../../rtl/uart.sv",
+    "../../rtl/gpio.sv",
+    "../../rtl/timer.sv",
+    "../../rtl/soc_fabric.sv",
+    "../../rtl/soc_top.sv",
+    "../../build/cve2/cve2_top.v"
+  ],
+  "hdl_toplevel": "soc_top",
+  "run_id": "soc-top",
+  "defines": { "SOC_ROM_HEX": "firmware/soc/banner.hex", "SOC_SRAM_MACRO": null, "SYNTHESIS": null },
+  "macros": [
+    {
+      "cell": "sky130_sram_2kbyte_1rw1r_32x512_8",
+      "lib": { "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib" },
+      "lef": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.lef"
+    }
+  ],
+  "latch_map": {
+    "negative": { "cell": "sky130_fd_sc_hd__dlxtn_1", "enable": "GATE_N", "data": "D", "q": "Q" }
+  },
+  "pdk": {
+    "cell_library": "sky130_fd_sc_hd",
+    "corner": "tt_025C_1v80"
+  },
+  "constraints": { "clock_period_ns": null }
+}

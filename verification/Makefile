@@ -8,6 +8,9 @@
 #                                   interrupt (checked-in firmware/soc/*.hex; needs the
 #                                   same converted CVE2 as boot, no RISC-V compiler)
 #   make -C verification soc-negative  the banner test with one expected byte perturbed must fail
+#   make -C verification soc-gate   the banner test on the synthesized netlist
+#                                   (netlist/soc_top_synth.v) with sky130_fd_sc_hd cell models and
+#                                   the macro stand-in; transcript must equal the RTL one
 #   make -C verification boot       SoC top boots firmware/boot (needs build/cve2/cve2_top.v:
 #                                   scripts/fetch-cve2.sh && scripts/convert-cve2.sh)
 #
@@ -145,3 +148,22 @@ soc-negative:
 	@if SOC_PERTURB=1 $(MAKE) soc-banner >$(ROOT)/sim_build/soc-negative.log 2>&1; then \
 	    echo "soc-negative: the perturbed transcript was accepted" >&2; exit 1; \
 	else grep -m1 'AssertionError' $(ROOT)/sim_build/soc-negative.log; echo "soc-negative: perturbed transcript rejected, as required"; fi
+
+# Post-synthesis regression (issue #35): the banner image is baked into the netlist at
+# synthesis (flow/soc/synth_request.json), so one test. Cell models: the PDK's
+# sky130_fd_sc_hd verilog (primitives.v + sky130_fd_sc_hd.v, FUNCTIONAL, zero delay);
+# SRAM macros: models/..._standin.v (the pinned macro model does not elaborate in Icarus).
+# PDK_VERILOG overrides the cell-model directory (default: the ciel/volare install).
+PDK_VERILOG ?= $(or $(wildcard $(PDK_ROOT)/$(PDK)/libs.ref/sky130_fd_sc_hd/verilog),$(wildcard $(HOME)/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/verilog))
+GATE_SRC := $(abspath $(ROOT)/../netlist/soc_top_synth.v) $(PDK_VERILOG)/primitives.v $(PDK_VERILOG)/sky130_fd_sc_hd.v $(ROOT)/models/sky130_sram_2kbyte_1rw1r_32x512_8_standin.v
+
+.PHONY: soc-gate
+soc-gate:
+	@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
+	@test -r $(PDK_VERILOG)/sky130_fd_sc_hd.v || { echo "sky130_fd_sc_hd verilog models not found (set PDK_VERILOG)" >&2; exit 1; }
+	@test -r $(abspath $(ROOT)/../netlist/soc_top_synth.v) || { echo "netlist missing: run scripts/synth-soc.sh" >&2; exit 1; }
+	SOC_GATE=1 $(MAKE) -f $(ROOT)/cocotb.mk \
+	    TESTDIR=$(ROOT)/tests/soc TOPLEVEL=soc_top MODULE=test_banner \
+	    VERILOG_SOURCES="$(GATE_SRC)" \
+	    COMPILE_ARGS="-DFUNCTIONAL -DUNIT_DELAY=#0" \
+	    SIM_BUILD=$(ROOT)/sim_build/soc_gate

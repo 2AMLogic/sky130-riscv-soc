@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "kind": "generic",
+  "status": "pass",
+  "t1_item": 1,
+  "summary": "T1 item 1 (Design sources): 20/20 attestation checks passed (klt signoff --attest)",
+  "source": "attest/item1.json",
+  "attestation": {
+    "producer": "klt signoff --attest",
+    "inventory_schema_version": 1,
+    "hash_algorithm": "sha256-raw-bytes",
+    "check_count": 20,
+    "passed_count": 20,
+    "checks": [
+      {
+        "check": "present",
+        "role": "source",
+        "path": "firmware/soc/banner.hex",
+        "passed": true,
+        "content_hash": "sha256:2011a7b95b82a11eee90026f30ad9061deb48e3e3e3062cfe861c0be1f5fa366"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "flow/soc/synth_request.json",
+        "passed": true,
+        "content_hash": "sha256:04e51a96a666661652e29a1ebbc35e7b2c597ef45169fa0dc6f6639dc8395eaf"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "reuse.lock.json",
+        "passed": true,
+        "content_hash": "sha256:f218ceeea54ed11f09a3325cb3336294de1fdfb3328b2c87ca857c52cfa73e10"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/boot_rom.sv",
+        "passed": true,
+        "content_hash": "sha256:c916354996771d105d903205a49416d2cb56f2fe4f8643c226cdd3400a48ed0a"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/gpio.sv",
+        "passed": true,
+        "content_hash": "sha256:a7800f53030b5699ba62e86da2f8e7b49c519bb53f7a3549f346fe158eb937e9"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/obi_err_resp.sv",
+        "passed": true,
+        "content_hash": "sha256:dd3f640b9c89fb852cf3f63f35e15e577c8a98c3e1dcf7858ac95a80b97dca4c"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/obi_xbar.sv",
+        "passed": true,
+        "content_hash": "sha256:c8d6550767a35e807333503d3b9b18c7929643ee66cd7fbd3f8018caca2f4f36"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/rst_sync.sv",
+        "passed": true,
+        "content_hash": "sha256:4dce9a6ba45905a9569e2965beefe2d8ddac56d1e7a6c934ce09e28b92999f73"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/soc_fabric.sv",
+        "passed": true,
+        "content_hash": "sha256:42c955389a24bacd0af643cb7241cdfa1ff16d973919597031d74e1803ec9fae"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/soc_sram_d.sv",
+        "passed": true,
+        "content_hash": "sha256:d559c25ae54773f65f85989bba622e9b02fa417d923d5d5a39251147b1b3a001"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/soc_sram_i.sv",
+        "passed": true,
+        "content_hash": "sha256:a415a52de5eac6417086e14396aef43c1bba15fdae8af747f0cedae0d4f48b7f"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/soc_top.sv",
+        "passed": true,
+        "content_hash": "sha256:0a536a775e5c8c6ffd0956866817ab9b3e47ecb153524fff69b02a8b6d15930c"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/timer.sv",
+        "passed": true,
+        "content_hash": "sha256:894cdf96da88cba81d9c14d32822cd33a547114699fc4e19d527a7087aa4c881"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/uart.sv",
+        "passed": true,
+        "content_hash": "sha256:446c2cd6fb645688e14db650ea5fa64a205c36bf6ac215a56513646397b7d306"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "scripts/convert-cve2.sh",
+        "passed": true,
+        "content_hash": "sha256:c2019952553730fd00b8721856cf771b58ccb9a6767aec20379a78b5e1553963"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "scripts/fetch-cve2.sh",
+        "passed": true,
+        "content_hash": "sha256:4ae75f78d257b5745c3362938745f475b05c0005874b0d4ccb5e1bc9c91c739f"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "scripts/fetch-sram-macro.sh",
+        "passed": true,
+        "content_hash": "sha256:93e491ce527d68e1b1772e9df1a120582b95ff21ddcf706a5de44d2d13965afc"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "scripts/synth-soc.sh",
+        "passed": true,
+        "content_hash": "sha256:7b86d693bfc47e6a2be848352d6072a1aa0b6903d7e27d9bc5c1c27c776b192e"
+      },
+      {
+        "check": "present",
+        "role": "derived",
+        "path": "netlist/soc_top_synth.v",
+        "passed": true,
+        "content_hash": "sha256:0e03ac74ce0f93691735437e96d910f56cb9bf5d789082ed83a0b72c7d4403c0"
+      },
+      {
+        "check": "command",
+        "role": "freshness",
+        "target": "netlist/soc_top_synth.v",
+        "generator": "scripts/synth-soc.sh (klt synthesize flow/soc/synth_request.json)",
+        "argv": [
+          "python3",
+          "-I",
+          "scripts/check-soc-netlist.py"
+        ],
+        "cwd": ".",
+        "exit_status": 0,
+        "passed": true
+      }
+    ]
+  },
+  "provenance": {
+    "klt_version": "0.8.0",
+    "klayout_version": null,
+    "pdk": null,
+    "deck": null,
+    "input": {
+      "path": {
+        "path": "attest/item1.json",
+        "scope": "repo"
+      },
+      "content_hash": "sha256:d7b1388b7a3a06bb3a6b0d29243406c41abc55c131938dc156d0b881c94bb4e1"
+    }
+  }
+}

@@ -23,6 +23,7 @@ PIN_YOSYS="0.67+post"
 PIN_YOSYS_SHA="b8e7da6f40ae8f552c116bf6c359b07c6533e159"
 PIN_IVERILOG="13.0"
 PIN_SV2V="v0.0.13"        # SystemVerilog -> Verilog for CVE2 (record 0001); scripts/convert-cve2.sh
+PIN_SV2V_SHA256="552799a1d76cd177b9b4cc63a3e77823a3d2a6eb4ec006569288abeff28e1ff8"  # zachjs/sv2v release asset sv2v-Linux.zip at PIN_SV2V; CI checks it
 PIN_RISCV_GCC="14.2.0"    # xPack riscv-none-elf-gcc 14.2.0-3 (boot firmware, firmware/boot/build.sh)
 PIN_RISCV_GCC_SHA256="f574415b63f12b09bdd3475223ab492a465d23810646c90c13a4c3b676c83503"  # xpack-riscv-none-elf-gcc-14.2.0-3-linux-x64.tar.gz
 PIN_COCOTB="2.0.1"       # not needed until the harness (#6); optional here

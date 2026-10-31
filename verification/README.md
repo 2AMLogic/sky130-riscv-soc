@@ -33,9 +33,15 @@ Adding a testbench: put it in `tests/<name>/` and add a target to the
 
 CI (`.github/workflows/ci.yml`, on pull requests and `main`) runs the record
 linter and its fixture test, RTL lint, and the cocotb `xbar` (OBI
-crossbar, fabric and reset synchroniser) and `periph` tests. `make boot` and `make boot-1rw` (the
-same test with the single-port I-SRAM and 1024-word SRAMs) need the converted
-CVE2 core, so they stay local.
+crossbar, fabric and reset synchroniser), `periph` and SoC boot tests. The
+`lint` and `sim` jobs each install sv2v at `PIN_SV2V` (sha256
+`PIN_SV2V_SHA256` in `scripts/setup-env.sh`), then run
+`scripts/fetch-cve2.sh` and `scripts/convert-cve2.sh` to build the pinned
+core. `lint` runs with `LINT_REQUIRE_CORE=1`, so `rtl/soc_top.sv` is always
+linted and a missing core fails instead of skipping. `sim` runs `make boot`
+and `make boot-1rw` (the same test with the single-port I-SRAM and 1024-word
+SRAMs) from the checked-in `firmware/boot/boot_rom.hex`, so CI needs no
+RISC-V GCC.
 
 The PDK-heavy legs stay **local**, run by hand and recorded under `records/`:
 synthesis, place-and-route, DRC and LVS (they need the pinned sky130 PDK, Yosys,

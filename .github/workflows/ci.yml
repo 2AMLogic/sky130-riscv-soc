@@ -1,6 +1,8 @@
 name: CI
 
-# Records lint, RTL lint and the cocotb xbar, reset-synchroniser and peripheral tests. PDK-heavy legs (synthesis,
+# Records lint, RTL lint (soc_top.sv included, against the converted CVE2 core) and the cocotb xbar, reset-synchroniser,
+# peripheral and SoC boot tests. The core is fetched (hash-verified) and converted with sv2v at the pin in
+# scripts/setup-env.sh on every run; the converted output is never checked in. PDK-heavy legs (synthesis,
 # place-and-route, DRC, LVS) stay local: see verification/README.md.
 # No path filters; a started main run is never cancelled (.loom/docs/ci-principles.md).
 on:
@@ -30,8 +32,24 @@ jobs:
         run: |
           python3 -I verification/tools/check_soc_rows.py
           python3 -I verification/tools/tests/test_check_soc_rows.py
-      - name: RTL lint
-        run: verification/tools/lint_rtl.sh
+      - name: Install sv2v at the pinned version
+        run: |
+          pin="$(sed -n 's/^PIN_SV2V="\([^"]*\)".*/\1/p' scripts/setup-env.sh)"
+          sha="$(sed -n 's/^PIN_SV2V_SHA256="\([^"]*\)".*/\1/p' scripts/setup-env.sh)"
+          test -n "$pin" && test -n "$sha"
+          d="$(mktemp -d)"
+          curl -fsSL --retry 2 -o "$d/sv2v.zip" "https://github.com/zachjs/sv2v/releases/download/${pin}/sv2v-Linux.zip"
+          echo "${sha}  $d/sv2v.zip" | sha256sum -c -
+          unzip -q "$d/sv2v.zip" -d "$d"
+          mkdir -p "$HOME/.local/bin"
+          install -m 755 "$d/sv2v-Linux/sv2v" "$HOME/.local/bin/sv2v"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Fetch and convert the pinned CVE2 core
+        run: |
+          scripts/fetch-cve2.sh
+          scripts/convert-cve2.sh
+      - name: RTL lint (soc_top.sv included; a missing core fails)
+        run: LINT_REQUIRE_CORE=1 verification/tools/lint_rtl.sh
 
   sim:
     runs-on: ubuntu-24.04
@@ -53,3 +71,24 @@ jobs:
         run: |
           . .venv/bin/activate
           make -C verification periph
+      - name: Install sv2v at the pinned version
+        run: |
+          pin="$(sed -n 's/^PIN_SV2V="\([^"]*\)".*/\1/p' scripts/setup-env.sh)"
+          sha="$(sed -n 's/^PIN_SV2V_SHA256="\([^"]*\)".*/\1/p' scripts/setup-env.sh)"
+          test -n "$pin" && test -n "$sha"
+          d="$(mktemp -d)"
+          curl -fsSL --retry 2 -o "$d/sv2v.zip" "https://github.com/zachjs/sv2v/releases/download/${pin}/sv2v-Linux.zip"
+          echo "${sha}  $d/sv2v.zip" | sha256sum -c -
+          unzip -q "$d/sv2v.zip" -d "$d"
+          mkdir -p "$HOME/.local/bin"
+          install -m 755 "$d/sv2v-Linux/sv2v" "$HOME/.local/bin/sv2v"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Fetch and convert the pinned CVE2 core
+        run: |
+          scripts/fetch-cve2.sh
+          scripts/convert-cve2.sh
+      - name: cocotb SoC boot test (default and single-port I-SRAM configurations)
+        run: |
+          . .venv/bin/activate
+          make -C verification boot
+          make -C verification boot-1rw

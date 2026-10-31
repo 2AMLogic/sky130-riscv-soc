@@ -35,6 +35,7 @@ class Fab:
         d = self.dut
         cocotb.start_soon(Clock(d.clk_i, 10, unit="ns").start())
         d.rst_ni.value = 0
+        d.uart_rxd_i.value = 1
         d.gpio_i.value = 0
         for m in "id":
             getattr(d, f"{m}_req_i").value = 0
@@ -151,20 +152,20 @@ async def dsram_reachable_by_data_manager_only(dut):
 async def peripheral_window_errors_and_forbidden_accesses(dut):
     f = Fab(dut)
     await f.reset()
-    # UART page (no UART yet), unused pages and past-the-end offsets error;
+    # unused pages and past-the-end offsets error;
     # the GPIO and timer pages are mapped (tests/periph covers them)
     for m in "id":
-        for a in (PERI, PERI + 0x3000, PERI + 0xF000, PERI + 0xFFFC, PERI + 0x1100):
+        for a in (PERI + 0x3000, PERI + 0xF000, PERI + 0xFFFC, PERI + 0x1100):
             _, err, n = await f.read(m, a)
             assert err, f"{m} read {a:#x} must be an OBI error"
             assert n <= 3, "error response must be bounded"
     # the instruction manager never reaches the window, mapped pages included
-    for a in (PERI + 0x1000, PERI + 0x2000):
+    for a in (PERI, PERI + 0x1000, PERI + 0x2000):
         _, err, _ = await f.read("i", a)
         assert err, f"i read {a:#x} must be an OBI error"
         _, err, _ = await f.read("d", a)
         assert not err, f"d read {a:#x} must succeed"
-    assert await f.write("d", PERI, 1)
+    assert await f.write("d", PERI + 0x3000, 1)
     # instruction manager is read-only; boot ROM is read-only
     assert await f.write("i", ISRAM, 0x1234)
     rd, err, _ = await f.read("d", ISRAM)
@@ -233,7 +234,7 @@ async def back_to_back_and_error_between_accesses(dut):
     await f.write("d", DSRAM + 4, 0x1111_1111)
     await f.write("d", DSRAM + 8, 0x2222_2222)
     # ROM, unmapped, D-SRAM, peripheral error, D-SRAM: one request per cycle
-    seq = [req(ROM + 4), req(0x3000_0000), req(DSRAM + 4), req(PERI), req(DSRAM + 8)]
+    seq = [req(ROM + 4), req(0x3000_0000), req(DSRAM + 4), req(PERI + 0x3000), req(DSRAM + 8)]
     got = []
     for r in seq:
         g = await f.cycle(d=r)
@@ -248,7 +249,7 @@ async def back_to_back_and_error_between_accesses(dut):
     # both managers streaming at once to separate targets
     got_i, got_d = [], []
     for k in range(4):
-        await f.cycle(i=req(ISRAM + 4 * k), d=req(DSRAM + 4 * (k + 1) if k < 2 else PERI))
+        await f.cycle(i=req(ISRAM + 4 * k), d=req(DSRAM + 4 * (k + 1) if k < 2 else PERI + 0x3000))
         got_i.append(f.resp["i"]); got_d.append(f.resp["d"])
     await f.cycle(); got_i.append(f.resp["i"]); got_d.append(f.resp["d"])
     assert [x is not None for x in got_i] == [False, True, True, True, True]

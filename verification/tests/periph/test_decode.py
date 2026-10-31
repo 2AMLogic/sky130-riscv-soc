@@ -11,7 +11,7 @@ T_LO, T_HI, C_LO, C_HI = 0x00, 0x04, 0x08, 0x0C
 
 async def setup(dut):
     b = Bus(dut, fabric=True)
-    await b.reset(gpio_i=0)
+    await b.reset(gpio_i=0, uart_rxd_i=1)
     return b
 
 
@@ -31,9 +31,9 @@ async def pages_reach_their_peripheral(dut):
 
 
 @cocotb.test()
-async def unused_pages_and_uart_page_error(dut):
+async def unused_pages_error(dut):
     b = await setup(dut)
-    for base in (UART, 0x4000_3000, 0x4000_4000, 0x4000_8000, 0x4000_F000):
+    for base in (0x4000_3000, 0x4000_4000, 0x4000_8000, 0x4000_F000):
         for off in (0x0, 0x4, 0xFFC):
             for we in (False, True):
                 rd, err = await b.access(base + off, we, 0xF, 0xFFFF_FFFF)
@@ -57,7 +57,7 @@ async def unmapped_offsets_inside_mapped_pages_error(dut):
 async def bounded_latency_no_hang(dut):
     """Back-to-back mixed accesses: each is granted at once and answered one cycle later."""
     b = await setup(dut)
-    addrs = [GPIO + G_DIR, UART, TIMER + T_LO, 0x4000_3000, GPIO + 0x40, TIMER + C_HI, 0x4001_0000]
+    addrs = [GPIO + G_DIR, UART + 0x4, TIMER + T_LO, 0x4000_3000, GPIO + 0x40, TIMER + C_HI, 0x4001_0000]
     for a in addrs * 2:
         await b.read(a)  # Bus.access asserts gnt in the request cycle and rvalid one cycle later
 

@@ -49,7 +49,7 @@ jobs:
         run: |
           . .venv/bin/activate
           make -C verification xbar
-      - name: cocotb peripheral tests (GPIO, timer, window decode)
+      - name: cocotb peripheral tests (UART, GPIO, timer, window decode)
         run: |
           . .venv/bin/activate
           make -C verification periph

@@ -19,7 +19,7 @@ _None._
 
 `loom:important`; taken before unlabelled work.
 
-- **#46**: T1 item 1: peripheral window decoder, GPIO and machine timer RTL, register-map record, with tests
+- **#47**: T1 item 1: UART RTL (8N1, baud divisor, TX/RX interrupt) with tests
 
 ## Ready
 
@@ -32,13 +32,12 @@ _None._
 Issues currently being built (`loom:building`).
 
 - **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9
-- **#46**: T1 item 1: peripheral window decoder, GPIO and machine timer RTL, register-map record, with tests
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
-- **#54**: feat(rtl): add peripheral window decoder, GPIO and machine timer
+_None._
 
 ## Approved (Awaiting Merge)
 
@@ -52,7 +51,6 @@ Issues carrying `loom:curated`.
 
 - **#4**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
 - **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9 *(curated)*
-- **#46**: T1 item 1: peripheral window decoder, GPIO and machine timer RTL, register-map record, with tests *(curated)*
 - **#49**: T1 item 5: riscv-arch-test on the RTL SoC via klt functional-verification *(curated)*
 - **#69**: T1 item 8 (characterization): per-row report with Fmax, area and power per ratified corner, attested with klt signoff --attest 8 *(curated)*
 
@@ -72,10 +70,10 @@ _None._
 | Very important | 0 |
 | Important | 1 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 2 |
-| PRs awaiting review | 1 |
+| In Progress (`loom:building`) | 1 |
+| PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
-| Curated | 5 |
+| Curated | 4 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

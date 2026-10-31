@@ -1,7 +1,7 @@
 {
   "schema": "klt.place_and_route.request/1",
   "engine": "openroad",
-  "netlist": "../../build/pnr_in/soc_top_pnr.v",
+  "netlist": "../../netlist/soc_top_synth.v",
   "hdl_toplevel": "soc_top",
   "pdk": {
     "cell_library": "sky130_fd_sc_hd",
@@ -29,7 +29,7 @@
   },
   "macros": [
     {
-      "instance": "u_fabric/g_isram_1rw1r.u_isram/g_bank_0_u_macro",
+      "instance": "u_fabric/g_isram_1rw1r.u_isram/g_bank\\[0\\].u_macro",
       "cell": "sky130_sram_2kbyte_1rw1r_32x512_8",
       "lef": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.lef",
       "gds": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.gds",
@@ -42,7 +42,7 @@
       "halo": 2.0
     },
     {
-      "instance": "u_fabric/g_isram_1rw1r.u_isram/g_bank_1_u_macro",
+      "instance": "u_fabric/g_isram_1rw1r.u_isram/g_bank\\[1\\].u_macro",
       "cell": "sky130_sram_2kbyte_1rw1r_32x512_8",
       "lef": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.lef",
       "gds": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.gds",
@@ -55,7 +55,7 @@
       "halo": 2.0
     },
     {
-      "instance": "u_fabric/g_isram_1rw1r.u_isram/g_bank_2_u_macro",
+      "instance": "u_fabric/g_isram_1rw1r.u_isram/g_bank\\[2\\].u_macro",
       "cell": "sky130_sram_2kbyte_1rw1r_32x512_8",
       "lef": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.lef",
       "gds": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.gds",
@@ -68,7 +68,7 @@
       "halo": 2.0
     },
     {
-      "instance": "u_fabric/g_isram_1rw1r.u_isram/g_bank_3_u_macro",
+      "instance": "u_fabric/g_isram_1rw1r.u_isram/g_bank\\[3\\].u_macro",
       "cell": "sky130_sram_2kbyte_1rw1r_32x512_8",
       "lef": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.lef",
       "gds": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.gds",
@@ -81,7 +81,7 @@
       "halo": 2.0
     },
     {
-      "instance": "u_fabric/u_dsram/g_bank_0_u_macro",
+      "instance": "u_fabric/u_dsram/g_bank\\[0\\].u_macro",
       "cell": "sky130_sram_2kbyte_1rw1r_32x512_8",
       "lef": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.lef",
       "gds": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.gds",
@@ -94,7 +94,7 @@
       "halo": 2.0
     },
     {
-      "instance": "u_fabric/u_dsram/g_bank_1_u_macro",
+      "instance": "u_fabric/u_dsram/g_bank\\[1\\].u_macro",
       "cell": "sky130_sram_2kbyte_1rw1r_32x512_8",
       "lef": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.lef",
       "gds": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.gds",
@@ -107,7 +107,7 @@
       "halo": 2.0
     },
     {
-      "instance": "u_fabric/u_dsram/g_bank_2_u_macro",
+      "instance": "u_fabric/u_dsram/g_bank\\[2\\].u_macro",
       "cell": "sky130_sram_2kbyte_1rw1r_32x512_8",
       "lef": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.lef",
       "gds": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.gds",
@@ -120,7 +120,7 @@
       "halo": 2.0
     },
     {
-      "instance": "u_fabric/u_dsram/g_bank_3_u_macro",
+      "instance": "u_fabric/u_dsram/g_bank\\[3\\].u_macro",
       "cell": "sky130_sram_2kbyte_1rw1r_32x512_8",
       "lef": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.lef",
       "gds": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8.gds",
@@ -225,5 +225,8 @@
         "primary": false
       }
     ]
-  }
+  },
+  "placement_density": 0.45,
+  "route_congestion_iterations": 50,
+  "route_allow_congestion": true
 }

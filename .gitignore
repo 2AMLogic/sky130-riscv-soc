@@ -114,3 +114,6 @@ results.xml
 # fetched CVE2 sources and sv2v output (scripts/fetch-cve2.sh, scripts/convert-cve2.sh);
 # generated, never committed
 build/
+
+# Repo Skills Codex-side machine-local install metadata (never committed)
+.agents/skills/repo/.install-local.json

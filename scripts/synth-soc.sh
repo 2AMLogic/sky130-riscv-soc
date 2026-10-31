@@ -7,14 +7,15 @@
 # core with sv2v, then run `klt synthesize` on flow/soc/synth_request.json
 # (soc_top on sky130_fd_sc_hd, the SRAM macros black-boxed, the boot ROM built
 # from firmware/soc/banner.hex). Writes the netlist to netlist/soc_top_synth.v
-# and the klt result to $SYNTH_RESULT (default flow/soc/synth_result.json).
+# and the klt result to $SYNTH_RESULT (default flow/build/soc_synth_result.json).
 # Pre-route synthesis: no timing, and the macro area is not in area_um2.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 export PDK="${PDK:-sky130A}"
-RESULT="${SYNTH_RESULT:-flow/soc/synth_result.json}"
+RESULT="${SYNTH_RESULT:-flow/build/soc_synth_result.json}"
+mkdir -p "$(dirname "$RESULT")"
 
 "$ROOT/scripts/fetch-cve2.sh"
 "$ROOT/scripts/convert-cve2.sh"

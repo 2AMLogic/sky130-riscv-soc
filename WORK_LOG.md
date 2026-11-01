@@ -5,6 +5,7 @@ Maintained by the Loom Guide role.
 
 ### 2026-10-31
 
+- **PR #90**: Bump Repo Skills 0.24.7 -> 0.25.1
 - **PR #87**: chore: drop tracked synth_result.json, default scratch result to flow/build
 - **Issue #85** (closed): Remove flow/soc/synth_result.json: byte-identical duplicate of the committed synthesis record
 - **PR #88**: build: reuse SOC_SRC in boot and boot-1rw sim targets

@@ -3,6 +3,10 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-11-07
+
+- **PR #93**: Bump Repo Skills 0.25.1 -> 0.25.10
+
 ### 2026-10-31
 
 - **PR #90**: Bump Repo Skills 0.24.7 -> 0.25.1

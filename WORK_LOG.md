@@ -3,6 +3,10 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-11-11
+
+- **PR #95**: docs: record failed soc_top global-route attempts and congestion analysis
+
 ### 2026-11-07
 
 - **PR #93**: Bump Repo Skills 0.25.1 -> 0.25.10

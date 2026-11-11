@@ -1,0 +1,6 @@
+direction   region                                tiles  sum overflow  tiles cap=0
+Horizontal  column channel/edge                     168           221            0
+Horizontal  inside macro                           1453          1530         1453
+Vertical    column channel/edge                     116           122           87
+Vertical    inside macro                           2152          2225         2145
+total overflow 4098 in 3889 tiles

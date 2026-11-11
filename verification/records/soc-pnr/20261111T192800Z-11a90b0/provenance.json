@@ -1,0 +1,24 @@
+{
+  "commit": "11a90b031424d51f47cdbdb5f6eb3b4ea0c8a4e2",
+  "pdk_revision": "f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7",
+  "tool_versions": {
+    "klt": "git 34a20645968b8865ca4ec8711fad580f9fd0a38e (uvx --from git+https://github.com/2AMLogic/klayout-tools.git@34a20645)",
+    "yosys": "0.67+post (b8e7da6f40ae8f552c116bf6c359b07c6533e159)",
+    "sv2v": "v0.0.13",
+    "iverilog": "13.0",
+    "cocotb": "2.0.1",
+    "host": "loom-worker (AWS dispatch worker)",
+    "openroad": "26Q3-1510-g6cb3f2b704"
+  },
+  "command": "scripts/pnr-soc.sh with the pnr_request.json in this directory (target_stage route); then openroad global_route -congestion_iterations 50 -congestion_report_file on build/pnr/soc_top_cts.odb",
+  "note": "Attempt a0. The flow/soc/pnr_request.json of the run is the copy in this directory; the edit for the attempt was uncommitted when it ran.",
+  "netlist": {
+    "file": "netlist/soc_top_synth.v",
+    "sha256": "0e03ac74ce0f93691735437e96d910f56cb9bf5d789082ed83a0b72c7d4403c0"
+  },
+  "pinned_inputs": {
+    "cve2_commit": "d7f21568028a1114be663599bd42145dccf28928",
+    "sram_macro_commit": "ebfbf5775c8cd433ad38a4d825e46c2275231511",
+    "sram_macro_liberty_sha256": "8656384775f5e10b44bed97b7193dd3188ce8cd60b7c8e02a5a4ad9e35ed03ba"
+  }
+}

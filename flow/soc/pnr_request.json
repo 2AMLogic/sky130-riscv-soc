@@ -50,7 +50,7 @@
         "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
       },
       "x_um": 10.12,
-      "y_um": 516.8,
+      "y_um": 533.12,
       "orientation": "MY",
       "halo": 2.0
     },
@@ -63,7 +63,7 @@
         "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
       },
       "x_um": 10.12,
-      "y_um": 1011.84,
+      "y_um": 1000.96,
       "orientation": "R180",
       "halo": 2.0
     },
@@ -76,7 +76,7 @@
         "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
       },
       "x_um": 10.12,
-      "y_um": 1506.88,
+      "y_um": 1512.32,
       "orientation": "MY",
       "halo": 2.0
     },
@@ -102,7 +102,7 @@
         "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
       },
       "x_um": 1256.72,
-      "y_um": 516.8,
+      "y_um": 533.12,
       "orientation": "R0",
       "halo": 2.0
     },
@@ -115,7 +115,7 @@
         "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
       },
       "x_um": 1256.72,
-      "y_um": 1011.84,
+      "y_um": 1000.96,
       "orientation": "MX",
       "halo": 2.0
     },
@@ -128,7 +128,7 @@
         "default": "../../build/sram_macro/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
       },
       "x_um": 1256.72,
-      "y_um": 1506.88,
+      "y_um": 1512.32,
       "orientation": "R0",
       "halo": 2.0
     }
@@ -228,5 +228,5 @@
   },
   "placement_density": 0.45,
   "route_congestion_iterations": 50,
-  "route_allow_congestion": true
+  "route_allow_congestion": false
 }

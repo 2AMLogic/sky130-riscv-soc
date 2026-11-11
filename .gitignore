@@ -51,7 +51,6 @@ results.xml
 .loom/claims/
 .loom/locks/
 .loom/signals/
-.loom/sweep-dispatch-tap/
 .loom/status/
 .loom/retry-state/
 .loom/exit-codes/
@@ -102,7 +101,7 @@ results.xml
 .loom/gh-config-by-owner/
 .loom/gh-config-by-owner.*/
 .loom/gh-config-by-owner-*/
-.loom-local/
+/.loom-local/
 # <<< loom-managed <<<
 
 # Repo Skills machine-local install metadata (absolute source path + timestamp)
@@ -114,3 +113,6 @@ results.xml
 # fetched CVE2 sources and sv2v output (scripts/fetch-cve2.sh, scripts/convert-cve2.sh);
 # generated, never committed
 build/
+
+# Repo Skills Codex-side machine-local install metadata (never committed)
+.agents/skills/repo/.install-local.json

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# RTL lint over rtl/: passes as a no-op while the tree has no .v/.sv files.
+# RTL lint over rtl/: fails if the tree holds no .v/.sv files to lint.
 # Verilator --lint-only (handles SystemVerilog).
 #
 # rtl/soc_top.sv instantiates cve2_top, which is generated, not checked in
@@ -16,7 +16,7 @@ set -euo pipefail
 cd "$(dirname "$0")/../.."
 CORE="${CVE2_BUILD:-build/cve2}/cve2_top.v"
 mapfile -t files < <(find rtl \( -name '*.v' -o -name '*.sv' \) -type f | sort)
-if [[ ${#files[@]} -eq 0 ]]; then echo "rtl lint: ok (no RTL files yet)"; exit 0; fi
+if [[ ${#files[@]} -eq 0 ]]; then echo "rtl lint: no RTL files found under rtl/" >&2; exit 1; fi
 command -v verilator >/dev/null || { echo "rtl lint: verilator not on PATH" >&2; exit 1; }
 args=(--lint-only -Wno-MULTITOP)
 core_note=""

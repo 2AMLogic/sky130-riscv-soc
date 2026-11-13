@@ -41,8 +41,7 @@ def main(req, lef, rpt):
     print(f"{'direction':11} {'region':36} {'tiles':>6} {'sum overflow':>13} {'tiles cap=0':>12}")
     for k in sorted(n):
         print(f"{k[0]:11} {k[1]:36} {n[k]:6d} {tot[k]:13d} {cap0[k]:12d}")
-    print(f"total overflow {sum(tot.values())}; in capacity-0 tiles {sum(1 for _ in ())}"
-          if False else f"total overflow {sum(tot.values())} in {sum(n.values())} tiles")
+    print(f"total overflow {sum(tot.values())} in {sum(n.values())} tiles")
 
 
 if __name__ == "__main__":

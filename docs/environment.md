@@ -17,7 +17,7 @@ if the two disagree, the script wins.
 | OpenROAD | `26Q3-1510-g6cb3f2b704`, image `openroad/orfs@sha256:bb7f31697fb8466ab61852fc796376cc16d9df38f762ccb733218b8a5e55824b` | `openroad -version`; the wrapper's image digest |
 | sv2v | `v0.0.13` (SystemVerilog to Verilog for CVE2) | `sv2v --version` |
 | RISC-V GCC | xPack `riscv-none-elf-gcc` `14.2.0` (release `v14.2.0-3`, tarball sha256 in `PIN_RISCV_GCC_SHA256`), builds `firmware/boot` | `riscv-none-elf-gcc --version` |
-| cocotb | `2.0.1` (needed from #6; reported, not required) | `import cocotb` |
+| cocotb | `2.0.1` (every `verification/Makefile` target needs it) | `import cocotb` |
 
 The `open_pdks` revision matches the one `2AMLogic/sky130-modexp` records in
 its decision record `0008-requalification-under-open-pdks-f6eeac7.md`.
@@ -33,10 +33,13 @@ scripts/setup-env.sh             # fetch sky130A at the pinned revision, then ch
 scripts/setup-env.sh --check     # check only
 ```
 
-`--check` exits non-zero and names the item on any PDK or tool mismatch. Two
-items only warn: cocotb not yet installed, and OpenROAD that cannot report a
-version (for example no docker access). A warning on OpenROAD means any
-place-and-route leg must be recorded as not run.
+`--check` exits non-zero and names the item on any PDK or tool mismatch,
+including a cocotb `python3` cannot import (run it inside the venv
+`verification/README.md` tells you to create). One item only warns: an
+OpenROAD that cannot report a version (for example no docker access). That
+warning means any place-and-route leg must be recorded as not run. What
+`--check` reports for each cocotb state is tested by
+`verification/tools/tests/test_setup_env_check.sh`.
 
 The script installs no tools. It writes only into `$PDK_ROOT`. Install or
 upgrade tools through the host's provisioning, or use a throwaway environment

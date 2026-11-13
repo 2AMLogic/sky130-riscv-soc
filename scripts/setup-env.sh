@@ -26,7 +26,7 @@ PIN_SV2V="v0.0.13"        # SystemVerilog -> Verilog for CVE2 (record 0001); scr
 PIN_SV2V_SHA256="552799a1d76cd177b9b4cc63a3e77823a3d2a6eb4ec006569288abeff28e1ff8"  # zachjs/sv2v release asset sv2v-Linux.zip at PIN_SV2V; CI checks it
 PIN_RISCV_GCC="14.2.0"    # xPack riscv-none-elf-gcc 14.2.0-3 (boot firmware, firmware/boot/build.sh)
 PIN_RISCV_GCC_SHA256="f574415b63f12b09bdd3475223ab492a465d23810646c90c13a4c3b676c83503"  # xpack-riscv-none-elf-gcc-14.2.0-3-linux-x64.tar.gz
-PIN_COCOTB="2.0.1"       # not needed until the harness (#6); optional here
+PIN_COCOTB="2.0.1"       # every verification/Makefile target needs it; required here
 PIN_OPENROAD="26Q3-1510-g6cb3f2b704"
 PIN_OPENROAD_IMAGE="openroad/orfs@sha256:bb7f31697fb8466ab61852fc796376cc16d9df38f762ccb733218b8a5e55824b"
 # ---------------------------------------------------------------------------
@@ -85,9 +85,8 @@ check_openroad() {
 check_cocotb() {
     local got
     got="$(python3 -c 'import cocotb;print(cocotb.__version__)' 2>/dev/null || true)"
-    if [[ -z "$got" ]]; then warn cocotb "not installed (pinned ${PIN_COCOTB}; needed from #6)"
-    elif [[ "$got" == "$PIN_COCOTB" ]]; then ok cocotb "$got"
-    else fail cocotb "got ${got}, pinned ${PIN_COCOTB}"; fi
+    if [[ "$got" == "$PIN_COCOTB" ]]; then ok cocotb "$got"
+    else fail cocotb "got '${got:-not installed}', pinned ${PIN_COCOTB}"; fi
 }
 
 run_check() {

@@ -5,6 +5,20 @@ Maintained by the Loom Guide role.
 
 ### 2026-11-13
 
+- **PR #124**: refactor(firmware): fold both ROM image builders onto one encoder
+- **Issue #116** (closed): Merge the two firmware build scripts: firmware/soc/build.sh is a looped copy of firmware/boot/build.sh
+- **PR #123**: docs: point the klt pin note at PIN_KLT instead of calling it a dev build
+- **Issue #119** (closed): docs: correct the stale "klt pin is a development build" note in docs/environment.md
+- **PR #114**: docs: check the pins after creating the venv in the README Reproduce block
+- **Issue #112** (closed): README Reproduce block runs setup-env.sh --check before the venv that provides cocotb exists
+- **PR #120**: ci: run the lint_rtl and setup-env --check exit-code tests in the lint job
+- **Issue #117** (closed): Run test_lint_rtl.sh and test_setup_env_check.sh in CI: two exit-code tests nothing invokes
+- **PR #118**: chore: pin klayout-tools to 0.9.1 and regenerate the signoff records
+- **Issue #115** (closed): Bump PIN_KLT to 0.9.1 so attestation regeneration works through the documented uvx recipe
+- **PR #111**: refactor(scripts): fold both reuse.lock fetchers onto one tested path
+- **Issue #108** (closed): Merge the two reuse.lock fetch scripts: fetch-sram-macro.sh is an untested copy of fetch-cve2.sh
+- **PR #110**: fix: fail the RTL lint on an empty tree and the env check on absent cocotb
+- **Issue #106** (closed): Remove the bootstrap vacuous-pass branches: RTL lint passes on zero files, env check treats cocotb as optional
 - **PR #105**: test(verification): check the SRAM stand-in against the pinned macro model
 - **Issue #101** (closed): Check the SRAM stand-in simulation model against the pinned macro model
 - **PR #107**: evidence: record the first pre-route klt sta estimate of the soc_top netlist

@@ -58,8 +58,10 @@ Issues carrying `loom:curated`.
 ## Proposed (Architect / Hermit)
 
 - **#103**: Remove the npm check scripts: check:ci runs 4 of CI's 13 commands *(hermit)*
-- **#106**: Remove the bootstrap vacuous-pass branches: RTL lint passes on zero files, env check treats cocotb as optional *(hermit)*
-- **#108**: Merge the two reuse.lock fetch scripts: fetch-sram-macro.sh is an untested copy of fetch-cve2.sh *(hermit)*
+- **#121**: Dedupe verification/Makefile: the cocotb guard is copied 11 times and three periph recipes are identical *(hermit)*
+- **#122**: Remove the unfetched VLSIDA/OpenRAM import from reuse.lock.json: candidate B was declined in record 0004 *(hermit)*
+- **#125**: Remove the separate klt commit pin in scripts/pnr-soc.sh: release 0.9.1 contains it *(hermit)*
+- **#126**: Remove scripts/check-soc-netlist.py and flow/soc/synth.sha256: pinned klt 0.9.1 has the recorded freshness record *(hermit)*
 
 ## Epics
 
@@ -77,6 +79,6 @@ _None._
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
 | Curated | 5 |
-| Architect / Hermit proposals | 3 |
+| Architect / Hermit proposals | 5 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

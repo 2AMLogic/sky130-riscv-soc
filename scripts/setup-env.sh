@@ -18,7 +18,7 @@ PIN_PDK_FAMILY="sky130"
 PIN_PDK_VARIANT="sky130A"
 PIN_OPEN_PDKS_REV="f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7"
 PIN_CIEL="3.1.0"
-PIN_KLT="0.8.0"   # PyPI release: `uvx --from "klayout-tools==${PIN_KLT}"`; CI signoff reads it
+PIN_KLT="0.9.1"   # PyPI release: `uvx --from "klayout-tools==${PIN_KLT}"`; CI signoff reads it
 PIN_YOSYS="0.67+post"
 PIN_YOSYS_SHA="b8e7da6f40ae8f552c116bf6c359b07c6533e159"
 PIN_IVERILOG="13.0"

@@ -19,7 +19,7 @@ routing. The README's "Status" line and "Current position" still say specificati
 is stale (see Now 1).
 
 Graded against the T1 checklist of klayout-tools `docs/design-evidence-tiers.md` by `klt signoff`
-0.8.0: **2 of 11 met, 1 not applicable, 8 unmet.**
+0.9.1: **2 of 11 met, 1 not applicable, 8 unmet.**
 
 | Item | Verdict | Evidence or owning issue |
 |---|---|---|

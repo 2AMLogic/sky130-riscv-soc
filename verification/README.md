@@ -10,9 +10,11 @@ cold-start command a third party can run.
 | `tests/soc/` | SoC firmware tests (`make soc`): banner, UART echo, GPIO toggle/readback and timer interrupt on `firmware/soc/*.hex`; `make soc-negative` checks a perturbed golden transcript fails |
 | `tests/boot/` | SoC top boot test (`make boot`, `make boot-1rw`): CVE2 + fabric run `firmware/boot`; needs the converted core |
 | `tests/<name>/` | one directory per testbench (DUT sources + cocotb module); `tests/xbar/` holds the fabric and reset-synchroniser tests, `tests/periph/` the GPIO, timer and peripheral-window decode tests |
+| `models/` | `sky130_sram_2kbyte_1rw1r_32x512_8_standin.v`, the Icarus-simulable stand-in `make soc-gate` uses in place of the pinned macro model; its header lists every difference |
 | `tools/lint_records.py` | linter for `records/` (stdlib only) |
+| `tools/check_sram_standin.py` | fails unless the SRAM stand-in differs from the pinned macro model (sha256 against `reuse.lock.json`) only in the ways its `ALLOWED_EDITS` list documents |
 | `tools/lint_rtl.sh` | Verilator lint over `../rtl/`; a no-op while it is empty |
-| `tools/tests/` | good and bad record fixtures plus the linter's own test |
+| `tools/tests/` | good and bad record fixtures plus the tools' own fixture tests |
 | `records/` | append-only evidence; layout in [`records/README.md`](records/README.md) |
 
 ## Cold start
@@ -33,13 +35,19 @@ Adding a testbench: put it in `tests/<name>/` and add a target to the
 ## What CI runs, and what stays local
 
 CI (`.github/workflows/ci.yml`, on pull requests and `main`) runs the record
-linter and its fixture test, RTL lint, and the cocotb `xbar` (OBI
+linter and its fixture test, the spec row-projection check, the SRAM stand-in
+check (`tools/check_sram_standin.py`, after `scripts/fetch-sram-macro.sh`
+fetches the pinned macro views) and its fixture test, RTL lint, and the cocotb `xbar` (OBI
 crossbar, fabric and reset synchroniser), `periph`, SoC boot and SoC firmware tests. The
 `lint` and `sim` jobs each install sv2v at `PIN_SV2V` (sha256
 `PIN_SV2V_SHA256` in `scripts/setup-env.sh`), then run
 `scripts/fetch-cve2.sh` and `scripts/convert-cve2.sh` to build the pinned
-core. `lint` runs with `LINT_REQUIRE_CORE=1`, so `rtl/soc_top.sv` is always
-linted and a missing core fails instead of skipping. `sim` runs `make boot`
+core. The stand-in check is what keeps `make soc-gate` honest: that run
+simulates the netlist against `models/…_standin.v` rather than the macro model,
+so if the `reuse.lock.json` pin moves or the stand-in is edited, CI fails
+instead of passing against a model that no longer matches the macro. `lint`
+runs with `LINT_REQUIRE_CORE=1`, so `rtl/soc_top.sv` is always linted and a
+missing core fails instead of skipping. `sim` runs `make boot`
 and `make boot-1rw` (the same test with the single-port I-SRAM and 1024-word
 SRAMs) from the checked-in `firmware/boot/boot_rom.hex`, then `make soc` and
 `make soc-negative`.

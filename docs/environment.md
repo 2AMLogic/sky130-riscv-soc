@@ -45,8 +45,10 @@ The script installs no tools. It writes only into `$PDK_ROOT`. Install or
 upgrade tools through the host's provisioning, or use a throwaway environment
 such as `uvx --from "klayout-tools==X.Y.Z" klt ...`.
 
-Note that the klt pin is a development build string, not a release. Moving to
-a release is a pin bump in the script plus a new smoke record.
+The klt pin is a PyPI release, and it lives in exactly one place: `PIN_KLT`
+in [`scripts/setup-env.sh`](../scripts/setup-env.sh), which the CI `signoff`
+job reads the version from. A pin bump is a change to that line, plus
+regenerating any recorded evidence the new klt re-grades.
 
 ## Smoke run
 

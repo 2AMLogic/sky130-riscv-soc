@@ -5,6 +5,14 @@ Maintained by the Loom Guide role.
 
 ### 2026-11-13
 
+- **PR #134**: chore: drop the SPICE harness .gitignore rules and fix the stale UART-page headers
+- **Issue #131** (closed): Remove the SPICE sim/ harness rules from .gitignore and the stale UART-page comment in soc_fabric.sv
+- **PR #130**: build: take the klt version in pnr-soc.sh from PIN_KLT
+- **Issue #125** (closed): Remove the separate klt commit pin in scripts/pnr-soc.sh: release 0.9.1 contains it
+- **PR #128**: refactor: move the T1 item-1 netlist freshness check onto klt's recorded record
+- **Issue #126** (closed): Remove scripts/check-soc-netlist.py and flow/soc/synth.sha256: pinned klt 0.9.1 has the recorded freshness record
+- **PR #129**: refactor: state each verification/Makefile guard once, pattern the periph tests
+- **Issue #121** (closed): Dedupe verification/Makefile: the cocotb guard is copied 11 times and three periph recipes are identical
 - **PR #124**: refactor(firmware): fold both ROM image builders onto one encoder
 - **Issue #116** (closed): Merge the two firmware build scripts: firmware/soc/build.sh is a looped copy of firmware/boot/build.sh
 - **PR #123**: docs: point the klt pin note at PIN_KLT instead of calling it a dev build

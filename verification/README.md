@@ -13,8 +13,8 @@ cold-start command a third party can run.
 | `models/` | `sky130_sram_2kbyte_1rw1r_32x512_8_standin.v`, the Icarus-simulable stand-in `make soc-gate` uses in place of the pinned macro model; its header lists every difference |
 | `tools/lint_records.py` | linter for `records/` (stdlib only) |
 | `tools/check_sram_standin.py` | fails unless the SRAM stand-in differs from the pinned macro model (sha256 against `reuse.lock.json`) only in the ways its `ALLOWED_EDITS` list documents |
-| `tools/lint_rtl.sh` | Verilator lint over `../rtl/`; a no-op while it is empty |
-| `tools/tests/` | good and bad record fixtures plus the tools' own fixture tests |
+| `tools/lint_rtl.sh` | Verilator lint over `../rtl/`; fails if that tree holds no sources |
+| `tools/tests/` | good and bad record fixtures, the tools' own fixture tests, and exit-code tests for the check scripts (`test_lint_rtl.sh`, `test_setup_env_check.sh`, `test_fetch_cve2.sh`) |
 | `records/` | append-only evidence; layout in [`records/README.md`](records/README.md) |
 
 ## Cold start

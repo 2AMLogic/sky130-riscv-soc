@@ -34,13 +34,13 @@
         "command": null,
         "kind": "generic",
         "check_status": "pass",
-        "content_hash": "sha256:6b8dfbcb091ffacecc937f898d5391afeea1a2c214a1b52131b8af323524e3b4",
+        "content_hash": "sha256:1f9fdcafcb89bdad95493365ab7302963d7a8681c3204c0161f9c22381f4d5ed",
         "input_verified": true,
         "exit_status": 0,
         "artifact_binding": {
           "t1_item": 1,
           "path": null,
-          "content_hash": "sha256:6b8dfbcb091ffacecc937f898d5391afeea1a2c214a1b52131b8af323524e3b4",
+          "content_hash": "sha256:1f9fdcafcb89bdad95493365ab7302963d7a8681c3204c0161f9c22381f4d5ed",
           "input_verified": true,
           "members": [
             {
@@ -48,7 +48,7 @@
                 "path": "attest/item1.json",
                 "scope": "repo"
               },
-              "content_hash": "sha256:541885607243b41d362bacdf6cabcbde32d2916138e2a2e989d8d426c19a8bdc",
+              "content_hash": "sha256:35d03fbb988ed36ddc300d393082580b768018a726c76b76149a5bb9e31cc8bf",
               "status": "verified"
             },
             {
@@ -208,7 +208,7 @@
                 "path": "scripts/synth-soc.sh",
                 "scope": "repo"
               },
-              "content_hash": "sha256:f47fe366d5ddef97a3c3181f1508d9cec48e4ac528a4ee2b4e0db3d5de6c1b61",
+              "content_hash": "sha256:c747166487204bfa4cc32d254eeb5a898036111c29872a3cbc0b8f8628c6ab0b",
               "status": "verified"
             }
           ],

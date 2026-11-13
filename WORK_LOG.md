@@ -5,6 +5,10 @@ Maintained by the Loom Guide role.
 
 ### 2026-11-13
 
+- **PR #140**: docs: point item-10 regeneration at the cocotb venv on PATH
+- **Issue #136** (closed): docs: manifests/README.md item 10 regeneration note omits putting the cocotb venv on PATH
+- **PR #135**: docs: keep one complete CI inventory in verification/README.md
+- **Issue #133** (closed): Remove two of the three prose lists of what CI runs: each copy omits steps ci.yml executes
 - **PR #134**: chore: drop the SPICE harness .gitignore rules and fix the stale UART-page headers
 - **Issue #131** (closed): Remove the SPICE sim/ harness rules from .gitignore and the stale UART-page comment in soc_fabric.sv
 - **PR #130**: build: take the klt version in pnr-soc.sh from PIN_KLT

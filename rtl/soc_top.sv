@@ -1,7 +1,6 @@
 // SoC top: CVE2 (converted by scripts/convert-cve2.sh, never edited) wired to
 // the memory fabric, with the reset synchroniser. The peripheral window inside
-// soc_fabric holds GPIO and the machine timer; the UART page still answers
-// with an OBI error.
+// soc_fabric holds the UART, GPIO and the machine timer.
 // Core configuration per spec/soc.md: RV32IMC, RV32MFast, debug tied off,
 // boot_addr_i at the boot ROM base (the reset vector).
 module soc_top #(

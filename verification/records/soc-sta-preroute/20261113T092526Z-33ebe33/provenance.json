@@ -1,0 +1,23 @@
+{
+  "commit": "33ebe33437460d156c1cdc06e8daab9de4d3710b",
+  "pdk_revision": "f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7",
+  "tool_versions": {
+    "klt": "0.9.2.dev885+ge4c446bd91f2",
+    "openroad": "26Q3-1510-g6cb3f2b704",
+    "klayout": "0.30.13",
+    "host": "loom-worker-2 (AWS dispatch worker)"
+  },
+  "command": "scripts/fetch-sram-macro.sh; PDK=sky130A klt sta flow/soc/sta_preroute_request.json --format json",
+  "note": "commit is the base the change was written on; flow/soc/sta_preroute_request.json and this record were uncommitted when the run was made. The repo pin for klt (scripts/setup-env.sh PIN_KLT) is 0.8.0; the worker's klt is newer and is the version recorded above, which is what actually ran. Pre-route netlist-level estimate only -- see README.md.",
+  "netlist": {
+    "file": "netlist/soc_top_synth.v",
+    "sha256": "0e03ac74ce0f93691735437e96d910f56cb9bf5d789082ed83a0b72c7d4403c0"
+  },
+  "pinned_inputs": {
+    "sram_macro_commit": "ebfbf5775c8cd433ad38a4d825e46c2275231511",
+    "sram_macro_liberty_sha256": "8656384775f5e10b44bed97b7193dd3188ce8cd60b7c8e02a5a4ad9e35ed03ba",
+    "stdcell_liberty": "sky130_fd_sc_hd__tt_025C_1v80",
+    "stdcell_liberty_sha256": "8e78e14442062dba34d414fca6490b2f6b96038d4510d1438ca44fee31487135"
+  },
+  "openroad_invocation_id": "91be44f63cad4703bd6b63d96c913ade"
+}

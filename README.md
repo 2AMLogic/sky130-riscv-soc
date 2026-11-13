@@ -7,7 +7,15 @@ minimal peripheral set — designed by AI agents driving
 [klayout-tools](https://github.com/2AMLogic/klayout-tools) and the
 open-source cocotb + Icarus, Yosys and OpenROAD flow.
 
-**Status: just opened, specification phase.** Nothing is designed yet.
+**Status: RTL verified in simulation and synthesized; not placed and routed.**
+The SoC RTL (`rtl/`), the checked-in firmware and its cocotb testbenches
+(`verification/tests/`) and a synthesized `soc_top` netlist
+(`netlist/soc_top_synth.v`) are committed; the boot and firmware tests pass on
+the RTL in simulation, and the banner test passes again on the synthesized
+netlist. Place-and-route has not completed — the recorded runs reach global
+routing and fail there (`verification/records/soc-pnr/`) — so there is no
+routed layout, no static timing analysis, and no timing or Fmax result claimed
+here.
 
 **Built agent-native.** Every specification, decision record, testbench, and
 line of documentation here is produced by AI agents working from a ratified
@@ -80,7 +88,19 @@ Maturity ladder: spec ratified → SoC RTL passing the architectural tests and
 firmware tests in simulation → synthesized with timing met at the target →
 placed and routed with the SRAM macros, DRC/LVS-clean → post-route
 multi-corner STA closed → shuttle seat → measured silicon (bench Fmax).
-**Current position: spec ratified.**
+**Current position: part-way through "SoC RTL passing the architectural tests
+and firmware tests in simulation".** The firmware half is done — the cocotb
+boot and firmware tests pass on the RTL under Icarus. The architectural half
+has not run: `riscv-arch-test` on the SoC is still open
+([#49](https://github.com/2AMLogic/sky130-riscv-soc/issues/49)). `soc_top` has
+also been synthesized ahead of that rung
+([record](verification/records/soc-synth/20261031T061631Z-3c1fd5a/), and the
+banner test passes on the netlist), but the *next* rung is "synthesized with
+timing met at the target" and no STA has been run, so that rung is not
+reached and no frequency is claimed.
+
+What each unmet signoff item is waiting on, and the order the remaining work is
+planned in: [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ## Repo layout
 
@@ -127,13 +147,20 @@ The toolchain-smoke records under
 tools run; each dated record's README gives the commands that produced it.
 They are toolchain evidence, not design evidence.
 
-CI runs the lint, the xbar and peripheral tests, `make -C verification soc`
-(it installs `sv2v` at the pin and fetches and converts the CVE2 sources) and
-the two `klt signoff` checks above. `make boot`, `firmware/boot/build.sh --check`
-and `firmware/soc/build.sh --check` stay local: CI installs no RISC-V GCC and
-simulates the checked-in hex images.
-Synthesis, place-and-route, DRC and LVS also stay local (see
-[`verification/README.md`](verification/README.md)). Regenerating the
+Two workflows run in CI. `.github/workflows/ci.yml` runs the record linter and
+its fixture test, the spec-row projection check, RTL lint with the converted
+CVE2 core required (`LINT_REQUIRE_CORE=1`), and the cocotb `xbar`, `periph`,
+`boot`, `boot-1rw`, `soc` and `soc-negative` tests; both jobs install `sv2v` at
+the pin and fetch and convert the CVE2 sources on every run.
+`.github/workflows/signoff.yml` runs the three `klt signoff` checks above — the
+manifest report and the item 10 and item 1 attestations — on the pinned klt.
+`firmware/boot/build.sh --check` and `firmware/soc/build.sh --check` stay
+local: CI installs no RISC-V GCC and simulates the checked-in hex images as
+they are.
+Synthesis, the post-synthesis `soc-gate` regression, place-and-route, DRC and
+LVS also stay local (see
+[`verification/README.md`](verification/README.md)), so a green CI says nothing
+about timing or layout. Regenerating the
 attestation after an edit to an attested file (including this README):
 `klt signoff --attest 10 --inventory attest/item10.json -o evidence/item10.json`
 (item 1 the same way after `scripts/synth-soc.sh`, with `--attest 1 --inventory

@@ -56,6 +56,18 @@ The `soc` images (`firmware/soc/*.hex`) are checked in and CI simulates them as 
 RISC-V compiler. `firmware/soc/build.sh --check` (pinned xPack GCC, local) rebuilds them and compares.
 
 The PDK-heavy legs stay **local**, run by hand and recorded under `records/`:
-synthesis, place-and-route, DRC and LVS (they need the pinned sky130 PDK, Yosys,
-OpenROAD and `klt`; see [`../docs/environment.md`](../docs/environment.md)).
-CI does not check them, so a green CI says nothing about timing or layout.
+synthesis, pre-route STA, place-and-route, DRC and LVS (they need the pinned
+sky130 PDK, Yosys, OpenROAD and `klt`; see
+[`../docs/environment.md`](../docs/environment.md)). CI does not check them, so
+a green CI says nothing about timing or layout.
+
+| Local leg | Command | Records under |
+| --- | --- | --- |
+| synthesis | `scripts/synth-soc.sh` | `records/soc-synth/` |
+| pre-route STA | `scripts/fetch-sram-macro.sh` then `klt sta flow/soc/sta_preroute_request.json --format json` | `records/soc-sta-preroute/` |
+| place-and-route | `scripts/pnr-soc.sh` | `records/soc-pnr/` |
+
+Pre-route STA times `netlist/soc_top_synth.v` directly (`klt sta`'s DEF-free
+`verilog` mode) at `tt_025C_1v80` against a liberty wire-load model: a
+netlist-level estimate with no placement, clock tree or routing. It is never a
+signoff Fmax.

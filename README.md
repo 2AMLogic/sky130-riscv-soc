@@ -119,9 +119,9 @@ Cold-start commands, from a clean checkout (tool and PDK pins are in
 [`docs/environment.md`](docs/environment.md)):
 
 ```
-scripts/setup-env.sh --check                    # environment matches the pins
 python3 -m venv .venv && .venv/bin/pip install cocotb==2.0.1
-. .venv/bin/activate && make -C verification xbar    # cocotb + Icarus: OBI crossbar, fabric, reset sync
+. .venv/bin/activate && scripts/setup-env.sh --check    # environment matches the pins
+make -C verification xbar                       # cocotb + Icarus: OBI crossbar, fabric, reset sync
 npm run lint                                    # record linter, its fixture test, RTL lint
 npm run test                                    # the same xbar tests as above
 scripts/fetch-cve2.sh && scripts/convert-cve2.sh     # pinned CVE2 -> build/cve2/cve2_top.v (needs sv2v)

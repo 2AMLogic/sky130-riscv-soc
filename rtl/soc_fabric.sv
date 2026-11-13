@@ -1,9 +1,8 @@
 // Memory fabric: crossbar plus boot ROM, I-SRAM, D-SRAM and the peripheral
-// window. The window decodes per_addr[15:12]: page 1 GPIO, page 2 timer; the
-// UART page (0) and every other page answer with an OBI error (until the UART
-// lands, page 0 stays on the error responder). The SoC top instantiates this
-// with the core's OBI ports. Memories and peripherals respond with the fixed
-// one-cycle latency obi_xbar relies on.
+// window. The window decodes per_addr[15:12]: page 0 UART, page 1 GPIO,
+// page 2 timer; every other page answers with an OBI error. The SoC top
+// instantiates this with the core's OBI ports. Memories and peripherals
+// respond with the fixed one-cycle latency obi_xbar relies on.
 //
 // Parameters (defaults give the ratified 8 KB 1rw1r I-SRAM / 8 KB D-SRAM):
 //   ISRAM_AW, DSRAM_AW  word-address width of each SRAM (11 = 2048 words).

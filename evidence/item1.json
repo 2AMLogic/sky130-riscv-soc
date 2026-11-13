@@ -73,7 +73,7 @@
         "role": "source",
         "path": "rtl/soc_fabric.sv",
         "passed": true,
-        "content_hash": "sha256:42c955389a24bacd0af643cb7241cdfa1ff16d973919597031d74e1803ec9fae"
+        "content_hash": "sha256:b323fc67c2b437b0896ce3c20b41a504b05db773829fe78648dede7ef7459956"
       },
       {
         "check": "present",
@@ -94,7 +94,7 @@
         "role": "source",
         "path": "rtl/soc_top.sv",
         "passed": true,
-        "content_hash": "sha256:0a536a775e5c8c6ffd0956866817ab9b3e47ecb153524fff69b02a8b6d15930c"
+        "content_hash": "sha256:6a5c881192c99a5b4b154583f25457b350f8c2574fdae918f0bb07ee6c798cb5"
       },
       {
         "check": "present",
@@ -173,7 +173,7 @@
             "path": "attest/item1.json",
             "scope": "repo"
           },
-          "content_hash": "sha256:35d03fbb988ed36ddc300d393082580b768018a726c76b76149a5bb9e31cc8bf"
+          "content_hash": "sha256:a10d1b1f255cdbb6aee8a1e27dd8d62487a2f1e88251091c4d3982a45270fd36"
         },
         {
           "path": {
@@ -243,7 +243,7 @@
             "path": "rtl/soc_fabric.sv",
             "scope": "repo"
           },
-          "content_hash": "sha256:42c955389a24bacd0af643cb7241cdfa1ff16d973919597031d74e1803ec9fae"
+          "content_hash": "sha256:b323fc67c2b437b0896ce3c20b41a504b05db773829fe78648dede7ef7459956"
         },
         {
           "path": {
@@ -264,7 +264,7 @@
             "path": "rtl/soc_top.sv",
             "scope": "repo"
           },
-          "content_hash": "sha256:0a536a775e5c8c6ffd0956866817ab9b3e47ecb153524fff69b02a8b6d15930c"
+          "content_hash": "sha256:6a5c881192c99a5b4b154583f25457b350f8c2574fdae918f0bb07ee6c798cb5"
         },
         {
           "path": {
@@ -316,7 +316,7 @@
           "content_hash": "sha256:c747166487204bfa4cc32d254eeb5a898036111c29872a3cbc0b8f8628c6ab0b"
         }
       ],
-      "content_hash": "sha256:1f9fdcafcb89bdad95493365ab7302963d7a8681c3204c0161f9c22381f4d5ed"
+      "content_hash": "sha256:f9f1d6e95cc7e4a80bb094dd00126ee21df5fb60b427bb0ca67ec0c1cf3a3620"
     }
   }
 }

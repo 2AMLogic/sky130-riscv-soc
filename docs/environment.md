@@ -68,8 +68,11 @@ scripts/convert-cve2.sh    # sv2v -> build/cve2/cve2_top.v, then Icarus elaborat
 ```
 
 `fetch-cve2.sh` exits non-zero on any sha256 mismatch, missing file or failed
-download, and leaves no partial tree. Its exit codes are tested by
-`verification/tools/tests/test_fetch_cve2.sh`.
+download, and leaves no partial tree. It is a thin entry point over
+`scripts/fetch-import.sh`, the one hash-verifying fetch path, which
+`scripts/fetch-sram-macro.sh` shares (same guarantees, flat output layout).
+Both entry points' exit codes and layouts are tested against a `file://`
+fixture by `verification/tools/tests/test_fetch_cve2.sh`, which CI runs.
 
 The conversion is pinned by (CVE2 commit, `PIN_SV2V`, the command printed by
 `convert-cve2.sh`). It defines `SYNTHESIS`, which drops a simulation-only DPI

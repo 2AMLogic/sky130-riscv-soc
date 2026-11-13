@@ -49,6 +49,7 @@ def sha(p):
 
 sources = sorted(str(p) for p in pathlib.Path("rtl").glob("*.sv")) + [
     "reuse.lock.json",
+    "scripts/fetch-import.sh",
     "scripts/fetch-cve2.sh",
     "scripts/convert-cve2.sh",
     "scripts/fetch-sram-macro.sh",

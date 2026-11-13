@@ -1,6 +1,7 @@
 name: CI
 
-# Records lint, the pinned-import fetcher's exit codes (both entry points, against a file:// fixture), the SRAM
+# Records lint, the pinned-import fetcher's exit codes (both entry points, against a file:// fixture), the exit-code
+# tests for the check scripts (lint_rtl.sh on an empty rtl/ tree, setup-env.sh --check on each cocotb state), the SRAM
 # stand-in check against the pinned macro model, RTL lint (soc_top.sv included, against the converted CVE2 core) and
 # the cocotb xbar, reset-synchroniser, peripheral, SoC boot and SoC firmware tests. The core
 # is fetched (hash-verified) and converted with sv2v at the pin in scripts/setup-env.sh on every run; the converted
@@ -27,11 +28,13 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install Verilator and Icarus Verilog (the CVE2 convert smoke test elaborates with iverilog)
         run: sudo apt-get update && sudo apt-get install -y verilator iverilog
-      - name: Record linter, fixture tests and the pinned-import fetcher
+      - name: Record linter, fixture tests, the pinned-import fetcher and the check-script exit codes
         run: |
           python3 -I verification/tools/lint_records.py
           python3 -I verification/tools/tests/test_lint_records.py
           verification/tools/tests/test_fetch_cve2.sh
+          verification/tools/tests/test_lint_rtl.sh
+          verification/tools/tests/test_setup_env_check.sh
       - name: Spec row projections match spec/soc.md
         run: |
           python3 -I verification/tools/check_soc_rows.py

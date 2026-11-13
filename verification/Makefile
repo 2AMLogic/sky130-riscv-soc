@@ -25,6 +25,16 @@ ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 
 RTL := $(abspath $(ROOT)/../rtl)
 
+# Guards, stated once and used as a recipe line: every cocotb target starts with
+# $(CHECK_COCOTB), and one elaborating soc_top adds $(CHECK_CVE2). Fail, not skip.
+define CHECK_COCOTB
+@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
+endef
+
+define CHECK_CVE2
+@test -r $(CVE2_V) || { echo "$(CVE2_V) missing: run scripts/fetch-cve2.sh && scripts/convert-cve2.sh" >&2; exit 1; }
+endef
+
 .PHONY: xbar xbar-fabric xbar-1rw xbar-rst
 xbar: xbar-fabric xbar-1rw xbar-rst
 
@@ -38,7 +48,7 @@ $(XBAR_ROM_HEX): Makefile
 	@i=0; while [ $$i -lt 16 ]; do printf '%08x\n' $$((0xB0070000 + i)); i=$$((i + 1)); done > $@
 
 xbar-fabric: $(XBAR_ROM_HEX)
-	@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
+	$(CHECK_COCOTB)
 	$(MAKE) -f $(ROOT)/cocotb.mk \
 	    TESTDIR=$(ROOT)/tests/xbar TOPLEVEL=soc_fabric MODULE=test_xbar \
 	    VERILOG_SOURCES="$(FABRIC_SRC)" \
@@ -48,7 +58,7 @@ xbar-fabric: $(XBAR_ROM_HEX)
 # Single-port I-SRAM, 4 KB per SRAM (the test reads FABRIC_* to know the build).
 # COMPILE_ARGS goes in the environment so cocotb's own iverilog flags still append.
 xbar-1rw: $(XBAR_ROM_HEX)
-	@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
+	$(CHECK_COCOTB)
 	COMPILE_ARGS="-Psoc_fabric.ISRAM_1RW=1 -Psoc_fabric.ISRAM_AW=10 -Psoc_fabric.DSRAM_AW=10" \
 	$(MAKE) -f $(ROOT)/cocotb.mk \
 	    TESTDIR=$(ROOT)/tests/xbar TOPLEVEL=soc_fabric MODULE=test_xbar \
@@ -59,38 +69,28 @@ xbar-1rw: $(XBAR_ROM_HEX)
 	    COCOTB_RESULTS_FILE=$(ROOT)/sim_build/xbar_1rw/results.xml
 
 xbar-rst:
-	@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
+	$(CHECK_COCOTB)
 	$(MAKE) -f $(ROOT)/cocotb.mk \
 	    TESTDIR=$(ROOT)/tests/xbar TOPLEVEL=rst_sync MODULE=test_rst_sync \
 	    VERILOG_SOURCES=$(RTL)/rst_sync.sv \
 	    SIM_BUILD=$(ROOT)/sim_build/rst_sync
 
-.PHONY: periph periph-uart periph-gpio periph-timer periph-decode
-periph: periph-uart periph-gpio periph-timer periph-decode
+# uart, gpio and timer differ only in the name (tests/periph/test_<name>.py over
+# rtl/<name>.sv). periph-decode stays separate: it elaborates the whole fabric.
+PERIPH_TESTS := uart gpio timer
 
-periph-uart:
-	@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
-	$(MAKE) -f $(ROOT)/cocotb.mk \
-	    TESTDIR=$(ROOT)/tests/periph TOPLEVEL=uart MODULE=test_uart \
-	    VERILOG_SOURCES=$(RTL)/uart.sv \
-	    SIM_BUILD=$(ROOT)/sim_build/periph_uart
+.PHONY: periph periph-decode $(addprefix periph-,$(PERIPH_TESTS))
+periph: $(addprefix periph-,$(PERIPH_TESTS)) periph-decode
 
-periph-gpio:
-	@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
+$(addprefix periph-,$(PERIPH_TESTS)): periph-%:
+	$(CHECK_COCOTB)
 	$(MAKE) -f $(ROOT)/cocotb.mk \
-	    TESTDIR=$(ROOT)/tests/periph TOPLEVEL=gpio MODULE=test_gpio \
-	    VERILOG_SOURCES=$(RTL)/gpio.sv \
-	    SIM_BUILD=$(ROOT)/sim_build/periph_gpio
-
-periph-timer:
-	@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
-	$(MAKE) -f $(ROOT)/cocotb.mk \
-	    TESTDIR=$(ROOT)/tests/periph TOPLEVEL=timer MODULE=test_timer \
-	    VERILOG_SOURCES=$(RTL)/timer.sv \
-	    SIM_BUILD=$(ROOT)/sim_build/periph_timer
+	    TESTDIR=$(ROOT)/tests/periph TOPLEVEL=$* MODULE=test_$* \
+	    VERILOG_SOURCES=$(RTL)/$*.sv \
+	    SIM_BUILD=$(ROOT)/sim_build/periph_$*
 
 periph-decode: $(XBAR_ROM_HEX)
-	@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
+	$(CHECK_COCOTB)
 	$(MAKE) -f $(ROOT)/cocotb.mk \
 	    TESTDIR=$(ROOT)/tests/periph TOPLEVEL=soc_fabric MODULE=test_decode \
 	    VERILOG_SOURCES="$(FABRIC_SRC)" \
@@ -102,8 +102,8 @@ BOOT_HEX := $(abspath $(ROOT)/../firmware/boot/boot_rom.hex)
 
 .PHONY: boot
 boot:
-	@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
-	@test -r $(CVE2_V) || { echo "$(CVE2_V) missing: run scripts/fetch-cve2.sh && scripts/convert-cve2.sh" >&2; exit 1; }
+	$(CHECK_COCOTB)
+	$(CHECK_CVE2)
 	$(MAKE) -f $(ROOT)/cocotb.mk \
 	    TESTDIR=$(ROOT)/tests/boot TOPLEVEL=soc_top MODULE=test_boot \
 	    VERILOG_SOURCES="$(SOC_SRC)" \
@@ -114,8 +114,8 @@ boot:
 # (1024 words). The -P flags show in the iverilog command line of the sim log.
 .PHONY: boot-1rw
 boot-1rw:
-	@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
-	@test -r $(CVE2_V) || { echo "$(CVE2_V) missing: run scripts/fetch-cve2.sh && scripts/convert-cve2.sh" >&2; exit 1; }
+	$(CHECK_COCOTB)
+	$(CHECK_CVE2)
 	COMPILE_ARGS="-Psoc_top.ISRAM_1RW=1 -Psoc_top.ISRAM_AW=10 -Psoc_top.DSRAM_AW=10" \
 	$(MAKE) -f $(ROOT)/cocotb.mk \
 	    TESTDIR=$(ROOT)/tests/boot TOPLEVEL=soc_top MODULE=test_boot \
@@ -127,15 +127,15 @@ boot-1rw:
 # SoC firmware tests (issue #48): one simulation per ROM image firmware/soc/<name>.hex,
 # because the image is fixed at elaboration (+rom_hex). The images are checked in;
 # `firmware/soc/build.sh --check` (needs the pinned RISC-V GCC) verifies them locally.
-SOC_SRC := $(RTL)/obi_err_resp.sv $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/soc_sram_d.sv $(RTL)/uart.sv $(RTL)/gpio.sv $(RTL)/timer.sv $(RTL)/soc_fabric.sv $(RTL)/rst_sync.sv $(CVE2_V) $(RTL)/soc_top.sv
+SOC_SRC := $(FABRIC_SRC) $(RTL)/rst_sync.sv $(CVE2_V) $(RTL)/soc_top.sv
 SOC_TESTS := banner echo gpio timer
 
 .PHONY: soc soc-negative $(addprefix soc-,$(SOC_TESTS))
 soc: $(addprefix soc-,$(SOC_TESTS))
 
 $(addprefix soc-,$(SOC_TESTS)): soc-%:
-	@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
-	@test -r $(CVE2_V) || { echo "$(CVE2_V) missing: run scripts/fetch-cve2.sh && scripts/convert-cve2.sh" >&2; exit 1; }
+	$(CHECK_COCOTB)
+	$(CHECK_CVE2)
 	$(MAKE) -f $(ROOT)/cocotb.mk \
 	    TESTDIR=$(ROOT)/tests/soc TOPLEVEL=soc_top MODULE=test_$* \
 	    VERILOG_SOURCES="$(SOC_SRC)" \
@@ -159,7 +159,7 @@ GATE_SRC := $(abspath $(ROOT)/../netlist/soc_top_synth.v) $(PDK_VERILOG)/primiti
 
 .PHONY: soc-gate
 soc-gate:
-	@$(PYTHON_BIN) -c 'import cocotb' || { echo "cocotb not importable: see verification/README.md" >&2; exit 1; }
+	$(CHECK_COCOTB)
 	@test -r $(PDK_VERILOG)/sky130_fd_sc_hd.v || { echo "sky130_fd_sc_hd verilog models not found (set PDK_VERILOG)" >&2; exit 1; }
 	@test -r $(abspath $(ROOT)/../netlist/soc_top_synth.v) || { echo "netlist missing: run scripts/synth-soc.sh" >&2; exit 1; }
 	SOC_GATE=1 $(MAKE) -f $(ROOT)/cocotb.mk \

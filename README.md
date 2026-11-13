@@ -147,12 +147,11 @@ The toolchain-smoke records under
 tools run; each dated record's README gives the commands that produced it.
 They are toolchain evidence, not design evidence.
 
-Two workflows run in CI. `.github/workflows/ci.yml` runs the record linter and
-its fixture test, the pinned-import fetcher's exit-code test (both entry points,
-against a `file://` fixture), the spec-row projection check, RTL lint with the
-converted CVE2 core required (`LINT_REQUIRE_CORE=1`), and the cocotb `xbar`,
-`periph`, `boot`, `boot-1rw`, `soc` and `soc-negative` tests; both jobs install `sv2v` at
-the pin and fetch and convert the CVE2 sources on every run.
+Two workflows run in CI. `.github/workflows/ci.yml` runs the lint and
+simulation legs; the complete list of what it runs, with the local legs beside
+it, is in
+[`verification/README.md`](verification/README.md#what-ci-runs-and-what-stays-local)
+and is not repeated here.
 `.github/workflows/signoff.yml` runs the three `klt signoff` checks above — the
 manifest report and the item 10 and item 1 attestations — on the pinned klt.
 `firmware/boot/build.sh --check` and `firmware/soc/build.sh --check` stay

@@ -1,14 +1,12 @@
 name: CI
 
-# Records lint, the pinned-import fetcher's exit codes (both entry points, against a file:// fixture), the exit-code
-# tests for the check scripts (lint_rtl.sh on an empty rtl/ tree, setup-env.sh --check on each cocotb state), the SRAM
-# stand-in check against the pinned macro model, RTL lint (soc_top.sv included, against the converted CVE2 core) and
-# the cocotb xbar, reset-synchroniser, peripheral, SoC boot and SoC firmware tests. The core
-# is fetched (hash-verified) and converted with sv2v at the pin in scripts/setup-env.sh on every run; the converted
-# output is never checked in. The stand-in check fetches the pinned SRAM macro views (hash-verified) the same way.
-# The boot and firmware tests simulate the checked-in firmware/boot and firmware/soc hex images: no RISC-V compiler
-# in CI. PDK-heavy legs (synthesis, place-and-route, DRC, LVS) stay local: see verification/README.md.
-# No path filters; a started main run is never cancelled (.loom/docs/ci-principles.md).
+# What this workflow runs is the step names below. The one complete inventory, with the local legs beside it, is
+# verification/README.md, section "What CI runs, and what stays local" — keep it, not this header, in step with the
+# steps. What the steps do not say:
+# - No path filters; a started main run is never cancelled (.loom/docs/ci-principles.md).
+# - No RISC-V compiler in CI: the boot and firmware tests simulate the checked-in firmware/boot and
+#   firmware/soc hex images as they are.
+# - PDK-heavy legs (synthesis, place-and-route, DRC, LVS) stay local.
 on:
   pull_request:
   push:

@@ -34,23 +34,37 @@ Adding a testbench: put it in `tests/<name>/` and add a target to the
 
 ## What CI runs, and what stays local
 
-CI (`.github/workflows/ci.yml`, on pull requests and `main`) runs the record
-linter and its fixture test, the spec row-projection check, the SRAM stand-in
-check (`tools/check_sram_standin.py`, after `scripts/fetch-sram-macro.sh`
-fetches the pinned macro views) and its fixture test, RTL lint, and the cocotb `xbar` (OBI
-crossbar, fabric and reset synchroniser), `periph`, SoC boot and SoC firmware tests. The
-`lint` and `sim` jobs each install sv2v at `PIN_SV2V` (sha256
-`PIN_SV2V_SHA256` in `scripts/setup-env.sh`), then run
-`scripts/fetch-cve2.sh` and `scripts/convert-cve2.sh` to build the pinned
-core. The stand-in check is what keeps `make soc-gate` honest: that run
-simulates the netlist against `models/…_standin.v` rather than the macro model,
-so if the `reuse.lock.json` pin moves or the stand-in is edited, CI fails
-instead of passing against a model that no longer matches the macro. `lint`
-runs with `LINT_REQUIRE_CORE=1`, so `rtl/soc_top.sv` is always linted and a
-missing core fails instead of skipping. `sim` runs `make boot`
-and `make boot-1rw` (the same test with the single-port I-SRAM and 1024-word
-SRAMs) from the checked-in `firmware/boot/boot_rom.hex`, then `make soc` and
-`make soc-negative`.
+This is the one complete list of what CI runs; `README.md` and the `ci.yml`
+header point here rather than repeating it, so a new or changed CI step is
+added here and nowhere else. Every command the two jobs of
+`.github/workflows/ci.yml` (on pull requests and `main`) run, in order, paths
+relative to the repository root:
+
+| Job | Runs | What it covers |
+| --- | --- | --- |
+| `lint` | `apt-get install -y verilator iverilog` | Verilator for RTL lint; Icarus because the CVE2 convert smoke test elaborates with it |
+| `lint` | `verification/tools/lint_records.py`, `verification/tools/tests/test_lint_records.py` | the record linter over `records/`, and its good/bad fixture test |
+| `lint` | `verification/tools/tests/test_fetch_cve2.sh` | the pinned-import fetcher's exit codes, both entry points, against a `file://` fixture |
+| `lint` | `verification/tools/tests/test_lint_rtl.sh`, `verification/tools/tests/test_setup_env_check.sh` | the check scripts' exit codes: `lint_rtl.sh` on an empty `rtl/` tree, `setup-env.sh --check` on each cocotb state |
+| `lint` | `verification/tools/check_soc_rows.py`, `verification/tools/tests/test_check_soc_rows.py` | the spec row projections match `spec/soc.md`, and its fixture test |
+| `lint` | `scripts/fetch-sram-macro.sh`, `verification/tools/check_sram_standin.py`, `verification/tools/tests/test_check_sram_standin.py` | the SRAM stand-in against the pinned macro views (fetched hash-verified), and its fixture test |
+| `lint`, `sim` | sv2v at `PIN_SV2V` (sha256 `PIN_SV2V_SHA256` in `scripts/setup-env.sh`) | the pinned converter, downloaded and hash-checked per job |
+| `lint`, `sim` | `scripts/fetch-cve2.sh`, `scripts/convert-cve2.sh` | the pinned CVE2 core, hash-verified against `reuse.lock.json` and converted on every run; the converted output is never checked in |
+| `lint` | `LINT_REQUIRE_CORE=1 verification/tools/lint_rtl.sh` | RTL lint with `rtl/soc_top.sv` included |
+| `sim` | `apt-get install -y iverilog`, then `cocotb==PIN_COCOTB` in a venv | Icarus from the runner image; cocotb at `PIN_COCOTB` in `scripts/setup-env.sh` |
+| `sim` | `make -C verification xbar` | OBI crossbar, fabric and reset-synchroniser tests |
+| `sim` | `make -C verification periph` | GPIO, timer, UART and peripheral-window decode tests |
+| `sim` | `make -C verification boot`, `make -C verification boot-1rw` | SoC top boot, default and single-port I-SRAM configurations |
+| `sim` | `make -C verification soc`, `make -C verification soc-negative` | SoC firmware tests, and the perturbed-transcript negative check |
+
+What the commands alone do not say: the stand-in check is what keeps `make
+soc-gate` honest, because that run simulates the netlist against
+`models/…_standin.v` rather than the macro model, so if the `reuse.lock.json`
+pin moves or the stand-in is edited, CI fails instead of passing against a
+model that no longer matches the macro. `LINT_REQUIRE_CORE=1` is what makes a
+missing core fail rather than skip. `boot-1rw` is the boot test again with the
+single-port I-SRAM and 1024-word SRAMs; both boot runs use the checked-in
+`firmware/boot/boot_rom.hex`.
 
 The `soc` images (`firmware/soc/*.hex`) are checked in and CI simulates them as they are, so CI needs no
 RISC-V compiler. `firmware/soc/build.sh --check` (pinned xPack GCC, local) rebuilds them and compares.

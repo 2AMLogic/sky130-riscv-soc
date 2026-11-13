@@ -46,7 +46,15 @@ Graded against the T1 checklist of klayout-tools `docs/design-evidence-tiers.md`
   92 to 97 % of the overflow is in routing tiles inside macro footprints that have zero
   capacity; a 5.44 µm shift of the same arrangement moves the total from 1490 to 5119. Channel
   width is not what limits the route.
-- **Timing.** No timing figure of any kind exists yet. No Fmax is claimed.
+- **Timing.** One pre-route, netlist-level estimate exists
+  (`verification/records/soc-sta-preroute/20261113T092526Z-33ebe33/`, `klt sta` on the
+  synthesized netlist at `tt_025C_1v80`, 20 ns): every data path closes with at least
+  +5.46 ns of slack, so the multiplier and the counters are not the limiter; the only
+  failing checks are asynchronous recovery on an unbuffered reset net, a netlist artifact
+  that placement resolves. **No Fmax is claimed.** It has no placement, no clock tree, no
+  routing and no extraction, it is at the typical corner rather than the slow one, and it is
+  not signoff timing and not item 5 evidence. Post-route timing at `ss_100C_1v60` still
+  waits on #37 and #50.
 
 ## Now
 

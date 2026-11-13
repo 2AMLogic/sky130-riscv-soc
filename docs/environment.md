@@ -89,8 +89,10 @@ with width warnings from the sv2v output, which are not treated as fatal.
 the dispatch workers; verification for this change used a throwaway download of
 the v0.0.13 release outside the repo.
 
-The RISC-V GCC is likewise not on the workers. For `firmware/boot/build.sh` and
-`make boot` use a throwaway unpack of the xPack tarball (sha256 in
-`scripts/setup-env.sh`) under `build/tools/` and put its `bin/` on `PATH`; the
-checked-in `firmware/boot/boot_rom.hex` lets `make boot` run without it.
+The RISC-V GCC is likewise not on the workers. For the firmware builders
+(`firmware/boot/build.sh` and `firmware/soc/build.sh`, both entry points to
+`firmware/build-image.sh`) and for `make boot` use a throwaway unpack of the
+xPack tarball (sha256 in `scripts/setup-env.sh`) under `build/tools/` and put
+its `bin/` on `PATH`; the checked-in hex images let `make boot` and `make soc`
+run without it.
 A worker-spec change would provision both tools.

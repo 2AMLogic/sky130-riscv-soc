@@ -57,7 +57,9 @@ Issues carrying `loom:curated`.
 
 ## Proposed (Architect / Hermit)
 
-_None._
+- **#103**: Remove the npm check scripts: check:ci runs 4 of CI's 13 commands *(hermit)*
+- **#106**: Remove the bootstrap vacuous-pass branches: RTL lint passes on zero files, env check treats cocotb as optional *(hermit)*
+- **#108**: Merge the two reuse.lock fetch scripts: fetch-sram-macro.sh is an untested copy of fetch-cve2.sh *(hermit)*
 
 ## Epics
 
@@ -75,6 +77,6 @@ _None._
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
 | Curated | 5 |
-| Architect / Hermit proposals | 0 |
+| Architect / Hermit proposals | 3 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

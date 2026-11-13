@@ -3,6 +3,16 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-11-13
+
+- **PR #105**: test(verification): check the SRAM stand-in against the pinned macro model
+- **Issue #101** (closed): Check the SRAM stand-in simulation model against the pinned macro model
+- **PR #107**: evidence: record the first pre-route klt sta estimate of the soc_top netlist
+- **Issue #102** (closed): Pre-route klt sta estimate on the synthesized netlist, to answer Gate 2 of record 0001
+- **PR #104**: docs: replace stale README status, ladder position and CI paragraph; re-attest item 10
+- **Issue #100** (closed): README status and ladder position are stale: update them and re-attest T1 item 10
+- **PR #99**: docs: roadmap as of 2026-11-13
+
 ### 2026-11-12
 
 - **PR #97**: Bump Repo Skills 0.25.10 -> 0.26.1

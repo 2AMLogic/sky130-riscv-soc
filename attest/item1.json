@@ -16,6 +16,7 @@
     "rtl/timer.sv",
     "rtl/uart.sv",
     "reuse.lock.json",
+    "scripts/fetch-import.sh",
     "scripts/fetch-cve2.sh",
     "scripts/convert-cve2.sh",
     "scripts/fetch-sram-macro.sh",

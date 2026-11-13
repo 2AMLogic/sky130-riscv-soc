@@ -3,14 +3,14 @@
   "kind": "generic",
   "status": "pass",
   "t1_item": 1,
-  "summary": "T1 item 1 (Design sources): 20/20 attestation checks passed (klt signoff --attest)",
+  "summary": "T1 item 1 (Design sources): 21/21 attestation checks passed (klt signoff --attest)",
   "source": "attest/item1.json",
   "attestation": {
     "producer": "klt signoff --attest",
     "inventory_schema_version": 1,
     "hash_algorithm": "sha256-raw-bytes",
-    "check_count": 20,
-    "passed_count": 20,
+    "check_count": 21,
+    "passed_count": 21,
     "checks": [
       {
         "check": "present",
@@ -122,21 +122,28 @@
         "role": "source",
         "path": "scripts/fetch-cve2.sh",
         "passed": true,
-        "content_hash": "sha256:4ae75f78d257b5745c3362938745f475b05c0005874b0d4ccb5e1bc9c91c739f"
+        "content_hash": "sha256:e95ceba154ae33cdf42d4d2608a2256c6fea3c49820082ff73c764a5b031b986"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "scripts/fetch-import.sh",
+        "passed": true,
+        "content_hash": "sha256:5589cdbaf42d6873a66c10876e9c1fd4c77981df56117143b502fb00b1e55b92"
       },
       {
         "check": "present",
         "role": "source",
         "path": "scripts/fetch-sram-macro.sh",
         "passed": true,
-        "content_hash": "sha256:93e491ce527d68e1b1772e9df1a120582b95ff21ddcf706a5de44d2d13965afc"
+        "content_hash": "sha256:524740e881363028389cba263ffdb801c615df430c9184f77a860fb8bad86c11"
       },
       {
         "check": "present",
         "role": "source",
         "path": "scripts/synth-soc.sh",
         "passed": true,
-        "content_hash": "sha256:101e830450618374bf2b900970331eed88235fa8ce7eb1a8f440a9625bb1abc8"
+        "content_hash": "sha256:f47fe366d5ddef97a3c3181f1508d9cec48e4ac528a4ee2b4e0db3d5de6c1b61"
       },
       {
         "check": "present",
@@ -171,7 +178,7 @@
         "path": "attest/item1.json",
         "scope": "repo"
       },
-      "content_hash": "sha256:d7b1388b7a3a06bb3a6b0d29243406c41abc55c131938dc156d0b881c94bb4e1"
+      "content_hash": "sha256:541885607243b41d362bacdf6cabcbde32d2916138e2a2e989d8d426c19a8bdc"
     }
   }
 }

@@ -10,7 +10,7 @@ cold-start command a third party can run.
 | `tests/soc/` | SoC firmware tests (`make soc`): banner, UART echo, GPIO toggle/readback and timer interrupt on `firmware/soc/*.hex`; `make soc-negative` checks a perturbed golden transcript fails |
 | `tests/boot/` | SoC top boot test (`make boot`, `make boot-1rw`): CVE2 + fabric run `firmware/boot`; needs the converted core |
 | `tests/<name>/` | one directory per testbench (DUT sources + cocotb module); `tests/xbar/` holds the fabric and reset-synchroniser tests, `tests/periph/` the GPIO, timer and peripheral-window decode tests |
-| `tests/lib/` | not a testbench: the shared bench core every testbench may import (`obi_bench.py` -- one definition of the reset/clocking sequence and of the request/accept/response contract). `cocotb.mk` puts it on `PYTHONPATH` after `TESTDIR`; testbenches still cannot import each other |
+| `tests/lib/` | not a testbench: the shared bench cores every testbench may import -- `obi_bench.py` (one definition of the `soc_fabric`/peripheral reset-clocking sequence and of the request/accept/response contract) and `soc_top_bench.py` (one definition of the `soc_top` clock, reset, D-SRAM result-block peek and preload, shared by `tests/boot` and `tests/soc`). `cocotb.mk` puts it on `PYTHONPATH` after `TESTDIR`; testbenches still cannot import each other |
 | `models/` | `sky130_sram_2kbyte_1rw1r_32x512_8_standin.v`, the Icarus-simulable stand-in `make soc-gate` uses in place of the pinned macro model; its header lists every difference |
 | `tools/lint_records.py` | linter for `records/` (stdlib only) |
 | `tools/check_sram_standin.py` | fails unless the SRAM stand-in differs from the pinned macro model (sha256 against `reuse.lock.json`) only in the ways its `ALLOWED_EDITS` list documents |
@@ -32,9 +32,10 @@ make -C verification periph     # GPIO, timer and peripheral-window decode tests
 
 Adding a testbench: put it in `tests/<name>/` and add a target to the
 `Makefile` that sets `TESTDIR`, `TOPLEVEL`, `MODULE` and `VERILOG_SOURCES`.
-Drive reset through `obi_bench.reset_dut` rather than reimplementing the
-sequence, and state the bus timing by referring to `tests/lib/obi_bench.py`
-instead of restating it, so there stays one copy to keep true.
+Drive reset through `obi_bench.reset_dut` (or, for a `soc_top` DUT, build on
+`soc_top_bench.SocTop`) rather than reimplementing the sequence, and state the
+bus timing by referring to `tests/lib/obi_bench.py` instead of restating it, so
+there stays one copy to keep true.
 
 ## What CI runs, and what stays local
 

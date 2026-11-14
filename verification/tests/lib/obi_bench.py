@@ -11,10 +11,10 @@ issued back to back.  The drivers under verification/tests/ reference this
 paragraph rather than restating it, so there is one copy to keep true.
 
 `reset_dut` is the single definition of the reset and clocking sequence those
-drivers share: start the clock, hold `rst_ni` low with every manager input
-idle, three rising edges, release `rst_ni` on a falling edge, and return one
-falling edge later -- that is, at the falling edge where the first request may
-be applied.
+drivers share (the soc_top benches have their own, in `soc_top_bench`): start
+the clock, hold `rst_ni` low with every manager input idle, three rising edges,
+release `rst_ni` on a falling edge, and return one falling edge later -- that
+is, at the falling edge where the first request may be applied.
 
 **Not shared, deliberately: how a driver handles the grant.**  The peripheral
 window drives `per_gnt = 1'b1` (rtl/soc_fabric.sv), so
@@ -28,7 +28,7 @@ from cocotb.clock import Clock
 from cocotb.triggers import FallingEdge, RisingEdge
 
 #: Clock period the fabric and peripheral benches run at, nanoseconds.
-#: (tests/soc and tests/boot clock soc_top at their own period.)
+#: (tests/soc and tests/boot clock soc_top at soc_top_bench.CLOCK_NS.)
 CLOCK_NS = 10
 
 #: The OBI manager request inputs a bench holds idle through reset, unprefixed.

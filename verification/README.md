@@ -48,8 +48,8 @@ relative to the repository root:
 | `lint` | `verification/tools/tests/test_lint_rtl.sh`, `verification/tools/tests/test_setup_env_check.sh` | the check scripts' exit codes: `lint_rtl.sh` on an empty `rtl/` tree, `setup-env.sh --check` on each cocotb state |
 | `lint` | `verification/tools/check_soc_rows.py`, `verification/tools/tests/test_check_soc_rows.py` | the spec row projections match `spec/soc.md`, and its fixture test |
 | `lint` | `scripts/fetch-sram-macro.sh`, `verification/tools/check_sram_standin.py`, `verification/tools/tests/test_check_sram_standin.py` | the SRAM stand-in against the pinned macro views (fetched hash-verified), and its fixture test |
-| `lint`, `sim` | sv2v at `PIN_SV2V` (sha256 `PIN_SV2V_SHA256` in `scripts/setup-env.sh`) | the pinned converter, downloaded and hash-checked per job |
-| `lint`, `sim` | `scripts/fetch-cve2.sh`, `scripts/convert-cve2.sh` | the pinned CVE2 core, hash-verified against `reuse.lock.json` and converted on every run; the converted output is never checked in |
+| `lint`, `sim` | sv2v at `PIN_SV2V` (sha256 `PIN_SV2V_SHA256` in `scripts/setup-env.sh`) | the pinned converter, downloaded and hash-checked per job; both jobs run it from the one shared composite action, `.github/actions/cve2-core` |
+| `lint`, `sim` | `scripts/fetch-cve2.sh`, `scripts/convert-cve2.sh` | the second step of that same shared action: the pinned CVE2 core, hash-verified against `reuse.lock.json` and converted on every run; the converted output is never checked in |
 | `lint` | `LINT_REQUIRE_CORE=1 verification/tools/lint_rtl.sh` | RTL lint with `rtl/soc_top.sv` included |
 | `sim` | `apt-get install -y iverilog`, then `cocotb==PIN_COCOTB` in a venv | Icarus from the runner image; cocotb at `PIN_COCOTB` in `scripts/setup-env.sh` |
 | `sim` | `make -C verification xbar` | OBI crossbar, fabric and reset-synchroniser tests |

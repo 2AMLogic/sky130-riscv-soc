@@ -1,0 +1,36 @@
+name: Converted CVE2 core
+description: >
+  Install sv2v at the repository's pin, then fetch and convert the pinned CVE2
+  core so the generated Verilog is present in the working tree.
+
+# The one definition of this prelude. Both jobs of .github/workflows/ci.yml need
+# the converted core — `lint` because LINT_REQUIRE_CORE=1 fails on a missing
+# core, `sim` because the boot and firmware tests elaborate it — and before this
+# action each job carried its own byte-identical copy of the recipe (issue #157).
+#
+# The pin is read from scripts/setup-env.sh, which is the single source of truth
+# for it (scripts/setup-env.sh:10-13): neither PIN_SV2V nor PIN_SV2V_SHA256 is
+# copied here. That means this action needs the working tree, so a job must run
+# actions/checkout before it.
+
+runs:
+  using: composite
+  steps:
+    - name: Install sv2v at the pinned version
+      shell: bash
+      run: |
+        pin="$(sed -n 's/^PIN_SV2V="\([^"]*\)".*/\1/p' scripts/setup-env.sh)"
+        sha="$(sed -n 's/^PIN_SV2V_SHA256="\([^"]*\)".*/\1/p' scripts/setup-env.sh)"
+        test -n "$pin" && test -n "$sha"
+        d="$(mktemp -d)"
+        curl -fsSL --retry 2 -o "$d/sv2v.zip" "https://github.com/zachjs/sv2v/releases/download/${pin}/sv2v-Linux.zip"
+        echo "${sha}  $d/sv2v.zip" | sha256sum -c -
+        unzip -q "$d/sv2v.zip" -d "$d"
+        mkdir -p "$HOME/.local/bin"
+        install -m 755 "$d/sv2v-Linux/sv2v" "$HOME/.local/bin/sv2v"
+        echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+    - name: Fetch and convert the pinned CVE2 core
+      shell: bash
+      run: |
+        scripts/fetch-cve2.sh
+        scripts/convert-cve2.sh

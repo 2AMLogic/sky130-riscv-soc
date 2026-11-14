@@ -3,6 +3,17 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-11-14
+
+- **PR #152**: test: assert the granted store responded, and drop two dead xbar-test constructs
+- **Issue #151** (closed): Tighten three weak spots in verification/tests/xbar/test_xbar.py
+- **PR #148**: refactor: instantiate soc_sram_i with port 1 tied off, drop soc_sram_d
+- **Issue #139** (closed): Remove rtl/soc_sram_d.sv: it is soc_sram_i with port 1 tied off, in both the behavioural and macro builds
+- **PR #144**: docs: name the PIN_* variables in environment.md instead of copying values
+- **Issue #137** (closed): Remove the hand-copied pin values and stale statements from docs/environment.md: scripts/setup-env.sh is the one source
+- **PR #146**: docs: replace five README statements that records now contradict
+- **Issue #141** (closed): Remove the stale statements from README.md, spec/README.md and layout/README.md: each contradicts a committed record
+
 ### 2026-11-13
 
 - **PR #140**: docs: point item-10 regeneration at the cocotb venv on PATH

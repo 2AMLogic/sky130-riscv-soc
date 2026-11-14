@@ -25,16 +25,14 @@ _None._
 
 Human-approved issues ready for implementation (`loom:issue`).
 
-- **#142**: Remove rtl/obi_err_resp.sv: its grant is a constant and its error flag repeats what obi_xbar already registers
+_None._
 
 ## In Progress
 
 Issues currently being built (`loom:building`).
 
 - **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9
-- **#137**: Remove the hand-copied pin values and stale statements from docs/environment.md: scripts/setup-env.sh is the one source
-- **#139**: Remove rtl/soc_sram_d.sv: it is soc_sram_i with port 1 tied off, in both the behavioural and macro builds
-- **#141**: Remove the stale statements from README.md, spec/README.md and layout/README.md: each contradicts a committed record
+- **#142**: Remove rtl/obi_err_resp.sv: its grant is a constant and its error flag repeats what obi_xbar already registers
 
 ## PRs Awaiting Review
 
@@ -63,6 +61,9 @@ Issues carrying `loom:curated`.
 - **#103**: Remove the npm check scripts: check:ci runs 4 of CI's 13 commands *(hermit)*
 - **#122**: Remove the unfetched VLSIDA/OpenRAM import from reuse.lock.json: candidate B was declined in record 0004 *(hermit)*
 - **#132**: Remove the no-op Verilator lint from scripts/convert-cve2.sh: it prints ok when Verilator is absent *(hermit)*
+- **#153**: Remove the dead tx_sh_q[0] bit in rtl/uart.sv: the start bit is driven directly, so bit 0 is never read *(hermit)*
+- **#154**: Remove the duplicate soc_fabric bus driver: periph_bus.Bus reimplements the reset sequence and response contract that test_xbar.Fab already has *(hermit)*
+- **#155**: Remove the duplicate soc_top bench: test_boot.Soc and soc_bench.Soc reimplement one reset and D-SRAM preload, plus two write-only cycle counters *(hermit)*
 
 ## Epics
 
@@ -75,11 +76,11 @@ _None._
 | Operator merge-risk holds | 0 |
 | Very important | 1 |
 | Important | 1 |
-| Ready (`loom:issue`) | 1 |
-| In Progress (`loom:building`) | 4 |
+| Ready (`loom:issue`) | 0 |
+| In Progress (`loom:building`) | 2 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
 | Curated | 5 |
-| Architect / Hermit proposals | 3 |
+| Architect / Hermit proposals | 6 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

@@ -98,7 +98,7 @@ module soc_fabric #(
 
 `ifdef SOC_SRAM_MACRO
   if (ISRAM_1RW) begin : g_no_1rw_macro
-    $error("ISRAM_1RW=1 has no macro view (record 0004); the macro build is 1rw1r");
+    $error("ISRAM_1RW=1 has no macro view (record 0004-sram-macro-organization.md); the macro build is 1rw1r");
   end
 `endif
 
@@ -115,7 +115,8 @@ module soc_fabric #(
 
     // One wrapper serves both SRAM shapes: port 1 tied off is the single-port
     // memory. csb1 high holds the behavioural port-1 read and, under
-    // -DSOC_SRAM_MACRO, every macro's csb1 (record 0004).
+    // -DSOC_SRAM_MACRO, every macro's csb1
+    // (spec/decision-records/0004-sram-macro-organization.md).
     soc_sram_i #(
         .AW(ISRAM_AW)
     ) u_isram (
@@ -153,8 +154,9 @@ module soc_fabric #(
   end
 
   // D-SRAM: the same wrapper, port 1 tied off. The data side is 1rw by the
-  // ratified spec; record 0004 item 5 notes no 1rw macro view exists, so the
-  // macro build holds the 1rw1r macro here with its port 1 unused.
+  // ratified spec; spec/decision-records/0004-sram-macro-organization.md
+  // item 5 notes no 1rw macro view exists, so the macro build holds the
+  // 1rw1r macro here with its port 1 unused.
   soc_sram_i #(
       .AW(DSRAM_AW)
   ) u_dsram (

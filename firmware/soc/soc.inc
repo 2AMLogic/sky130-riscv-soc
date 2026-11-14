@@ -1,5 +1,6 @@
 # Shared definitions for the SoC firmware tests (issue #48). Register offsets
-# and semantics are from spec/decision-records/0004 (GPIO, timer) and 0005 (UART).
+# and semantics are from spec/decision-records/0004-peripheral-register-map.md
+# (GPIO, timer) and spec/decision-records/0005-uart-register-map.md (UART).
     .equ DSRAM,   0x20000000
     .equ UART,    0x40000000
     .equ GPIO,    0x40001000

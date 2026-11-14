@@ -41,7 +41,8 @@ Graded against the T1 checklist of klayout-tools `docs/design-evidence-tiers.md`
   223 110 µm² of standard cells, the eight macros as black boxes, banner test passing on the
   netlist. It makes no timing claim: the only figure is ABC's estimate, and `sta` is `null`.
 - **Place-and-route.** Floorplan, PDN, placement and clock-tree synthesis pass; global route
-  fails with `GRT-0116` in all four recorded runs at the 3.8 mm² die of record 0004
+  fails with `GRT-0116` in all four recorded runs at the 3.8 mm² die of
+  [record 0004](../spec/decision-records/0004-sram-macro-organization.md)
   (`verification/records/soc-pnr/`, [`layout/pnr-congestion-analysis.md`](../layout/pnr-congestion-analysis.md), PR #95).
   92 to 97 % of the overflow is in routing tiles inside macro footprints that have zero
   capacity; a 5.44 µm shift of the same arrangement moves the total from 1490 to 5119. Channel

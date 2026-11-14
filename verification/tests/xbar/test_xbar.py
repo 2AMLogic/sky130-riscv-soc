@@ -1,15 +1,17 @@
 """Crossbar / decode tests for rtl/soc_fabric.sv (xbar + ROM + SRAMs + periph window).
 
-Managers are driven cycle by cycle: requests are applied at the falling edge,
-grants (combinational) are sampled 1 ns later, the rising edge accepts, and the
-registered response of the previous accepted request is sampled at the next
-falling edge.  All subordinates respond exactly one cycle after the grant.
+Both managers are driven cycle by cycle on the request/accept/response timing
+stated once in `obi_bench` (verification/tests/lib/obi_bench.py), which also
+holds the reset sequence `Fab.reset` runs.  `Fab.access` retries until granted,
+rather than asserting the grant in the request cycle as the peripheral bench
+does; that difference is deliberate and explained there.
 """
 import os
 
 import cocotb
-from cocotb.clock import Clock
 from cocotb.triggers import FallingEdge, RisingEdge, Timer
+
+from obi_bench import reset_dut
 
 ROM, ISRAM, DSRAM, PERI = 0x0000_0000, 0x1000_0000, 0x2000_0000, 0x4000_0000
 # Build under test (verification/Makefile): default 8 KB 1rw1r, or xbar-1rw.
@@ -32,22 +34,7 @@ class Fab:
         self.cycles = 0
 
     async def reset(self):
-        d = self.dut
-        cocotb.start_soon(Clock(d.clk_i, 10, unit="ns").start())
-        d.rst_ni.value = 0
-        d.uart_rxd_i.value = 1
-        d.gpio_i.value = 0
-        for m in "id":
-            getattr(d, f"{m}_req_i").value = 0
-            getattr(d, f"{m}_addr_i").value = 0
-            getattr(d, f"{m}_we_i").value = 0
-            getattr(d, f"{m}_be_i").value = 0
-            getattr(d, f"{m}_wdata_i").value = 0
-        for _ in range(3):
-            await RisingEdge(d.clk_i)
-        await FallingEdge(d.clk_i)
-        d.rst_ni.value = 1
-        await FallingEdge(d.clk_i)
+        await reset_dut(self.dut, ("i_", "d_"), uart_rxd_i=1, gpio_i=0)
 
     def _sample(self, m):
         d = self.dut

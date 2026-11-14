@@ -8,22 +8,30 @@ if the two disagree, the script wins.
 
 | Item | Pin | How it is checked |
 | --- | --- | --- |
-| PDK | `sky130A`, open_pdks `f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7` | `$PDK_ROOT/sky130A/SOURCES` |
-| Standard cells | `sky130_fd_sc_hd`, corner `tt_025C_1v80` for the smoke run | named in each request |
-| PDK fetcher | ciel `3.1.0`, run through `uvx` | used by the fetch step only |
-| klayout-tools | `klt 0.9.1` (PyPI `klayout-tools==0.9.1`; has `signoff --check` and `--attest`) | `klt --version`; CI `signoff` job installs `klayout-tools==0.9.1` and checks `klt --version` |
-| Yosys | `0.67+post`, git `b8e7da6f40ae8f552c116bf6c359b07c6533e159` | `yosys -V` |
-| Icarus Verilog | `13.0` | `iverilog -V` |
-| OpenROAD | `26Q3-1510-g6cb3f2b704`, image `openroad/orfs@sha256:bb7f31697fb8466ab61852fc796376cc16d9df38f762ccb733218b8a5e55824b` | `openroad -version`; the wrapper's image digest |
-| sv2v | `v0.0.13` (SystemVerilog to Verilog for CVE2) | `sv2v --version` |
-| RISC-V GCC | xPack `riscv-none-elf-gcc` `14.2.0` (release `v14.2.0-3`, tarball sha256 in `PIN_RISCV_GCC_SHA256`), builds `firmware/boot` | `riscv-none-elf-gcc --version` |
-| cocotb | `2.0.1` (every `verification/Makefile` target needs it) | `import cocotb` |
+| PDK | `PIN_PDK_VARIANT` at open_pdks `PIN_OPEN_PDKS_REV` | `$PDK_ROOT/$PIN_PDK_VARIANT/SOURCES` |
+| Standard cells | `sky130_fd_sc_hd`, corner `tt_025C_1v80` for the smoke run | named in each request, not a script pin |
+| PDK fetcher | `PIN_CIEL` (ciel, run through `uvx`) | used by the fetch step only |
+| klayout-tools | `PIN_KLT` (PyPI `klayout-tools`; has `signoff --check` and `--attest`) | `klt --version`; the CI `signoff` job reads `PIN_KLT` and checks `klt --version` |
+| Yosys | `PIN_YOSYS`, git `PIN_YOSYS_SHA` | `yosys -V` |
+| Icarus Verilog | `PIN_IVERILOG` | `iverilog -V` |
+| OpenROAD | `PIN_OPENROAD`, image `PIN_OPENROAD_IMAGE` | `openroad -version`; the wrapper's image digest |
+| sv2v | `PIN_SV2V`, release-asset sha256 `PIN_SV2V_SHA256` (SystemVerilog to Verilog for CVE2) | `sv2v --version` |
+| RISC-V GCC | xPack `riscv-none-elf-gcc` `PIN_RISCV_GCC`, tarball sha256 `PIN_RISCV_GCC_SHA256`; builds the boot and SoC firmware | `riscv-none-elf-gcc --version` |
+| cocotb | `PIN_COCOTB` (every `verification/Makefile` target needs it) | `import cocotb` |
+
+Each `PIN_*` above is a variable in
+[`scripts/setup-env.sh`](../scripts/setup-env.sh). No pinned value is copied
+onto this page, so a pin bump is a change to that one file;
+`scripts/setup-env.sh --check` prints the live values.
 
 The `open_pdks` revision matches the one `2AMLogic/sky130-modexp` records in
 its decision record `0008-requalification-under-open-pdks-f6eeac7.md`.
 
-Not pinned here: the SRAM macros. The core is pinned in `reuse.lock.json`
-and converted as described under "CVE2 fetch and conversion".
+The CVE2 core and the imported SRAM macro views are both pinned in
+[`reuse.lock.json`](../reuse.lock.json), which carries a sha256 for every file
+the build consumes. The core is converted as described under "CVE2 fetch and
+conversion"; which SRAM source the SoC finally adopts is still an open
+decision, tracked by the `in_tree` entry in the same file.
 
 ## Reproduce from a clean checkout
 
@@ -54,12 +62,11 @@ regenerating any recorded evidence the new klt re-grades.
 
 `flow/smoke/counter.v` is a trivial counter that proves the toolchain runs. It
 is **toolchain evidence, not design evidence** and is never cited for a T1
-item. The dated record is under
-[`verification/records/toolchain-smoke/`](../verification/records/toolchain-smoke/):
-synthesis ran (22 cells, `sky130_fd_sc_hd` at `tt_025C_1v80`); place-and-route
-was **not run** because the OpenROAD docker wrapper has no docker access on the
-recording host. Records are append-only: a later run adds a new dated
-directory.
+item, an Fmax, or any design claim. The dated records are under
+[`verification/records/toolchain-smoke/`](../verification/records/toolchain-smoke/);
+each one's README gives the commands that produced it and the results they
+reported. Records are append-only: a later run adds a new dated directory
+rather than editing an existing one.
 
 ## CVE2 fetch and conversion
 
@@ -88,8 +95,8 @@ lock lists them explicitly. With these, Icarus 13.0 elaborates `cve2_top`
 with width warnings from the sv2v output, which are not treated as fatal.
 
 `convert-cve2.sh` uses `sv2v` from `PATH` or `$SV2V`. sv2v is not provisioned on
-the dispatch workers; verification for this change used a throwaway download of
-the v0.0.13 release outside the repo.
+the dispatch workers; use a throwaway download of the pinned release outside
+the repo.
 
 The RISC-V GCC is likewise not on the workers. For the firmware builders
 (`firmware/boot/build.sh` and `firmware/soc/build.sh`, both entry points to

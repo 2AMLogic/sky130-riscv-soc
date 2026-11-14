@@ -8,9 +8,9 @@
 #                                  against the pins below; exit 1 on mismatch
 #
 # This file is the single source of truth for the pins; docs/environment.md
-# quotes it. It never installs a tool: tools are only checked. The PDK fetch
-# runs ciel through a throwaway `uvx` environment and writes only into
-# $PDK_ROOT.
+# describes them by variable name and copies no values. It never installs a
+# tool: tools are only checked. The PDK fetch runs ciel through a throwaway
+# `uvx` environment and writes only into $PDK_ROOT.
 set -euo pipefail
 
 # ---- pins -----------------------------------------------------------------

@@ -14,8 +14,11 @@ The SoC RTL (`rtl/`), the checked-in firmware and its cocotb testbenches
 the RTL in simulation, and the banner test passes again on the synthesized
 netlist. Place-and-route has not completed — the recorded runs reach global
 routing and fail there (`verification/records/soc-pnr/`) — so there is no
-routed layout, no static timing analysis, and no timing or Fmax result claimed
-here.
+routed layout. One pre-route, netlist-level static timing estimate at
+`tt_025C_1v80` is recorded
+([record](verification/records/soc-sta-preroute/20261113T092526Z-33ebe33/)); it
+has no placement, no clock tree, no routing and no extraction, and it is not
+signoff timing. **No signoff timing and no Fmax is claimed here.**
 
 **Built agent-native.** Every specification, decision record, testbench, and
 line of documentation here is produced by AI agents working from a ratified
@@ -47,15 +50,17 @@ reported separately and never conflated with the first.
 
 - **Core**: [Ibex](https://github.com/lowRISC/ibex) (lowRISC, Apache-2.0) or
   its OpenHW Group fork [CVE2](https://github.com/openhwgroup/cve2) — both
-  small in-order RV32 cores. The choice is made in `spec/`; the chosen core
-  is used unmodified, pinned to an upstream commit.
+  small in-order RV32 cores. CVE2 was chosen
+  ([record 0001](spec/decision-records/0001-core-choice.md)) and is used
+  unmodified, pinned to an upstream commit.
 - **Bus**: OBI (the OpenHW Open Bus Interface), the native interface of
   both cores.
 - **Compliance**: the RISC-V architectural test suite
   ([riscv-arch-test](https://github.com/riscv-non-isa/riscv-arch-test)).
-- **SRAM**: not designed here. Candidates are the OpenRAM-generated sky130
-  macros, the fleet's `sky130-sram-compiler` canary once it delivers, and
-  standard-cell RAM. The choice is an adopt-or-record decision in `spec/`.
+- **SRAM**: not designed here. The OpenRAM-generated sky130 macros were
+  adopted ([record 0002](spec/decision-records/0002-sram-source.md)); the
+  fleet's `sky130-sram-compiler` canary was named but not adopted, and
+  standard-cell RAM is the fallback.
 
 ## Scope
 
@@ -73,7 +78,7 @@ reported separately and never conflated with the first.
 |---|---|---|---|
 | Core | RV32IMC, CVE2 (pinned, unmodified) | RV32EC | + RISC-V debug module over JTAG |
 | Interconnect | OBI crossbar, instruction + data managers | single shared OBI bus | — |
-| SRAM | 8 KB instruction + 8 KB data, OpenRAM sky130 macros (macro instance deferred) | 4 KB unified | 32 KB total |
+| SRAM | 8 KB instruction + 8 KB data, 4 x `sky130_sram_2kbyte_1rw1r_32x512_8` OpenRAM macros per memory | 4 KB unified | 32 KB total |
 | Peripherals | boot ROM, UART, 8-bit GPIO, timer | boot ROM, UART, GPIO | SPI flash execute-in-place |
 | Signoff Fmax (post-route STA, slow corner `ss_100C_1v60`) | 50 MHz | 25 MHz | 100 MHz |
 | Standard cells | `sky130_fd_sc_hd` | — | — |
@@ -96,8 +101,13 @@ has not run: `riscv-arch-test` on the SoC is still open
 also been synthesized ahead of that rung
 ([record](verification/records/soc-synth/20261031T061631Z-3c1fd5a/), and the
 banner test passes on the netlist), but the *next* rung is "synthesized with
-timing met at the target" and no STA has been run, so that rung is not
-reached and no frequency is claimed.
+timing met at the target" — timing met at the slow corner `ss_100C_1v60`. The
+only timing run recorded is a pre-route, netlist-level estimate at
+`tt_025C_1v80`
+([record](verification/records/soc-sta-preroute/20261113T092526Z-33ebe33/)):
+neither `ss_100C_1v60` nor `ff_n40C_1v95` was analysed, and the pinned SRAM
+macro has no Liberty view at either. That rung is therefore not reached and no
+Fmax is claimed.
 
 What each unmet signoff item is waiting on, and the order the remaining work is
 planned in: [`docs/ROADMAP.md`](docs/ROADMAP.md).

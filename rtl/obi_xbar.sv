@@ -12,6 +12,10 @@
 // Timing contract: every subordinate grants a request and responds exactly one
 // cycle after the grant, so responses return in order with no id tracking.
 // Subordinates raise no error except the peripheral window (periph_err_i).
+// The crossbar answers an unreachable or unmapped access itself, on that same
+// contract: it grants in the cycle of the request and raises err_o with rvalid_o
+// one cycle later, straight off the response flops below, so such an access
+// completes in a fixed, bounded time and never hangs.
 // SRAM size: ISRAM_AW / DSRAM_AW are the word-address widths (default 11 = 2048
 // words = 8 KB). The region decode derives from them, so an address past the
 // configured size inside the old 8 KB region is unmapped and gets an error.
@@ -102,7 +106,7 @@ module obi_xbar #(
     else return T_ERR;
   endfunction
 
-  // Per-manager reachability: forbidden targets go to the error responder.
+  // Per-manager reachability: forbidden targets are answered as errors (T_ERR).
   logic [2:0] i_tgt, d_tgt;
   always_comb begin
     i_tgt = decode(i_addr_i);
@@ -140,38 +144,19 @@ module obi_xbar #(
   assign per_be_o    = d_be_i;
   assign per_wdata_o = d_wdata_i;
 
-  // Error responders, one per manager.
-  logic i_er_gnt, d_er_gnt, i_er_err, d_er_err;
-  obi_err_resp u_i_err (
-      .clk_i   (clk_i),
-      .rst_ni  (rst_ni),
-      .req_i   (i_req_i && i_tgt == T_ERR),
-      .gnt_o   (i_er_gnt),
-      .rvalid_o(),
-      .err_o   (i_er_err)
-  );
-  obi_err_resp u_d_err (
-      .clk_i   (clk_i),
-      .rst_ni  (rst_ni),
-      .req_i   (d_req_i && d_tgt == T_ERR),
-      .gnt_o   (d_er_gnt),
-      .rvalid_o(),
-      .err_o   (d_er_err)
-  );
-
-  // Grants.
+  // Grants. T_ERR is granted unconditionally: the crossbar always accepts it.
   always_comb begin
     case (i_tgt)
       T_ROM:   i_gnt_o = rom_gnt_i;
       T_ISR:   i_gnt_o = isi_gnt_i;
-      default: i_gnt_o = i_er_gnt;
+      default: i_gnt_o = 1'b1;
     endcase
     case (d_tgt)
       T_ROM:   d_gnt_o = rom_gnt_i && !i_to_rom;
       T_ISR:   d_gnt_o = isd_gnt_i;
       T_DSR:   d_gnt_o = dsr_gnt_i;
       T_PER:   d_gnt_o = per_gnt_i;
-      default: d_gnt_o = d_er_gnt;
+      default: d_gnt_o = 1'b1;
     endcase
   end
 
@@ -194,8 +179,8 @@ module obi_xbar #(
 
   assign i_rvalid_o = i_pend_q;
   assign d_rvalid_o = d_pend_q;
-  assign i_err_o    = i_pend_q && i_sel_q == T_ERR && i_er_err;
-  assign d_err_o    = d_pend_q && ((d_sel_q == T_ERR && d_er_err) || (d_sel_q == T_PER && per_err_i));
+  assign i_err_o    = i_pend_q && i_sel_q == T_ERR;
+  assign d_err_o    = d_pend_q && (d_sel_q == T_ERR || (d_sel_q == T_PER && per_err_i));
 
   always_comb begin
     case (i_sel_q)

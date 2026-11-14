@@ -9,8 +9,7 @@ upstream commit recorded in [`../reuse.lock.json`](../reuse.lock.json).
 
 | File | Role |
 |---|---|
-| `obi_xbar.sv` | 2-manager (instruction, data) x 4-subordinate crossbar, address decode per `spec/soc.md` § Memory map, fixed instruction-manager priority at the boot ROM |
-| `obi_err_resp.sv` | error responder: grants at once, answers with an OBI error one cycle later |
+| `obi_xbar.sv` | 2-manager (instruction, data) x 4-subordinate crossbar, address decode per `spec/soc.md` § Memory map, fixed instruction-manager priority at the boot ROM; answers an unreachable or unmapped access itself, granting at once and raising an OBI error one cycle later |
 | `boot_rom.sv` | 4 KB boot ROM; the image is a hex file named by `INIT_FILE` or, in simulation, `+rom_hex=` (no default: a build with neither stops with an error) |
 | `soc_sram_i.sv` | the one behavioural SRAM wrapper (1rw1r), 32-bit, 8-bit write mask, OpenRAM-style ports; `soc_fabric` instantiates it for the two-port I-SRAM and, with port 1 tied off at the instance, for the D-SRAM (1rw) and the single-port I-SRAM at `ISRAM_1RW=1` (which has no macro view, see `spec/soc.md` § Interconnect); `-DSOC_SRAM_MACRO` swaps the body for four `sky130_sram_2kbyte_1rw1r_32x512_8` macros ([record 0004](../spec/decision-records/0004-sram-macro-organization.md)); lint it with `SRAM_MACRO_V=<macro .v> verification/tools/lint_rtl.sh` (not simulable in Icarus 13.0) |
 | `soc_fabric.sv` | crossbar + memories + peripheral window decoder (`per_addr[15:12]`: page 0 UART, page 1 GPIO, page 2 timer, the rest answer with an OBI error); the SoC top connects the core here. Parameters `ISRAM_AW`/`DSRAM_AW` (word-address width, default 11 = 8 KB) and `ISRAM_1RW` (default 0 = 1rw1r) |

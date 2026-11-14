@@ -1,0 +1,39 @@
+make: Entering directory '<repo>/verification'
+SOC_GATE=1 make -f <repo>/verification/cocotb.mk \
+    TESTDIR=<repo>/verification/tests/soc TOPLEVEL=soc_top MODULE=test_banner \
+    VERILOG_SOURCES="<repo>/netlist/soc_top_synth.v <home>/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/verilog/primitives.v <home>/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v <repo>/verification/models/sky130_sram_2kbyte_1rw1r_32x512_8_standin.v" \
+    COMPILE_ARGS="-DFUNCTIONAL -DUNIT_DELAY=#0" \
+    SIM_BUILD=<repo>/verification/sim_build/soc_gate
+make[1]: Entering directory '<repo>/verification'
+rm -f <repo>/verification/sim_build/soc_gate/results.xml
+"make" -f <repo>/verification/cocotb.mk <repo>/verification/sim_build/soc_gate/results.xml
+make[2]: Entering directory '<repo>/verification'
+mkdir -p <repo>/verification/sim_build/soc_gate
+iverilog -o <repo>/verification/sim_build/soc_gate/sim.vvp -s soc_top -g2012 -DFUNCTIONAL -DUNIT_DELAY=#0  <repo>/netlist/soc_top_synth.v <home>/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/verilog/primitives.v <home>/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v <repo>/verification/models/sky130_sram_2kbyte_1rw1r_32x512_8_standin.v
+<site-packages>/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
+rm -f <repo>/verification/sim_build/soc_gate/results.xml
+COCOTB_TEST_MODULES=test_banner COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=soc_top TOPLEVEL_LANG=verilog \
+         vvp -M <site-packages>/cocotb/libs -m libcocotbvpi_icarus   <repo>/verification/sim_build/soc_gate/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.12.4 interpreter at /usr/bin/python3
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1794636317
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from <site-packages>/cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_banner.banner_matches_golden (1/1)
+1476100.00ns INFO     cocotb.regression                  test_banner.banner_matches_golden passed
+1476100.00ns INFO     cocotb.regression                  *******************************************************************************************
+                                                         ** TEST                               STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                         *******************************************************************************************
+                                                         ** test_banner.banner_matches_golden   PASS     1476100.00         437.88       3371.02  **
+                                                         *******************************************************************************************
+                                                         ** TESTS=1 PASS=1 FAIL=0 SKIP=0                 1476100.00         437.88       3371.01  **
+                                                         *******************************************************************************************
+make[2]: Leaving directory '<repo>/verification'
+make[1]: Leaving directory '<repo>/verification'
+make: Leaving directory '<repo>/verification'
+
+real	7m21.559s
+user	7m18.155s
+sys	0m0.684s
+[exited with code 0]

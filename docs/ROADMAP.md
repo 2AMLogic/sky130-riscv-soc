@@ -28,7 +28,7 @@ Graded against the T1 checklist of klayout-tools `docs/design-evidence-tiers.md`
 | 3 DRC clean | unmet | #38, waits on #37 |
 | 4 LVS clean | unmet | #39, waits on #37 |
 | 5 Corner verification | unmet | #40, split into #49 (riscv-arch-test) and #50 (`klt sta`) |
-| 6 Monte Carlo | not applicable | `spec/statistical-claims-na.md`, bound by hash (#41) |
+| 6 Monte Carlo | not applicable | `spec/statistical-claims-na.json`, bound by hash; `spec/statistical-claims-na.md` is its checked human-readable mirror (#41) |
 | 7 Post-layout verification | unmet | #42, waits on #37 and #40 |
 | 8 Characterization report | unmet | #69 |
 | 9 Testbenches shipped | unmet | #43, PR #55 open and conflicting |

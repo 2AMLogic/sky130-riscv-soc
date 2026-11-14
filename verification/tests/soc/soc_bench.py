@@ -5,7 +5,7 @@ through +rom_hex). Every wait is bounded by a cycle count so a missing byte or
 interrupt fails the test instead of hanging it.
 
 Set SOC_GATE=1 when the DUT is the synthesized netlist (make -C verification
-soc-gate): the D-SRAM is then the macro stand-in, not soc_sram_d.mem, so the
+soc-gate): the D-SRAM is then the macro stand-in, not soc_sram_i.mem, so the
 RTL-only memory peeks are skipped; only tests that decode the UART (banner) run.
 
 Set SOC_PERTURB=1 to flip one byte of every expected transcript; the tests

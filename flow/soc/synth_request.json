@@ -7,7 +7,6 @@
     "../../rtl/obi_xbar.sv",
     "../../rtl/boot_rom.sv",
     "../../rtl/soc_sram_i.sv",
-    "../../rtl/soc_sram_d.sv",
     "../../rtl/uart.sv",
     "../../rtl/gpio.sv",
     "../../rtl/timer.sv",

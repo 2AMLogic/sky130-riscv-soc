@@ -1,5 +1,9 @@
-// Instruction SRAM wrapper, 2**AW x 32 (default AW=11: 8 KB), 1rw1r, 8-bit write
-// granularity.
+// SRAM wrapper, 2**AW x 32 (default AW=11: 8 KB), 1rw1r, 8-bit write
+// granularity. Used for every SRAM in soc_fabric: the two-port I-SRAM uses
+// both ports, and the D-SRAM (and the ISRAM_1RW=1 single-port I-SRAM) tie
+// port 1 off at the instance -- csb1 high, addr1 zero, dout1 unconnected --
+// which holds the port-1 read in the behavioural build and drives a constant
+// high into every macro's csb1 in the macro build (record 0004 item 5).
 // Port interface follows the OpenRAM convention (active-low csb/web, one-cycle
 // registered read). Port 0 reads and writes; port 1 reads.
 // AW is the word-address width; the macro build supports AW=11 only.

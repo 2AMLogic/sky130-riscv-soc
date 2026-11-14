@@ -90,7 +90,7 @@ The conversion is pinned by (CVE2 commit, `PIN_SV2V`, the command printed by
 `convert-cve2.sh`). It defines `SYNTHESIS`, which drops a simulation-only DPI
 export block in `cve2_if_stage.sv`; without it Icarus rejects the output.
 `cve2_core.f` upstream omits `cve2_csr.sv`, `cve2_pmp.sv` and `cve2_wb.sv`, so the
-lock lists them explicitly. With these, Icarus 13.0 elaborates `cve2_top`
+lock lists them explicitly. With these, the pinned Icarus elaborates `cve2_top`
 (no Verilator alternative needed per record 0001 Gate 1); Verilator lint runs
 with width warnings from the sv2v output, which are not treated as fatal.
 

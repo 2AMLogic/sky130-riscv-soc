@@ -1,0 +1,31 @@
+{
+  "commit": "1cab6e089a2b5169a2c603633f8e04575eaf0394",
+  "pdk_revision": "f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7",
+  "tool_versions": {
+    "klt": "0.9.1",
+    "klt_invocation": "uvx --from \"klayout-tools==0.9.1\" klt -- the PIN_KLT release in scripts/setup-env.sh, which CI's signoff job also reads. The host's own klt (0.9.2.dev1022+g2a9c52b27ce7, a dev build) was deliberately NOT used.",
+    "klt_git_commit": "4d0d29be4fd991f499d59e783a908082d5e24c56",
+    "klayout": "0.30.13",
+    "yosys": "0.67+post (b8e7da6f40ae8f552c116bf6c359b07c6533e159)",
+    "sv2v": "v0.0.13",
+    "iverilog": "13.0",
+    "cocotb": "2.0.1",
+    "host": "loom-worker (AWS dispatch worker)"
+  },
+  "command": "scripts/synth-soc.sh; make -C verification soc-gate",
+  "note": "Resynthesis for PR #150 (issue #142, drop rtl/obi_err_resp.sv) AFTER merging origin/main @ bd60402 into feature/issue-142. `commit` is that merge commit: unlike record 20261031T061631Z-3c1fd5a, the tree at this commit contains both the sources and the netlist this run produced, so the commit, attest/item1.json and netlist.sha256 below all describe the same tree. The merge was needed because main had meanwhile regenerated the same netlist (d7d6499, soc_sram_d dropped); a generated netlist cannot be conflict-resolved by picking a side, so it was regenerated from the merged RTL.",
+  "netlist": {
+    "file": "netlist/soc_top_synth.v",
+    "sha256": "53f361e4e15d3d57b93b92afc87d09e803f4b6805640669d9fb72e90170b46c9"
+  },
+  "pinned_inputs": {
+    "cve2_commit": "d7f21568028a1114be663599bd42145dccf28928",
+    "sram_macro_commit": "ebfbf5775c8cd433ad38a4d825e46c2275231511",
+    "sram_macro_liberty_sha256": "8656384775f5e10b44bed97b7193dd3188ce8cd60b7c8e02a5a4ad9e35ed03ba"
+  },
+  "supersedes": {
+    "netlist_sha256": "0e03ac74ce0f93691735437e96d910f56cb9bf5d789082ed83a0b72c7d4403c0",
+    "recorded_in": "verification/records/soc-synth/20261031T061631Z-3c1fd5a",
+    "note": "records/soc-sta-preroute/ and all four records/soc-pnr/ attempts bind 0e03ac74 and so describe a netlist two changes old. No recorded timing claim moves in the unsafe direction (this change is strictly flop- and area-reducing), but re-running pre-route STA and P&R on the current netlist is outstanding work, not covered here."
+  }
+}

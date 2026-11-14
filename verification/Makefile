@@ -38,7 +38,7 @@ endef
 .PHONY: xbar xbar-fabric xbar-1rw xbar-rst
 xbar: xbar-fabric xbar-1rw xbar-rst
 
-FABRIC_SRC := $(RTL)/obi_err_resp.sv $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/uart.sv $(RTL)/gpio.sv $(RTL)/timer.sv $(RTL)/soc_fabric.sv
+FABRIC_SRC := $(RTL)/obi_xbar.sv $(RTL)/boot_rom.sv $(RTL)/soc_sram_i.sv $(RTL)/uart.sv $(RTL)/gpio.sv $(RTL)/timer.sv $(RTL)/soc_fabric.sv
 
 # 16-word ROM image for the fabric test (0xB0070000 + i; test_xbar.py ROM_IMG), generated.
 XBAR_ROM_HEX := $(ROOT)/sim_build/xbar_rom.hex

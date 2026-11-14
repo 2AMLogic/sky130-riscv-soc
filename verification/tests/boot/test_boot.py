@@ -5,10 +5,16 @@ firmware writes a signature to D-SRAM, reads two unmapped addresses (the OBI
 error becomes a load-access-fault trap that the firmware steps over), records
 the trap state, and spins. Result block layout is documented in boot.S.
 Every wait is bounded by a cycle timeout so a hang fails the test.
+
+`Soc` is `soc_top_bench.SocTop` (verification/tests/lib/soc_top_bench.py) --
+the clock, the reset sequence, the D-SRAM result block and its preload, stated
+once there and shared with verification/tests/soc -- plus the data-side OBI
+error monitor below, which is this testbench's own.
 """
 import cocotb
-from cocotb.clock import Clock
-from cocotb.triggers import FallingEdge, RisingEdge
+from cocotb.triggers import RisingEdge
+
+from soc_top_bench import SocTop
 
 SIG, RESUME = 0x600DC0DE, 0xD00DFEED
 UNMAP_A, UNMAP_B = 0x4000_3000, 0x3000_0000
@@ -18,21 +24,17 @@ TIMEOUT = 3000  # cycles; the whole run takes well under 200
 OFF = dict(sig=0, mtvec=1, traps=2, mcause=3, mepc=4, mtval=5, resume=6, boots=7)
 
 
-class Soc:
+class Soc(SocTop):
     def __init__(self, dut):
-        self.dut = dut
-        self.mem = dut.u_fabric.u_dsram.mem
+        super().__init__(dut, words=OFF)
         self.cycles = 0
         self.err_log = []  # (cycle, address) of every data-side OBI error
         self.pending = None
 
-    def word(self, name):
-        return int(self.mem[OFF[name]].value)
-
     def start(self):
-        self.dut.uart_rxd_i.value = 1
-        self.dut.gpio_i.value = 0  # GPIO pins undriven would feed X into the irq inputs
-        cocotb.start_soon(Clock(self.dut.clk_i, 20, unit="ns").start())
+        """Zero the result block, start the clock, and watch the data side."""
+        self.preload()
+        self.start_clock()
         cocotb.start_soon(self._monitor())
 
     async def _monitor(self):
@@ -50,30 +52,13 @@ class Soc:
             except ValueError:  # X before the first defined cycle
                 self.pending = None
 
-    async def reset(self, cycles=4):
-        self.dut.rst_ni.value = 0
-        for _ in range(cycles):
-            await RisingEdge(self.dut.clk_i)
-        await FallingEdge(self.dut.clk_i)
-        self.dut.rst_ni.value = 1
-
     async def run_until_resume(self):
-        for _ in range(TIMEOUT):
-            await RisingEdge(self.dut.clk_i)
-            if self.word("resume") == RESUME:
-                return
-        raise AssertionError(f"boot did not finish in {TIMEOUT} cycles (hang?)")
-
-
-def init_dsram(soc):
-    for i in range(8):
-        soc.mem[i].value = 0
+        await self.wait_word("resume", RESUME, TIMEOUT)
 
 
 @cocotb.test()
 async def boot_signature_and_unmapped_read(dut):
     soc = Soc(dut)
-    init_dsram(soc)
     soc.start()
     await soc.reset()
     await soc.run_until_resume()
@@ -93,7 +78,6 @@ async def boot_signature_and_unmapped_read(dut):
 async def trap_vector_behaviour(dut):
     """Records what the boot test observes about mtvec (spec/soc.md 'unverified')."""
     soc = Soc(dut)
-    init_dsram(soc)
     soc.start()
     await soc.reset()
     await soc.run_until_resume()
@@ -107,7 +91,6 @@ async def trap_vector_behaviour(dut):
 @cocotb.test()
 async def reset_mid_run_restarts_from_zero(dut):
     soc = Soc(dut)
-    init_dsram(soc)
     soc.start()
     await soc.reset()
     for _ in range(30):  # part-way through the run, before the first fault retires

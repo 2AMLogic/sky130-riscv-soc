@@ -28,7 +28,7 @@ Graded against the T1 checklist of klayout-tools `docs/design-evidence-tiers.md`
 | 3 DRC clean | unmet | #38, waits on #37 |
 | 4 LVS clean | unmet | #39, waits on #37 |
 | 5 Corner verification | unmet | #40, split into #49 (riscv-arch-test) and #50 (`klt sta`) |
-| 6 Monte Carlo | not applicable | `spec/statistical-claims-na.md`, bound by hash (#41) |
+| 6 Monte Carlo | not applicable | `spec/statistical-claims-na.json`, bound by hash; `spec/statistical-claims-na.md` is its checked human-readable mirror (#41) |
 | 7 Post-layout verification | unmet | #42, waits on #37 and #40 |
 | 8 Characterization report | unmet | #69 |
 | 9 Testbenches shipped | unmet | #43, PR #55 open and conflicting |
@@ -37,8 +37,8 @@ Graded against the T1 checklist of klayout-tools `docs/design-evidence-tiers.md`
 
 - **Simulation.** CI (`.github/workflows/ci.yml`) runs the crossbar, peripheral, boot (both
   instruction-SRAM configurations) and firmware tests (banner, echo, GPIO, timer interrupt).
-- **Synthesis.** `verification/records/soc-synth/20261031T061631Z-3c1fd5a/`: 27 650 cells,
-  222 298 µm² of standard cells, the eight macros as black boxes, banner test passing on the
+- **Synthesis.** `verification/records/soc-synth/20261114T060249Z-1cab6e0/`: 27 663 cells,
+  223 110 µm² of standard cells, the eight macros as black boxes, banner test passing on the
   netlist. It makes no timing claim: the only figure is ABC's estimate, and `sta` is `null`.
 - **Place-and-route.** Floorplan, PDN, placement and clock-tree synthesis pass; global route
   fails with `GRT-0116` in all four recorded runs at the 3.8 mm² die of record 0004

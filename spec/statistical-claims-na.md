@@ -10,10 +10,11 @@ statistical, and both the statement and the spec are bound by content hash.
   [`soc.rows.json`](soc.rows.json) (15 rows: `1`-`14` and `8a`).
 - **Statement**: this page, mirrored row for row in
   [`statistical-claims-na.json`](statistical-claims-na.json), which is the
-  document `klt signoff` cites. The reasons below and in the JSON are the same
-  text; keep them in step.
+  document `klt signoff` cites.
 - **Drift check**: `python3 -I verification/tools/check_soc_rows.py` fails when
-  the ids in `soc.rows.json` or the statement differ from the `soc.md` table.
+  the ids in `soc.rows.json` or the statement differ from the `soc.md` table,
+  and when any row's class or reason on this page differs from
+  `statistical-claims-na.json`.
 - The pinned `klt` refuses certain vocabulary in the JSON documents, so the
   reasons are worded positively. The refusal is about wording, not about the
   conclusion.

@@ -3,15 +3,17 @@
 // both ports, and the D-SRAM (and the ISRAM_1RW=1 single-port I-SRAM) tie
 // port 1 off at the instance -- csb1 high, addr1 zero, dout1 unconnected --
 // which holds the port-1 read in the behavioural build and drives a constant
-// high into every macro's csb1 in the macro build (record 0004 item 5).
+// high into every macro's csb1 in the macro build (spec/decision-records/
+// 0004-sram-macro-organization.md item 5).
 // Port interface follows the OpenRAM convention (active-low csb/web, one-cycle
 // registered read). Port 0 reads and writes; port 1 reads.
 // AW is the word-address width; the macro build supports AW=11 only.
 // Default build: behavioural model. With -DSOC_SRAM_MACRO: four
-// sky130_sram_2kbyte_1rw1r_32x512_8 macros, bank = addr[10:9] (decision record
-// 0004). Under the macro build a bank's dout is only valid for the cycle after
-// a read of that bank (the macro model drives X otherwise), so the registered
-// bank select is what the output mux uses.
+// sky130_sram_2kbyte_1rw1r_32x512_8 macros, bank = addr[10:9]
+// (spec/decision-records/0004-sram-macro-organization.md). Under the macro
+// build a bank's dout is only valid for the cycle after a read of that bank
+// (the macro model drives X otherwise), so the registered bank select is what
+// the output mux uses.
 // A port-1 read of the word port 0 writes in the same cycle returns the old
 // data (the macro leaves that case undefined; the fabric does not rely on it).
 module soc_sram_i #(

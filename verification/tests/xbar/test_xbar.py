@@ -222,7 +222,8 @@ async def isram_write_and_fetch_in_same_cycle(dut):
     assert g == (1, 1), f"both must be granted in one cycle, got {g}"
     await f.cycle()
     assert f.resp["i"] == (0x0BADF00D, False)
-    assert f.resp["d"] == (f.resp["d"][0], False)
+    assert f.resp["d"] is not None and f.resp["d"][1] is False, \
+        "no response for the granted store"
     rd, err, _ = await f.read("i", ISRAM + 0x80)
     assert not err and rd == 0x600DCAFE
 
@@ -256,8 +257,6 @@ async def back_to_back_and_error_between_accesses(dut):
     assert [x[1] if x else None for x in got_d] == [None, False, False, True, True]
 
 
-# ---- single-port I-SRAM (ISRAM_1RW=1): data side wins, fetch retries ----
-
 @cocotb.test()
 async def sram_boundary_errors_and_does_not_alias(dut):
     """First address past each SRAM errors and leaves the memory untouched."""
@@ -265,9 +264,10 @@ async def sram_boundary_errors_and_does_not_alias(dut):
     await f.reset()
     for base in (ISRAM, DSRAM):
         assert not await f.write("d", base, 0xA5A5_0001)
-        for off in (SRAM_BYTES, SRAM_BYTES + 4, 0x1FFC):
-            if off < SRAM_BYTES:
-                continue
+        offs = [SRAM_BYTES, SRAM_BYTES + 4]
+        if 0x1FFC >= SRAM_BYTES:  # past the end only in the smaller xbar-1rw build
+            offs.append(0x1FFC)
+        for off in offs:
             for m in ("d", "i") if base == ISRAM else ("d",):
                 _, err, n = await f.read(m, base + off)
                 assert err and n <= 3, f"{m} read {base + off:#x} must error"
@@ -277,6 +277,8 @@ async def sram_boundary_errors_and_does_not_alias(dut):
         rd, err, _ = await f.read("d", base + SRAM_BYTES - 4)
         assert not err
 
+
+# ---- single-port I-SRAM (ISRAM_1RW=1): data side wins, fetch retries ----
 
 @cocotb.test(skip=not ONE_RW)
 async def isram_1rw_same_cycle_store_and_fetch(dut):

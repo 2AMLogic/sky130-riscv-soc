@@ -3,14 +3,14 @@
   "kind": "generic",
   "status": "pass",
   "t1_item": 1,
-  "summary": "T1 item 1 (Design sources): 21/21 attestation checks passed (klt signoff --attest)",
+  "summary": "T1 item 1 (Design sources): 20/20 attestation checks passed (klt signoff --attest)",
   "source": "attest/item1.json",
   "attestation": {
     "producer": "klt signoff --attest",
     "inventory_schema_version": 1,
     "hash_algorithm": "sha256-raw-bytes",
-    "check_count": 21,
-    "passed_count": 21,
+    "check_count": 20,
+    "passed_count": 20,
     "checks": [
       {
         "check": "present",
@@ -24,7 +24,7 @@
         "role": "source",
         "path": "flow/soc/synth_request.json",
         "passed": true,
-        "content_hash": "sha256:04e51a96a666661652e29a1ebbc35e7b2c597ef45169fa0dc6f6639dc8395eaf"
+        "content_hash": "sha256:0e886a41a354a9de8c4077756fddb55cbc9b2a6d63295948c27fa500a7ed6f15"
       },
       {
         "check": "present",
@@ -50,16 +50,9 @@
       {
         "check": "present",
         "role": "source",
-        "path": "rtl/obi_err_resp.sv",
-        "passed": true,
-        "content_hash": "sha256:dd3f640b9c89fb852cf3f63f35e15e577c8a98c3e1dcf7858ac95a80b97dca4c"
-      },
-      {
-        "check": "present",
-        "role": "source",
         "path": "rtl/obi_xbar.sv",
         "passed": true,
-        "content_hash": "sha256:c8d6550767a35e807333503d3b9b18c7929643ee66cd7fbd3f8018caca2f4f36"
+        "content_hash": "sha256:b75f9c877ebb88231141850186277e2409836f45fe501d2f946a9c3bc4d5fe03"
       },
       {
         "check": "present",
@@ -150,7 +143,7 @@
         "role": "derived",
         "path": "netlist/soc_top_synth.v",
         "passed": true,
-        "content_hash": "sha256:0e03ac74ce0f93691735437e96d910f56cb9bf5d789082ed83a0b72c7d4403c0"
+        "content_hash": "sha256:acb930a6590375406bdcfb760ee39c51e7a12b7e3bf4a91e8183f4660062fc75"
       },
       {
         "check": "recorded_hash",
@@ -173,7 +166,7 @@
             "path": "attest/item1.json",
             "scope": "repo"
           },
-          "content_hash": "sha256:a10d1b1f255cdbb6aee8a1e27dd8d62487a2f1e88251091c4d3982a45270fd36"
+          "content_hash": "sha256:ef50b383229a2e39c8bb903d85a250d6f4a9c04bcb6f6251eabe0d10b0f1b172"
         },
         {
           "path": {
@@ -187,14 +180,14 @@
             "path": "flow/soc/synth_request.json",
             "scope": "repo"
           },
-          "content_hash": "sha256:04e51a96a666661652e29a1ebbc35e7b2c597ef45169fa0dc6f6639dc8395eaf"
+          "content_hash": "sha256:0e886a41a354a9de8c4077756fddb55cbc9b2a6d63295948c27fa500a7ed6f15"
         },
         {
           "path": {
             "path": "netlist/soc_top_synth.v",
             "scope": "repo"
           },
-          "content_hash": "sha256:0e03ac74ce0f93691735437e96d910f56cb9bf5d789082ed83a0b72c7d4403c0"
+          "content_hash": "sha256:acb930a6590375406bdcfb760ee39c51e7a12b7e3bf4a91e8183f4660062fc75"
         },
         {
           "path": {
@@ -219,17 +212,10 @@
         },
         {
           "path": {
-            "path": "rtl/obi_err_resp.sv",
-            "scope": "repo"
-          },
-          "content_hash": "sha256:dd3f640b9c89fb852cf3f63f35e15e577c8a98c3e1dcf7858ac95a80b97dca4c"
-        },
-        {
-          "path": {
             "path": "rtl/obi_xbar.sv",
             "scope": "repo"
           },
-          "content_hash": "sha256:c8d6550767a35e807333503d3b9b18c7929643ee66cd7fbd3f8018caca2f4f36"
+          "content_hash": "sha256:b75f9c877ebb88231141850186277e2409836f45fe501d2f946a9c3bc4d5fe03"
         },
         {
           "path": {
@@ -316,7 +302,7 @@
           "content_hash": "sha256:c747166487204bfa4cc32d254eeb5a898036111c29872a3cbc0b8f8628c6ab0b"
         }
       ],
-      "content_hash": "sha256:f9f1d6e95cc7e4a80bb094dd00126ee21df5fb60b427bb0ca67ec0c1cf3a3620"
+      "content_hash": "sha256:5c49155533691e0118260d65412737a96fe0e6d54627c8434ca1ede829beb8cd"
     }
   }
 }

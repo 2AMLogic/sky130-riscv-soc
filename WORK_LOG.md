@@ -5,6 +5,10 @@ Maintained by the Loom Guide role.
 
 ### 2026-11-14
 
+- **PR #158**: refactor: hoist the shared cocotb reset sequence and bus contract into tests/lib/obi_bench
+- **Issue #154** (closed): Remove the duplicate soc_fabric bus driver: periph_bus.Bus reimplements the reset sequence and response contract that test_xbar.Fab already has
+- **PR #150**: refactor(rtl): fold the OBI error responder into obi_xbar's own response flops
+- **Issue #142** (closed): Remove rtl/obi_err_resp.sv: its grant is a constant and its error flag repeats what obi_xbar already registers
 - **PR #152**: test: assert the granted store responded, and drop two dead xbar-test constructs
 - **Issue #151** (closed): Tighten three weak spots in verification/tests/xbar/test_xbar.py
 - **PR #148**: refactor: instantiate soc_sram_i with port 1 tied off, drop soc_sram_d

@@ -31,7 +31,6 @@ class Fab:
     def __init__(self, dut):
         self.dut = dut
         self.resp = {"i": None, "d": None}  # responses seen at the last falling edge
-        self.cycles = 0
 
     async def reset(self):
         await reset_dut(self.dut, ("i_", "d_"), uart_rxd_i=1, gpio_i=0)
@@ -59,7 +58,6 @@ class Fab:
         g = (int(dut.i_gnt_o.value and i is not None), int(dut.d_gnt_o.value and d is not None))
         await RisingEdge(dut.clk_i)
         await FallingEdge(dut.clk_i)
-        self.cycles += 1
         return g
 
     async def access(self, m, r, max_wait=8):

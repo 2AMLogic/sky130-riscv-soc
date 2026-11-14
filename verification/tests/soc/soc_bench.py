@@ -4,6 +4,11 @@ Each test module runs one image from firmware/soc/ (picked by the Makefile
 through +rom_hex). Every wait is bounded by a cycle count so a missing byte or
 interrupt fails the test instead of hanging it.
 
+`Soc` is `soc_top_bench.SocTop` (verification/tests/lib/soc_top_bench.py) --
+the clock, the reset sequence, the D-SRAM result block and its preload, stated
+once there and shared with verification/tests/boot -- plus the UART codecs
+below, which are this testbench's own.
+
 Set SOC_GATE=1 when the DUT is the synthesized netlist (make -C verification
 soc-gate): the D-SRAM is then the macro stand-in, not soc_sram_i.mem, so the
 RTL-only memory peeks are skipped; only tests that decode the UART (banner) run.
@@ -14,9 +19,9 @@ must then fail (make -C verification soc-negative checks that).
 import os
 from pathlib import Path
 
-import cocotb
-from cocotb.clock import Clock
-from cocotb.triggers import FallingEdge, RisingEdge
+from cocotb.triggers import RisingEdge
+
+from soc_top_bench import SocTop
 
 SIG = 0x600DC0DE
 FW = Path(__file__).resolve().parents[3] / "firmware" / "soc"
@@ -30,46 +35,16 @@ def golden(name):
     return data
 
 
-class Soc:
-    def __init__(self, dut):
-        self.dut = dut
-        self.gate = os.environ.get("SOC_GATE") == "1"
-        self.mem = None if self.gate else dut.u_fabric.u_dsram.mem
-        self.cycles = 0
-
-    def word(self, i):
-        return int(self.mem[i].value)
-
+class Soc(SocTop):
     async def start(self):
-        d = self.dut
-        d.uart_rxd_i.value = 1
-        d.gpio_i.value = 0
-        if not self.gate:
-            for i in range(8):
-                self.mem[i].value = 0
-        cocotb.start_soon(Clock(d.clk_i, 20, unit="ns").start())
-        cocotb.start_soon(self._count())
-        d.rst_ni.value = 0
-        for _ in range(4):
-            await RisingEdge(d.clk_i)
-        await FallingEdge(d.clk_i)
-        d.rst_ni.value = 1
-
-    async def _count(self):
-        while True:
-            await RisingEdge(self.dut.clk_i)
-            self.cycles += 1
+        """Preload the result block, start the clock, and come out of reset."""
+        self.preload()
+        self.start_clock()
+        await self.reset()
 
     async def wait_cycles(self, n):
         for _ in range(n):
             await RisingEdge(self.dut.clk_i)
-
-    async def wait_word(self, i, value, timeout):
-        for _ in range(timeout):
-            await RisingEdge(self.dut.clk_i)
-            if self.word(i) == value:
-                return
-        raise AssertionError(f"D-SRAM word {i} never became {value:#x} in {timeout} cycles")
 
     async def uart_rx(self, nbytes, bit_clocks, timeout):
         """Decode nbytes 8N1 frames from uart_txd_o; fail if one is late or has a bad stop bit."""

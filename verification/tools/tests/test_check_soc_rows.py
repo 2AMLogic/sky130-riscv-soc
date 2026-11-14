@@ -51,6 +51,18 @@ class CheckSocRows(unittest.TestCase):
     def test_spec_table_drift_fails(self):
         self.drift("soc.md", "| 8a | SRAM macro", "| 8b | SRAM macro")
 
+    def test_statement_md_reason_drift_fails(self):
+        """The .md mirror may not restate a row's reason as its own negation."""
+        self.drift("statistical-claims-na.md",
+                   "| 13 | Standard cells | library-selection | a library chosen by name",
+                   "| 13 | Standard cells | library-selection | "
+                   "a library sampled from a measured population of wafers")
+
+    def test_statement_md_class_drift_fails(self):
+        self.drift("statistical-claims-na.md",
+                   "| 13 | Standard cells | library-selection |",
+                   "| 13 | Standard cells | sourcing-decision |")
+
 
 if __name__ == "__main__":
     unittest.main()

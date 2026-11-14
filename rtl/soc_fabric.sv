@@ -8,7 +8,8 @@
 //   ISRAM_AW, DSRAM_AW  word-address width of each SRAM (11 = 2048 words).
 //   ISRAM_1RW           0: two-port I-SRAM (soc_sram_i), data-side write and
 //                          fetch proceed in the same cycle, both grants 1.
-//                       1: single-port I-SRAM (soc_sram_d). isd and isi
+//                       1: single-port I-SRAM (soc_sram_i with port 1 tied
+//                          off, as the D-SRAM is). isd and isi
 //                          share the port with fixed priority: the data side
 //                          wins and the fetch's grant is held low for as long
 //                          as a data-side access targets the I-SRAM; it
@@ -112,7 +113,10 @@ module soc_fabric #(
     assign isd_rdata = port_dout;
     assign isi_rdata = port_dout;
 
-    soc_sram_d #(
+    // One wrapper serves both SRAM shapes: port 1 tied off is the single-port
+    // memory. csb1 high holds the behavioural port-1 read and, under
+    // -DSOC_SRAM_MACRO, every macro's csb1 (record 0004).
+    soc_sram_i #(
         .AW(ISRAM_AW)
     ) u_isram (
         .clk0  (clk_i),
@@ -121,7 +125,11 @@ module soc_fabric #(
         .wmask0(isd_be),
         .addr0 (port_addr[ISRAM_AW+1:2]),
         .din0  (isd_wdata),
-        .dout0 (port_dout)
+        .dout0 (port_dout),
+        .clk1  (clk_i),
+        .csb1  (1'b1),
+        .addr1 ('0),
+        .dout1 ()
     );
   end else begin : g_isram_1rw1r
     assign isd_gnt = 1'b1;
@@ -144,7 +152,10 @@ module soc_fabric #(
     );
   end
 
-  soc_sram_d #(
+  // D-SRAM: the same wrapper, port 1 tied off. The data side is 1rw by the
+  // ratified spec; record 0004 item 5 notes no 1rw macro view exists, so the
+  // macro build holds the 1rw1r macro here with its port 1 unused.
+  soc_sram_i #(
       .AW(DSRAM_AW)
   ) u_dsram (
       .clk0  (clk_i),
@@ -153,7 +164,11 @@ module soc_fabric #(
       .wmask0(dsr_be),
       .addr0 (dsr_addr[DSRAM_AW+1:2]),
       .din0  (dsr_wdata),
-      .dout0 (dsr_rdata)
+      .dout0 (dsr_rdata),
+      .clk1  (clk_i),
+      .csb1  (1'b1),
+      .addr1 ('0),
+      .dout1 ()
   );
 
   // Peripheral window. Pages: 0 UART, 1 GPIO, 2 timer, the rest error.

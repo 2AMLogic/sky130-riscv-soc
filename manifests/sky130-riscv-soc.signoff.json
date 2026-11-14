@@ -34,13 +34,13 @@
         "command": null,
         "kind": "generic",
         "check_status": "pass",
-        "content_hash": "sha256:f9f1d6e95cc7e4a80bb094dd00126ee21df5fb60b427bb0ca67ec0c1cf3a3620",
+        "content_hash": "sha256:580767c8d58d8787246a2fd29ea38a51691144c82c3e129ffdc18ebb237b0ce5",
         "input_verified": true,
         "exit_status": 0,
         "artifact_binding": {
           "t1_item": 1,
           "path": null,
-          "content_hash": "sha256:f9f1d6e95cc7e4a80bb094dd00126ee21df5fb60b427bb0ca67ec0c1cf3a3620",
+          "content_hash": "sha256:580767c8d58d8787246a2fd29ea38a51691144c82c3e129ffdc18ebb237b0ce5",
           "input_verified": true,
           "members": [
             {
@@ -48,7 +48,7 @@
                 "path": "attest/item1.json",
                 "scope": "repo"
               },
-              "content_hash": "sha256:a10d1b1f255cdbb6aee8a1e27dd8d62487a2f1e88251091c4d3982a45270fd36",
+              "content_hash": "sha256:2acab4e61ce2f10be06527f9ba9e507afa8acccc45c7bae5ea38022126b1d646",
               "status": "verified"
             },
             {
@@ -64,7 +64,7 @@
                 "path": "flow/soc/synth_request.json",
                 "scope": "repo"
               },
-              "content_hash": "sha256:04e51a96a666661652e29a1ebbc35e7b2c597ef45169fa0dc6f6639dc8395eaf",
+              "content_hash": "sha256:d839796becd979798d6fcd314d9da769fb38dadb0a4889d7eb7bfc7f195ffe99",
               "status": "verified"
             },
             {
@@ -72,7 +72,7 @@
                 "path": "netlist/soc_top_synth.v",
                 "scope": "repo"
               },
-              "content_hash": "sha256:0e03ac74ce0f93691735437e96d910f56cb9bf5d789082ed83a0b72c7d4403c0",
+              "content_hash": "sha256:aeb01692fba0f44662957b39e89f94d0659dd44faffc1b2892193914957c63a4",
               "status": "verified"
             },
             {
@@ -128,15 +128,7 @@
                 "path": "rtl/soc_fabric.sv",
                 "scope": "repo"
               },
-              "content_hash": "sha256:b323fc67c2b437b0896ce3c20b41a504b05db773829fe78648dede7ef7459956",
-              "status": "verified"
-            },
-            {
-              "path": {
-                "path": "rtl/soc_sram_d.sv",
-                "scope": "repo"
-              },
-              "content_hash": "sha256:d559c25ae54773f65f85989bba622e9b02fa417d923d5d5a39251147b1b3a001",
+              "content_hash": "sha256:8ca08974aafbb9ffe9c59a7870bd3e4052680f29bea9dd1ec1981e6fc7a92dc2",
               "status": "verified"
             },
             {
@@ -144,7 +136,7 @@
                 "path": "rtl/soc_sram_i.sv",
                 "scope": "repo"
               },
-              "content_hash": "sha256:a415a52de5eac6417086e14396aef43c1bba15fdae8af747f0cedae0d4f48b7f",
+              "content_hash": "sha256:6a05b4ab2bc5f8a78ed703aa185fe5432569e77f62b161a37524b12728ae439c",
               "status": "verified"
             },
             {
@@ -212,13 +204,13 @@
               "status": "verified"
             }
           ],
-          "summary": "T1 item 1 (Design sources): 21/21 attestation checks passed (klt signoff --attest)",
+          "summary": "T1 item 1 (Design sources): 20/20 attestation checks passed (klt signoff --attest)",
           "source": "attest/item1.json",
           "attestation": {
             "producer": "klt signoff --attest",
             "inventory_schema_version": 1,
-            "check_count": 21,
-            "passed_count": 21
+            "check_count": 20,
+            "passed_count": 20
           }
         }
       }

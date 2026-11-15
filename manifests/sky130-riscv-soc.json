@@ -1,26 +1,26 @@
 {
-  "block": "sky130-riscv-soc",
-  "kind": "digital",
-  "evidence": {
-    "1": {
-      "file": "evidence/item1.json",
-      "content_hash": "sha256:dce539eba1ac7cb3454db2665c79328cf1fc3b0930ea7d98d4c0011bc16a27fb"
+ "block": "sky130-riscv-soc",
+ "kind": "digital",
+ "evidence": {
+  "1": {
+   "file": "evidence/item1.json",
+   "content_hash": "sha256:c8f1e6de535658f41d74c9d42a780d1ad398f05627d62dee2f9cdf56dedc56af"
+  },
+  "6": {
+   "not_applicable": {
+    "spec": {
+     "file": "spec/soc.rows.json",
+     "content_hash": "sha256:0a1bcef91309225d65c3f4f90c3a97dd7720698a684afe3a6eaf9e8f1ce6941f"
     },
-    "6": {
-      "not_applicable": {
-        "spec": {
-          "file": "spec/soc.rows.json",
-          "content_hash": "sha256:0a1bcef91309225d65c3f4f90c3a97dd7720698a684afe3a6eaf9e8f1ce6941f"
-        },
-        "statement": {
-          "file": "spec/statistical-claims-na.json",
-          "content_hash": "sha256:561697cd0afcb450d74fb2e20e6a16fb7890dc196ca258fa8986344b26bb70f4"
-        }
-      }
-    },
-    "10": {
-      "file": "evidence/item10.json",
-      "content_hash": "sha256:03268fa1dd7eb62b1c5b90ea7dd485bb588149b05b711809d2f9254d96fd3125"
+    "statement": {
+     "file": "spec/statistical-claims-na.json",
+     "content_hash": "sha256:561697cd0afcb450d74fb2e20e6a16fb7890dc196ca258fa8986344b26bb70f4"
     }
+   }
+  },
+  "10": {
+   "file": "evidence/item10.json",
+   "content_hash": "sha256:90cbda19208e048657bc38a1f1a18635ef2d6c4bb599fa1f58ab3f98fa6f47eb"
   }
+ }
 }

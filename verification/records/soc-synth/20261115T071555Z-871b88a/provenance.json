@@ -1,0 +1,37 @@
+{
+  "commit": "871b88aa726eb0955dbecf1dc5e34cd39caef9ab",
+  "pdk_revision": "f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7",
+  "tool_versions": {
+    "klt": "0.9.1",
+    "klt_invocation": "uvx --from \"klayout-tools==0.9.1\" klt -- the PIN_KLT release in scripts/setup-env.sh, which CI's signoff job also reads. The host's own klt (0.9.2.dev1029+g76f47afa48f1, a dev build) was deliberately NOT used.",
+    "yosys": "0.67+post (b8e7da6f40ae8f552c116bf6c359b07c6533e159)",
+    "sv2v": "v0.0.13",
+    "verilator": "5.050",
+    "iverilog": "13.0",
+    "cocotb": "2.0.1",
+    "host": "loom-worker (AWS dispatch worker)"
+  },
+  "command": "scripts/synth-soc.sh (x2: unmodified origin/main @ 9d8dc9c, then this commit's tree); verification/tools/lint_rtl.sh (with and without SRAM_MACRO_V); make -C verification soc-gate",
+  "note": "Resynthesis for issue #173: the USE_PORT1=0 macro build's constant dout1 tie-off (32 sky130_fd_sc_hd__conb_1, 120.1152 um2) is replaced by an alias of bank 0's already-driven port-1 output, so Yosys emits zero cells for the module output that no instance connects. The behavioural branch's '0 is unchanged. synth_result.json is this commit's klt output; synth_result_baseline.json is the unmodified-main run's, kept so the before figures are auditable rather than asserted. The baseline netlist reproduced main's committed one byte-for-byte (sha256 f71571b5...), and both runs used TMPDIR unset -- klt synthesize deadlocks in Yosys' abc pass on this host under the loom sandbox TMPDIR (filed at 2AMLogic/klayout-tools); every committed netlist was produced that way.",
+  "netlist": {
+    "file": "netlist/soc_top_synth.v",
+    "sha256": "ba018bda8be6d9e26744b4507e3c190833ec846c83a90ec4f8dcf81eada7ff55"
+  },
+  "baseline": {
+    "tree": "origin/main @ 9d8dc9c",
+    "netlist_sha256": "f71571b5b3209ba6a93076cd0da445fa43fe669b77a4768be32c30fd98338950",
+    "area_um2": 222467.1136,
+    "instance_count": 27688,
+    "conb_1": 7376
+  },
+  "pinned_inputs": {
+    "cve2_commit": "d7f21568028a1114be663599bd42145dccf28928",
+    "sram_macro_commit": "ebfbf5775c8cd433ad38a4d825e46c2275231511",
+    "sram_macro_liberty_sha256": "8656384775f5e10b44bed97b7193dd3188ce8cd60b7c8e02a5a4ad9e35ed03ba"
+  },
+  "supersedes": {
+    "netlist_sha256": "53f361e4e15d3d57b93b92afc87d09e803f4b6805640669d9fb72e90170b46c9",
+    "recorded_in": "verification/records/soc-synth/20261114T060249Z-1cab6e0",
+    "note": "records/soc-sta-preroute/ and records/soc-pnr/ bind that netlist and so describe a netlist one change old. The change is strictly tie-cell-removing (combinational only: sequential_area_um2 is identical at 70829.1808, and dout1 is unconnected at every instance), so no recorded timing claim moves in the unsafe direction, but re-running pre-route STA and P&R on the current netlist is outstanding work, not covered here."
+  }
+}

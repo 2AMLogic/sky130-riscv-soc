@@ -117599,42 +117599,10 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
   wire _045_;
   wire _046_;
   wire _047_;
-  wire _048_;
-  wire _049_;
-  wire _050_;
-  wire _051_;
-  wire _052_;
-  wire _053_;
-  wire _054_;
-  wire _055_;
-  wire _056_;
-  wire _057_;
-  wire _058_;
-  wire _059_;
-  wire _060_;
-  wire _061_;
-  wire _062_;
-  wire _063_;
-  wire _064_;
-  wire _065_;
-  wire _066_;
-  wire _067_;
-  wire _068_;
-  wire _069_;
-  wire _070_;
-  wire _071_;
-  wire _072_;
-  wire _073_;
-  wire _074_;
-  wire _075_;
-  wire _076_;
-  wire _077_;
-  wire _078_;
-  wire _079_;
-  wire [0:0] _080_;
-  wire [0:0] _081_;
-  wire [0:0] _082_;
-  wire [0:0] _083_;
+  wire [0:0] _048_;
+  wire [0:0] _049_;
+  wire [0:0] _050_;
+  wire [0:0] _051_;
   wire [31:0] \bank_dout0[0] ;
   wire [31:0] \bank_dout0[1] ;
   wire [31:0] \bank_dout0[2] ;
@@ -117644,19 +117612,19 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
   wire [31:0] \bank_dout1[2] ;
   wire [31:0] \bank_dout1[3] ;
   wire [1:0] bsel0;
-  sky130_fd_sc_hd__buf_6 _084_ (
+  sky130_fd_sc_hd__buf_6 _052_ (
     .A(bsel0[0]),
     .X(_001_)
   );
-  sky130_fd_sc_hd__buf_12 _085_ (
+  sky130_fd_sc_hd__buf_12 _053_ (
     .A(_001_),
     .X(_002_)
   );
-  sky130_fd_sc_hd__buf_2 _086_ (
+  sky130_fd_sc_hd__buf_2 _054_ (
     .A(bsel0[1]),
     .X(_003_)
   );
-  sky130_fd_sc_hd__mux4_2 _087_ (
+  sky130_fd_sc_hd__mux4_2 _055_ (
     .A0(\bank_dout0[0] [30]),
     .A1(\bank_dout0[1] [30]),
     .A2(\bank_dout0[2] [30]),
@@ -117665,7 +117633,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_003_),
     .X(dout0[30])
   );
-  sky130_fd_sc_hd__mux4_2 _088_ (
+  sky130_fd_sc_hd__mux4_2 _056_ (
     .A0(\bank_dout0[0] [29]),
     .A1(\bank_dout0[1] [29]),
     .A2(\bank_dout0[2] [29]),
@@ -117674,7 +117642,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_003_),
     .X(dout0[29])
   );
-  sky130_fd_sc_hd__mux4_2 _089_ (
+  sky130_fd_sc_hd__mux4_2 _057_ (
     .A0(\bank_dout0[0] [28]),
     .A1(\bank_dout0[1] [28]),
     .A2(\bank_dout0[2] [28]),
@@ -117683,7 +117651,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_003_),
     .X(dout0[28])
   );
-  sky130_fd_sc_hd__mux4_2 _090_ (
+  sky130_fd_sc_hd__mux4_2 _058_ (
     .A0(\bank_dout0[0] [27]),
     .A1(\bank_dout0[1] [27]),
     .A2(\bank_dout0[2] [27]),
@@ -117692,7 +117660,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_003_),
     .X(dout0[27])
   );
-  sky130_fd_sc_hd__mux4_2 _091_ (
+  sky130_fd_sc_hd__mux4_2 _059_ (
     .A0(\bank_dout0[0] [26]),
     .A1(\bank_dout0[1] [26]),
     .A2(\bank_dout0[2] [26]),
@@ -117701,7 +117669,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_003_),
     .X(dout0[26])
   );
-  sky130_fd_sc_hd__mux4_2 _092_ (
+  sky130_fd_sc_hd__mux4_2 _060_ (
     .A0(\bank_dout0[0] [25]),
     .A1(\bank_dout0[1] [25]),
     .A2(\bank_dout0[2] [25]),
@@ -117710,7 +117678,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_003_),
     .X(dout0[25])
   );
-  sky130_fd_sc_hd__mux4_2 _093_ (
+  sky130_fd_sc_hd__mux4_2 _061_ (
     .A0(\bank_dout0[0] [24]),
     .A1(\bank_dout0[1] [24]),
     .A2(\bank_dout0[2] [24]),
@@ -117719,7 +117687,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_003_),
     .X(dout0[24])
   );
-  sky130_fd_sc_hd__mux4_2 _094_ (
+  sky130_fd_sc_hd__mux4_2 _062_ (
     .A0(\bank_dout0[0] [23]),
     .A1(\bank_dout0[1] [23]),
     .A2(\bank_dout0[2] [23]),
@@ -117728,7 +117696,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_003_),
     .X(dout0[23])
   );
-  sky130_fd_sc_hd__mux4_2 _095_ (
+  sky130_fd_sc_hd__mux4_2 _063_ (
     .A0(\bank_dout0[0] [22]),
     .A1(\bank_dout0[1] [22]),
     .A2(\bank_dout0[2] [22]),
@@ -117737,7 +117705,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_003_),
     .X(dout0[22])
   );
-  sky130_fd_sc_hd__mux4_2 _096_ (
+  sky130_fd_sc_hd__mux4_2 _064_ (
     .A0(\bank_dout0[0] [21]),
     .A1(\bank_dout0[1] [21]),
     .A2(\bank_dout0[2] [21]),
@@ -117746,15 +117714,15 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_003_),
     .X(dout0[21])
   );
-  sky130_fd_sc_hd__buf_12 _097_ (
+  sky130_fd_sc_hd__buf_12 _065_ (
     .A(_001_),
     .X(_004_)
   );
-  sky130_fd_sc_hd__buf_2 _098_ (
+  sky130_fd_sc_hd__buf_2 _066_ (
     .A(bsel0[1]),
     .X(_005_)
   );
-  sky130_fd_sc_hd__mux4_2 _099_ (
+  sky130_fd_sc_hd__mux4_2 _067_ (
     .A0(\bank_dout0[0] [20]),
     .A1(\bank_dout0[1] [20]),
     .A2(\bank_dout0[2] [20]),
@@ -117763,7 +117731,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_005_),
     .X(dout0[20])
   );
-  sky130_fd_sc_hd__mux4_2 _100_ (
+  sky130_fd_sc_hd__mux4_2 _068_ (
     .A0(\bank_dout0[0] [19]),
     .A1(\bank_dout0[1] [19]),
     .A2(\bank_dout0[2] [19]),
@@ -117772,7 +117740,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_005_),
     .X(dout0[19])
   );
-  sky130_fd_sc_hd__mux4_2 _101_ (
+  sky130_fd_sc_hd__mux4_2 _069_ (
     .A0(\bank_dout0[0] [18]),
     .A1(\bank_dout0[1] [18]),
     .A2(\bank_dout0[2] [18]),
@@ -117781,7 +117749,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_005_),
     .X(dout0[18])
   );
-  sky130_fd_sc_hd__mux4_2 _102_ (
+  sky130_fd_sc_hd__mux4_2 _070_ (
     .A0(\bank_dout0[0] [17]),
     .A1(\bank_dout0[1] [17]),
     .A2(\bank_dout0[2] [17]),
@@ -117790,7 +117758,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_005_),
     .X(dout0[17])
   );
-  sky130_fd_sc_hd__mux4_2 _103_ (
+  sky130_fd_sc_hd__mux4_2 _071_ (
     .A0(\bank_dout0[0] [16]),
     .A1(\bank_dout0[1] [16]),
     .A2(\bank_dout0[2] [16]),
@@ -117799,7 +117767,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_005_),
     .X(dout0[16])
   );
-  sky130_fd_sc_hd__mux4_2 _104_ (
+  sky130_fd_sc_hd__mux4_2 _072_ (
     .A0(\bank_dout0[0] [15]),
     .A1(\bank_dout0[1] [15]),
     .A2(\bank_dout0[2] [15]),
@@ -117808,7 +117776,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_005_),
     .X(dout0[15])
   );
-  sky130_fd_sc_hd__mux4_2 _105_ (
+  sky130_fd_sc_hd__mux4_2 _073_ (
     .A0(\bank_dout0[0] [14]),
     .A1(\bank_dout0[1] [14]),
     .A2(\bank_dout0[2] [14]),
@@ -117817,7 +117785,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_005_),
     .X(dout0[14])
   );
-  sky130_fd_sc_hd__mux4_2 _106_ (
+  sky130_fd_sc_hd__mux4_2 _074_ (
     .A0(\bank_dout0[0] [13]),
     .A1(\bank_dout0[1] [13]),
     .A2(\bank_dout0[2] [13]),
@@ -117826,7 +117794,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_005_),
     .X(dout0[13])
   );
-  sky130_fd_sc_hd__mux4_2 _107_ (
+  sky130_fd_sc_hd__mux4_2 _075_ (
     .A0(\bank_dout0[0] [12]),
     .A1(\bank_dout0[1] [12]),
     .A2(\bank_dout0[2] [12]),
@@ -117835,7 +117803,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_005_),
     .X(dout0[12])
   );
-  sky130_fd_sc_hd__mux4_2 _108_ (
+  sky130_fd_sc_hd__mux4_2 _076_ (
     .A0(\bank_dout0[0] [11]),
     .A1(\bank_dout0[1] [11]),
     .A2(\bank_dout0[2] [11]),
@@ -117844,15 +117812,15 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_005_),
     .X(dout0[11])
   );
-  sky130_fd_sc_hd__buf_12 _109_ (
+  sky130_fd_sc_hd__buf_12 _077_ (
     .A(_001_),
     .X(_006_)
   );
-  sky130_fd_sc_hd__buf_2 _110_ (
+  sky130_fd_sc_hd__buf_2 _078_ (
     .A(bsel0[1]),
     .X(_007_)
   );
-  sky130_fd_sc_hd__mux4_2 _111_ (
+  sky130_fd_sc_hd__mux4_2 _079_ (
     .A0(\bank_dout0[0] [10]),
     .A1(\bank_dout0[1] [10]),
     .A2(\bank_dout0[2] [10]),
@@ -117861,7 +117829,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_007_),
     .X(dout0[10])
   );
-  sky130_fd_sc_hd__mux4_2 _112_ (
+  sky130_fd_sc_hd__mux4_2 _080_ (
     .A0(\bank_dout0[0] [9]),
     .A1(\bank_dout0[1] [9]),
     .A2(\bank_dout0[2] [9]),
@@ -117870,7 +117838,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_007_),
     .X(dout0[9])
   );
-  sky130_fd_sc_hd__mux4_2 _113_ (
+  sky130_fd_sc_hd__mux4_2 _081_ (
     .A0(\bank_dout0[0] [8]),
     .A1(\bank_dout0[1] [8]),
     .A2(\bank_dout0[2] [8]),
@@ -117879,7 +117847,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_007_),
     .X(dout0[8])
   );
-  sky130_fd_sc_hd__mux4_2 _114_ (
+  sky130_fd_sc_hd__mux4_2 _082_ (
     .A0(\bank_dout0[0] [7]),
     .A1(\bank_dout0[1] [7]),
     .A2(\bank_dout0[2] [7]),
@@ -117888,7 +117856,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_007_),
     .X(dout0[7])
   );
-  sky130_fd_sc_hd__mux4_2 _115_ (
+  sky130_fd_sc_hd__mux4_2 _083_ (
     .A0(\bank_dout0[0] [6]),
     .A1(\bank_dout0[1] [6]),
     .A2(\bank_dout0[2] [6]),
@@ -117897,7 +117865,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_007_),
     .X(dout0[6])
   );
-  sky130_fd_sc_hd__mux4_2 _116_ (
+  sky130_fd_sc_hd__mux4_2 _084_ (
     .A0(\bank_dout0[0] [5]),
     .A1(\bank_dout0[1] [5]),
     .A2(\bank_dout0[2] [5]),
@@ -117906,7 +117874,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_007_),
     .X(dout0[5])
   );
-  sky130_fd_sc_hd__mux4_2 _117_ (
+  sky130_fd_sc_hd__mux4_2 _085_ (
     .A0(\bank_dout0[0] [4]),
     .A1(\bank_dout0[1] [4]),
     .A2(\bank_dout0[2] [4]),
@@ -117915,7 +117883,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_007_),
     .X(dout0[4])
   );
-  sky130_fd_sc_hd__mux4_2 _118_ (
+  sky130_fd_sc_hd__mux4_2 _086_ (
     .A0(\bank_dout0[0] [3]),
     .A1(\bank_dout0[1] [3]),
     .A2(\bank_dout0[2] [3]),
@@ -117924,7 +117892,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_007_),
     .X(dout0[3])
   );
-  sky130_fd_sc_hd__mux4_2 _119_ (
+  sky130_fd_sc_hd__mux4_2 _087_ (
     .A0(\bank_dout0[0] [2]),
     .A1(\bank_dout0[1] [2]),
     .A2(\bank_dout0[2] [2]),
@@ -117933,7 +117901,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_007_),
     .X(dout0[2])
   );
-  sky130_fd_sc_hd__mux4_2 _120_ (
+  sky130_fd_sc_hd__mux4_2 _088_ (
     .A0(\bank_dout0[0] [1]),
     .A1(\bank_dout0[1] [1]),
     .A2(\bank_dout0[2] [1]),
@@ -117942,7 +117910,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(_007_),
     .X(dout0[1])
   );
-  sky130_fd_sc_hd__mux4_1 _121_ (
+  sky130_fd_sc_hd__mux4_1 _089_ (
     .A0(\bank_dout0[0] [0]),
     .A1(\bank_dout0[1] [0]),
     .A2(\bank_dout0[2] [0]),
@@ -117951,7 +117919,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(bsel0[1]),
     .X(dout0[0])
   );
-  sky130_fd_sc_hd__mux4_1 _122_ (
+  sky130_fd_sc_hd__mux4_1 _090_ (
     .A0(\bank_dout0[0] [31]),
     .A1(\bank_dout0[1] [31]),
     .A2(\bank_dout0[2] [31]),
@@ -117960,273 +117928,177 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .S1(bsel0[1]),
     .X(dout0[31])
   );
-  sky130_fd_sc_hd__nand3b_1 _123_ (
+  sky130_fd_sc_hd__nand3b_1 _091_ (
     .A_N(csb0),
     .B(addr0[10]),
     .C(addr0[9]),
-    .Y(_083_)
+    .Y(_051_)
   );
-  sky130_fd_sc_hd__or3b_2 _124_ (
+  sky130_fd_sc_hd__or3b_2 _092_ (
     .A(addr0[9]),
     .B(csb0),
     .C_N(addr0[10]),
-    .X(_082_)
+    .X(_050_)
   );
-  sky130_fd_sc_hd__or3b_2 _125_ (
+  sky130_fd_sc_hd__or3b_2 _093_ (
     .A(csb0),
     .B(addr0[10]),
     .C_N(addr0[9]),
-    .X(_081_)
+    .X(_049_)
   );
-  sky130_fd_sc_hd__or3_1 _126_ (
+  sky130_fd_sc_hd__or3_1 _094_ (
     .A(addr0[9]),
     .B(csb0),
     .C(addr0[10]),
-    .X(_080_)
+    .X(_048_)
   );
-  sky130_fd_sc_hd__nor2b_1 _127_ (
+  sky130_fd_sc_hd__nor2b_1 _095_ (
     .A(csb0),
     .B_N(web0),
     .Y(_000_)
   );
-  sky130_fd_sc_hd__edfxtp_1 _128_ (
+  sky130_fd_sc_hd__edfxtp_1 _096_ (
     .CLK(clk0),
     .D(addr0[9]),
     .DE(_000_),
     .Q(bsel0[0])
   );
-  sky130_fd_sc_hd__edfxtp_1 _129_ (
+  sky130_fd_sc_hd__edfxtp_1 _097_ (
     .CLK(clk0),
     .D(addr0[10]),
     .DE(_000_),
     .Q(bsel0[1])
   );
-  sky130_fd_sc_hd__conb_1 _130_ (
+  sky130_fd_sc_hd__conb_1 _098_ (
     .HI(_008_)
   );
-  sky130_fd_sc_hd__conb_1 _131_ (
+  sky130_fd_sc_hd__conb_1 _099_ (
     .HI(_009_)
   );
-  sky130_fd_sc_hd__conb_1 _132_ (
+  sky130_fd_sc_hd__conb_1 _100_ (
     .HI(_010_)
   );
-  sky130_fd_sc_hd__conb_1 _133_ (
+  sky130_fd_sc_hd__conb_1 _101_ (
     .HI(_011_)
   );
-  sky130_fd_sc_hd__conb_1 _134_ (
+  sky130_fd_sc_hd__conb_1 _102_ (
     .LO(_012_)
   );
-  sky130_fd_sc_hd__conb_1 _135_ (
+  sky130_fd_sc_hd__conb_1 _103_ (
     .LO(_013_)
   );
-  sky130_fd_sc_hd__conb_1 _136_ (
+  sky130_fd_sc_hd__conb_1 _104_ (
     .LO(_014_)
   );
-  sky130_fd_sc_hd__conb_1 _137_ (
+  sky130_fd_sc_hd__conb_1 _105_ (
     .LO(_015_)
   );
-  sky130_fd_sc_hd__conb_1 _138_ (
+  sky130_fd_sc_hd__conb_1 _106_ (
     .LO(_016_)
   );
-  sky130_fd_sc_hd__conb_1 _139_ (
+  sky130_fd_sc_hd__conb_1 _107_ (
     .LO(_017_)
   );
-  sky130_fd_sc_hd__conb_1 _140_ (
+  sky130_fd_sc_hd__conb_1 _108_ (
     .LO(_018_)
   );
-  sky130_fd_sc_hd__conb_1 _141_ (
+  sky130_fd_sc_hd__conb_1 _109_ (
     .LO(_019_)
   );
-  sky130_fd_sc_hd__conb_1 _142_ (
+  sky130_fd_sc_hd__conb_1 _110_ (
     .LO(_020_)
   );
-  sky130_fd_sc_hd__conb_1 _143_ (
+  sky130_fd_sc_hd__conb_1 _111_ (
     .LO(_021_)
   );
-  sky130_fd_sc_hd__conb_1 _144_ (
+  sky130_fd_sc_hd__conb_1 _112_ (
     .LO(_022_)
   );
-  sky130_fd_sc_hd__conb_1 _145_ (
+  sky130_fd_sc_hd__conb_1 _113_ (
     .LO(_023_)
   );
-  sky130_fd_sc_hd__conb_1 _146_ (
+  sky130_fd_sc_hd__conb_1 _114_ (
     .LO(_024_)
   );
-  sky130_fd_sc_hd__conb_1 _147_ (
+  sky130_fd_sc_hd__conb_1 _115_ (
     .LO(_025_)
   );
-  sky130_fd_sc_hd__conb_1 _148_ (
+  sky130_fd_sc_hd__conb_1 _116_ (
     .LO(_026_)
   );
-  sky130_fd_sc_hd__conb_1 _149_ (
+  sky130_fd_sc_hd__conb_1 _117_ (
     .LO(_027_)
   );
-  sky130_fd_sc_hd__conb_1 _150_ (
+  sky130_fd_sc_hd__conb_1 _118_ (
     .LO(_028_)
   );
-  sky130_fd_sc_hd__conb_1 _151_ (
+  sky130_fd_sc_hd__conb_1 _119_ (
     .LO(_029_)
   );
-  sky130_fd_sc_hd__conb_1 _152_ (
+  sky130_fd_sc_hd__conb_1 _120_ (
     .LO(_030_)
   );
-  sky130_fd_sc_hd__conb_1 _153_ (
+  sky130_fd_sc_hd__conb_1 _121_ (
     .LO(_031_)
   );
-  sky130_fd_sc_hd__conb_1 _154_ (
+  sky130_fd_sc_hd__conb_1 _122_ (
     .LO(_032_)
   );
-  sky130_fd_sc_hd__conb_1 _155_ (
+  sky130_fd_sc_hd__conb_1 _123_ (
     .LO(_033_)
   );
-  sky130_fd_sc_hd__conb_1 _156_ (
+  sky130_fd_sc_hd__conb_1 _124_ (
     .LO(_034_)
   );
-  sky130_fd_sc_hd__conb_1 _157_ (
+  sky130_fd_sc_hd__conb_1 _125_ (
     .LO(_035_)
   );
-  sky130_fd_sc_hd__conb_1 _158_ (
+  sky130_fd_sc_hd__conb_1 _126_ (
     .LO(_036_)
   );
-  sky130_fd_sc_hd__conb_1 _159_ (
+  sky130_fd_sc_hd__conb_1 _127_ (
     .LO(_037_)
   );
-  sky130_fd_sc_hd__conb_1 _160_ (
+  sky130_fd_sc_hd__conb_1 _128_ (
     .LO(_038_)
   );
-  sky130_fd_sc_hd__conb_1 _161_ (
+  sky130_fd_sc_hd__conb_1 _129_ (
     .LO(_039_)
   );
-  sky130_fd_sc_hd__conb_1 _162_ (
+  sky130_fd_sc_hd__conb_1 _130_ (
     .LO(_040_)
   );
-  sky130_fd_sc_hd__conb_1 _163_ (
+  sky130_fd_sc_hd__conb_1 _131_ (
     .LO(_041_)
   );
-  sky130_fd_sc_hd__conb_1 _164_ (
+  sky130_fd_sc_hd__conb_1 _132_ (
     .LO(_042_)
   );
-  sky130_fd_sc_hd__conb_1 _165_ (
+  sky130_fd_sc_hd__conb_1 _133_ (
     .LO(_043_)
   );
-  sky130_fd_sc_hd__conb_1 _166_ (
+  sky130_fd_sc_hd__conb_1 _134_ (
     .LO(_044_)
   );
-  sky130_fd_sc_hd__conb_1 _167_ (
+  sky130_fd_sc_hd__conb_1 _135_ (
     .LO(_045_)
   );
-  sky130_fd_sc_hd__conb_1 _168_ (
+  sky130_fd_sc_hd__conb_1 _136_ (
     .LO(_046_)
   );
-  sky130_fd_sc_hd__conb_1 _169_ (
+  sky130_fd_sc_hd__conb_1 _137_ (
     .LO(_047_)
-  );
-  sky130_fd_sc_hd__conb_1 _170_ (
-    .LO(_048_)
-  );
-  sky130_fd_sc_hd__conb_1 _171_ (
-    .LO(_049_)
-  );
-  sky130_fd_sc_hd__conb_1 _172_ (
-    .LO(_050_)
-  );
-  sky130_fd_sc_hd__conb_1 _173_ (
-    .LO(_051_)
-  );
-  sky130_fd_sc_hd__conb_1 _174_ (
-    .LO(_052_)
-  );
-  sky130_fd_sc_hd__conb_1 _175_ (
-    .LO(_053_)
-  );
-  sky130_fd_sc_hd__conb_1 _176_ (
-    .LO(_054_)
-  );
-  sky130_fd_sc_hd__conb_1 _177_ (
-    .LO(_055_)
-  );
-  sky130_fd_sc_hd__conb_1 _178_ (
-    .LO(_056_)
-  );
-  sky130_fd_sc_hd__conb_1 _179_ (
-    .LO(_057_)
-  );
-  sky130_fd_sc_hd__conb_1 _180_ (
-    .LO(_058_)
-  );
-  sky130_fd_sc_hd__conb_1 _181_ (
-    .LO(_059_)
-  );
-  sky130_fd_sc_hd__conb_1 _182_ (
-    .LO(_060_)
-  );
-  sky130_fd_sc_hd__conb_1 _183_ (
-    .LO(_061_)
-  );
-  sky130_fd_sc_hd__conb_1 _184_ (
-    .LO(_062_)
-  );
-  sky130_fd_sc_hd__conb_1 _185_ (
-    .LO(_063_)
-  );
-  sky130_fd_sc_hd__conb_1 _186_ (
-    .LO(_064_)
-  );
-  sky130_fd_sc_hd__conb_1 _187_ (
-    .LO(_065_)
-  );
-  sky130_fd_sc_hd__conb_1 _188_ (
-    .LO(_066_)
-  );
-  sky130_fd_sc_hd__conb_1 _189_ (
-    .LO(_067_)
-  );
-  sky130_fd_sc_hd__conb_1 _190_ (
-    .LO(_068_)
-  );
-  sky130_fd_sc_hd__conb_1 _191_ (
-    .LO(_069_)
-  );
-  sky130_fd_sc_hd__conb_1 _192_ (
-    .LO(_070_)
-  );
-  sky130_fd_sc_hd__conb_1 _193_ (
-    .LO(_071_)
-  );
-  sky130_fd_sc_hd__conb_1 _194_ (
-    .LO(_072_)
-  );
-  sky130_fd_sc_hd__conb_1 _195_ (
-    .LO(_073_)
-  );
-  sky130_fd_sc_hd__conb_1 _196_ (
-    .LO(_074_)
-  );
-  sky130_fd_sc_hd__conb_1 _197_ (
-    .LO(_075_)
-  );
-  sky130_fd_sc_hd__conb_1 _198_ (
-    .LO(_076_)
-  );
-  sky130_fd_sc_hd__conb_1 _199_ (
-    .LO(_077_)
-  );
-  sky130_fd_sc_hd__conb_1 _200_ (
-    .LO(_078_)
-  );
-  sky130_fd_sc_hd__conb_1 _201_ (
-    .LO(_079_)
   );
   sky130_sram_2kbyte_1rw1r_32x512_8 \g_bank[0].u_macro  (
     .addr0(addr0[8:0]),
     .addr1({ _029_, _028_, _027_, _026_, _025_, _024_, _023_, _022_, _021_ }),
     .clk0(clk0),
     .clk1(clk1),
-    .csb0(_080_),
+    .csb0(_048_),
     .csb1(_009_),
     .din0(din0),
     .dout0(\bank_dout0[0] ),
-    .dout1(\bank_dout1[0] ),
+    .dout1(dout1),
     .web0(web0),
     .wmask0(wmask0)
   );
@@ -118235,7 +118107,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .addr1({ _047_, _046_, _045_, _044_, _043_, _042_, _041_, _040_, _039_ }),
     .clk0(clk0),
     .clk1(clk1),
-    .csb0(_081_),
+    .csb0(_049_),
     .csb1(_011_),
     .din0(din0),
     .dout0(\bank_dout0[1] ),
@@ -118248,7 +118120,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .addr1({ _020_, _019_, _018_, _017_, _016_, _015_, _014_, _013_, _012_ }),
     .clk0(clk0),
     .clk1(clk1),
-    .csb0(_082_),
+    .csb0(_050_),
     .csb1(_008_),
     .din0(din0),
     .dout0(\bank_dout0[2] ),
@@ -118261,7 +118133,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .addr1({ _038_, _037_, _036_, _035_, _034_, _033_, _032_, _031_, _030_ }),
     .clk0(clk0),
     .clk1(clk1),
-    .csb0(_083_),
+    .csb0(_051_),
     .csb1(_010_),
     .din0(din0),
     .dout0(\bank_dout0[3] ),
@@ -118269,7 +118141,7 @@ module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'
     .web0(web0),
     .wmask0(wmask0)
   );
-  assign dout1 = { _079_, _078_, _077_, _076_, _075_, _074_, _073_, _072_, _071_, _070_, _069_, _068_, _067_, _066_, _065_, _064_, _063_, _062_, _061_, _060_, _059_, _058_, _057_, _056_, _055_, _054_, _053_, _052_, _051_, _050_, _049_, _048_ };
+  assign \bank_dout1[0]  = dout1;
 endmodule
 
 module \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'1 (clk0, csb0, web0, wmask0, addr0, din0, dout0, clk1, csb1, addr1, dout1);

@@ -73,7 +73,7 @@
         "role": "source",
         "path": "rtl/soc_sram_i.sv",
         "passed": true,
-        "content_hash": "sha256:3ccd7fea7635fb6d5bec5f5be3043f4c9a3e8b8ba553ed9131c7830976593e08"
+        "content_hash": "sha256:b81749981c6d4d1edfdac965ed699adf570cbcd40a26d74b1eba897e4b7791a6"
       },
       {
         "check": "present",
@@ -136,7 +136,7 @@
         "role": "derived",
         "path": "netlist/soc_top_synth.v",
         "passed": true,
-        "content_hash": "sha256:f71571b5b3209ba6a93076cd0da445fa43fe669b77a4768be32c30fd98338950"
+        "content_hash": "sha256:ba018bda8be6d9e26744b4507e3c190833ec846c83a90ec4f8dcf81eada7ff55"
       },
       {
         "check": "recorded_hash",
@@ -159,7 +159,7 @@
             "path": "attest/item1.json",
             "scope": "repo"
           },
-          "content_hash": "sha256:9835e826a41acb4aacf3a9d96a336294333277bf83361f3604bfdcdc5d637d61"
+          "content_hash": "sha256:cc3ff8c1636cebcfff90b9e5300f52e5868554bd429727e5c33475b89c100ed5"
         },
         {
           "path": {
@@ -180,7 +180,7 @@
             "path": "netlist/soc_top_synth.v",
             "scope": "repo"
           },
-          "content_hash": "sha256:f71571b5b3209ba6a93076cd0da445fa43fe669b77a4768be32c30fd98338950"
+          "content_hash": "sha256:ba018bda8be6d9e26744b4507e3c190833ec846c83a90ec4f8dcf81eada7ff55"
         },
         {
           "path": {
@@ -229,7 +229,7 @@
             "path": "rtl/soc_sram_i.sv",
             "scope": "repo"
           },
-          "content_hash": "sha256:3ccd7fea7635fb6d5bec5f5be3043f4c9a3e8b8ba553ed9131c7830976593e08"
+          "content_hash": "sha256:b81749981c6d4d1edfdac965ed699adf570cbcd40a26d74b1eba897e4b7791a6"
         },
         {
           "path": {
@@ -288,7 +288,7 @@
           "content_hash": "sha256:c747166487204bfa4cc32d254eeb5a898036111c29872a3cbc0b8f8628c6ab0b"
         }
       ],
-      "content_hash": "sha256:b06947de47f22154a1dc61148b95ed13aa900b5f77ebe9734ae87a364cd82717"
+      "content_hash": "sha256:a6eb388c34a87abb0f2b428f406dfe1a9a9ae79d00be998bd9775144cb2c48c5"
     }
   }
 }

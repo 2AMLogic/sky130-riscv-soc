@@ -91,5 +91,15 @@ don't-care contract instead of claiming a constant.
 - `attest/item1.json`, `evidence/item1.json` and the signoff manifest are
   regenerated with the pinned klt 0.9.1; all three `signoff.yml` checks
   reproduce locally (exit 0).
+  **Correction (post-review):** the first regeneration of
+  `manifests/sky130-riscv-soc.json` pinned `evidence.1.content_hash` to the
+  sha256 of the envelope *file* `evidence/item1.json` instead of the
+  input-set digest (`provenance.input.content_hash`); the committed report
+  from that tree graded item 1 `unmet`/`stale_evidence` and dropped
+  `t1_met_count` to 1. The pin now carries the input-set digest
+  (`sha256:a6eb388c…`) and the report is regenerated from it: item 1 `met`,
+  `t1_met_count` 2, matching `main`. The "checks reproduce (exit 0)"
+  statement above held even for the wrong pin — `--check` asserts
+  reproduction, not met-ness — so it was not evidence of item 1's state.
 - `klt synthesize` runs in this record are local, single-corner synthesis on
   the pinned tools — no batch fleet involved.

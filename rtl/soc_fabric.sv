@@ -31,8 +31,6 @@ module soc_fabric #(
     output logic        i_gnt_o,
     input  logic [31:0] i_addr_i,
     input  logic        i_we_i,
-    input  logic [3:0]  i_be_i,
-    input  logic [31:0] i_wdata_i,
     output logic        i_rvalid_o,
     output logic [31:0] i_rdata_o,
     output logic        i_err_o,
@@ -75,7 +73,7 @@ module soc_fabric #(
       .DSRAM_AW(DSRAM_AW)
   ) u_xbar (
       .clk_i, .rst_ni,
-      .i_req_i, .i_gnt_o, .i_addr_i, .i_we_i, .i_be_i, .i_wdata_i,
+      .i_req_i, .i_gnt_o, .i_addr_i, .i_we_i,
       .i_rvalid_o, .i_rdata_o, .i_err_o,
       .d_req_i, .d_gnt_o, .d_addr_i, .d_we_i, .d_be_i, .d_wdata_i,
       .d_rvalid_o, .d_rdata_o, .d_err_o,

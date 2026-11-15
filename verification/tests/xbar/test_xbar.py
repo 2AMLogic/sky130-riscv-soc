@@ -52,8 +52,10 @@ class Fab:
             if r:
                 getattr(dut, f"{m}_addr_i").value = r["addr"]
                 getattr(dut, f"{m}_we_i").value = r["we"]
-                getattr(dut, f"{m}_be_i").value = r["be"]
-                getattr(dut, f"{m}_wdata_i").value = r["wdata"]
+                if m == "d":
+                    # the instruction manager carries no write payload
+                    getattr(dut, f"{m}_be_i").value = r["be"]
+                    getattr(dut, f"{m}_wdata_i").value = r["wdata"]
         await Timer(1, unit="ns")
         g = (int(dut.i_gnt_o.value and i is not None), int(dut.d_gnt_o.value and d is not None))
         await RisingEdge(dut.clk_i)

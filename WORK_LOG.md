@@ -3,8 +3,18 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-11-15
+
+- **PR #163**: docs: cite record 0004 by filename at 9 of the 14 sites that named only the number
+- **PR #160**: ci: extract the sv2v install and CVE2 convert prelude into one composite action
+- **Issue #157** (closed): Dedupe .github/workflows/ci.yml: the sv2v install and CVE2 convert prelude is copied byte-for-byte into both jobs
+
 ### 2026-11-14
 
+- **PR #165**: check: compare item-6 row class and reason against the hash-bound JSON
+- **Issue #164** (closed): Remove the hand-maintained sync between the two item-6 statements: CI compares ids only, so the human-readable .md can contradict the hash-bound .json
+- **PR #166**: refactor: factor the soc_top bench core into tests/lib, drop two dead counters
+- **Issue #155** (closed): Remove the duplicate soc_top bench: test_boot.Soc and soc_bench.Soc reimplement one reset and D-SRAM preload, plus two write-only cycle counters
 - **PR #158**: refactor: hoist the shared cocotb reset sequence and bus contract into tests/lib/obi_bench
 - **Issue #154** (closed): Remove the duplicate soc_fabric bus driver: periph_bus.Bus reimplements the reset sequence and response contract that test_xbar.Fab already has
 - **PR #150**: refactor(rtl): fold the OBI error responder into obi_xbar's own response flops

@@ -2,9 +2,14 @@
 // granularity. Used for every SRAM in soc_fabric: the two-port I-SRAM uses
 // both ports (USE_PORT1=1), and the D-SRAM (and the ISRAM_1RW=1 single-port
 // I-SRAM) elaborate USE_PORT1=0 -- no port-1 bank select or output mux is
-// built, dout1 is driven to a constant, and under -DSOC_SRAM_MACRO every
-// macro's csb1 is held high with addr1 zero, which is what holds the port-1
-// read off (0004-sram-macro-organization.md item 5).
+// built. Under -DSOC_SRAM_MACRO every macro's csb1 is held high with addr1
+// zero, which is what holds the port-1 read off (0004-sram-macro-organization.md
+// item 5). With port 1 off, dout1 is a don't-care: the behavioural build
+// drives it to a constant, while the macro build aliases bank 0's port-1
+// output (assign dout1 = bank_dout1[0]) -- a pure net rename, so Yosys
+// emits no cells for it. With csb1 tied high that alias reads X in
+// simulation; no USE_PORT1=0 instance connects dout1, and it exists only
+// because SystemVerilog has no conditional port declaration.
 // Port interface follows the OpenRAM convention (active-low csb/web, one-cycle
 // registered read). Port 0 reads and writes; port 1 reads.
 // AW is the word-address width; the macro build supports AW=11 only.
@@ -65,7 +70,12 @@ module soc_sram_i #(
     always_ff @(posedge clk1) if (!csb1) bsel1 <= addr1[10:9];
     assign dout1 = bank_dout1[bsel1];
   end else begin : g_no_port1
-    assign dout1 = '0;
+    // Port 1 is off: no instance reads dout1. Alias an already-driven macro
+    // output instead of '0 -- Yosys maps the rename to zero tie cells, where
+    // the constant costs 32 conb_1 (one per bit). With csb1 tied high the
+    // macro model leaves bank_dout1[0] at X, so dout1 is X in the macro
+    // build's simulation; it is a don't-care output.
+    assign dout1 = bank_dout1[0];
   end
 `else
   logic [31:0] mem[2**AW];

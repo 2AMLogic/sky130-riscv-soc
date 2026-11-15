@@ -98,8 +98,6 @@ module soc_top #(
       .i_gnt_o   (instr_gnt),
       .i_addr_i  (instr_addr),
       .i_we_i    (1'b0),
-      .i_be_i    (4'hF),
-      .i_wdata_i (32'h0),
       .i_rvalid_o(instr_rvalid),
       .i_rdata_o (instr_rdata),
       .i_err_o   (instr_err),

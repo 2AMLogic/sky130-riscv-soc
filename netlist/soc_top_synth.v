@@ -5306,8 +5306,8 @@ module \$paramod$2806d0a77015858ba718eaa88cae9d86203633c6\cve2_id_stage (clk_i, 
   wire rf_we_dec;
   wire scoreboard_busy;
   wire stall_id;
-  wire [31:0] \sv2v_cast_32$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:5468$3718.inp ;
-  wire [31:0] \sv2v_cast_32$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:5479$3719.inp ;
+  wire [31:0] \sv2v_cast_32$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:5456$3718.inp ;
+  wire [31:0] \sv2v_cast_32$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:5467$3719.inp ;
   wire wfi_insn_dec;
   wire [31:0] zimm_rs1_type;
   sky130_fd_sc_hd__buf_2 _0684_ (
@@ -9699,8 +9699,8 @@ module \$paramod$2806d0a77015858ba718eaa88cae9d86203633c6\cve2_id_stage (clk_i, 
     .x_issue_resp_register_read_i(x_issue_resp_i[2:0]),
     .zimm_rs1_type_o(zimm_rs1_type)
   );
-  assign \sv2v_cast_32$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:5479$3719.inp  = { _0405_, _0404_, _0403_, _0402_, _0401_, _0400_, _0399_, _0398_, _0397_, _0396_, _0395_, _0394_, _0393_, _0392_, _0391_, _0390_, _0389_, _0388_, _0387_, _0386_, _0385_, _0384_, _0383_, _0382_, _0381_, _0380_, _0379_, _0378_, _0377_, _0376_, _0375_, _0374_ };
-  assign \sv2v_cast_32$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:5468$3718.inp  = { _0437_, _0436_, _0435_, _0434_, _0433_, _0432_, _0431_, _0430_, _0429_, _0428_, _0427_, _0426_, _0425_, _0424_, _0423_, _0422_, _0421_, _0420_, _0419_, _0418_, _0417_, _0416_, _0415_, _0414_, _0413_, _0412_, _0411_, _0410_, _0409_, _0408_, _0407_, _0406_ };
+  assign \sv2v_cast_32$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:5467$3719.inp  = { _0405_, _0404_, _0403_, _0402_, _0401_, _0400_, _0399_, _0398_, _0397_, _0396_, _0395_, _0394_, _0393_, _0392_, _0391_, _0390_, _0389_, _0388_, _0387_, _0386_, _0385_, _0384_, _0383_, _0382_, _0381_, _0380_, _0379_, _0378_, _0377_, _0376_, _0375_, _0374_ };
+  assign \sv2v_cast_32$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:5456$3718.inp  = { _0437_, _0436_, _0435_, _0434_, _0433_, _0432_, _0431_, _0430_, _0429_, _0428_, _0427_, _0426_, _0425_, _0424_, _0423_, _0422_, _0421_, _0420_, _0419_, _0418_, _0417_, _0416_, _0415_, _0414_, _0413_, _0412_, _0411_, _0410_, _0409_, _0408_, _0407_, _0406_ };
   assign \no_gen_xif.unused_rf_rdata_c_fwd  = rf_rdata_c_i;
   assign \no_gen_xif.unused_x_result  = x_result_i;
   assign \no_gen_xif.unused_x_result_valid  = x_result_valid_i;
@@ -38643,7 +38643,7 @@ module \$paramod$8518f471a2788739793c031051d6204ba3212c43\cve2_core (clk_i, rst_
   wire rf_we_id;
   wire rf_we_lsu;
   wire rf_we_wb;
-  wire [11:0] \sv2v_cast_12$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:7879$2798.inp ;
+  wire [11:0] \sv2v_cast_12$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:7867$2798.inp ;
   wire trigger_match;
   wire unused_illegal_insn_id;
   wire unused_instr_id_done;
@@ -39079,7 +39079,7 @@ module \$paramod$8518f471a2788739793c031051d6204ba3212c43\cve2_core (clk_i, rst_
   assign \g_no_pmp.unused_csr_pmp_cfg  = csr_pmp_cfg;
   assign \g_no_pmp.unused_csr_pmp_addr  = csr_pmp_addr;
   assign \g_no_pmp.unused_priv_lvl_ls  = priv_mode_lsu;
-  assign \sv2v_cast_12$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:7879$2798.inp  = { _15_, _14_, _13_, _12_, _11_, _10_, _09_, _08_, _07_, _06_, _05_, _04_ };
+  assign \sv2v_cast_12$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:7867$2798.inp  = { _15_, _14_, _13_, _12_, _11_, _10_, _09_, _08_, _07_, _06_, _05_, _04_ };
   assign unused_instr_id_done = instr_id_done;
   assign unused_instr_new_id = instr_new_id;
   assign unused_illegal_insn_id = illegal_insn_id;
@@ -40102,9 +40102,9 @@ module \$paramod$9a435d8f6db004a67362aa9a56f32ea481a74dbe\cve2_csr (clk_i, rst_n
   assign rd_data_o = rdata_q;
 endmodule
 
-module \$paramod$9d5a3da8d98f742b116bcb928691ac118e57cf9d\obi_xbar (clk_i, rst_ni, i_req_i, i_gnt_o, i_addr_i, i_we_i, i_be_i, i_wdata_i, i_rvalid_o, i_rdata_o, i_err_o, d_req_i, d_gnt_o, d_addr_i, d_we_i, d_be_i, d_wdata_i, d_rvalid_o, d_rdata_o, d_err_o, rom_req_o
-, rom_gnt_i, rom_addr_o, rom_rdata_i, isd_req_o, isd_gnt_i, isd_addr_o, isd_we_o, isd_be_o, isd_wdata_o, isd_rdata_i, isi_req_o, isi_gnt_i, isi_addr_o, isi_rdata_i, dsr_req_o, dsr_gnt_i, dsr_addr_o, dsr_we_o, dsr_be_o, dsr_wdata_o, dsr_rdata_i
-, per_req_o, per_gnt_i, per_addr_o, per_we_o, per_be_o, per_wdata_o, per_rdata_i, per_err_i);
+module \$paramod$9d5a3da8d98f742b116bcb928691ac118e57cf9d\obi_xbar (clk_i, rst_ni, i_req_i, i_gnt_o, i_addr_i, i_we_i, i_rvalid_o, i_rdata_o, i_err_o, d_req_i, d_gnt_o, d_addr_i, d_we_i, d_be_i, d_wdata_i, d_rvalid_o, d_rdata_o, d_err_o, rom_req_o, rom_gnt_i, rom_addr_o
+, rom_rdata_i, isd_req_o, isd_gnt_i, isd_addr_o, isd_we_o, isd_be_o, isd_wdata_o, isd_rdata_i, isi_req_o, isi_gnt_i, isi_addr_o, isi_rdata_i, dsr_req_o, dsr_gnt_i, dsr_addr_o, dsr_we_o, dsr_be_o, dsr_wdata_o, dsr_rdata_i, per_req_o, per_gnt_i
+, per_addr_o, per_we_o, per_be_o, per_wdata_o, per_rdata_i, per_err_i);
   input clk_i;
   wire clk_i;
   input rst_ni;
@@ -40117,10 +40117,6 @@ module \$paramod$9d5a3da8d98f742b116bcb928691ac118e57cf9d\obi_xbar (clk_i, rst_n
   wire [31:0] i_addr_i;
   input i_we_i;
   wire i_we_i;
-  input [3:0] i_be_i;
-  wire [3:0] i_be_i;
-  input [31:0] i_wdata_i;
-  wire [31:0] i_wdata_i;
   output i_rvalid_o;
   wire i_rvalid_o;
   output [31:0] i_rdata_o;
@@ -40423,8 +40419,8 @@ module \$paramod$9d5a3da8d98f742b116bcb928691ac118e57cf9d\obi_xbar (clk_i, rst_n
   wire _sv2v_0;
   wire d_pend_q;
   wire [4:0] d_sel_q;
-  wire [31:0] \decode$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:148$2699.a ;
-  wire [31:0] \decode$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:151$2700.a ;
+  wire [31:0] \decode$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:144$2699.a ;
+  wire [31:0] \decode$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:147$2700.a ;
   wire i_pend_q;
   wire [4:0] i_sel_q;
   sky130_fd_sc_hd__clkbuf_1 _215_ (
@@ -42199,8 +42195,8 @@ module \$paramod$9d5a3da8d98f742b116bcb928691ac118e57cf9d\obi_xbar (clk_i, rst_n
   sky130_fd_sc_hd__conb_1 _544_ (
     .LO(_214_)
   );
-  assign \decode$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:151$2700.a  = { _181_, _180_, _179_, _178_, _177_, _176_, _175_, _174_, _173_, _172_, _171_, _170_, _169_, _168_, _167_, _166_, _165_, _164_, _163_, _162_, _161_, _160_, _159_, _158_, _157_, _156_, _155_, _154_, _153_, _152_, _151_, _150_ };
-  assign \decode$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:148$2699.a  = { _213_, _212_, _211_, _210_, _209_, _208_, _207_, _206_, _205_, _204_, _203_, _202_, _201_, _200_, _199_, _198_, _197_, _196_, _195_, _194_, _193_, _192_, _191_, _190_, _189_, _188_, _187_, _186_, _185_, _184_, _183_, _182_ };
+  assign \decode$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:147$2700.a  = { _181_, _180_, _179_, _178_, _177_, _176_, _175_, _174_, _173_, _172_, _171_, _170_, _169_, _168_, _167_, _166_, _165_, _164_, _163_, _162_, _161_, _160_, _159_, _158_, _157_, _156_, _155_, _154_, _153_, _152_, _151_, _150_ };
+  assign \decode$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:144$2699.a  = { _213_, _212_, _211_, _210_, _209_, _208_, _207_, _206_, _205_, _204_, _203_, _202_, _201_, _200_, _199_, _198_, _197_, _196_, _195_, _194_, _193_, _192_, _191_, _190_, _189_, _188_, _187_, _186_, _185_, _184_, _183_, _182_ };
   assign per_wdata_o = d_wdata_i;
   assign per_be_o = d_be_i;
   assign per_we_o = d_we_i;
@@ -52220,9 +52216,9 @@ module \$paramod$eaa9894ddb8308fab98cda78b50cc933c72255b5\cve2_cs_registers (clk
   wire [7:0] \pmp_cfg_rdata[9] ;
   wire [2:0] pmp_mseccfg;
   wire [1:0] priv_lvl_q;
-  wire [0:0] \sv2v_cast_1$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3105$3854.inp ;
-  wire [0:0] \sv2v_cast_1$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3105$3855.inp ;
-  wire [1:0] \sv2v_cast_2$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3105$3856.inp ;
+  wire [0:0] \sv2v_cast_1$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3093$3854.inp ;
+  wire [0:0] \sv2v_cast_1$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3093$3855.inp ;
+  wire [1:0] \sv2v_cast_2$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3093$3856.inp ;
   wire [2:0] tmatch_control_rdata;
   wire [31:0] tmatch_value_rdata;
   wire [31:0] tselect_rdata;
@@ -75323,9 +75319,9 @@ module \$paramod$eaa9894ddb8308fab98cda78b50cc933c72255b5\cve2_cs_registers (clk
   assign \g_no_pmp_tieoffs.g_rdata[2].sv2v_tmp_D50E5  = { _05096_, _05095_, _05094_, _05093_, _05092_, _05091_, _05090_, _05089_, _05088_, _05087_, _05086_, _05085_, _05084_, _05083_, _05082_, _05081_, _05080_, _05079_, _05078_, _05077_, _05076_, _05075_, _05074_, _05073_, _05072_, _05071_, _05070_, _05069_, _05068_, _05067_, _05066_, _05065_ };
   assign \g_no_pmp_tieoffs.g_rdata[1].sv2v_tmp_D50E5  = { _05128_, _05127_, _05126_, _05125_, _05124_, _05123_, _05122_, _05121_, _05120_, _05119_, _05118_, _05117_, _05116_, _05115_, _05114_, _05113_, _05112_, _05111_, _05110_, _05109_, _05108_, _05107_, _05106_, _05105_, _05104_, _05103_, _05102_, _05101_, _05100_, _05099_, _05098_, _05097_ };
   assign \g_no_pmp_tieoffs.g_rdata[0].sv2v_tmp_D50E5  = { _05160_, _05159_, _05158_, _05157_, _05156_, _05155_, _05154_, _05153_, _05152_, _05151_, _05150_, _05149_, _05148_, _05147_, _05146_, _05145_, _05144_, _05143_, _05142_, _05141_, _05140_, _05139_, _05138_, _05137_, _05136_, _05135_, _05134_, _05133_, _05132_, _05131_, _05130_, _05129_ };
-  assign \sv2v_cast_2$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3105$3856.inp  = { _05162_, _05161_ };
-  assign \sv2v_cast_1$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3105$3855.inp  = _05163_;
-  assign \sv2v_cast_1$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3105$3854.inp  = _05164_;
+  assign \sv2v_cast_2$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3093$3856.inp  = { _05162_, _05161_ };
+  assign \sv2v_cast_1$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3093$3855.inp  = _05163_;
+  assign \sv2v_cast_1$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3093$3854.inp  = _05164_;
   assign csr_addr = csr_addr_i;
   assign unused_csr_addr = csr_addr_i[7:5];
   assign unused_boot_addr = boot_addr_i[7:0];
@@ -77736,8 +77732,8 @@ module \$paramod$f6f02fd34e9f29858b48f8801716484228d8e50a\cve2_counter (clk_i, r
   assign _sv2v_0 = _365_;
 endmodule
 
-module \$paramod$f7d8bdaed3e8f3ed43397b5dd98868b48b042592\soc_fabric (clk_i, rst_ni, i_req_i, i_gnt_o, i_addr_i, i_we_i, i_be_i, i_wdata_i, i_rvalid_o, i_rdata_o, i_err_o, d_req_i, d_gnt_o, d_addr_i, d_we_i, d_be_i, d_wdata_i, d_rvalid_o, d_rdata_o, d_err_o, gpio_i
-, gpio_o, gpio_oe_o, uart_rxd_i, uart_txd_o, irq_uart_o, irq_gpio_o, irq_timer_o);
+module \$paramod$f7d8bdaed3e8f3ed43397b5dd98868b48b042592\soc_fabric (clk_i, rst_ni, i_req_i, i_gnt_o, i_addr_i, i_we_i, i_rvalid_o, i_rdata_o, i_err_o, d_req_i, d_gnt_o, d_addr_i, d_we_i, d_be_i, d_wdata_i, d_rvalid_o, d_rdata_o, d_err_o, gpio_i, gpio_o, gpio_oe_o
+, uart_rxd_i, uart_txd_o, irq_uart_o, irq_gpio_o, irq_timer_o);
   input clk_i;
   wire clk_i;
   input rst_ni;
@@ -77750,10 +77746,6 @@ module \$paramod$f7d8bdaed3e8f3ed43397b5dd98868b48b042592\soc_fabric (clk_i, rst
   wire [31:0] i_addr_i;
   input i_we_i;
   wire i_we_i;
-  input [3:0] i_be_i;
-  wire [3:0] i_be_i;
-  input [31:0] i_wdata_i;
-  wire [31:0] i_wdata_i;
   output i_rvalid_o;
   wire i_rvalid_o;
   output [31:0] i_rdata_o;
@@ -78281,13 +78273,11 @@ module \$paramod$f7d8bdaed3e8f3ed43397b5dd98868b48b042592\soc_fabric (clk_i, rst
     .dsr_wdata_o(dsr_wdata),
     .dsr_we_o(dsr_we),
     .i_addr_i(i_addr_i),
-    .i_be_i(i_be_i),
     .i_err_o(i_err_o),
     .i_gnt_o(i_gnt_o),
     .i_rdata_o(i_rdata_o),
     .i_req_i(i_req_i),
     .i_rvalid_o(i_rvalid_o),
-    .i_wdata_i(i_wdata_i),
     .i_we_i(i_we_i),
     .isd_addr_o(isd_addr),
     .isd_be_o(isd_be),
@@ -122328,7 +122318,7 @@ module cve2_controller(clk_i, rst_ni, fetch_enable_i, ctrl_busy_o, illegal_insn_
   wire stall;
   wire store_err_d;
   wire store_err_q;
-  wire [6:0] \sv2v_cast_7$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:2463$389.inp ;
+  wire [6:0] \sv2v_cast_7$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:2451$389.inp ;
   wire unused_irq_timer;
   sky130_fd_sc_hd__inv_1 _340_ (
     .A(debug_mode_q),
@@ -124649,7 +124639,7 @@ module cve2_controller(clk_i, rst_ni, fetch_enable_i, ctrl_busy_o, illegal_insn_
     .LO(_339_)
   );
   assign ctrl_fsm_cs[7] = controller_run_o;
-  assign \sv2v_cast_7$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:2463$389.inp  = { _338_, _337_, _336_, _335_, _334_, _333_, _332_ };
+  assign \sv2v_cast_7$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:2451$389.inp  = { _338_, _337_, _336_, _335_, _334_, _333_, _332_ };
   assign \gen_mfip_id.sv2v_autoblock_1.i  = { _331_, _330_, _329_, _328_, _327_, _326_, _325_, _324_, _323_, _322_, _321_, _320_, _319_, _318_, _317_, _316_, _315_, _314_, _313_, _312_, _311_, _310_, _309_, _308_, _307_, _306_, _305_, _304_, _303_, _302_, _301_, _300_ };
   assign unused_irq_timer = irqs_i[17];
   assign flush_id = flush_id_o;
@@ -135203,42 +135193,6 @@ module soc_top(clk_i, rst_ni, uart_rxd_i, uart_txd_o, gpio_i, gpio_o, gpio_oe_o,
   wire _237_;
   wire _238_;
   wire _239_;
-  wire _240_;
-  wire _241_;
-  wire _242_;
-  wire _243_;
-  wire _244_;
-  wire _245_;
-  wire _246_;
-  wire _247_;
-  wire _248_;
-  wire _249_;
-  wire _250_;
-  wire _251_;
-  wire _252_;
-  wire _253_;
-  wire _254_;
-  wire _255_;
-  wire _256_;
-  wire _257_;
-  wire _258_;
-  wire _259_;
-  wire _260_;
-  wire _261_;
-  wire _262_;
-  wire _263_;
-  wire _264_;
-  wire _265_;
-  wire _266_;
-  wire _267_;
-  wire _268_;
-  wire _269_;
-  wire _270_;
-  wire _271_;
-  wire _272_;
-  wire _273_;
-  wire _274_;
-  wire _275_;
   wire [31:0] data_addr;
   wire [3:0] data_be;
   wire data_err;
@@ -135258,836 +135212,728 @@ module soc_top(clk_i, rst_ni, uart_rxd_i, uart_txd_o, gpio_i, gpio_o, gpio_oe_o,
   wire irq_timer;
   wire irq_uart;
   wire rst_n;
-  sky130_fd_sc_hd__conb_1 _276_ (
+  sky130_fd_sc_hd__conb_1 _240_ (
     .HI(_000_)
   );
-  sky130_fd_sc_hd__conb_1 _277_ (
-    .HI(_001_)
+  sky130_fd_sc_hd__conb_1 _241_ (
+    .LO(_001_)
   );
-  sky130_fd_sc_hd__conb_1 _278_ (
-    .HI(_002_)
+  sky130_fd_sc_hd__conb_1 _242_ (
+    .LO(_002_)
   );
-  sky130_fd_sc_hd__conb_1 _279_ (
-    .HI(_003_)
+  sky130_fd_sc_hd__conb_1 _243_ (
+    .LO(_003_)
   );
-  sky130_fd_sc_hd__conb_1 _280_ (
-    .HI(_004_)
+  sky130_fd_sc_hd__conb_1 _244_ (
+    .LO(_004_)
   );
-  sky130_fd_sc_hd__conb_1 _281_ (
+  sky130_fd_sc_hd__conb_1 _245_ (
     .LO(_005_)
   );
-  sky130_fd_sc_hd__conb_1 _282_ (
+  sky130_fd_sc_hd__conb_1 _246_ (
     .LO(_006_)
   );
-  sky130_fd_sc_hd__conb_1 _283_ (
+  sky130_fd_sc_hd__conb_1 _247_ (
     .LO(_007_)
   );
-  sky130_fd_sc_hd__conb_1 _284_ (
+  sky130_fd_sc_hd__conb_1 _248_ (
     .LO(_008_)
   );
-  sky130_fd_sc_hd__conb_1 _285_ (
+  sky130_fd_sc_hd__conb_1 _249_ (
     .LO(_009_)
   );
-  sky130_fd_sc_hd__conb_1 _286_ (
+  sky130_fd_sc_hd__conb_1 _250_ (
     .LO(_010_)
   );
-  sky130_fd_sc_hd__conb_1 _287_ (
+  sky130_fd_sc_hd__conb_1 _251_ (
     .LO(_011_)
   );
-  sky130_fd_sc_hd__conb_1 _288_ (
+  sky130_fd_sc_hd__conb_1 _252_ (
     .LO(_012_)
   );
-  sky130_fd_sc_hd__conb_1 _289_ (
+  sky130_fd_sc_hd__conb_1 _253_ (
     .LO(_013_)
   );
-  sky130_fd_sc_hd__conb_1 _290_ (
+  sky130_fd_sc_hd__conb_1 _254_ (
     .LO(_014_)
   );
-  sky130_fd_sc_hd__conb_1 _291_ (
+  sky130_fd_sc_hd__conb_1 _255_ (
     .LO(_015_)
   );
-  sky130_fd_sc_hd__conb_1 _292_ (
+  sky130_fd_sc_hd__conb_1 _256_ (
     .LO(_016_)
   );
-  sky130_fd_sc_hd__conb_1 _293_ (
+  sky130_fd_sc_hd__conb_1 _257_ (
     .LO(_017_)
   );
-  sky130_fd_sc_hd__conb_1 _294_ (
+  sky130_fd_sc_hd__conb_1 _258_ (
     .LO(_018_)
   );
-  sky130_fd_sc_hd__conb_1 _295_ (
+  sky130_fd_sc_hd__conb_1 _259_ (
     .LO(_019_)
   );
-  sky130_fd_sc_hd__conb_1 _296_ (
+  sky130_fd_sc_hd__conb_1 _260_ (
     .LO(_020_)
   );
-  sky130_fd_sc_hd__conb_1 _297_ (
+  sky130_fd_sc_hd__conb_1 _261_ (
     .LO(_021_)
   );
-  sky130_fd_sc_hd__conb_1 _298_ (
+  sky130_fd_sc_hd__conb_1 _262_ (
     .LO(_022_)
   );
-  sky130_fd_sc_hd__conb_1 _299_ (
+  sky130_fd_sc_hd__conb_1 _263_ (
     .LO(_023_)
   );
-  sky130_fd_sc_hd__conb_1 _300_ (
+  sky130_fd_sc_hd__conb_1 _264_ (
     .LO(_024_)
   );
-  sky130_fd_sc_hd__conb_1 _301_ (
+  sky130_fd_sc_hd__conb_1 _265_ (
     .LO(_025_)
   );
-  sky130_fd_sc_hd__conb_1 _302_ (
+  sky130_fd_sc_hd__conb_1 _266_ (
     .LO(_026_)
   );
-  sky130_fd_sc_hd__conb_1 _303_ (
+  sky130_fd_sc_hd__conb_1 _267_ (
     .LO(_027_)
   );
-  sky130_fd_sc_hd__conb_1 _304_ (
+  sky130_fd_sc_hd__conb_1 _268_ (
     .LO(_028_)
   );
-  sky130_fd_sc_hd__conb_1 _305_ (
+  sky130_fd_sc_hd__conb_1 _269_ (
     .LO(_029_)
   );
-  sky130_fd_sc_hd__conb_1 _306_ (
+  sky130_fd_sc_hd__conb_1 _270_ (
     .LO(_030_)
   );
-  sky130_fd_sc_hd__conb_1 _307_ (
+  sky130_fd_sc_hd__conb_1 _271_ (
     .LO(_031_)
   );
-  sky130_fd_sc_hd__conb_1 _308_ (
+  sky130_fd_sc_hd__conb_1 _272_ (
     .LO(_032_)
   );
-  sky130_fd_sc_hd__conb_1 _309_ (
+  sky130_fd_sc_hd__conb_1 _273_ (
     .LO(_033_)
   );
-  sky130_fd_sc_hd__conb_1 _310_ (
+  sky130_fd_sc_hd__conb_1 _274_ (
     .LO(_034_)
   );
-  sky130_fd_sc_hd__conb_1 _311_ (
+  sky130_fd_sc_hd__conb_1 _275_ (
     .LO(_035_)
   );
-  sky130_fd_sc_hd__conb_1 _312_ (
+  sky130_fd_sc_hd__conb_1 _276_ (
     .LO(_036_)
   );
-  sky130_fd_sc_hd__conb_1 _313_ (
+  sky130_fd_sc_hd__conb_1 _277_ (
     .LO(_037_)
   );
-  sky130_fd_sc_hd__conb_1 _314_ (
+  sky130_fd_sc_hd__conb_1 _278_ (
     .LO(_038_)
   );
-  sky130_fd_sc_hd__conb_1 _315_ (
+  sky130_fd_sc_hd__conb_1 _279_ (
     .LO(_039_)
   );
-  sky130_fd_sc_hd__conb_1 _316_ (
+  sky130_fd_sc_hd__conb_1 _280_ (
     .LO(_040_)
   );
-  sky130_fd_sc_hd__conb_1 _317_ (
+  sky130_fd_sc_hd__conb_1 _281_ (
     .LO(_041_)
   );
-  sky130_fd_sc_hd__conb_1 _318_ (
+  sky130_fd_sc_hd__conb_1 _282_ (
     .LO(_042_)
   );
-  sky130_fd_sc_hd__conb_1 _319_ (
+  sky130_fd_sc_hd__conb_1 _283_ (
     .LO(_043_)
   );
-  sky130_fd_sc_hd__conb_1 _320_ (
+  sky130_fd_sc_hd__conb_1 _284_ (
     .LO(_044_)
   );
-  sky130_fd_sc_hd__conb_1 _321_ (
+  sky130_fd_sc_hd__conb_1 _285_ (
     .LO(_045_)
   );
-  sky130_fd_sc_hd__conb_1 _322_ (
+  sky130_fd_sc_hd__conb_1 _286_ (
     .LO(_046_)
   );
-  sky130_fd_sc_hd__conb_1 _323_ (
+  sky130_fd_sc_hd__conb_1 _287_ (
     .LO(_047_)
   );
-  sky130_fd_sc_hd__conb_1 _324_ (
+  sky130_fd_sc_hd__conb_1 _288_ (
     .LO(_048_)
   );
-  sky130_fd_sc_hd__conb_1 _325_ (
+  sky130_fd_sc_hd__conb_1 _289_ (
     .LO(_049_)
   );
-  sky130_fd_sc_hd__conb_1 _326_ (
+  sky130_fd_sc_hd__conb_1 _290_ (
     .LO(_050_)
   );
-  sky130_fd_sc_hd__conb_1 _327_ (
+  sky130_fd_sc_hd__conb_1 _291_ (
     .LO(_051_)
   );
-  sky130_fd_sc_hd__conb_1 _328_ (
+  sky130_fd_sc_hd__conb_1 _292_ (
     .LO(_052_)
   );
-  sky130_fd_sc_hd__conb_1 _329_ (
+  sky130_fd_sc_hd__conb_1 _293_ (
     .LO(_053_)
   );
-  sky130_fd_sc_hd__conb_1 _330_ (
+  sky130_fd_sc_hd__conb_1 _294_ (
     .LO(_054_)
   );
-  sky130_fd_sc_hd__conb_1 _331_ (
+  sky130_fd_sc_hd__conb_1 _295_ (
     .LO(_055_)
   );
-  sky130_fd_sc_hd__conb_1 _332_ (
+  sky130_fd_sc_hd__conb_1 _296_ (
     .LO(_056_)
   );
-  sky130_fd_sc_hd__conb_1 _333_ (
+  sky130_fd_sc_hd__conb_1 _297_ (
     .LO(_057_)
   );
-  sky130_fd_sc_hd__conb_1 _334_ (
+  sky130_fd_sc_hd__conb_1 _298_ (
     .LO(_058_)
   );
-  sky130_fd_sc_hd__conb_1 _335_ (
+  sky130_fd_sc_hd__conb_1 _299_ (
     .LO(_059_)
   );
-  sky130_fd_sc_hd__conb_1 _336_ (
+  sky130_fd_sc_hd__conb_1 _300_ (
     .LO(_060_)
   );
-  sky130_fd_sc_hd__conb_1 _337_ (
+  sky130_fd_sc_hd__conb_1 _301_ (
     .LO(_061_)
   );
-  sky130_fd_sc_hd__conb_1 _338_ (
+  sky130_fd_sc_hd__conb_1 _302_ (
     .LO(_062_)
   );
-  sky130_fd_sc_hd__conb_1 _339_ (
+  sky130_fd_sc_hd__conb_1 _303_ (
     .LO(_063_)
   );
-  sky130_fd_sc_hd__conb_1 _340_ (
+  sky130_fd_sc_hd__conb_1 _304_ (
     .LO(_064_)
   );
-  sky130_fd_sc_hd__conb_1 _341_ (
+  sky130_fd_sc_hd__conb_1 _305_ (
     .LO(_065_)
   );
-  sky130_fd_sc_hd__conb_1 _342_ (
+  sky130_fd_sc_hd__conb_1 _306_ (
     .LO(_066_)
   );
-  sky130_fd_sc_hd__conb_1 _343_ (
+  sky130_fd_sc_hd__conb_1 _307_ (
     .LO(_067_)
   );
-  sky130_fd_sc_hd__conb_1 _344_ (
+  sky130_fd_sc_hd__conb_1 _308_ (
     .LO(_068_)
   );
-  sky130_fd_sc_hd__conb_1 _345_ (
+  sky130_fd_sc_hd__conb_1 _309_ (
     .LO(_069_)
   );
-  sky130_fd_sc_hd__conb_1 _346_ (
+  sky130_fd_sc_hd__conb_1 _310_ (
     .LO(_070_)
   );
-  sky130_fd_sc_hd__conb_1 _347_ (
+  sky130_fd_sc_hd__conb_1 _311_ (
     .LO(_071_)
   );
-  sky130_fd_sc_hd__conb_1 _348_ (
+  sky130_fd_sc_hd__conb_1 _312_ (
     .LO(_072_)
   );
-  sky130_fd_sc_hd__conb_1 _349_ (
+  sky130_fd_sc_hd__conb_1 _313_ (
     .LO(_073_)
   );
-  sky130_fd_sc_hd__conb_1 _350_ (
+  sky130_fd_sc_hd__conb_1 _314_ (
     .LO(_074_)
   );
-  sky130_fd_sc_hd__conb_1 _351_ (
+  sky130_fd_sc_hd__conb_1 _315_ (
     .LO(_075_)
   );
-  sky130_fd_sc_hd__conb_1 _352_ (
+  sky130_fd_sc_hd__conb_1 _316_ (
     .LO(_076_)
   );
-  sky130_fd_sc_hd__conb_1 _353_ (
+  sky130_fd_sc_hd__conb_1 _317_ (
     .LO(_077_)
   );
-  sky130_fd_sc_hd__conb_1 _354_ (
+  sky130_fd_sc_hd__conb_1 _318_ (
     .LO(_078_)
   );
-  sky130_fd_sc_hd__conb_1 _355_ (
+  sky130_fd_sc_hd__conb_1 _319_ (
     .LO(_079_)
   );
-  sky130_fd_sc_hd__conb_1 _356_ (
+  sky130_fd_sc_hd__conb_1 _320_ (
     .LO(_080_)
   );
-  sky130_fd_sc_hd__conb_1 _357_ (
+  sky130_fd_sc_hd__conb_1 _321_ (
     .LO(_081_)
   );
-  sky130_fd_sc_hd__conb_1 _358_ (
+  sky130_fd_sc_hd__conb_1 _322_ (
     .LO(_082_)
   );
-  sky130_fd_sc_hd__conb_1 _359_ (
+  sky130_fd_sc_hd__conb_1 _323_ (
     .LO(_083_)
   );
-  sky130_fd_sc_hd__conb_1 _360_ (
+  sky130_fd_sc_hd__conb_1 _324_ (
     .LO(_084_)
   );
-  sky130_fd_sc_hd__conb_1 _361_ (
+  sky130_fd_sc_hd__conb_1 _325_ (
     .LO(_085_)
   );
-  sky130_fd_sc_hd__conb_1 _362_ (
+  sky130_fd_sc_hd__conb_1 _326_ (
     .LO(_086_)
   );
-  sky130_fd_sc_hd__conb_1 _363_ (
+  sky130_fd_sc_hd__conb_1 _327_ (
     .LO(_087_)
   );
-  sky130_fd_sc_hd__conb_1 _364_ (
+  sky130_fd_sc_hd__conb_1 _328_ (
     .LO(_088_)
   );
-  sky130_fd_sc_hd__conb_1 _365_ (
+  sky130_fd_sc_hd__conb_1 _329_ (
     .LO(_089_)
   );
-  sky130_fd_sc_hd__conb_1 _366_ (
+  sky130_fd_sc_hd__conb_1 _330_ (
     .LO(_090_)
   );
-  sky130_fd_sc_hd__conb_1 _367_ (
+  sky130_fd_sc_hd__conb_1 _331_ (
     .LO(_091_)
   );
-  sky130_fd_sc_hd__conb_1 _368_ (
+  sky130_fd_sc_hd__conb_1 _332_ (
     .LO(_092_)
   );
-  sky130_fd_sc_hd__conb_1 _369_ (
+  sky130_fd_sc_hd__conb_1 _333_ (
     .LO(_093_)
   );
-  sky130_fd_sc_hd__conb_1 _370_ (
+  sky130_fd_sc_hd__conb_1 _334_ (
     .LO(_094_)
   );
-  sky130_fd_sc_hd__conb_1 _371_ (
+  sky130_fd_sc_hd__conb_1 _335_ (
     .LO(_095_)
   );
-  sky130_fd_sc_hd__conb_1 _372_ (
+  sky130_fd_sc_hd__conb_1 _336_ (
     .LO(_096_)
   );
-  sky130_fd_sc_hd__conb_1 _373_ (
+  sky130_fd_sc_hd__conb_1 _337_ (
     .LO(_097_)
   );
-  sky130_fd_sc_hd__conb_1 _374_ (
+  sky130_fd_sc_hd__conb_1 _338_ (
     .LO(_098_)
   );
-  sky130_fd_sc_hd__conb_1 _375_ (
+  sky130_fd_sc_hd__conb_1 _339_ (
     .LO(_099_)
   );
-  sky130_fd_sc_hd__conb_1 _376_ (
+  sky130_fd_sc_hd__conb_1 _340_ (
     .LO(_100_)
   );
-  sky130_fd_sc_hd__conb_1 _377_ (
+  sky130_fd_sc_hd__conb_1 _341_ (
     .LO(_101_)
   );
-  sky130_fd_sc_hd__conb_1 _378_ (
+  sky130_fd_sc_hd__conb_1 _342_ (
     .LO(_102_)
   );
-  sky130_fd_sc_hd__conb_1 _379_ (
+  sky130_fd_sc_hd__conb_1 _343_ (
     .LO(_103_)
   );
-  sky130_fd_sc_hd__conb_1 _380_ (
+  sky130_fd_sc_hd__conb_1 _344_ (
     .LO(_104_)
   );
-  sky130_fd_sc_hd__conb_1 _381_ (
+  sky130_fd_sc_hd__conb_1 _345_ (
     .LO(_105_)
   );
-  sky130_fd_sc_hd__conb_1 _382_ (
+  sky130_fd_sc_hd__conb_1 _346_ (
     .LO(_106_)
   );
-  sky130_fd_sc_hd__conb_1 _383_ (
+  sky130_fd_sc_hd__conb_1 _347_ (
     .LO(_107_)
   );
-  sky130_fd_sc_hd__conb_1 _384_ (
+  sky130_fd_sc_hd__conb_1 _348_ (
     .LO(_108_)
   );
-  sky130_fd_sc_hd__conb_1 _385_ (
+  sky130_fd_sc_hd__conb_1 _349_ (
     .LO(_109_)
   );
-  sky130_fd_sc_hd__conb_1 _386_ (
+  sky130_fd_sc_hd__conb_1 _350_ (
     .LO(_110_)
   );
-  sky130_fd_sc_hd__conb_1 _387_ (
+  sky130_fd_sc_hd__conb_1 _351_ (
     .LO(_111_)
   );
-  sky130_fd_sc_hd__conb_1 _388_ (
+  sky130_fd_sc_hd__conb_1 _352_ (
     .LO(_112_)
   );
-  sky130_fd_sc_hd__conb_1 _389_ (
+  sky130_fd_sc_hd__conb_1 _353_ (
     .LO(_113_)
   );
-  sky130_fd_sc_hd__conb_1 _390_ (
+  sky130_fd_sc_hd__conb_1 _354_ (
     .LO(_114_)
   );
-  sky130_fd_sc_hd__conb_1 _391_ (
+  sky130_fd_sc_hd__conb_1 _355_ (
     .LO(_115_)
   );
-  sky130_fd_sc_hd__conb_1 _392_ (
+  sky130_fd_sc_hd__conb_1 _356_ (
     .LO(_116_)
   );
-  sky130_fd_sc_hd__conb_1 _393_ (
+  sky130_fd_sc_hd__conb_1 _357_ (
     .LO(_117_)
   );
-  sky130_fd_sc_hd__conb_1 _394_ (
+  sky130_fd_sc_hd__conb_1 _358_ (
     .LO(_118_)
   );
-  sky130_fd_sc_hd__conb_1 _395_ (
+  sky130_fd_sc_hd__conb_1 _359_ (
     .LO(_119_)
   );
-  sky130_fd_sc_hd__conb_1 _396_ (
+  sky130_fd_sc_hd__conb_1 _360_ (
     .LO(_120_)
   );
-  sky130_fd_sc_hd__conb_1 _397_ (
+  sky130_fd_sc_hd__conb_1 _361_ (
     .LO(_121_)
   );
-  sky130_fd_sc_hd__conb_1 _398_ (
+  sky130_fd_sc_hd__conb_1 _362_ (
     .LO(_122_)
   );
-  sky130_fd_sc_hd__conb_1 _399_ (
+  sky130_fd_sc_hd__conb_1 _363_ (
     .LO(_123_)
   );
-  sky130_fd_sc_hd__conb_1 _400_ (
+  sky130_fd_sc_hd__conb_1 _364_ (
     .LO(_124_)
   );
-  sky130_fd_sc_hd__conb_1 _401_ (
+  sky130_fd_sc_hd__conb_1 _365_ (
     .LO(_125_)
   );
-  sky130_fd_sc_hd__conb_1 _402_ (
+  sky130_fd_sc_hd__conb_1 _366_ (
     .LO(_126_)
   );
-  sky130_fd_sc_hd__conb_1 _403_ (
+  sky130_fd_sc_hd__conb_1 _367_ (
     .LO(_127_)
   );
-  sky130_fd_sc_hd__conb_1 _404_ (
+  sky130_fd_sc_hd__conb_1 _368_ (
     .LO(_128_)
   );
-  sky130_fd_sc_hd__conb_1 _405_ (
+  sky130_fd_sc_hd__conb_1 _369_ (
     .LO(_129_)
   );
-  sky130_fd_sc_hd__conb_1 _406_ (
+  sky130_fd_sc_hd__conb_1 _370_ (
     .LO(_130_)
   );
-  sky130_fd_sc_hd__conb_1 _407_ (
+  sky130_fd_sc_hd__conb_1 _371_ (
     .LO(_131_)
   );
-  sky130_fd_sc_hd__conb_1 _408_ (
+  sky130_fd_sc_hd__conb_1 _372_ (
     .LO(_132_)
   );
-  sky130_fd_sc_hd__conb_1 _409_ (
+  sky130_fd_sc_hd__conb_1 _373_ (
     .LO(_133_)
   );
-  sky130_fd_sc_hd__conb_1 _410_ (
+  sky130_fd_sc_hd__conb_1 _374_ (
     .LO(_134_)
   );
-  sky130_fd_sc_hd__conb_1 _411_ (
+  sky130_fd_sc_hd__conb_1 _375_ (
     .LO(_135_)
   );
-  sky130_fd_sc_hd__conb_1 _412_ (
+  sky130_fd_sc_hd__conb_1 _376_ (
     .LO(_136_)
   );
-  sky130_fd_sc_hd__conb_1 _413_ (
+  sky130_fd_sc_hd__conb_1 _377_ (
     .LO(_137_)
   );
-  sky130_fd_sc_hd__conb_1 _414_ (
+  sky130_fd_sc_hd__conb_1 _378_ (
     .LO(_138_)
   );
-  sky130_fd_sc_hd__conb_1 _415_ (
+  sky130_fd_sc_hd__conb_1 _379_ (
     .LO(_139_)
   );
-  sky130_fd_sc_hd__conb_1 _416_ (
+  sky130_fd_sc_hd__conb_1 _380_ (
     .LO(_140_)
   );
-  sky130_fd_sc_hd__conb_1 _417_ (
+  sky130_fd_sc_hd__conb_1 _381_ (
     .LO(_141_)
   );
-  sky130_fd_sc_hd__conb_1 _418_ (
+  sky130_fd_sc_hd__conb_1 _382_ (
     .LO(_142_)
   );
-  sky130_fd_sc_hd__conb_1 _419_ (
+  sky130_fd_sc_hd__conb_1 _383_ (
     .LO(_143_)
   );
-  sky130_fd_sc_hd__conb_1 _420_ (
+  sky130_fd_sc_hd__conb_1 _384_ (
     .LO(_144_)
   );
-  sky130_fd_sc_hd__conb_1 _421_ (
+  sky130_fd_sc_hd__conb_1 _385_ (
     .LO(_145_)
   );
-  sky130_fd_sc_hd__conb_1 _422_ (
+  sky130_fd_sc_hd__conb_1 _386_ (
     .LO(_146_)
   );
-  sky130_fd_sc_hd__conb_1 _423_ (
+  sky130_fd_sc_hd__conb_1 _387_ (
     .LO(_147_)
   );
-  sky130_fd_sc_hd__conb_1 _424_ (
+  sky130_fd_sc_hd__conb_1 _388_ (
     .LO(_148_)
   );
-  sky130_fd_sc_hd__conb_1 _425_ (
+  sky130_fd_sc_hd__conb_1 _389_ (
     .LO(_149_)
   );
-  sky130_fd_sc_hd__conb_1 _426_ (
+  sky130_fd_sc_hd__conb_1 _390_ (
     .LO(_150_)
   );
-  sky130_fd_sc_hd__conb_1 _427_ (
+  sky130_fd_sc_hd__conb_1 _391_ (
     .LO(_151_)
   );
-  sky130_fd_sc_hd__conb_1 _428_ (
+  sky130_fd_sc_hd__conb_1 _392_ (
     .LO(_152_)
   );
-  sky130_fd_sc_hd__conb_1 _429_ (
+  sky130_fd_sc_hd__conb_1 _393_ (
     .LO(_153_)
   );
-  sky130_fd_sc_hd__conb_1 _430_ (
+  sky130_fd_sc_hd__conb_1 _394_ (
     .LO(_154_)
   );
-  sky130_fd_sc_hd__conb_1 _431_ (
+  sky130_fd_sc_hd__conb_1 _395_ (
     .LO(_155_)
   );
-  sky130_fd_sc_hd__conb_1 _432_ (
+  sky130_fd_sc_hd__conb_1 _396_ (
     .LO(_156_)
   );
-  sky130_fd_sc_hd__conb_1 _433_ (
+  sky130_fd_sc_hd__conb_1 _397_ (
     .LO(_157_)
   );
-  sky130_fd_sc_hd__conb_1 _434_ (
+  sky130_fd_sc_hd__conb_1 _398_ (
     .LO(_158_)
   );
-  sky130_fd_sc_hd__conb_1 _435_ (
+  sky130_fd_sc_hd__conb_1 _399_ (
     .LO(_159_)
   );
-  sky130_fd_sc_hd__conb_1 _436_ (
+  sky130_fd_sc_hd__conb_1 _400_ (
     .LO(_160_)
   );
-  sky130_fd_sc_hd__conb_1 _437_ (
+  sky130_fd_sc_hd__conb_1 _401_ (
     .LO(_161_)
   );
-  sky130_fd_sc_hd__conb_1 _438_ (
+  sky130_fd_sc_hd__conb_1 _402_ (
     .LO(_162_)
   );
-  sky130_fd_sc_hd__conb_1 _439_ (
+  sky130_fd_sc_hd__conb_1 _403_ (
     .LO(_163_)
   );
-  sky130_fd_sc_hd__conb_1 _440_ (
+  sky130_fd_sc_hd__conb_1 _404_ (
     .LO(_164_)
   );
-  sky130_fd_sc_hd__conb_1 _441_ (
+  sky130_fd_sc_hd__conb_1 _405_ (
     .LO(_165_)
   );
-  sky130_fd_sc_hd__conb_1 _442_ (
+  sky130_fd_sc_hd__conb_1 _406_ (
     .LO(_166_)
   );
-  sky130_fd_sc_hd__conb_1 _443_ (
+  sky130_fd_sc_hd__conb_1 _407_ (
     .LO(_167_)
   );
-  sky130_fd_sc_hd__conb_1 _444_ (
+  sky130_fd_sc_hd__conb_1 _408_ (
     .LO(_168_)
   );
-  sky130_fd_sc_hd__conb_1 _445_ (
+  sky130_fd_sc_hd__conb_1 _409_ (
     .LO(_169_)
   );
-  sky130_fd_sc_hd__conb_1 _446_ (
+  sky130_fd_sc_hd__conb_1 _410_ (
     .LO(_170_)
   );
-  sky130_fd_sc_hd__conb_1 _447_ (
+  sky130_fd_sc_hd__conb_1 _411_ (
     .LO(_171_)
   );
-  sky130_fd_sc_hd__conb_1 _448_ (
+  sky130_fd_sc_hd__conb_1 _412_ (
     .LO(_172_)
   );
-  sky130_fd_sc_hd__conb_1 _449_ (
+  sky130_fd_sc_hd__conb_1 _413_ (
     .LO(_173_)
   );
-  sky130_fd_sc_hd__conb_1 _450_ (
+  sky130_fd_sc_hd__conb_1 _414_ (
     .LO(_174_)
   );
-  sky130_fd_sc_hd__conb_1 _451_ (
+  sky130_fd_sc_hd__conb_1 _415_ (
     .LO(_175_)
   );
-  sky130_fd_sc_hd__conb_1 _452_ (
+  sky130_fd_sc_hd__conb_1 _416_ (
     .LO(_176_)
   );
-  sky130_fd_sc_hd__conb_1 _453_ (
+  sky130_fd_sc_hd__conb_1 _417_ (
     .LO(_177_)
   );
-  sky130_fd_sc_hd__conb_1 _454_ (
+  sky130_fd_sc_hd__conb_1 _418_ (
     .LO(_178_)
   );
-  sky130_fd_sc_hd__conb_1 _455_ (
+  sky130_fd_sc_hd__conb_1 _419_ (
     .LO(_179_)
   );
-  sky130_fd_sc_hd__conb_1 _456_ (
+  sky130_fd_sc_hd__conb_1 _420_ (
     .LO(_180_)
   );
-  sky130_fd_sc_hd__conb_1 _457_ (
+  sky130_fd_sc_hd__conb_1 _421_ (
     .LO(_181_)
   );
-  sky130_fd_sc_hd__conb_1 _458_ (
+  sky130_fd_sc_hd__conb_1 _422_ (
     .LO(_182_)
   );
-  sky130_fd_sc_hd__conb_1 _459_ (
+  sky130_fd_sc_hd__conb_1 _423_ (
     .LO(_183_)
   );
-  sky130_fd_sc_hd__conb_1 _460_ (
+  sky130_fd_sc_hd__conb_1 _424_ (
     .LO(_184_)
   );
-  sky130_fd_sc_hd__conb_1 _461_ (
+  sky130_fd_sc_hd__conb_1 _425_ (
     .LO(_185_)
   );
-  sky130_fd_sc_hd__conb_1 _462_ (
+  sky130_fd_sc_hd__conb_1 _426_ (
     .LO(_186_)
   );
-  sky130_fd_sc_hd__conb_1 _463_ (
+  sky130_fd_sc_hd__conb_1 _427_ (
     .LO(_187_)
   );
-  sky130_fd_sc_hd__conb_1 _464_ (
+  sky130_fd_sc_hd__conb_1 _428_ (
     .LO(_188_)
   );
-  sky130_fd_sc_hd__conb_1 _465_ (
+  sky130_fd_sc_hd__conb_1 _429_ (
     .LO(_189_)
   );
-  sky130_fd_sc_hd__conb_1 _466_ (
+  sky130_fd_sc_hd__conb_1 _430_ (
     .LO(_190_)
   );
-  sky130_fd_sc_hd__conb_1 _467_ (
+  sky130_fd_sc_hd__conb_1 _431_ (
     .LO(_191_)
   );
-  sky130_fd_sc_hd__conb_1 _468_ (
+  sky130_fd_sc_hd__conb_1 _432_ (
     .LO(_192_)
   );
-  sky130_fd_sc_hd__conb_1 _469_ (
+  sky130_fd_sc_hd__conb_1 _433_ (
     .LO(_193_)
   );
-  sky130_fd_sc_hd__conb_1 _470_ (
+  sky130_fd_sc_hd__conb_1 _434_ (
     .LO(_194_)
   );
-  sky130_fd_sc_hd__conb_1 _471_ (
+  sky130_fd_sc_hd__conb_1 _435_ (
     .LO(_195_)
   );
-  sky130_fd_sc_hd__conb_1 _472_ (
+  sky130_fd_sc_hd__conb_1 _436_ (
     .LO(_196_)
   );
-  sky130_fd_sc_hd__conb_1 _473_ (
+  sky130_fd_sc_hd__conb_1 _437_ (
     .LO(_197_)
   );
-  sky130_fd_sc_hd__conb_1 _474_ (
+  sky130_fd_sc_hd__conb_1 _438_ (
     .LO(_198_)
   );
-  sky130_fd_sc_hd__conb_1 _475_ (
+  sky130_fd_sc_hd__conb_1 _439_ (
     .LO(_199_)
   );
-  sky130_fd_sc_hd__conb_1 _476_ (
+  sky130_fd_sc_hd__conb_1 _440_ (
     .LO(_200_)
   );
-  sky130_fd_sc_hd__conb_1 _477_ (
+  sky130_fd_sc_hd__conb_1 _441_ (
     .LO(_201_)
   );
-  sky130_fd_sc_hd__conb_1 _478_ (
+  sky130_fd_sc_hd__conb_1 _442_ (
     .LO(_202_)
   );
-  sky130_fd_sc_hd__conb_1 _479_ (
+  sky130_fd_sc_hd__conb_1 _443_ (
     .LO(_203_)
   );
-  sky130_fd_sc_hd__conb_1 _480_ (
+  sky130_fd_sc_hd__conb_1 _444_ (
     .LO(_204_)
   );
-  sky130_fd_sc_hd__conb_1 _481_ (
+  sky130_fd_sc_hd__conb_1 _445_ (
     .LO(_205_)
   );
-  sky130_fd_sc_hd__conb_1 _482_ (
+  sky130_fd_sc_hd__conb_1 _446_ (
     .LO(_206_)
   );
-  sky130_fd_sc_hd__conb_1 _483_ (
+  sky130_fd_sc_hd__conb_1 _447_ (
     .LO(_207_)
   );
-  sky130_fd_sc_hd__conb_1 _484_ (
+  sky130_fd_sc_hd__conb_1 _448_ (
     .LO(_208_)
   );
-  sky130_fd_sc_hd__conb_1 _485_ (
+  sky130_fd_sc_hd__conb_1 _449_ (
     .LO(_209_)
   );
-  sky130_fd_sc_hd__conb_1 _486_ (
+  sky130_fd_sc_hd__conb_1 _450_ (
     .LO(_210_)
   );
-  sky130_fd_sc_hd__conb_1 _487_ (
+  sky130_fd_sc_hd__conb_1 _451_ (
     .LO(_211_)
   );
-  sky130_fd_sc_hd__conb_1 _488_ (
+  sky130_fd_sc_hd__conb_1 _452_ (
     .LO(_212_)
   );
-  sky130_fd_sc_hd__conb_1 _489_ (
+  sky130_fd_sc_hd__conb_1 _453_ (
     .LO(_213_)
   );
-  sky130_fd_sc_hd__conb_1 _490_ (
+  sky130_fd_sc_hd__conb_1 _454_ (
     .LO(_214_)
   );
-  sky130_fd_sc_hd__conb_1 _491_ (
+  sky130_fd_sc_hd__conb_1 _455_ (
     .LO(_215_)
   );
-  sky130_fd_sc_hd__conb_1 _492_ (
+  sky130_fd_sc_hd__conb_1 _456_ (
     .LO(_216_)
   );
-  sky130_fd_sc_hd__conb_1 _493_ (
+  sky130_fd_sc_hd__conb_1 _457_ (
     .LO(_217_)
   );
-  sky130_fd_sc_hd__conb_1 _494_ (
+  sky130_fd_sc_hd__conb_1 _458_ (
     .LO(_218_)
   );
-  sky130_fd_sc_hd__conb_1 _495_ (
+  sky130_fd_sc_hd__conb_1 _459_ (
     .LO(_219_)
   );
-  sky130_fd_sc_hd__conb_1 _496_ (
+  sky130_fd_sc_hd__conb_1 _460_ (
     .LO(_220_)
   );
-  sky130_fd_sc_hd__conb_1 _497_ (
+  sky130_fd_sc_hd__conb_1 _461_ (
     .LO(_221_)
   );
-  sky130_fd_sc_hd__conb_1 _498_ (
+  sky130_fd_sc_hd__conb_1 _462_ (
     .LO(_222_)
   );
-  sky130_fd_sc_hd__conb_1 _499_ (
+  sky130_fd_sc_hd__conb_1 _463_ (
     .LO(_223_)
   );
-  sky130_fd_sc_hd__conb_1 _500_ (
+  sky130_fd_sc_hd__conb_1 _464_ (
     .LO(_224_)
   );
-  sky130_fd_sc_hd__conb_1 _501_ (
+  sky130_fd_sc_hd__conb_1 _465_ (
     .LO(_225_)
   );
-  sky130_fd_sc_hd__conb_1 _502_ (
+  sky130_fd_sc_hd__conb_1 _466_ (
     .LO(_226_)
   );
-  sky130_fd_sc_hd__conb_1 _503_ (
+  sky130_fd_sc_hd__conb_1 _467_ (
     .LO(_227_)
   );
-  sky130_fd_sc_hd__conb_1 _504_ (
+  sky130_fd_sc_hd__conb_1 _468_ (
     .LO(_228_)
   );
-  sky130_fd_sc_hd__conb_1 _505_ (
+  sky130_fd_sc_hd__conb_1 _469_ (
     .LO(_229_)
   );
-  sky130_fd_sc_hd__conb_1 _506_ (
+  sky130_fd_sc_hd__conb_1 _470_ (
     .LO(_230_)
   );
-  sky130_fd_sc_hd__conb_1 _507_ (
+  sky130_fd_sc_hd__conb_1 _471_ (
     .LO(_231_)
   );
-  sky130_fd_sc_hd__conb_1 _508_ (
+  sky130_fd_sc_hd__conb_1 _472_ (
     .LO(_232_)
   );
-  sky130_fd_sc_hd__conb_1 _509_ (
+  sky130_fd_sc_hd__conb_1 _473_ (
     .LO(_233_)
   );
-  sky130_fd_sc_hd__conb_1 _510_ (
+  sky130_fd_sc_hd__conb_1 _474_ (
     .LO(_234_)
   );
-  sky130_fd_sc_hd__conb_1 _511_ (
+  sky130_fd_sc_hd__conb_1 _475_ (
     .LO(_235_)
   );
-  sky130_fd_sc_hd__conb_1 _512_ (
+  sky130_fd_sc_hd__conb_1 _476_ (
     .LO(_236_)
   );
-  sky130_fd_sc_hd__conb_1 _513_ (
+  sky130_fd_sc_hd__conb_1 _477_ (
     .LO(_237_)
   );
-  sky130_fd_sc_hd__conb_1 _514_ (
+  sky130_fd_sc_hd__conb_1 _478_ (
     .LO(_238_)
   );
-  sky130_fd_sc_hd__conb_1 _515_ (
+  sky130_fd_sc_hd__conb_1 _479_ (
     .LO(_239_)
   );
-  sky130_fd_sc_hd__conb_1 _516_ (
-    .LO(_240_)
-  );
-  sky130_fd_sc_hd__conb_1 _517_ (
-    .LO(_241_)
-  );
-  sky130_fd_sc_hd__conb_1 _518_ (
-    .LO(_242_)
-  );
-  sky130_fd_sc_hd__conb_1 _519_ (
-    .LO(_243_)
-  );
-  sky130_fd_sc_hd__conb_1 _520_ (
-    .LO(_244_)
-  );
-  sky130_fd_sc_hd__conb_1 _521_ (
-    .LO(_245_)
-  );
-  sky130_fd_sc_hd__conb_1 _522_ (
-    .LO(_246_)
-  );
-  sky130_fd_sc_hd__conb_1 _523_ (
-    .LO(_247_)
-  );
-  sky130_fd_sc_hd__conb_1 _524_ (
-    .LO(_248_)
-  );
-  sky130_fd_sc_hd__conb_1 _525_ (
-    .LO(_249_)
-  );
-  sky130_fd_sc_hd__conb_1 _526_ (
-    .LO(_250_)
-  );
-  sky130_fd_sc_hd__conb_1 _527_ (
-    .LO(_251_)
-  );
-  sky130_fd_sc_hd__conb_1 _528_ (
-    .LO(_252_)
-  );
-  sky130_fd_sc_hd__conb_1 _529_ (
-    .LO(_253_)
-  );
-  sky130_fd_sc_hd__conb_1 _530_ (
-    .LO(_254_)
-  );
-  sky130_fd_sc_hd__conb_1 _531_ (
-    .LO(_255_)
-  );
-  sky130_fd_sc_hd__conb_1 _532_ (
-    .LO(_256_)
-  );
-  sky130_fd_sc_hd__conb_1 _533_ (
-    .LO(_257_)
-  );
-  sky130_fd_sc_hd__conb_1 _534_ (
-    .LO(_258_)
-  );
-  sky130_fd_sc_hd__conb_1 _535_ (
-    .LO(_259_)
-  );
-  sky130_fd_sc_hd__conb_1 _536_ (
-    .LO(_260_)
-  );
-  sky130_fd_sc_hd__conb_1 _537_ (
-    .LO(_261_)
-  );
-  sky130_fd_sc_hd__conb_1 _538_ (
-    .LO(_262_)
-  );
-  sky130_fd_sc_hd__conb_1 _539_ (
-    .LO(_263_)
-  );
-  sky130_fd_sc_hd__conb_1 _540_ (
-    .LO(_264_)
-  );
-  sky130_fd_sc_hd__conb_1 _541_ (
-    .LO(_265_)
-  );
-  sky130_fd_sc_hd__conb_1 _542_ (
-    .LO(_266_)
-  );
-  sky130_fd_sc_hd__conb_1 _543_ (
-    .LO(_267_)
-  );
-  sky130_fd_sc_hd__conb_1 _544_ (
-    .LO(_268_)
-  );
-  sky130_fd_sc_hd__conb_1 _545_ (
-    .LO(_269_)
-  );
-  sky130_fd_sc_hd__conb_1 _546_ (
-    .LO(_270_)
-  );
-  sky130_fd_sc_hd__conb_1 _547_ (
-    .LO(_271_)
-  );
-  sky130_fd_sc_hd__conb_1 _548_ (
-    .LO(_272_)
-  );
-  sky130_fd_sc_hd__conb_1 _549_ (
-    .LO(_273_)
-  );
-  sky130_fd_sc_hd__conb_1 _550_ (
-    .LO(_274_)
-  );
-  sky130_fd_sc_hd__conb_1 _551_ (
-    .LO(_275_)
-  );
   \$paramod$0cf35f836c805cd8a66825f2e6c87ea0b457a689\cve2_top  u_core (
-    .boot_addr_i({ _232_, _231_, _230_, _229_, _228_, _227_, _226_, _225_, _224_, _223_, _222_, _221_, _220_, _219_, _218_, _217_, _216_, _215_, _214_, _213_, _212_, _211_, _210_, _209_, _208_, _207_, _206_, _205_, _204_, _203_, _202_, _201_ }),
+    .boot_addr_i({ _196_, _195_, _194_, _193_, _192_, _191_, _190_, _189_, _188_, _187_, _186_, _185_, _184_, _183_, _182_, _181_, _180_, _179_, _178_, _177_, _176_, _175_, _174_, _173_, _172_, _171_, _170_, _169_, _168_, _167_, _166_, _165_ }),
     .clk_i(clk_i),
     .core_sleep_o(core_sleep_o),
     .data_addr_o(data_addr),
@@ -136099,29 +135945,29 @@ module soc_top(clk_i, rst_ni, uart_rxd_i, uart_txd_o, gpio_i, gpio_o, gpio_oe_o,
     .data_rvalid_i(data_rvalid),
     .data_wdata_o(data_wdata),
     .data_we_o(data_we),
-    .debug_req_i(_102_),
-    .dm_exception_addr_i({ _069_, _068_, _067_, _066_, _065_, _064_, _063_, _062_, _061_, _060_, _059_, _058_, _057_, _056_, _055_, _054_, _053_, _052_, _051_, _050_, _049_, _048_, _047_, _046_, _045_, _044_, _043_, _042_, _041_, _040_, _039_, _038_ }),
-    .dm_halt_addr_i({ _101_, _100_, _099_, _098_, _097_, _096_, _095_, _094_, _093_, _092_, _091_, _090_, _089_, _088_, _087_, _086_, _085_, _084_, _083_, _082_, _081_, _080_, _079_, _078_, _077_, _076_, _075_, _074_, _073_, _072_, _071_, _070_ }),
-    .fetch_enable_i(_004_),
-    .hart_id_i({ _264_, _263_, _262_, _261_, _260_, _259_, _258_, _257_, _256_, _255_, _254_, _253_, _252_, _251_, _250_, _249_, _248_, _247_, _246_, _245_, _244_, _243_, _242_, _241_, _240_, _239_, _238_, _237_, _236_, _235_, _234_, _233_ }),
+    .debug_req_i(_066_),
+    .dm_exception_addr_i({ _033_, _032_, _031_, _030_, _029_, _028_, _027_, _026_, _025_, _024_, _023_, _022_, _021_, _020_, _019_, _018_, _017_, _016_, _015_, _014_, _013_, _012_, _011_, _010_, _009_, _008_, _007_, _006_, _005_, _004_, _003_, _002_ }),
+    .dm_halt_addr_i({ _065_, _064_, _063_, _062_, _061_, _060_, _059_, _058_, _057_, _056_, _055_, _054_, _053_, _052_, _051_, _050_, _049_, _048_, _047_, _046_, _045_, _044_, _043_, _042_, _041_, _040_, _039_, _038_, _037_, _036_, _035_, _034_ }),
+    .fetch_enable_i(_000_),
+    .hart_id_i({ _228_, _227_, _226_, _225_, _224_, _223_, _222_, _221_, _220_, _219_, _218_, _217_, _216_, _215_, _214_, _213_, _212_, _211_, _210_, _209_, _208_, _207_, _206_, _205_, _204_, _203_, _202_, _201_, _200_, _199_, _198_, _197_ }),
     .instr_addr_o(instr_addr),
     .instr_err_i(instr_err),
     .instr_gnt_i(instr_gnt),
     .instr_rdata_i(instr_rdata),
     .instr_req_o(instr_req),
     .instr_rvalid_i(instr_rvalid),
-    .irq_external_i(_118_),
-    .irq_fast_i({ _117_, _116_, _115_, _114_, _113_, _112_, _111_, _110_, _109_, _108_, _107_, _106_, _105_, _104_, irq_gpio, irq_uart }),
-    .irq_nm_i(_103_),
-    .irq_software_i(_119_),
+    .irq_external_i(_082_),
+    .irq_fast_i({ _081_, _080_, _079_, _078_, _077_, _076_, _075_, _074_, _073_, _072_, _071_, _070_, _069_, _068_, irq_gpio, irq_uart }),
+    .irq_nm_i(_067_),
+    .irq_software_i(_083_),
     .irq_timer_i(irq_timer),
-    .ram_cfg_i({ _274_, _273_, _272_, _271_, _270_, _269_, _268_, _267_, _266_, _265_ }),
+    .ram_cfg_i({ _238_, _237_, _236_, _235_, _234_, _233_, _232_, _231_, _230_, _229_ }),
     .rst_ni(rst_n),
-    .test_en_i(_275_),
-    .x_issue_ready_i(_200_),
-    .x_issue_resp_i({ _199_, _198_, _197_, _196_, _195_ }),
-    .x_result_i({ _193_, _192_, _191_, _190_, _189_, _188_, _187_, _186_, _185_, _184_, _183_, _182_, _181_, _180_, _179_, _178_, _177_, _176_, _175_, _174_, _173_, _172_, _171_, _170_, _169_, _168_, _167_, _166_, _165_, _164_, _163_, _162_, _161_, _160_, _159_, _158_, _157_, _156_, _155_, _154_, _153_, _152_, _151_, _150_, _149_, _148_, _147_, _146_, _145_, _144_, _143_, _142_, _141_, _140_, _139_, _138_, _137_, _136_, _135_, _134_, _133_, _132_, _131_, _130_, _129_, _128_, _127_, _126_, _125_, _124_, _123_, _122_, _121_, _120_ }),
-    .x_result_valid_i(_194_)
+    .test_en_i(_239_),
+    .x_issue_ready_i(_164_),
+    .x_issue_resp_i({ _163_, _162_, _161_, _160_, _159_ }),
+    .x_result_i({ _157_, _156_, _155_, _154_, _153_, _152_, _151_, _150_, _149_, _148_, _147_, _146_, _145_, _144_, _143_, _142_, _141_, _140_, _139_, _138_, _137_, _136_, _135_, _134_, _133_, _132_, _131_, _130_, _129_, _128_, _127_, _126_, _125_, _124_, _123_, _122_, _121_, _120_, _119_, _118_, _117_, _116_, _115_, _114_, _113_, _112_, _111_, _110_, _109_, _108_, _107_, _106_, _105_, _104_, _103_, _102_, _101_, _100_, _099_, _098_, _097_, _096_, _095_, _094_, _093_, _092_, _091_, _090_, _089_, _088_, _087_, _086_, _085_, _084_ }),
+    .x_result_valid_i(_158_)
   );
   \$paramod$f7d8bdaed3e8f3ed43397b5dd98868b48b042592\soc_fabric  u_fabric (
     .clk_i(clk_i),
@@ -136138,14 +135984,12 @@ module soc_top(clk_i, rst_ni, uart_rxd_i, uart_txd_o, gpio_i, gpio_o, gpio_oe_o,
     .gpio_o(gpio_o),
     .gpio_oe_o(gpio_oe_o),
     .i_addr_i(instr_addr),
-    .i_be_i({ _003_, _002_, _001_, _000_ }),
     .i_err_o(instr_err),
     .i_gnt_o(instr_gnt),
     .i_rdata_o(instr_rdata),
     .i_req_i(instr_req),
     .i_rvalid_o(instr_rvalid),
-    .i_wdata_i({ _036_, _035_, _034_, _033_, _032_, _031_, _030_, _029_, _028_, _027_, _026_, _025_, _024_, _023_, _022_, _021_, _020_, _019_, _018_, _017_, _016_, _015_, _014_, _013_, _012_, _011_, _010_, _009_, _008_, _007_, _006_, _005_ }),
-    .i_we_i(_037_),
+    .i_we_i(_001_),
     .irq_gpio_o(irq_gpio),
     .irq_timer_o(irq_timer),
     .irq_uart_o(irq_uart),
@@ -136947,12 +136791,12 @@ module timer(clk_i, rst_ni, req_i, we_i, be_i, addr_i, wdata_i, rdata_o, err_o, 
   wire _0763_;
   wire _sv2v_0;
   wire [9:0] idx;
-  wire [31:0] \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:654$198.base ;
-  wire [3:0] \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:654$198.be ;
-  wire [31:0] \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:654$198.r ;
-  wire [31:0] \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:656$199.base ;
-  wire [3:0] \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:656$199.be ;
-  wire [31:0] \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:656$199.r ;
+  wire [31:0] \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:650$198.base ;
+  wire [3:0] \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:650$198.be ;
+  wire [31:0] \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:650$198.r ;
+  wire [31:0] \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:652$199.base ;
+  wire [3:0] \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:652$199.be ;
+  wire [31:0] \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:652$199.r ;
   wire [63:0] mtime_n;
   wire [63:0] mtime_q;
   wire [63:0] mtimecmp_q;
@@ -142414,12 +142258,12 @@ module timer(clk_i, rst_ni, req_i, we_i, be_i, addr_i, wdata_i, rdata_o, err_o, 
   sky130_fd_sc_hd__conb_1 _1784_ (
     .LO(_0763_)
   );
-  assign \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:656$199.r  = { _0658_, _0657_, _0656_, _0655_, _0654_, _0653_, _0652_, _0651_, _0650_, _0649_, _0648_, _0647_, _0646_, _0645_, _0644_, _0643_, _0642_, _0641_, _0640_, _0639_, _0638_, _0637_, _0636_, _0635_, _0634_, _0633_, _0632_, _0631_, _0630_, _0629_, _0628_, _0627_ };
-  assign \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:656$199.be  = { _0662_, _0661_, _0660_, _0659_ };
-  assign \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:656$199.base  = { _0694_, _0693_, _0692_, _0691_, _0690_, _0689_, _0688_, _0687_, _0686_, _0685_, _0684_, _0683_, _0682_, _0681_, _0680_, _0679_, _0678_, _0677_, _0676_, _0675_, _0674_, _0673_, _0672_, _0671_, _0670_, _0669_, _0668_, _0667_, _0666_, _0665_, _0664_, _0663_ };
-  assign \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:654$198.r  = { _0726_, _0725_, _0724_, _0723_, _0722_, _0721_, _0720_, _0719_, _0718_, _0717_, _0716_, _0715_, _0714_, _0713_, _0712_, _0711_, _0710_, _0709_, _0708_, _0707_, _0706_, _0705_, _0704_, _0703_, _0702_, _0701_, _0700_, _0699_, _0698_, _0697_, _0696_, _0695_ };
-  assign \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:654$198.be  = { _0730_, _0729_, _0728_, _0727_ };
-  assign \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:654$198.base  = { _0762_, _0761_, _0760_, _0759_, _0758_, _0757_, _0756_, _0755_, _0754_, _0753_, _0752_, _0751_, _0750_, _0749_, _0748_, _0747_, _0746_, _0745_, _0744_, _0743_, _0742_, _0741_, _0740_, _0739_, _0738_, _0737_, _0736_, _0735_, _0734_, _0733_, _0732_, _0731_ };
+  assign \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:652$199.r  = { _0658_, _0657_, _0656_, _0655_, _0654_, _0653_, _0652_, _0651_, _0650_, _0649_, _0648_, _0647_, _0646_, _0645_, _0644_, _0643_, _0642_, _0641_, _0640_, _0639_, _0638_, _0637_, _0636_, _0635_, _0634_, _0633_, _0632_, _0631_, _0630_, _0629_, _0628_, _0627_ };
+  assign \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:652$199.be  = { _0662_, _0661_, _0660_, _0659_ };
+  assign \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:652$199.base  = { _0694_, _0693_, _0692_, _0691_, _0690_, _0689_, _0688_, _0687_, _0686_, _0685_, _0684_, _0683_, _0682_, _0681_, _0680_, _0679_, _0678_, _0677_, _0676_, _0675_, _0674_, _0673_, _0672_, _0671_, _0670_, _0669_, _0668_, _0667_, _0666_, _0665_, _0664_, _0663_ };
+  assign \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:650$198.r  = { _0726_, _0725_, _0724_, _0723_, _0722_, _0721_, _0720_, _0719_, _0718_, _0717_, _0716_, _0715_, _0714_, _0713_, _0712_, _0711_, _0710_, _0709_, _0708_, _0707_, _0706_, _0705_, _0704_, _0703_, _0702_, _0701_, _0700_, _0699_, _0698_, _0697_, _0696_, _0695_ };
+  assign \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:650$198.be  = { _0730_, _0729_, _0728_, _0727_ };
+  assign \merge$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:650$198.base  = { _0762_, _0761_, _0760_, _0759_, _0758_, _0757_, _0756_, _0755_, _0754_, _0753_, _0752_, _0751_, _0750_, _0749_, _0748_, _0747_, _0746_, _0745_, _0744_, _0743_, _0742_, _0741_, _0740_, _0739_, _0738_, _0737_, _0736_, _0735_, _0734_, _0733_, _0732_, _0731_ };
   assign idx = addr_i[11:2];
   assign _sv2v_0 = _0763_;
 endmodule

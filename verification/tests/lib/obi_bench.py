@@ -32,25 +32,34 @@ from cocotb.triggers import FallingEdge, RisingEdge
 CLOCK_NS = 10
 
 #: The OBI manager request inputs a bench holds idle through reset, unprefixed.
+#: The data manager has the full write channel; the instruction manager is
+#: read-only (spec/soc.md § Interconnect: its ports carry no write payload), so
+#: the i_ prefix idles the read-only subset `MANAGER_INPUTS_I` below.
 MANAGER_INPUTS = ("req_i", "we_i", "be_i", "addr_i", "wdata_i")
+
+#: The instruction manager's subset of `MANAGER_INPUTS` it actually has ports
+#: for: no be_i / wdata_i, matching rtl/obi_xbar.sv.
+MANAGER_INPUTS_I = ("req_i", "we_i", "addr_i")
 
 
 async def reset_dut(dut, managers=("",), *, period_ns=CLOCK_NS, **inputs):
     """Start `dut.clk_i` and bring `dut` out of reset; sequence as above.
 
-    `managers` are the port prefixes whose `MANAGER_INPUTS` are held idle:
+    `managers` are the port prefixes whose request inputs are held idle:
     `("",)` for a standalone peripheral, `("i_", "d_")` for soc_fabric's two
     managers -- including a manager the caller never drives, which must still
-    be tied off for the DUT to elaborate quietly.  `inputs` names any extra
-    non-bus DUT input to drive before reset is released (`gpio_i=0`,
-    `uart_rxd_i=1`); every name must be a port on `dut`.
+    be tied off for the DUT to elaborate quietly.  The i_ prefix idles
+    `MANAGER_INPUTS_I`: the instruction manager has no write payload ports.
+    `inputs` names any extra non-bus DUT input to drive before reset is
+    released (`gpio_i=0`, `uart_rxd_i=1`); every name must be a port on `dut`.
 
     Returns at a falling edge with reset released, ready for the first request.
     """
     cocotb.start_soon(Clock(dut.clk_i, period_ns, unit="ns").start())
     dut.rst_ni.value = 0
     for prefix in managers:
-        for name in MANAGER_INPUTS:
+        names = MANAGER_INPUTS_I if prefix == "i_" else MANAGER_INPUTS
+        for name in names:
             getattr(dut, f"{prefix}{name}").value = 0
     for name, value in inputs.items():
         getattr(dut, name).value = value

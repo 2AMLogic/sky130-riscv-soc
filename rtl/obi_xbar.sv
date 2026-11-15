@@ -34,8 +34,6 @@ module obi_xbar #(
     output logic        i_gnt_o,
     input  logic [31:0] i_addr_i,
     input  logic        i_we_i,
-    input  logic [3:0]  i_be_i,
-    input  logic [31:0] i_wdata_i,
     output logic        i_rvalid_o,
     output logic [31:0] i_rdata_o,
     output logic        i_err_o,

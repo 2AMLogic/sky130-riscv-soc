@@ -1,0 +1,44 @@
+{
+  "commit": "e0a4e189e3d26ce9c7d640c071e139653820e2ab",
+  "pdk_revision": "f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7",
+  "tool_versions": {
+    "klt": "0.9.1",
+    "klt_invocation": "uvx --from \"klayout-tools==0.9.1\" klt -- the PIN_KLT release in scripts/setup-env.sh, which CI's signoff job also reads. The host's own klt (0.9.3.dev3+gd5d57daf9a14, a dev build) was deliberately NOT used.",
+    "yosys": "0.67+post (b8e7da6f40ae8f552c116bf6c359b07c6533e159)",
+    "sv2v": "v0.0.13",
+    "verilator": "5.050",
+    "iverilog": "13.0",
+    "cocotb": "2.0.1",
+    "host": "loom-worker (AWS dispatch worker)"
+  },
+  "command": "scripts/synth-soc.sh (x2: unmodified origin/main @ 4d17473, then this commit's tree); verification/tools/lint_rtl.sh (default and SRAM_MACRO_V forms); make -C verification soc-gate; make -C verification xbar periph soc boot",
+  "note": "Resynthesis for issue #161: obi_xbar declared i_be_i/i_wdata_i but never read either (the decode forces every instruction-manager write to the error responder on i_we_i alone), soc_fabric only passed them through, and soc_top tied them to 4'hF / 32'h0 -- synthesis realized those constants as 36 dedicated sky130_fd_sc_hd__conb_1 tie cells (4 HI driving the i_be_i bits + 32 LO driving the i_wdata_i bits, each net exclusive to its port; verified against the baseline netlist's .i_be_i/.i_wdata_i concatenations). i_we_i, the read reachability check, is kept. synth_result.json is this commit's klt output; synth_result_baseline.json is the unmodified-main run's, kept so the before figures are auditable rather than asserted. The baseline netlist reproduced main's committed one byte-for-byte (sha256 ba018bda...), and both runs used TMPDIR unset -- klt synthesize deadlocks in Yosys' abc pass on this host under the loom sandbox TMPDIR (filed at 2AMLogic/klayout-tools); every committed netlist was produced that way.",
+  "netlist": {
+    "file": "netlist/soc_top_synth.v",
+    "sha256": "0c5cd5ba033738988501b63145222e11829fad41760b68ffae19f457237c46cc"
+  },
+  "baseline": {
+    "tree": "origin/main @ 4d17473",
+    "netlist_sha256": "ba018bda8be6d9e26744b4507e3c190833ec846c83a90ec4f8dcf81eada7ff55",
+    "area_um2": 222346.9984,
+    "instance_count": 27656,
+    "conb_1": 6240
+  },
+  "after": {
+    "area_um2": 222211.8688,
+    "instance_count": 27620,
+    "conb_1": 6204,
+    "conb_1_in_soc_top_body": "276 -> 240",
+    "sequential_area_um2": 70829.1808
+  },
+  "pinned_inputs": {
+    "cve2_commit": "d7f21568028a1114be663599bd42145dccf28928",
+    "sram_macro_commit": "ebfbf5775c8cd433ad38a4d825e46c2275231511",
+    "sram_macro_liberty_sha256": "8656384775f5e10b44bed97b7193dd3188ce8cd60b7c8e02a5a4ad9e35ed03ba"
+  },
+  "supersedes": {
+    "netlist_sha256": "ba018bda8be6d9e26744b4507e3c190833ec846c83a90ec4f8dcf81eada7ff55",
+    "recorded_in": "verification/records/soc-synth/20261115T071555Z-871b88a",
+    "note": "records/soc-sta-preroute/ and records/soc-pnr/ bind that netlist and so describe a netlist one change old. The change is strictly tie-cell-removing (combinational only: sequential_area_um2 is identical at 70829.1808, and the i_be_i/i_wdata_i ports no longer exist on soc_top), so no recorded timing claim moves in the unsafe direction, but re-running pre-route STA and P&R on the current netlist is outstanding work, not covered here."
+  }
+}

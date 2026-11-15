@@ -50,13 +50,26 @@ in a `FOREIGN` line (geometry rows not compared), so the ciel GDS/LEF were not u
 4. **16 KB fits the budget, so the 4 KB unified fallback is not taken**, and the
    memory map in `spec/soc.md` is unchanged. If #37 shows the budget is missed,
    the fallback is taken by a new record that supersedes this one.
-5. **Wrappers.** `rtl/soc_sram_i.sv` and `rtl/soc_sram_d.sv` instantiate the
-   macros under `-DSOC_SRAM_MACRO`; the default (no define) is the behavioural
-   model, unchanged. Port lists are unchanged, so `soc_fabric` and `soc_top` do
-   not change. Read data is selected by a bank select registered on each read,
-   matching the one-cycle registered read. Power pins (`USE_POWER_PINS`) are left
-   to #37. Rejected: separate wrapper modules per macro style (changes the
-   module the fabric instantiates).
+5. **Wrappers.** `rtl/soc_sram_i.sv` — the one wrapper for every SRAM in
+   `soc_fabric` — instantiates the macros under `-DSOC_SRAM_MACRO`; the
+   default (no define) is the behavioural model, unchanged. Read data is
+   selected by a bank select registered on each read, matching the one-cycle
+   registered read. Power pins (`USE_POWER_PINS`) are left to #37. Rejected:
+   separate wrapper modules per macro style (changes the module the fabric
+   instantiates).
+
+   **Amended 2026-11-15 (#149):** the wrapper gains a
+   `parameter bit USE_PORT1` (default `1'b1`). Single-port use — the D-SRAM
+   and the `ISRAM_1RW=1` I-SRAM — elaborates `USE_PORT1=0`, which builds no
+   port-1 bank select or output mux, drives `dout1` to a constant, and under
+   `-DSOC_SRAM_MACRO` ties every macro's `csb1` high with `addr1` zero. A
+   plain instance-level tie-off leaves the port-1 register and output mux in
+   the shared wrapper elaboration (+1022 um2 pre-route standard-cell area,
+   measured in #149); parameterizing the port recovers it while the memory
+   model, byte mask, read timing and bank decode stay in this one wrapper.
+   The synthesized macro hierarchy `u_fabric/u_dsram/g_bank[k].u_macro` and
+   its `g_isram_1rw1r.u_isram` twin are unchanged, so the P&R macro paths
+   stand.
 
 ## Verification status of the macro build
 

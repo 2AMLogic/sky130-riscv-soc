@@ -8,8 +8,8 @@
 //   ISRAM_AW, DSRAM_AW  word-address width of each SRAM (11 = 2048 words).
 //   ISRAM_1RW           0: two-port I-SRAM (soc_sram_i), data-side write and
 //                          fetch proceed in the same cycle, both grants 1.
-//                       1: single-port I-SRAM (soc_sram_i with port 1 tied
-//                          off, as the D-SRAM is). isd and isi
+//                       1: single-port I-SRAM (soc_sram_i with USE_PORT1=0,
+//                          as the D-SRAM is). isd and isi
 //                          share the port with fixed priority: the data side
 //                          wins and the fetch's grant is held low for as long
 //                          as a data-side access targets the I-SRAM; it
@@ -113,11 +113,13 @@ module soc_fabric #(
     assign isd_rdata = port_dout;
     assign isi_rdata = port_dout;
 
-    // One wrapper serves both SRAM shapes: port 1 tied off is the single-port
-    // memory. csb1 high holds the behavioural port-1 read and, under
-    // -DSOC_SRAM_MACRO, every macro's csb1 (record 0004).
+    // One wrapper serves both SRAM shapes: USE_PORT1=0 is the single-port
+    // memory -- the wrapper builds no port-1 logic, holds the behavioural
+    // port-1 read, and under -DSOC_SRAM_MACRO ties every macro's csb1 high
+    // (0004-sram-macro-organization.md).
     soc_sram_i #(
-        .AW(ISRAM_AW)
+        .AW(ISRAM_AW),
+        .USE_PORT1(1'b0)
     ) u_isram (
         .clk0  (clk_i),
         .csb0  (!port_req),
@@ -136,7 +138,8 @@ module soc_fabric #(
     assign isi_gnt = 1'b1;
 
     soc_sram_i #(
-        .AW(ISRAM_AW)
+        .AW(ISRAM_AW),
+        .USE_PORT1(1'b1)
     ) u_isram (
         .clk0  (clk_i),
         .csb0  (!isd_req),
@@ -152,11 +155,13 @@ module soc_fabric #(
     );
   end
 
-  // D-SRAM: the same wrapper, port 1 tied off. The data side is 1rw by the
-  // ratified spec; record 0004 item 5 notes no 1rw macro view exists, so the
-  // macro build holds the 1rw1r macro here with its port 1 unused.
+  // D-SRAM: the same wrapper, USE_PORT1=0. The data side is 1rw by the
+  // ratified spec; 0004-sram-macro-organization.md item 5 notes no 1rw macro
+  // view exists, so the macro build holds the 1rw1r macro here with its
+  // port 1 unused.
   soc_sram_i #(
-      .AW(DSRAM_AW)
+      .AW(DSRAM_AW),
+      .USE_PORT1(1'b0)
   ) u_dsram (
       .clk0  (clk_i),
       .csb0  (!dsr_req),

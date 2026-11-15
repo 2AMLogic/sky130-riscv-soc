@@ -1,6 +1,7 @@
 # soc_top global-route congestion: analysis (issue #37)
 
-State: **not routed.** Four runs at the 3.8 mm² die (record 0004, unchanged) fail global route
+State: **not routed.** Four runs at the 3.8 mm² die
+([record 0004](../spec/decision-records/0004-sram-macro-organization.md), unchanged) fail global route
 (`GRT-0116`). No routed GDS, no timing, no Fmax figure exists. Evidence is under
 `verification/records/soc-pnr/20261111T19280{0..3}Z-11a90b0/` (a0 baseline, a1, a3, a4).
 Tools: klt git `34a20645`, OpenROAD `26Q3-1510-g6cb3f2b704`. a0 is a re-run of the earlier

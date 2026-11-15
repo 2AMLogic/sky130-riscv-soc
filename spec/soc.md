@@ -29,7 +29,7 @@ decide". Status is `ratified` or `deferred`; a deferral names what settles it.
 | 6 | Memory map, reset vector | ratified | § Memory map | — | § Memory map |
 | 7 | SRAM source | ratified | adopt OpenRAM sky130 macros; `sky130-sram-compiler` named, not adopted | standard-cell RAM | [0002](decision-records/0002-sram-source.md) |
 | 8 | SRAM size | ratified; die budget set (assumption, input to P&R) | 8 KB instruction + 8 KB data (16 KB total); die budget 3.8 mm² core | 4 KB unified (by a record, if P&R misses the budget); 32 KB stretch | 0002, [0004](decision-records/0004-sram-macro-organization.md) |
-| 8a | SRAM macro organization (count, size per memory) | ratified | 4 x `sky130_sram_2kbyte_1rw1r_32x512_8` per memory (8 macros); data-side port 1 tied off | candidate B (generated 4 KB `1rw`; no views) | 0002, 0004 |
+| 8a | SRAM macro organization (count, size per memory) | ratified | 4 x `sky130_sram_2kbyte_1rw1r_32x512_8` per memory (8 macros); data-side port 1 tied off | candidate B (generated 4 KB `1rw`; no views) | 0002, [0004](decision-records/0004-sram-macro-organization.md) |
 | 9 | Peripherals | ratified | boot ROM, UART, 8-bit GPIO, machine timer | fallback drops the timer; SPI XIP is stretch | § Peripherals |
 | 10 | Clock and reset | ratified | one clock `clk_i`; async-assert, sync-deassert reset | — | § Clock and reset |
 | 11 | Signoff Fmax | ratified target; **closure at ss/ff deferred** | 50 MHz post-route, `ss_100C_1v60` | 25 MHz fallback, 100 MHz stretch | § Fmax |

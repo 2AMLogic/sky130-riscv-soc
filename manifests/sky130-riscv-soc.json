@@ -4,7 +4,7 @@
  "evidence": {
   "1": {
    "file": "evidence/item1.json",
-   "content_hash": "sha256:c8f1e6de535658f41d74c9d42a780d1ad398f05627d62dee2f9cdf56dedc56af"
+   "content_hash": "sha256:aeafba0f5c9c13087663286088d7c2eae8867fe224679fcceeb57e1bc3140da8"
   },
   "6": {
    "not_applicable": {
@@ -20,7 +20,7 @@
   },
   "10": {
    "file": "evidence/item10.json",
-   "content_hash": "sha256:90cbda19208e048657bc38a1f1a18635ef2d6c4bb599fa1f58ab3f98fa6f47eb"
+   "content_hash": "sha256:03268fa1dd7eb62b1c5b90ea7dd485bb588149b05b711809d2f9254d96fd3125"
   }
  }
 }

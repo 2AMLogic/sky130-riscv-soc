@@ -1,21 +1,24 @@
 // SRAM wrapper, 2**AW x 32 (default AW=11: 8 KB), 1rw1r, 8-bit write
 // granularity. Used for every SRAM in soc_fabric: the two-port I-SRAM uses
-// both ports, and the D-SRAM (and the ISRAM_1RW=1 single-port I-SRAM) tie
-// port 1 off at the instance -- csb1 high, addr1 zero, dout1 unconnected --
-// which holds the port-1 read in the behavioural build and drives a constant
-// high into every macro's csb1 in the macro build (record 0004 item 5).
+// both ports (USE_PORT1=1), and the D-SRAM (and the ISRAM_1RW=1 single-port
+// I-SRAM) elaborate USE_PORT1=0 -- no port-1 bank select or output mux is
+// built, dout1 is driven to a constant, and under -DSOC_SRAM_MACRO every
+// macro's csb1 is held high with addr1 zero, which is what holds the port-1
+// read off (0004-sram-macro-organization.md item 5).
 // Port interface follows the OpenRAM convention (active-low csb/web, one-cycle
 // registered read). Port 0 reads and writes; port 1 reads.
 // AW is the word-address width; the macro build supports AW=11 only.
 // Default build: behavioural model. With -DSOC_SRAM_MACRO: four
-// sky130_sram_2kbyte_1rw1r_32x512_8 macros, bank = addr[10:9] (decision record
-// 0004). Under the macro build a bank's dout is only valid for the cycle after
+// sky130_sram_2kbyte_1rw1r_32x512_8 macros, bank = addr[10:9]
+// (0004-sram-macro-organization.md). Under the macro build a bank's dout is
+// only valid for the cycle after
 // a read of that bank (the macro model drives X otherwise), so the registered
 // bank select is what the output mux uses.
 // A port-1 read of the word port 0 writes in the same cycle returns the old
 // data (the macro leaves that case undefined; the fabric does not rely on it).
 module soc_sram_i #(
-    parameter int AW = 11
+    parameter int AW = 11,
+    parameter bit USE_PORT1 = 1'b1
 ) (
     input  logic        clk0,
     input  logic        csb0,
@@ -35,7 +38,7 @@ module soc_sram_i #(
   end
 
   logic [31:0] bank_dout0[4], bank_dout1[4];
-  logic [1:0] bsel0, bsel1;
+  logic [1:0] bsel0;
 
   for (genvar k = 0; k < 4; k++) begin : g_bank
     sky130_sram_2kbyte_1rw1r_32x512_8 u_macro (
@@ -47,17 +50,23 @@ module soc_sram_i #(
         .din0  (din0),
         .dout0 (bank_dout0[k]),
         .clk1  (clk1),
-        .csb1  (csb1 || addr1[10:9] != 2'(k)),
-        .addr1 (addr1[8:0]),
+        .csb1  (USE_PORT1 ? (csb1 || addr1[10:9] != 2'(k)) : 1'b1),
+        .addr1 (USE_PORT1 ? addr1[8:0] : '0),
         .dout1 (bank_dout1[k])
     );
   end
 
   always_ff @(posedge clk0) if (!csb0 && web0) bsel0 <= addr0[10:9];
-  always_ff @(posedge clk1) if (!csb1) bsel1 <= addr1[10:9];
-
   assign dout0 = bank_dout0[bsel0];
-  assign dout1 = bank_dout1[bsel1];
+
+  if (USE_PORT1) begin : g_port1
+    logic [1:0] bsel1;
+
+    always_ff @(posedge clk1) if (!csb1) bsel1 <= addr1[10:9];
+    assign dout1 = bank_dout1[bsel1];
+  end else begin : g_no_port1
+    assign dout1 = '0;
+  end
 `else
   logic [31:0] mem[2**AW];
 
@@ -71,8 +80,12 @@ module soc_sram_i #(
     end
   end
 
-  always_ff @(posedge clk1) begin
-    if (!csb1) dout1 <= mem[addr1];
+  if (USE_PORT1) begin : g_port1
+    always_ff @(posedge clk1) begin
+      if (!csb1) dout1 <= mem[addr1];
+    end
+  end else begin : g_no_port1
+    assign dout1 = '0;
   end
 `endif
 endmodule

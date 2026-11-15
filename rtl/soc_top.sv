@@ -5,8 +5,7 @@
 // boot_addr_i at the boot ROM base (the reset vector).
 module soc_top #(
     parameter int ISRAM_AW  = 11,
-    parameter int DSRAM_AW  = 11,
-    parameter bit ISRAM_1RW = 1'b0
+    parameter int DSRAM_AW  = 11
 ) (
     input  logic clk_i,
     input  logic rst_ni,
@@ -88,9 +87,8 @@ module soc_top #(
   );
 
   soc_fabric #(
-      .ISRAM_AW (ISRAM_AW),
-      .DSRAM_AW (DSRAM_AW),
-      .ISRAM_1RW(ISRAM_1RW)
+      .ISRAM_AW(ISRAM_AW),
+      .DSRAM_AW(DSRAM_AW)
   ) u_fabric (
       .clk_i,
       .rst_ni    (rst_n),

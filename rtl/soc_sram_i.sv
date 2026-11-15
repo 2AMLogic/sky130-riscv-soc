@@ -1,8 +1,7 @@
 // SRAM wrapper, 2**AW x 32 (default AW=11: 8 KB), 1rw1r, 8-bit write
 // granularity. Used for every SRAM in soc_fabric: the two-port I-SRAM uses
-// both ports (USE_PORT1=1), and the D-SRAM (and the ISRAM_1RW=1 single-port
-// I-SRAM) elaborate USE_PORT1=0 -- no port-1 bank select or output mux is
-// built. Under -DSOC_SRAM_MACRO every macro's csb1 is held high with addr1
+// both ports (USE_PORT1=1), and the D-SRAM elaborates USE_PORT1=0 -- no
+// port-1 bank select or output mux is built. Under -DSOC_SRAM_MACRO every macro's csb1 is held high with addr1
 // zero, which is what holds the port-1 read off (0004-sram-macro-organization.md
 // item 5). With port 1 off, dout1 is a don't-care: the behavioural build
 // drives it to a constant, while the macro build aliases bank 0's port-1

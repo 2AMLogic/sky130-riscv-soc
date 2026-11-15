@@ -1,0 +1,43 @@
+{
+  "commit": "5e9335ce295714f57e0be48d5b6a701c69231492",
+  "pdk_revision": "f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7",
+  "tool_versions": {
+    "klt": "0.9.1",
+    "klt_invocation": "uvx --from \"klayout-tools==0.9.1\" klt -- the PIN_KLT release in scripts/setup-env.sh, which CI's signoff job also reads. The host's own klt dev build was deliberately NOT used.",
+    "yosys": "0.67+post (b8e7da6f40ae8f552c116bf6c359b07c6533e159)",
+    "sv2v": "v0.0.13",
+    "verilator": "5.050",
+    "iverilog": "13.0",
+    "cocotb": "2.0.1",
+    "host": "loom-worker (AWS dispatch worker)"
+  },
+  "command": "scripts/synth-soc.sh (x2: unmodified main @ b62c123 in a detached scratch worktree, then this commit's tree); verification/tools/lint_rtl.sh (default and SRAM_MACRO_V forms); make -C verification xbar periph boot soc soc-negative soc-gate; verification/tools/tests/test_lint_rtl.sh; the three signoff.yml legs via klt signoff --check",
+  "note": "Resynthesis for issue #172: the ISRAM_1RW single-port I-SRAM option (decision record 0006) is removed. The option had no macro view -- soc_fabric raised $error on any ISRAM_1RW=1 + SOC_SRAM_MACRO build -- so it never reached P&R, STA or signoff. With the option gone every subordinate grant into obi_xbar is constant 1'b1, so obi_xbar's five *_gnt_i ports are deleted too; i_gnt_o is constant and d_gnt_o keeps its real arbitration term (!i_to_rom, boot-ROM fetch priority unchanged). The default build's logic is unchanged: the deleted logic was already constant in the ISRAM_1RW=0 elaboration. synth_result.json is this commit's klt output; synth_result_baseline.json is the unmodified-main run's, kept so the before figures are auditable rather than asserted. The baseline netlist reproduced main's committed one byte-for-byte (sha256 0c5cd5ba...), so the after-delta is this change, not the toolchain. Both runs used TMPDIR unset -- klt synthesize deadlocks in Yosys' abc pass on this host under the loom sandbox TMPDIR (filed at 2AMLogic/klayout-tools); every committed netlist was produced that way.",
+  "netlist": {
+    "file": "netlist/soc_top_synth.v",
+    "sha256": "e4592eca9643798cd908d5681deec08aa2ceeaab58866d4a73dbe74a52cb5784"
+  },
+  "baseline": {
+    "tree": "main @ b62c123",
+    "netlist_sha256": "0c5cd5ba033738988501b63145222e11829fad41760b68ffae19f457237c46cc",
+    "area_um2": 222211.8688,
+    "instance_count": 27620,
+    "sequential_area_um2": 70829.1808
+  },
+  "after": {
+    "area_um2": 222111.7728,
+    "instance_count": 27597,
+    "sequential_area_um2": 70829.1808,
+    "combinational_only": "every sequential cell type identical (dfrtp_1 2683, dfstp_2 97, dlxtn_1 1, edfxtp_1 38); all 8 SRAM macro instances identical; soc_top ports identical"
+  },
+  "pinned_inputs": {
+    "cve2_commit": "d7f21568028a1114be663599bd42145dccf28928",
+    "sram_macro_commit": "ebfbf5775c8cd433ad38a4d825e46c2275231511",
+    "sram_macro_liberty_sha256": "8656384775f5e10b44bed97b7193dd3188ce8cd60b7c8e02a5a4ad9e35ed03ba"
+  },
+  "supersedes": {
+    "netlist_sha256": "0c5cd5ba033738988501b63145222e11829fad41760b68ffae19f457237c46cc",
+    "recorded_in": "verification/records/soc-synth/20261115T110935Z-e0a4e18",
+    "note": "records/soc-sta-preroute/ and records/soc-pnr/ bind that netlist and so describe a netlist one change old. This change is logic-identical on the default build (the removed grant plumbing was constant); the -23 cells are the combinational cone around the deleted grant ports re-mapped by abc, with sequential_area_um2 identical at 70829.1808, so no recorded timing claim moves in the unsafe direction -- but re-running pre-route STA and P&R on the current netlist is outstanding work, not covered here. The macro instance hierarchy (u_fabric/g_isram_1rw1r.u_isram/g_bank[N].u_macro, u_dsram/g_bank[N].u_macro) is unchanged, so flow/soc/pnr_request.json macro paths remain valid."
+  }
+}

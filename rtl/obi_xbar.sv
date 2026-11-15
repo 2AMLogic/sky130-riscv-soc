@@ -19,9 +19,7 @@
 // SRAM size: ISRAM_AW / DSRAM_AW are the word-address widths (default 11 = 2048
 // words = 8 KB). The region decode derives from them, so an address past the
 // configured size inside the old 8 KB region is unmapped and gets an error.
-// A subordinate may deassert its grant (soc_fabric does for the I-SRAM when it
-// is a single port, ISRAM_1RW=1: the data manager wins, the fetch is held and
-// retries). A response is only expected one cycle after a granted request.
+// A response is only expected one cycle after a granted request.
 module obi_xbar #(
     parameter int ISRAM_AW = 11,
     parameter int DSRAM_AW = 11
@@ -51,13 +49,11 @@ module obi_xbar #(
 
     // boot ROM (read-only; shared)
     output logic        rom_req_o,
-    input  logic        rom_gnt_i,
     output logic [31:0] rom_addr_o,
     input  logic [31:0] rom_rdata_i,
 
     // instruction SRAM port 0 (data manager: read/write)
     output logic        isd_req_o,
-    input  logic        isd_gnt_i,
     output logic [31:0] isd_addr_o,
     output logic        isd_we_o,
     output logic [3:0]  isd_be_o,
@@ -66,13 +62,11 @@ module obi_xbar #(
 
     // instruction SRAM port 1 (instruction manager: read)
     output logic        isi_req_o,
-    input  logic        isi_gnt_i,
     output logic [31:0] isi_addr_o,
     input  logic [31:0] isi_rdata_i,
 
     // data SRAM (data manager)
     output logic        dsr_req_o,
-    input  logic        dsr_gnt_i,
     output logic [31:0] dsr_addr_o,
     output logic        dsr_we_o,
     output logic [3:0]  dsr_be_o,
@@ -81,7 +75,6 @@ module obi_xbar #(
 
     // peripheral window (data manager)
     output logic        per_req_o,
-    input  logic        per_gnt_i,
     output logic [31:0] per_addr_o,
     output logic        per_we_o,
     output logic [3:0]  per_be_o,
@@ -142,21 +135,14 @@ module obi_xbar #(
   assign per_be_o    = d_be_i;
   assign per_wdata_o = d_wdata_i;
 
-  // Grants. T_ERR is granted unconditionally: the crossbar always accepts it.
-  always_comb begin
-    case (i_tgt)
-      T_ROM:   i_gnt_o = rom_gnt_i;
-      T_ISR:   i_gnt_o = isi_gnt_i;
-      default: i_gnt_o = 1'b1;
-    endcase
-    case (d_tgt)
-      T_ROM:   d_gnt_o = rom_gnt_i && !i_to_rom;
-      T_ISR:   d_gnt_o = isd_gnt_i;
-      T_DSR:   d_gnt_o = dsr_gnt_i;
-      T_PER:   d_gnt_o = per_gnt_i;
-      default: d_gnt_o = 1'b1;
-    endcase
-  end
+  // Grants. Every subordinate grants in the request cycle (the grant inputs
+  // were removed with the ISRAM_1RW option, record 0006: the last source of a
+  // deasserting grant was the single-port I-SRAM), so i_gnt_o is constant and
+  // the only arbitration is at the boot ROM: the data manager is not granted
+  // while the instruction manager wants it. T_ERR is granted unconditionally:
+  // the crossbar always accepts it.
+  assign i_gnt_o = 1'b1;
+  assign d_gnt_o = (d_tgt == T_ROM) ? !i_to_rom : 1'b1;
 
   // Response routing: remember the target of the access accepted last cycle.
   logic       i_pend_q, d_pend_q;

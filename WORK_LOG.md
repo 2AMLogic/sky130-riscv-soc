@@ -5,6 +5,8 @@ Maintained by the Loom Guide role.
 
 ### 2026-11-15
 
+- **PR #171**: rtl: gate soc_sram_i's port 1 behind USE_PORT1, dropping u_dsram's dead logic
+- **Issue #149** (closed): u_dsram carries a dead bsel1 register and dout1 mux after the soc_sram_d removal: +1022 um2 pre-route
 - **PR #163**: docs: cite record 0004 by filename at 9 of the 14 sites that named only the number
 - **PR #160**: ci: extract the sv2v install and CVE2 convert prelude into one composite action
 - **Issue #157** (closed): Dedupe .github/workflows/ci.yml: the sv2v install and CVE2 convert prelude is copied byte-for-byte into both jobs

@@ -1,7 +1,9 @@
 # Machine timer interrupt taken exactly once. mtimecmp = mtime + DELAY, set
-# with the hi/lo write order of record 0004. The handler (vector slot 7) records
-# the count, mcause and mtime at entry, then parks mtimecmp at all ones. The
-# main loop then runs for a window far longer than DELAY and writes SIG.
+# with the hi/lo write order of
+# spec/decision-records/0004-peripheral-register-map.md. The handler (vector
+# slot 7) records the count, mcause and mtime at entry, then parks mtimecmp at
+# all ones. The main loop then runs for a window far longer than DELAY and
+# writes SIG.
 # D-SRAM: [0] SIG at the end, [1] handler count, [2] mcause, [3] mtime at
 # handler entry, [4] mtimecmp programmed, [5] mtime when read for programming.
 #include "soc.inc"
@@ -20,9 +22,9 @@ _entry:
     addi t1, t1, DELAY
     sw   t1, 16(s2)
     li   t2, -1
-    sw   t2, MTIMECMP_LO(s0)          # record 0004 write order: LO = ones,
-    sw   zero, MTIMECMP_HI(s0)        # HI (mtime < 2^32 here), then LO
-    sw   t1, MTIMECMP_LO(s0)
+    sw   t2, MTIMECMP_LO(s0)          # record 0004-peripheral-register-map.md
+    sw   zero, MTIMECMP_HI(s0)        # write order: LO = ones, HI (mtime <
+    sw   t1, MTIMECMP_LO(s0)          # 2^32 here), then LO
     li   t1, 0x80                     # mie.MTIE
     csrw mie, t1
     csrsi mstatus, 8                  # mstatus.MIE

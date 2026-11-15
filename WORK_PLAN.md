@@ -32,7 +32,10 @@ _None._
 Issues currently being built (`loom:building`).
 
 - **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9
-- **#142**: Remove rtl/obi_err_resp.sv: its grant is a constant and its error flag repeats what obi_xbar already registers
+- **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous
+- **#153**: Remove the dead tx_sh_q[0] bit in rtl/uart.sv: the start bit is driven directly, so bit 0 is never read
+- **#161**: Remove the dead instruction-side write channel: obi_xbar never reads i_be_i or i_wdata_i, and 36 tie cells exist only to feed them
+- **#173**: USE_PORT1=0 macro build ties dout1 to 32 conb_1 cells (+120.12 um2) for an output no instance connects
 
 ## PRs Awaiting Review
 
@@ -44,7 +47,7 @@ _None._
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-_None._
+- **#176**: rtl: alias soc_sram_i's off-port dout1 to bank_dout1[0] in the macro build, dropping 32 tie cells
 
 ## Proposed
 
@@ -55,15 +58,18 @@ Issues carrying `loom:curated`.
 - **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9 *(curated)*
 - **#49**: T1 item 5: riscv-arch-test on the RTL SoC via klt functional-verification *(curated)*
 - **#69**: T1 item 8 (characterization): per-row report with Fmax, area and power per ratified corner, attested with klt signoff --attest 8 *(curated)*
+- **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous *(curated)*
+- **#169**: Follow-on: Work identified in PR #163 *(curated)*
+- **#173**: USE_PORT1=0 macro build ties dout1 to 32 conb_1 cells (+120.12 um2) for an output no instance connects *(curated)*
 
 ## Proposed (Architect / Hermit)
 
 - **#103**: Remove the npm check scripts: check:ci runs 4 of CI's 13 commands *(hermit)*
 - **#122**: Remove the unfetched VLSIDA/OpenRAM import from reuse.lock.json: candidate B was declined in record 0004 *(hermit)*
 - **#132**: Remove the no-op Verilator lint from scripts/convert-cve2.sh: it prints ok when Verilator is absent *(hermit)*
-- **#153**: Remove the dead tx_sh_q[0] bit in rtl/uart.sv: the start bit is driven directly, so bit 0 is never read *(hermit)*
-- **#154**: Remove the duplicate soc_fabric bus driver: periph_bus.Bus reimplements the reset sequence and response contract that test_xbar.Fab already has *(hermit)*
-- **#155**: Remove the duplicate soc_top bench: test_boot.Soc and soc_bench.Soc reimplement one reset and D-SRAM preload, plus two write-only cycle counters *(hermit)*
+- **#159**: Remove PIN_RISCV_GCC_SHA256, or say it is unchecked: the pin table advertises a tarball sha256 that nothing in the repo verifies *(hermit)*
+- **#162**: Remove the repo-wide *.log ignore rule: it silently blocks record evidence, and four soc-pnr records cite a log it swallowed *(hermit)*
+- **#172**: Remove the unratified ISRAM_1RW single-port I-SRAM option: sim-only, no macro view, ~130 LOC of rtl/test/lint *(hermit)*
 
 ## Epics
 
@@ -77,10 +83,10 @@ _None._
 | Very important | 1 |
 | Important | 1 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 2 |
+| In Progress (`loom:building`) | 5 |
 | PRs awaiting review | 0 |
-| Approved PRs awaiting merge | 0 |
-| Curated | 5 |
+| Approved PRs awaiting merge | 1 |
+| Curated | 8 |
 | Architect / Hermit proposals | 6 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

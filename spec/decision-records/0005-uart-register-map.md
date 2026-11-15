@@ -8,14 +8,14 @@
 ## Context
 
 `spec/soc.md` ratifies one UART (8N1, TX and RX, programmable baud divisor,
-TX/RX interrupt) at `0x4000_0000`, routed to `irq_fast_i[0]`. Record 0004
+TX/RX interrupt) at `0x4000_0000`, routed to `irq_fast_i[0]`. [Record 0004](0004-peripheral-register-map.md)
 reserved the page. This record fixes the registers; it relaxes no ratified row.
 FIFOs, parity, flow control and other frame formats are not provided; adding
 any is a spec change.
 
 ## Decision
 
-Same conventions as 0004: `addr[11:2]` selects the word, `addr[1:0]` ignored;
+Same conventions as [0004](0004-peripheral-register-map.md): `addr[11:2]` selects the word, `addr[1:0]` ignored;
 every access is granted in the request cycle and answered one cycle later;
 a word offset past `DIV` is an OBI error (read and write). `DATA`, `STATUS` and
 `CTRL` are byte-lane 0 registers (a write needs `be[0]`); `DIV` is 16 bits

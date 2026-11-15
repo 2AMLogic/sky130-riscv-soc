@@ -34,13 +34,13 @@
         "command": null,
         "kind": "generic",
         "check_status": "pass",
-        "content_hash": "sha256:49e8c66ee3c4ad7a4dc19974f3ab9f7e340be159dbf90a02095cc6bd8de37a9e",
+        "content_hash": "sha256:a6eb388c34a87abb0f2b428f406dfe1a9a9ae79d00be998bd9775144cb2c48c5",
         "input_verified": true,
         "exit_status": 0,
         "artifact_binding": {
           "t1_item": 1,
           "path": null,
-          "content_hash": "sha256:49e8c66ee3c4ad7a4dc19974f3ab9f7e340be159dbf90a02095cc6bd8de37a9e",
+          "content_hash": "sha256:a6eb388c34a87abb0f2b428f406dfe1a9a9ae79d00be998bd9775144cb2c48c5",
           "input_verified": true,
           "members": [
             {
@@ -48,7 +48,7 @@
                 "path": "attest/item1.json",
                 "scope": "repo"
               },
-              "content_hash": "sha256:d2231556e2702b34f7bdd99af8b23854871916fab43cf956ffc2a776b477fa6f",
+              "content_hash": "sha256:cc3ff8c1636cebcfff90b9e5300f52e5868554bd429727e5c33475b89c100ed5",
               "status": "verified"
             },
             {
@@ -72,7 +72,7 @@
                 "path": "netlist/soc_top_synth.v",
                 "scope": "repo"
               },
-              "content_hash": "sha256:53f361e4e15d3d57b93b92afc87d09e803f4b6805640669d9fb72e90170b46c9",
+              "content_hash": "sha256:ba018bda8be6d9e26744b4507e3c190833ec846c83a90ec4f8dcf81eada7ff55",
               "status": "verified"
             },
             {
@@ -120,7 +120,7 @@
                 "path": "rtl/soc_fabric.sv",
                 "scope": "repo"
               },
-              "content_hash": "sha256:8ca08974aafbb9ffe9c59a7870bd3e4052680f29bea9dd1ec1981e6fc7a92dc2",
+              "content_hash": "sha256:05861cb0c9118681aeab62ee60ca0f1bc4414664b4e818127cda228650c0dec7",
               "status": "verified"
             },
             {
@@ -128,7 +128,7 @@
                 "path": "rtl/soc_sram_i.sv",
                 "scope": "repo"
               },
-              "content_hash": "sha256:6a05b4ab2bc5f8a78ed703aa185fe5432569e77f62b161a37524b12728ae439c",
+              "content_hash": "sha256:b81749981c6d4d1edfdac965ed699adf570cbcd40a26d74b1eba897e4b7791a6",
               "status": "verified"
             },
             {

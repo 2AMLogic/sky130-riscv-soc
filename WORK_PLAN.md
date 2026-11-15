@@ -25,9 +25,7 @@ _None._
 
 Human-approved issues ready for implementation (`loom:issue`).
 
-- **#149**: u_dsram carries a dead bsel1 register and dout1 mux after the soc_sram_d removal: +1022 um2 pre-route
-- **#153**: Remove the dead tx_sh_q[0] bit in rtl/uart.sv: the start bit is driven directly, so bit 0 is never read
-- **#161**: Remove the dead instruction-side write channel: obi_xbar never reads i_be_i or i_wdata_i, and 36 tie cells exist only to feed them
+_None._
 
 ## In Progress
 
@@ -35,23 +33,21 @@ Issues currently being built (`loom:building`).
 
 - **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9
 - **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous
-- **#155**: Remove the duplicate soc_top bench: test_boot.Soc and soc_bench.Soc reimplement one reset and D-SRAM preload, plus two write-only cycle counters
-- **#157**: Dedupe .github/workflows/ci.yml: the sv2v install and CVE2 convert prelude is copied byte-for-byte into both jobs
-- **#164**: Remove the hand-maintained sync between the two item-6 statements: CI compares ids only, so the human-readable .md can contradict the hash-bound .json
+- **#153**: Remove the dead tx_sh_q[0] bit in rtl/uart.sv: the start bit is driven directly, so bit 0 is never read
+- **#161**: Remove the dead instruction-side write channel: obi_xbar never reads i_be_i or i_wdata_i, and 36 tie cells exist only to feed them
+- **#173**: USE_PORT1=0 macro build ties dout1 to 32 conb_1 cells (+120.12 um2) for an output no instance connects
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
-- **#160**: ci: extract the sv2v install and CVE2 convert prelude into one composite action
-- **#163**: docs: cite record 0004 by filename at the 14 sites that named only the number
+_None._
 
 ## Approved (Awaiting Merge)
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-- **#165**: check: compare item-6 row class and reason against the hash-bound JSON
-- **#166**: refactor: factor the soc_top bench core into tests/lib, drop two dead counters
+- **#176**: rtl: alias soc_sram_i's off-port dout1 to bank_dout1[0] in the macro build, dropping 32 tie cells
 
 ## Proposed
 
@@ -63,7 +59,8 @@ Issues carrying `loom:curated`.
 - **#49**: T1 item 5: riscv-arch-test on the RTL SoC via klt functional-verification *(curated)*
 - **#69**: T1 item 8 (characterization): per-row report with Fmax, area and power per ratified corner, attested with klt signoff --attest 8 *(curated)*
 - **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous *(curated)*
-- **#149**: u_dsram carries a dead bsel1 register and dout1 mux after the soc_sram_d removal: +1022 um2 pre-route *(curated)*
+- **#169**: Follow-on: Work identified in PR #163 *(curated)*
+- **#173**: USE_PORT1=0 macro build ties dout1 to 32 conb_1 cells (+120.12 um2) for an output no instance connects *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -72,6 +69,7 @@ Issues carrying `loom:curated`.
 - **#132**: Remove the no-op Verilator lint from scripts/convert-cve2.sh: it prints ok when Verilator is absent *(hermit)*
 - **#159**: Remove PIN_RISCV_GCC_SHA256, or say it is unchecked: the pin table advertises a tarball sha256 that nothing in the repo verifies *(hermit)*
 - **#162**: Remove the repo-wide *.log ignore rule: it silently blocks record evidence, and four soc-pnr records cite a log it swallowed *(hermit)*
+- **#172**: Remove the unratified ISRAM_1RW single-port I-SRAM option: sim-only, no macro view, ~130 LOC of rtl/test/lint *(hermit)*
 
 ## Epics
 
@@ -84,11 +82,11 @@ _None._
 | Operator merge-risk holds | 0 |
 | Very important | 1 |
 | Important | 1 |
-| Ready (`loom:issue`) | 3 |
+| Ready (`loom:issue`) | 0 |
 | In Progress (`loom:building`) | 5 |
-| PRs awaiting review | 2 |
-| Approved PRs awaiting merge | 2 |
-| Curated | 7 |
-| Architect / Hermit proposals | 5 |
+| PRs awaiting review | 0 |
+| Approved PRs awaiting merge | 1 |
+| Curated | 8 |
+| Architect / Hermit proposals | 6 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

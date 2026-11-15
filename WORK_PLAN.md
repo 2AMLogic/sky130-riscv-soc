@@ -34,7 +34,6 @@ Issues currently being built (`loom:building`).
 - **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9
 - **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous
 - **#153**: Remove the dead tx_sh_q[0] bit in rtl/uart.sv: the start bit is driven directly, so bit 0 is never read
-- **#161**: Remove the dead instruction-side write channel: obi_xbar never reads i_be_i or i_wdata_i, and 36 tie cells exist only to feed them
 
 ## PRs Awaiting Review
 
@@ -81,7 +80,7 @@ _None._
 | Very important | 1 |
 | Important | 1 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 4 |
+| In Progress (`loom:building`) | 3 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
 | Curated | 7 |

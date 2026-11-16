@@ -69,11 +69,10 @@ jobs:
           make -C verification periph
       - name: Install sv2v at the pin and convert the CVE2 core
         uses: ./.github/actions/cve2-core
-      - name: cocotb SoC boot test (default and single-port I-SRAM configurations)
+      - name: cocotb SoC boot test
         run: |
           . .venv/bin/activate
           make -C verification boot
-          make -C verification boot-1rw
       - name: cocotb SoC firmware tests (banner, echo, GPIO, timer interrupt)
         run: |
           . .venv/bin/activate

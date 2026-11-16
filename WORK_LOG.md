@@ -5,6 +5,12 @@ Maintained by the Loom Guide role.
 
 ### 2026-11-15
 
+- **PR #181**: rtl: drop the ISRAM_1RW single-port I-SRAM option and its dead grant/retry path
+- **Issue #172** (closed): Remove the unratified ISRAM_1RW single-port I-SRAM option: sim-only, no macro view, ~130 LOC of rtl/test/lint
+- **PR #179**: rtl: drop the instruction manager's unused write payload ports
+- **Issue #161** (closed): Remove the dead instruction-side write channel: obi_xbar never reads i_be_i or i_wdata_i, and 36 tie cells exist only to feed them
+- **PR #176**: rtl: alias soc_sram_i's off-port dout1 to bank_dout1[0] in the macro build, dropping 32 tie cells
+- **Issue #173** (closed): USE_PORT1=0 macro build ties dout1 to 32 conb_1 cells (+120.12 um2) for an output no instance connects
 - **PR #171**: rtl: gate soc_sram_i's port 1 behind USE_PORT1, dropping u_dsram's dead logic
 - **Issue #149** (closed): u_dsram carries a dead bsel1 register and dout1 mux after the soc_sram_d removal: +1022 um2 pre-route
 - **PR #163**: docs: cite record 0004 by filename at 9 of the 14 sites that named only the number

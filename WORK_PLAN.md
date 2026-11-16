@@ -7,7 +7,7 @@ Roadmap generated from GitHub label state by the Loom Guide role.
 
 Judge-approved PRs under a hold (`loom:blocked` or `loom:operator`) — only a human merge decision is missing.
 
-_None._
+- **#184**: chore(loom): resync installed Loom to v0.19.1302
 
 ## Very Important
 
@@ -34,6 +34,7 @@ Issues currently being built (`loom:building`).
 - **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9
 - **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous
 - **#153**: Remove the dead tx_sh_q[0] bit in rtl/uart.sv: the start bit is driven directly, so bit 0 is never read
+- **#182**: Two leftovers from dropping ISRAM_1RW: a dead per_gnt signal, and no remaining coverage for non-default ISRAM_AW/DSRAM_AW
 
 ## PRs Awaiting Review
 
@@ -45,7 +46,7 @@ _None._
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-_None._
+- **#184**: chore(loom): resync installed Loom to v0.19.1302
 
 ## Proposed
 
@@ -58,6 +59,7 @@ Issues carrying `loom:curated`.
 - **#69**: T1 item 8 (characterization): per-row report with Fmax, area and power per ratified corner, attested with klt signoff --attest 8 *(curated)*
 - **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous *(curated)*
 - **#169**: Follow-on: Work identified in PR #163 *(curated)*
+- **#182**: Two leftovers from dropping ISRAM_1RW: a dead per_gnt signal, and no remaining coverage for non-default ISRAM_AW/DSRAM_AW *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -75,14 +77,14 @@ _None._
 
 | Bucket | Count |
 |------|-------|
-| Operator merge-risk holds | 0 |
+| Operator merge-risk holds | 1 |
 | Very important | 1 |
 | Important | 1 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 3 |
+| In Progress (`loom:building`) | 4 |
 | PRs awaiting review | 0 |
-| Approved PRs awaiting merge | 0 |
-| Curated | 7 |
+| Approved PRs awaiting merge | 1 |
+| Curated | 8 |
 | Architect / Hermit proposals | 5 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

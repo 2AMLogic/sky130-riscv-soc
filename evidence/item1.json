@@ -94,7 +94,7 @@
         "role": "source",
         "path": "rtl/uart.sv",
         "passed": true,
-        "content_hash": "sha256:446c2cd6fb645688e14db650ea5fa64a205c36bf6ac215a56513646397b7d306"
+        "content_hash": "sha256:9f2cc0e1ebb59946ce9da403000eaf9b37ed25778bb44828d06bd948e0733c57"
       },
       {
         "check": "present",
@@ -136,7 +136,7 @@
         "role": "derived",
         "path": "netlist/soc_top_synth.v",
         "passed": true,
-        "content_hash": "sha256:e4592eca9643798cd908d5681deec08aa2ceeaab58866d4a73dbe74a52cb5784"
+        "content_hash": "sha256:3caee9f00087ae2e760aff37942a9c35b11ed3855f71cad0df69d6bbd0c66a7d"
       },
       {
         "check": "recorded_hash",
@@ -159,7 +159,7 @@
             "path": "attest/item1.json",
             "scope": "repo"
           },
-          "content_hash": "sha256:2d88a007829d0a7ad42411221c3aaf4bee1be96dd5713cf867a349510fc2c58a"
+          "content_hash": "sha256:e93d248b14f7c71a314ff505de3e608ac031fe2d2561821e14ddd460f39be6aa"
         },
         {
           "path": {
@@ -180,7 +180,7 @@
             "path": "netlist/soc_top_synth.v",
             "scope": "repo"
           },
-          "content_hash": "sha256:e4592eca9643798cd908d5681deec08aa2ceeaab58866d4a73dbe74a52cb5784"
+          "content_hash": "sha256:3caee9f00087ae2e760aff37942a9c35b11ed3855f71cad0df69d6bbd0c66a7d"
         },
         {
           "path": {
@@ -250,7 +250,7 @@
             "path": "rtl/uart.sv",
             "scope": "repo"
           },
-          "content_hash": "sha256:446c2cd6fb645688e14db650ea5fa64a205c36bf6ac215a56513646397b7d306"
+          "content_hash": "sha256:9f2cc0e1ebb59946ce9da403000eaf9b37ed25778bb44828d06bd948e0733c57"
         },
         {
           "path": {
@@ -288,7 +288,7 @@
           "content_hash": "sha256:c747166487204bfa4cc32d254eeb5a898036111c29872a3cbc0b8f8628c6ab0b"
         }
       ],
-      "content_hash": "sha256:aeafba0f5c9c13087663286088d7c2eae8867fe224679fcceeb57e1bc3140da8"
+      "content_hash": "sha256:bf5dd1d910429298e1f654a3c71ef5a06a76751fbceea887d15d1de6e1d22a01"
     }
   }
 }

@@ -25,16 +25,15 @@ Judge-approved PRs under a hold (`loom:blocked` or `loom:operator`) — only a h
 
 Human-approved issues ready for implementation (`loom:issue`).
 
-_None._
+- **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous
+- **#153**: Remove the dead tx_sh_q[0] bit in rtl/uart.sv: the start bit is driven directly, so bit 0 is never read
+- **#182**: Two leftovers from dropping ISRAM_1RW: a dead per_gnt signal, and no remaining coverage for non-default ISRAM_AW/DSRAM_AW
 
 ## In Progress
 
 Issues currently being built (`loom:building`).
 
 - **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9
-- **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous
-- **#153**: Remove the dead tx_sh_q[0] bit in rtl/uart.sv: the start bit is driven directly, so bit 0 is never read
-- **#182**: Two leftovers from dropping ISRAM_1RW: a dead per_gnt signal, and no remaining coverage for non-default ISRAM_AW/DSRAM_AW
 
 ## PRs Awaiting Review
 
@@ -80,8 +79,8 @@ _None._
 | Operator merge-risk holds | 1 |
 | Very important | 1 |
 | Important | 1 |
-| Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 4 |
+| Ready (`loom:issue`) | 3 |
+| In Progress (`loom:building`) | 1 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 1 |
 | Curated | 8 |

@@ -66,7 +66,7 @@
         "role": "source",
         "path": "rtl/soc_fabric.sv",
         "passed": true,
-        "content_hash": "sha256:309a9f6df641bfd39a32cc8cfc812f227f88bb097fa6617a57a50c089d940f7f"
+        "content_hash": "sha256:7a704d24d923bcce1f9c333083a81f2f2d12b9c34a5aa7ae8d27beb30f9f4c8c"
       },
       {
         "check": "present",
@@ -94,7 +94,7 @@
         "role": "source",
         "path": "rtl/uart.sv",
         "passed": true,
-        "content_hash": "sha256:9f2cc0e1ebb59946ce9da403000eaf9b37ed25778bb44828d06bd948e0733c57"
+        "content_hash": "sha256:446c2cd6fb645688e14db650ea5fa64a205c36bf6ac215a56513646397b7d306"
       },
       {
         "check": "present",
@@ -136,7 +136,7 @@
         "role": "derived",
         "path": "netlist/soc_top_synth.v",
         "passed": true,
-        "content_hash": "sha256:3caee9f00087ae2e760aff37942a9c35b11ed3855f71cad0df69d6bbd0c66a7d"
+        "content_hash": "sha256:160672fe01c934855b1688b5ef3120acbfecca72446c93efa75c7658fbb9a7b6"
       },
       {
         "check": "recorded_hash",
@@ -159,7 +159,7 @@
             "path": "attest/item1.json",
             "scope": "repo"
           },
-          "content_hash": "sha256:e93d248b14f7c71a314ff505de3e608ac031fe2d2561821e14ddd460f39be6aa"
+          "content_hash": "sha256:c990fcc3d2b7c4781aac5d006efc0cd02cab3f6b69ebaeb49d4145196cc29763"
         },
         {
           "path": {
@@ -180,7 +180,7 @@
             "path": "netlist/soc_top_synth.v",
             "scope": "repo"
           },
-          "content_hash": "sha256:3caee9f00087ae2e760aff37942a9c35b11ed3855f71cad0df69d6bbd0c66a7d"
+          "content_hash": "sha256:160672fe01c934855b1688b5ef3120acbfecca72446c93efa75c7658fbb9a7b6"
         },
         {
           "path": {
@@ -222,7 +222,7 @@
             "path": "rtl/soc_fabric.sv",
             "scope": "repo"
           },
-          "content_hash": "sha256:309a9f6df641bfd39a32cc8cfc812f227f88bb097fa6617a57a50c089d940f7f"
+          "content_hash": "sha256:7a704d24d923bcce1f9c333083a81f2f2d12b9c34a5aa7ae8d27beb30f9f4c8c"
         },
         {
           "path": {
@@ -250,7 +250,7 @@
             "path": "rtl/uart.sv",
             "scope": "repo"
           },
-          "content_hash": "sha256:9f2cc0e1ebb59946ce9da403000eaf9b37ed25778bb44828d06bd948e0733c57"
+          "content_hash": "sha256:446c2cd6fb645688e14db650ea5fa64a205c36bf6ac215a56513646397b7d306"
         },
         {
           "path": {
@@ -288,7 +288,7 @@
           "content_hash": "sha256:c747166487204bfa4cc32d254eeb5a898036111c29872a3cbc0b8f8628c6ab0b"
         }
       ],
-      "content_hash": "sha256:bf5dd1d910429298e1f654a3c71ef5a06a76751fbceea887d15d1de6e1d22a01"
+      "content_hash": "sha256:6c94c45fed3a7de57458bfb8017627f59fbdddcd120475bb6cb6c5d8119c7b47"
     }
   }
 }

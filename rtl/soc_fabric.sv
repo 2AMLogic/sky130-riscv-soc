@@ -48,7 +48,7 @@ module soc_fabric #(
   logic        dsr_req, dsr_we;
   logic [3:0]  dsr_be;
   logic [31:0] dsr_addr, dsr_wdata, dsr_rdata;
-  logic        per_req, per_gnt, per_err;
+  logic        per_req, per_err;
   logic [31:0] per_addr, per_wdata, per_rdata;
   logic        per_we;
   logic [3:0]  per_be;
@@ -133,8 +133,6 @@ module soc_fabric #(
   wire        timer_sel = per_req && per_addr[15:12] == PageTimer;
   logic [31:0] uart_rdata, gpio_rdata, timer_rdata;
   logic        uart_err, gpio_err, timer_err, page_err_q;
-
-  assign per_gnt = 1'b1;
 
   uart u_uart (
       .clk_i, .rst_ni,

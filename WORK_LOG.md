@@ -3,6 +3,16 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-11-17
+
+- **PR #191**: chore(loom): resync installed Loom to v0.19.1306
+- **PR #188**: rtl: delete the dead per_gnt tie-off and re-cover the alternate SRAM depth
+- **Issue #182** (closed): Two leftovers from dropping ISRAM_1RW: a dead per_gnt signal, and no remaining coverage for non-default ISRAM_AW/DSRAM_AW
+
+### 2026-11-16
+
+- **PR #184**: chore(loom): resync installed Loom to v0.19.1302
+
 ### 2026-11-15
 
 - **PR #181**: rtl: drop the ISRAM_1RW single-port I-SRAM option and its dead grant/retry path

@@ -1,0 +1,43 @@
+{
+  "commit": "b3be3dfb1644a885fe77c3136f63a78bd8a6265c",
+  "pdk_revision": "f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7",
+  "tool_versions": {
+    "klt": "0.9.1",
+    "klt_invocation": "uvx --from \"klayout-tools==0.9.1\" klt -- the PIN_KLT release in scripts/setup-env.sh, which CI's signoff job also reads. The host's own klt dev build was not used.",
+    "yosys": "0.67+post (b8e7da6f40ae8f552c116bf6c359b07c6533e159)",
+    "sv2v": "v0.0.13",
+    "verilator": "5.050",
+    "iverilog": "13.0",
+    "cocotb": "2.0.1",
+    "host": "loom-worker (AWS dispatch worker)"
+  },
+  "command": "scripts/synth-soc.sh (x2: unmodified main @ 2814179 in a detached scratch worktree, then this commit's tree); verification/tools/lint_rtl.sh (default and SRAM_MACRO_V forms, plus a temporary depth-dependent break that only the alternate-depth leg caught); make -C verification xbar periph boot soc soc-negative soc-gate; verification/tools/tests/test_lint_rtl.sh; the three signoff.yml legs via klt signoff --check",
+  "note": "Resynthesis for issue #182 (leftovers from the ISRAM_1RW removal, #172): soc_fabric's per_gnt has been a driver with no reader since the *_gnt_i ports went, and because it kept its public RTL wire name Yosys retained a conb_1 tie-high whose only consumer was that wire. Deleting the signal and its constant assign is the whole RTL change; the same change regains a behavioural alternate-depth lint pass (ISRAM_AW=10 DSRAM_AW=10, no ISRAM_1RW), stops rtl/README.md presenting the depths as a knob, and rewrites obi_bench.py's grant paragraph to the fabric's post-#181 contract. synth_result.json is this commit's klt output; synth_result_baseline.json is the unmodified-main run's, kept so the before figures are auditable rather than asserted. The baseline netlist reproduced main's committed one byte-for-byte (sha256 e4592eca...), so the after-delta is this change, not the toolchain. Both runs used TMPDIR unset -- klt synthesize deadlocks in Yosys' abc pass on this host under the loom sandbox TMPDIR (same note as the records this one follows; filed at 2AMLogic/klayout-tools); every committed netlist was produced that way.",
+  "netlist": {
+    "file": "netlist/soc_top_synth.v",
+    "sha256": "160672fe01c934855b1688b5ef3120acbfecca72446c93efa75c7658fbb9a7b6"
+  },
+  "baseline": {
+    "tree": "main @ 2814179",
+    "netlist_sha256": "e4592eca9643798cd908d5681deec08aa2ceeaab58866d4a73dbe74a52cb5784",
+    "area_um2": 222111.7728,
+    "instance_count": 27597,
+    "sequential_area_um2": 70829.1808
+  },
+  "after": {
+    "area_um2": 222108.0192,
+    "instance_count": 27596,
+    "sequential_area_um2": 70829.1808,
+    "combinational_only": "the entire delta is one conb_1 tie-high (7302 -> 7301); every other cell type, every flop count, all 8 SRAM macro instances and the soc_top port list are identical"
+  },
+  "pinned_inputs": {
+    "cve2_commit": "d7f21568028a1114be663599bd42145dccf28928",
+    "sram_macro_commit": "ebfbf5775c8cd433ad38a4d825e46c2275231511",
+    "sram_macro_liberty_sha256": "8656384775f5e10b44bed97b7193dd3188ce8cd60b7c8e02a5a4ad9e35ed03ba"
+  },
+  "supersedes": {
+    "netlist_sha256": "e4592eca9643798cd908d5681deec08aa2ceeaab58866d4a73dbe74a52cb5784",
+    "recorded_in": "verification/records/soc-synth/20261115T205309Z-5e9335c",
+    "note": "records/soc-sta-preroute/ and records/soc-pnr/ bind that netlist and so describe a netlist one change old. This change removes one dangling tie cell and is logic-identical otherwise (sequential_area_um2 identical at 70829.1808, every flop count identical), so no recorded timing claim moves in the unsafe direction -- but re-running pre-route STA and P&R on the current netlist is outstanding work, not covered here. The macro instance hierarchy (u_fabric/g_isram_1rw1r.u_isram/g_bank[N].u_macro, u_dsram/g_bank[N].u_macro) is unchanged, so flow/soc/pnr_request.json macro paths remain valid."
+  }
+}

@@ -3,6 +3,10 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-11-16
+
+- **PR #184**: chore(loom): resync installed Loom to v0.19.1302
+
 ### 2026-11-15
 
 - **PR #181**: rtl: drop the ISRAM_1RW single-port I-SRAM option and its dead grant/retry path

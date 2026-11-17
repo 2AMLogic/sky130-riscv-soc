@@ -8,7 +8,7 @@ cold-start command a third party can run.
 | --- | --- |
 | `Makefile`, `cocotb.mk` | the single runner entry point (cocotb + Icarus Verilog) |
 | `tests/soc/` | SoC firmware tests (`make soc`): banner, UART echo, GPIO toggle/readback and timer interrupt on `firmware/soc/*.hex`; `make soc-negative` checks a perturbed golden transcript fails |
-| `tests/boot/` | SoC top boot test (`make boot`, `make boot-1rw`): CVE2 + fabric run `firmware/boot`; needs the converted core |
+| `tests/boot/` | SoC top boot test (`make boot`): CVE2 + fabric run `firmware/boot`; needs the converted core |
 | `tests/<name>/` | one directory per testbench (DUT sources + cocotb module); `tests/xbar/` holds the fabric and reset-synchroniser tests, `tests/periph/` the GPIO, timer and peripheral-window decode tests |
 | `tests/lib/` | not a testbench: the shared bench cores every testbench may import -- `obi_bench.py` (one definition of the `soc_fabric`/peripheral reset-clocking sequence and of the request/accept/response contract) and `soc_top_bench.py` (one definition of the `soc_top` clock, reset, D-SRAM result-block peek and preload, shared by `tests/boot` and `tests/soc`). `cocotb.mk` puts it on `PYTHONPATH` after `TESTDIR`; testbenches still cannot import each other |
 | `models/` | `sky130_sram_2kbyte_1rw1r_32x512_8_standin.v`, the Icarus-simulable stand-in `make soc-gate` uses in place of the pinned macro model; its header lists every difference |
@@ -59,7 +59,7 @@ relative to the repository root:
 | `sim` | `apt-get install -y iverilog`, then `cocotb==PIN_COCOTB` in a venv | Icarus from the runner image; cocotb at `PIN_COCOTB` in `scripts/setup-env.sh` |
 | `sim` | `make -C verification xbar` | OBI crossbar, fabric and reset-synchroniser tests |
 | `sim` | `make -C verification periph` | GPIO, timer, UART and peripheral-window decode tests |
-| `sim` | `make -C verification boot`, `make -C verification boot-1rw` | SoC top boot, default and single-port I-SRAM configurations |
+| `sim` | `make -C verification boot` | SoC top boot test |
 | `sim` | `make -C verification soc`, `make -C verification soc-negative` | SoC firmware tests, and the perturbed-transcript negative check |
 
 What the commands alone do not say: the stand-in check is what keeps `make
@@ -67,8 +67,7 @@ soc-gate` honest, because that run simulates the netlist against
 `models/…_standin.v` rather than the macro model, so if the `reuse.lock.json`
 pin moves or the stand-in is edited, CI fails instead of passing against a
 model that no longer matches the macro. `LINT_REQUIRE_CORE=1` is what makes a
-missing core fail rather than skip. `boot-1rw` is the boot test again with the
-single-port I-SRAM and 1024-word SRAMs; both boot runs use the checked-in
+missing core fail rather than skip. The boot run uses the checked-in
 `firmware/boot/boot_rom.hex`.
 
 The `soc` images (`firmware/soc/*.hex`) are checked in and CI simulates them as they are, so CI needs no

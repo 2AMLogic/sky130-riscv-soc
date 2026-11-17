@@ -7,7 +7,7 @@ Roadmap generated from GitHub label state by the Loom Guide role.
 
 Judge-approved PRs under a hold (`loom:blocked` or `loom:operator`) — only a human merge decision is missing.
 
-_None._
+- **#187**: chore(loom): resync installed Loom to v0.19.1305
 
 ## Very Important
 
@@ -25,33 +25,27 @@ _None._
 
 Human-approved issues ready for implementation (`loom:issue`).
 
-- **#149**: u_dsram carries a dead bsel1 register and dout1 mux after the soc_sram_d removal: +1022 um2 pre-route
+- **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous
 - **#153**: Remove the dead tx_sh_q[0] bit in rtl/uart.sv: the start bit is driven directly, so bit 0 is never read
-- **#161**: Remove the dead instruction-side write channel: obi_xbar never reads i_be_i or i_wdata_i, and 36 tie cells exist only to feed them
 
 ## In Progress
 
 Issues currently being built (`loom:building`).
 
 - **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9
-- **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous
-- **#155**: Remove the duplicate soc_top bench: test_boot.Soc and soc_bench.Soc reimplement one reset and D-SRAM preload, plus two write-only cycle counters
-- **#157**: Dedupe .github/workflows/ci.yml: the sv2v install and CVE2 convert prelude is copied byte-for-byte into both jobs
-- **#164**: Remove the hand-maintained sync between the two item-6 statements: CI compares ids only, so the human-readable .md can contradict the hash-bound .json
+- **#182**: Two leftovers from dropping ISRAM_1RW: a dead per_gnt signal, and no remaining coverage for non-default ISRAM_AW/DSRAM_AW
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
-- **#160**: ci: extract the sv2v install and CVE2 convert prelude into one composite action
-- **#163**: docs: cite record 0004 by filename at the 14 sites that named only the number
+- **#188**: rtl: delete the dead per_gnt tie-off and re-cover the alternate SRAM depth
 
 ## Approved (Awaiting Merge)
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-- **#165**: check: compare item-6 row class and reason against the hash-bound JSON
-- **#166**: refactor: factor the soc_top bench core into tests/lib, drop two dead counters
+- **#187**: chore(loom): resync installed Loom to v0.19.1305
 
 ## Proposed
 
@@ -63,7 +57,8 @@ Issues carrying `loom:curated`.
 - **#49**: T1 item 5: riscv-arch-test on the RTL SoC via klt functional-verification *(curated)*
 - **#69**: T1 item 8 (characterization): per-row report with Fmax, area and power per ratified corner, attested with klt signoff --attest 8 *(curated)*
 - **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous *(curated)*
-- **#149**: u_dsram carries a dead bsel1 register and dout1 mux after the soc_sram_d removal: +1022 um2 pre-route *(curated)*
+- **#169**: Follow-on: Work identified in PR #163 *(curated)*
+- **#182**: Two leftovers from dropping ISRAM_1RW: a dead per_gnt signal, and no remaining coverage for non-default ISRAM_AW/DSRAM_AW *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -81,14 +76,14 @@ _None._
 
 | Bucket | Count |
 |------|-------|
-| Operator merge-risk holds | 0 |
+| Operator merge-risk holds | 1 |
 | Very important | 1 |
 | Important | 1 |
-| Ready (`loom:issue`) | 3 |
-| In Progress (`loom:building`) | 5 |
-| PRs awaiting review | 2 |
-| Approved PRs awaiting merge | 2 |
-| Curated | 7 |
+| Ready (`loom:issue`) | 2 |
+| In Progress (`loom:building`) | 2 |
+| PRs awaiting review | 1 |
+| Approved PRs awaiting merge | 1 |
+| Curated | 8 |
 | Architect / Hermit proposals | 5 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

@@ -1,0 +1,43 @@
+{
+  "commit": "73e3afeaeaa62fb071f6c35d589aaf177989e743",
+  "pdk_revision": "f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7",
+  "tool_versions": {
+    "klt": "0.9.1",
+    "klt_invocation": "uvx-pinned klayout-tools==0.9.1 installed in a worktree-local venv (scripts/setup-env.sh PIN_KLT, which CI's signoff job also reads); the host's own klt dev build was not used. The venv copy's DEFAULT_YOSYS_TIMEOUT_S was relaxed 300 -> 3600 (timeout only; same deck) to survive current host load, the same relaxation prior records made in a uvx cache copy.",
+    "yosys": "0.67+post (b8e7da6f40ae8f552c116bf6c359b07c6533e159)",
+    "sv2v": "v0.0.13",
+    "verilator": "5.050",
+    "iverilog": "13.0",
+    "cocotb": "2.0.1",
+    "host": "loom-worker (AWS dispatch worker)"
+  },
+  "command": "scripts/synth-soc.sh (x2: unmodified main @ 566365d in a detached scratch worktree, then the merged PR tree at this commit); verification/tools/lint_rtl.sh (default and LINT_REQUIRE_CORE=1 forms); make -C verification soc-gate; the three signoff.yml legs via klt signoff --check",
+  "note": "Resynthesis for PR #168 (issue #153): the UART TX shift register narrowed from 10 to 9 bits (bit 0 was written three times and read zero times; the start bit is driven directly at frame start). The branch also merged current origin/main, whose b3be3df had removed soc_fabric's dead per_gnt tie cell (#182), so the merged tree's attested sources moved again and this record re-establishes the chain on the combined tree. synth_result.json is this commit's klt output; synth_result_baseline.json is the unmodified-main run's, kept so the before figures are auditable rather than asserted. The baseline netlist reproduced main's committed one byte-for-byte (sha256 160672fe...), so the after-delta is the RTL changes, not the toolchain. The regenerated netlist is byte-identical to the merge's own auto-merged netlist -- the two sides' changed regions did not overlap, and running the synthesis confirms the textual merge was the true netlist of the combined sources. Both runs used TMPDIR unset -- klt synthesize deadlocks in Yosys' abc pass on this host under the loom sandbox TMPDIR (same note as the records this one follows; filed at 2AMLogic/klayout-tools); every committed netlist was produced that way.",
+  "netlist": {
+    "file": "netlist/soc_top_synth.v",
+    "sha256": "4b8ecd6713e400d92499b24a59cf34058ddff875cfe9c3866fb3e2ed4b6aaf87"
+  },
+  "baseline": {
+    "tree": "main @ 566365d",
+    "netlist_sha256": "160672fe01c934855b1688b5ef3120acbfecca72446c93efa75c7658fbb9a7b6",
+    "area_um2": 222108.0192,
+    "instance_count": 27596,
+    "sequential_area_um2": 70829.1808
+  },
+  "after": {
+    "area_um2": 222095.5072,
+    "instance_count": 27612,
+    "sequential_area_um2": 70829.1808,
+    "combinational_only": "the uart shift-register narrowing removes one flop from the RTL, but bit 0 was already merged into the txd_o output drive, so abc's re-mapping shows up as +16 combinational cells and -12.512 um2; every sequential cell type (dfrtp_1 2132, dfstp_2 97, dlxtn_1 1, edfxtp_1 38), conb_1 count and all 8 SRAM macro instances are identical to the baseline run"
+  },
+  "pinned_inputs": {
+    "cve2_commit": "d7f21568028a1114be663599bd42145dccf28928",
+    "sram_macro_commit": "ebfbf5775c8cd433ad38a4d825e46c2275231511",
+    "sram_macro_liberty_sha256": "8656384775f5e10b44bed97b7193dd3188ce8cd60b7c8e02a5a4ad9e35ed03ba"
+  },
+  "supersedes": {
+    "netlist_sha256": "160672fe01c934855b1688b5ef3120acbfecca72446c93efa75c7658fbb9a7b6",
+    "recorded_in": "verification/records/soc-synth/20261117T002826Z-b3be3df",
+    "note": "The superseded record itself superseded 20261115T205309Z-5e9335c (netlist e4592eca...), which the PR review originally asked this record to name; main moved again while the PR waited, so the chain names the actual newest. records/soc-sta-preroute/ and records/soc-pnr/ bind that netlist and so describe a netlist one change old. The delta is combinational-only (sequential_area_um2 identical at 70829.1808, every flop count identical), so no recorded timing claim moves in the unsafe direction -- but re-running pre-route STA and P&R on the current netlist is outstanding work, not covered here. The macro instance hierarchy is unchanged, so flow/soc/pnr_request.json macro paths remain valid."
+  }
+}

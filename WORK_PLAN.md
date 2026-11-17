@@ -33,13 +33,12 @@ Human-approved issues ready for implementation (`loom:issue`).
 Issues currently being built (`loom:building`).
 
 - **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9
-- **#182**: Two leftovers from dropping ISRAM_1RW: a dead per_gnt signal, and no remaining coverage for non-default ISRAM_AW/DSRAM_AW
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
-- **#188**: rtl: delete the dead per_gnt tie-off and re-cover the alternate SRAM depth
+_None._
 
 ## Approved (Awaiting Merge)
 
@@ -58,7 +57,6 @@ Issues carrying `loom:curated`.
 - **#69**: T1 item 8 (characterization): per-row report with Fmax, area and power per ratified corner, attested with klt signoff --attest 8 *(curated)*
 - **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous *(curated)*
 - **#169**: Follow-on: Work identified in PR #163 *(curated)*
-- **#182**: Two leftovers from dropping ISRAM_1RW: a dead per_gnt signal, and no remaining coverage for non-default ISRAM_AW/DSRAM_AW *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -80,10 +78,10 @@ _None._
 | Very important | 1 |
 | Important | 1 |
 | Ready (`loom:issue`) | 2 |
-| In Progress (`loom:building`) | 2 |
-| PRs awaiting review | 1 |
+| In Progress (`loom:building`) | 1 |
+| PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 1 |
-| Curated | 8 |
+| Curated | 7 |
 | Architect / Hermit proposals | 5 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

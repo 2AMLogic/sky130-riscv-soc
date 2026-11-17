@@ -16,12 +16,15 @@ the clock, hold `rst_ni` low with every manager input idle, three rising edges,
 release `rst_ni` on a falling edge, and return one falling edge later -- that
 is, at the falling edge where the first request may be applied.
 
-**Not shared, deliberately: how a driver handles the grant.**  The peripheral
-window drives `per_gnt = 1'b1` (rtl/soc_fabric.sv), so
-verification/tests/periph/periph_bus.py asserts the grant in the request cycle,
-while single-port I-SRAM arbitration can make a manager wait, so
-verification/tests/xbar/test_xbar.py retries until granted.  Both grant models
-are real contracts of the same DUT; each bench keeps its own.
+**Not shared, deliberately: how a driver handles the grant.**  The crossbar
+grants in the request cycle (rtl/obi_xbar.sv): the instruction manager is
+granted unconditionally, and the data manager is too except at the boot ROM,
+where it is not granted while the instruction manager wants the ROM.  The
+peripheral window has no such contention, so
+verification/tests/periph/periph_bus.py asserts the grant in the request
+cycle, while verification/tests/xbar/test_xbar.py, whose data manager reaches
+the boot ROM as well, retries until granted.  Both grant models are real
+contracts of the same DUT; each bench keeps its own.
 """
 import cocotb
 from cocotb.clock import Clock

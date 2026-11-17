@@ -5306,8 +5306,8 @@ module \$paramod$2806d0a77015858ba718eaa88cae9d86203633c6\cve2_id_stage (clk_i, 
   wire rf_we_dec;
   wire scoreboard_busy;
   wire stall_id;
-  wire [31:0] \sv2v_cast_32$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:5388$3718.inp ;
-  wire [31:0] \sv2v_cast_32$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:5399$3719.inp ;
+  wire [31:0] \sv2v_cast_32$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:5386$3718.inp ;
+  wire [31:0] \sv2v_cast_32$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:5397$3719.inp ;
   wire wfi_insn_dec;
   wire [31:0] zimm_rs1_type;
   sky130_fd_sc_hd__buf_2 _0684_ (
@@ -9699,8 +9699,8 @@ module \$paramod$2806d0a77015858ba718eaa88cae9d86203633c6\cve2_id_stage (clk_i, 
     .x_issue_resp_register_read_i(x_issue_resp_i[2:0]),
     .zimm_rs1_type_o(zimm_rs1_type)
   );
-  assign \sv2v_cast_32$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:5399$3719.inp  = { _0405_, _0404_, _0403_, _0402_, _0401_, _0400_, _0399_, _0398_, _0397_, _0396_, _0395_, _0394_, _0393_, _0392_, _0391_, _0390_, _0389_, _0388_, _0387_, _0386_, _0385_, _0384_, _0383_, _0382_, _0381_, _0380_, _0379_, _0378_, _0377_, _0376_, _0375_, _0374_ };
-  assign \sv2v_cast_32$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:5388$3718.inp  = { _0437_, _0436_, _0435_, _0434_, _0433_, _0432_, _0431_, _0430_, _0429_, _0428_, _0427_, _0426_, _0425_, _0424_, _0423_, _0422_, _0421_, _0420_, _0419_, _0418_, _0417_, _0416_, _0415_, _0414_, _0413_, _0412_, _0411_, _0410_, _0409_, _0408_, _0407_, _0406_ };
+  assign \sv2v_cast_32$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:5397$3719.inp  = { _0405_, _0404_, _0403_, _0402_, _0401_, _0400_, _0399_, _0398_, _0397_, _0396_, _0395_, _0394_, _0393_, _0392_, _0391_, _0390_, _0389_, _0388_, _0387_, _0386_, _0385_, _0384_, _0383_, _0382_, _0381_, _0380_, _0379_, _0378_, _0377_, _0376_, _0375_, _0374_ };
+  assign \sv2v_cast_32$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:5386$3718.inp  = { _0437_, _0436_, _0435_, _0434_, _0433_, _0432_, _0431_, _0430_, _0429_, _0428_, _0427_, _0426_, _0425_, _0424_, _0423_, _0422_, _0421_, _0420_, _0419_, _0418_, _0417_, _0416_, _0415_, _0414_, _0413_, _0412_, _0411_, _0410_, _0409_, _0408_, _0407_, _0406_ };
   assign \no_gen_xif.unused_rf_rdata_c_fwd  = rf_rdata_c_i;
   assign \no_gen_xif.unused_x_result  = x_result_i;
   assign \no_gen_xif.unused_x_result_valid  = x_result_valid_i;
@@ -38643,7 +38643,7 @@ module \$paramod$8518f471a2788739793c031051d6204ba3212c43\cve2_core (clk_i, rst_
   wire rf_we_id;
   wire rf_we_lsu;
   wire rf_we_wb;
-  wire [11:0] \sv2v_cast_12$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:7799$2798.inp ;
+  wire [11:0] \sv2v_cast_12$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:7797$2798.inp ;
   wire trigger_match;
   wire unused_illegal_insn_id;
   wire unused_instr_id_done;
@@ -39079,7 +39079,7 @@ module \$paramod$8518f471a2788739793c031051d6204ba3212c43\cve2_core (clk_i, rst_
   assign \g_no_pmp.unused_csr_pmp_cfg  = csr_pmp_cfg;
   assign \g_no_pmp.unused_csr_pmp_addr  = csr_pmp_addr;
   assign \g_no_pmp.unused_priv_lvl_ls  = priv_mode_lsu;
-  assign \sv2v_cast_12$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:7799$2798.inp  = { _15_, _14_, _13_, _12_, _11_, _10_, _09_, _08_, _07_, _06_, _05_, _04_ };
+  assign \sv2v_cast_12$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:7797$2798.inp  = { _15_, _14_, _13_, _12_, _11_, _10_, _09_, _08_, _07_, _06_, _05_, _04_ };
   assign unused_instr_id_done = instr_id_done;
   assign unused_instr_new_id = instr_new_id;
   assign unused_illegal_insn_id = illegal_insn_id;
@@ -42168,7 +42168,6 @@ module \$paramod$9d5a3da8d98f742b116bcb928691ac118e57cf9d\soc_fabric (clk_i, rst
   wire _18_;
   wire _19_;
   wire _20_;
-  wire _21_;
   wire [31:0] dsr_addr;
   wire [3:0] dsr_be;
   wire [31:0] dsr_rdata;
@@ -42191,7 +42190,6 @@ module \$paramod$9d5a3da8d98f742b116bcb928691ac118e57cf9d\soc_fabric (clk_i, rst
   wire [31:0] per_addr;
   wire [3:0] per_be;
   wire per_err;
-  wire per_gnt;
   wire [31:0] per_rdata;
   wire per_req;
   wire [31:0] per_wdata;
@@ -42205,240 +42203,240 @@ module \$paramod$9d5a3da8d98f742b116bcb928691ac118e57cf9d\soc_fabric (clk_i, rst
   wire uart_err;
   wire [31:0] uart_rdata;
   wire uart_sel;
-  sky130_fd_sc_hd__inv_1 _22_ (
+  sky130_fd_sc_hd__inv_1 _21_ (
     .A(isd_we),
     .Y(_02_)
   );
-  sky130_fd_sc_hd__inv_1 _23_ (
+  sky130_fd_sc_hd__inv_1 _22_ (
     .A(isd_req),
     .Y(_01_)
   );
-  sky130_fd_sc_hd__inv_1 _24_ (
+  sky130_fd_sc_hd__inv_1 _23_ (
     .A(dsr_we),
     .Y(_05_)
   );
-  sky130_fd_sc_hd__inv_1 _25_ (
+  sky130_fd_sc_hd__inv_1 _24_ (
     .A(dsr_req),
     .Y(_04_)
   );
-  sky130_fd_sc_hd__or3_1 _26_ (
+  sky130_fd_sc_hd__or3_1 _25_ (
     .A(timer_rdata[22]),
     .B(uart_rdata[22]),
     .C(gpio_rdata[22]),
     .X(per_rdata[22])
   );
-  sky130_fd_sc_hd__or3_1 _27_ (
+  sky130_fd_sc_hd__or3_1 _26_ (
     .A(timer_rdata[21]),
     .B(uart_rdata[21]),
     .C(gpio_rdata[21]),
     .X(per_rdata[21])
   );
-  sky130_fd_sc_hd__or3_1 _28_ (
+  sky130_fd_sc_hd__or3_1 _27_ (
     .A(timer_rdata[20]),
     .B(uart_rdata[20]),
     .C(gpio_rdata[20]),
     .X(per_rdata[20])
   );
-  sky130_fd_sc_hd__or3_1 _29_ (
+  sky130_fd_sc_hd__or3_1 _28_ (
     .A(timer_rdata[19]),
     .B(uart_rdata[19]),
     .C(gpio_rdata[19]),
     .X(per_rdata[19])
   );
-  sky130_fd_sc_hd__or3_1 _30_ (
+  sky130_fd_sc_hd__or3_1 _29_ (
     .A(timer_rdata[18]),
     .B(uart_rdata[18]),
     .C(gpio_rdata[18]),
     .X(per_rdata[18])
   );
-  sky130_fd_sc_hd__or3_1 _31_ (
+  sky130_fd_sc_hd__or3_1 _30_ (
     .A(timer_rdata[17]),
     .B(uart_rdata[17]),
     .C(gpio_rdata[17]),
     .X(per_rdata[17])
   );
-  sky130_fd_sc_hd__or3_1 _32_ (
+  sky130_fd_sc_hd__or3_1 _31_ (
     .A(timer_rdata[16]),
     .B(uart_rdata[16]),
     .C(gpio_rdata[16]),
     .X(per_rdata[16])
   );
-  sky130_fd_sc_hd__or3_1 _33_ (
+  sky130_fd_sc_hd__or3_1 _32_ (
     .A(timer_rdata[15]),
     .B(uart_rdata[15]),
     .C(gpio_rdata[15]),
     .X(per_rdata[15])
   );
-  sky130_fd_sc_hd__or3_1 _34_ (
+  sky130_fd_sc_hd__or3_1 _33_ (
     .A(timer_rdata[14]),
     .B(uart_rdata[14]),
     .C(gpio_rdata[14]),
     .X(per_rdata[14])
   );
-  sky130_fd_sc_hd__or3_1 _35_ (
+  sky130_fd_sc_hd__or3_1 _34_ (
     .A(timer_rdata[13]),
     .B(uart_rdata[13]),
     .C(gpio_rdata[13]),
     .X(per_rdata[13])
   );
-  sky130_fd_sc_hd__or3_1 _36_ (
+  sky130_fd_sc_hd__or3_1 _35_ (
     .A(timer_rdata[12]),
     .B(uart_rdata[12]),
     .C(gpio_rdata[12]),
     .X(per_rdata[12])
   );
-  sky130_fd_sc_hd__or3_1 _37_ (
+  sky130_fd_sc_hd__or3_1 _36_ (
     .A(timer_rdata[11]),
     .B(uart_rdata[11]),
     .C(gpio_rdata[11]),
     .X(per_rdata[11])
   );
-  sky130_fd_sc_hd__or3_1 _38_ (
+  sky130_fd_sc_hd__or3_1 _37_ (
     .A(timer_rdata[10]),
     .B(uart_rdata[10]),
     .C(gpio_rdata[10]),
     .X(per_rdata[10])
   );
-  sky130_fd_sc_hd__or3_1 _39_ (
+  sky130_fd_sc_hd__or3_1 _38_ (
     .A(timer_rdata[9]),
     .B(uart_rdata[9]),
     .C(gpio_rdata[9]),
     .X(per_rdata[9])
   );
-  sky130_fd_sc_hd__or3_1 _40_ (
+  sky130_fd_sc_hd__or3_1 _39_ (
     .A(timer_rdata[8]),
     .B(uart_rdata[8]),
     .C(gpio_rdata[8]),
     .X(per_rdata[8])
   );
-  sky130_fd_sc_hd__or3_1 _41_ (
+  sky130_fd_sc_hd__or3_1 _40_ (
     .A(timer_rdata[7]),
     .B(uart_rdata[7]),
     .C(gpio_rdata[7]),
     .X(per_rdata[7])
   );
-  sky130_fd_sc_hd__or3_1 _42_ (
+  sky130_fd_sc_hd__or3_1 _41_ (
     .A(timer_rdata[6]),
     .B(uart_rdata[6]),
     .C(gpio_rdata[6]),
     .X(per_rdata[6])
   );
-  sky130_fd_sc_hd__or3_1 _43_ (
+  sky130_fd_sc_hd__or3_1 _42_ (
     .A(timer_rdata[5]),
     .B(uart_rdata[5]),
     .C(gpio_rdata[5]),
     .X(per_rdata[5])
   );
-  sky130_fd_sc_hd__or3_1 _44_ (
+  sky130_fd_sc_hd__or3_1 _43_ (
     .A(timer_rdata[4]),
     .B(uart_rdata[4]),
     .C(gpio_rdata[4]),
     .X(per_rdata[4])
   );
-  sky130_fd_sc_hd__or3_1 _45_ (
+  sky130_fd_sc_hd__or3_1 _44_ (
     .A(timer_rdata[3]),
     .B(uart_rdata[3]),
     .C(gpio_rdata[3]),
     .X(per_rdata[3])
   );
-  sky130_fd_sc_hd__or3_1 _46_ (
+  sky130_fd_sc_hd__or3_1 _45_ (
     .A(timer_rdata[2]),
     .B(uart_rdata[2]),
     .C(gpio_rdata[2]),
     .X(per_rdata[2])
   );
-  sky130_fd_sc_hd__or3_1 _47_ (
+  sky130_fd_sc_hd__or3_1 _46_ (
     .A(timer_rdata[1]),
     .B(uart_rdata[1]),
     .C(gpio_rdata[1]),
     .X(per_rdata[1])
   );
-  sky130_fd_sc_hd__or3_1 _48_ (
+  sky130_fd_sc_hd__or3_1 _47_ (
     .A(timer_rdata[0]),
     .B(uart_rdata[0]),
     .C(gpio_rdata[0]),
     .X(per_rdata[0])
   );
-  sky130_fd_sc_hd__or3_1 _49_ (
+  sky130_fd_sc_hd__or3_1 _48_ (
     .A(uart_rdata[29]),
     .B(gpio_rdata[29]),
     .C(timer_rdata[29]),
     .X(per_rdata[29])
   );
-  sky130_fd_sc_hd__or3_1 _50_ (
+  sky130_fd_sc_hd__or3_1 _49_ (
     .A(uart_rdata[28]),
     .B(gpio_rdata[28]),
     .C(timer_rdata[28]),
     .X(per_rdata[28])
   );
-  sky130_fd_sc_hd__or3_1 _51_ (
+  sky130_fd_sc_hd__or3_1 _50_ (
     .A(uart_rdata[30]),
     .B(gpio_rdata[30]),
     .C(timer_rdata[30]),
     .X(per_rdata[30])
   );
-  sky130_fd_sc_hd__or3_1 _52_ (
+  sky130_fd_sc_hd__or3_1 _51_ (
     .A(uart_rdata[24]),
     .B(gpio_rdata[24]),
     .C(timer_rdata[24]),
     .X(per_rdata[24])
   );
-  sky130_fd_sc_hd__or3_1 _53_ (
+  sky130_fd_sc_hd__or3_1 _52_ (
     .A(uart_rdata[26]),
     .B(gpio_rdata[26]),
     .C(timer_rdata[26]),
     .X(per_rdata[26])
   );
-  sky130_fd_sc_hd__or3_1 _54_ (
+  sky130_fd_sc_hd__or3_1 _53_ (
     .A(uart_rdata[25]),
     .B(gpio_rdata[25]),
     .C(timer_rdata[25]),
     .X(per_rdata[25])
   );
-  sky130_fd_sc_hd__or3_1 _55_ (
+  sky130_fd_sc_hd__or3_1 _54_ (
     .A(uart_rdata[27]),
     .B(gpio_rdata[27]),
     .C(timer_rdata[27]),
     .X(per_rdata[27])
   );
-  sky130_fd_sc_hd__or3_1 _56_ (
+  sky130_fd_sc_hd__or3_1 _55_ (
     .A(uart_rdata[23]),
     .B(gpio_rdata[23]),
     .C(timer_rdata[23]),
     .X(per_rdata[23])
   );
-  sky130_fd_sc_hd__or4_1 _57_ (
+  sky130_fd_sc_hd__or4_1 _56_ (
     .A(timer_err),
     .B(gpio_err),
     .C(page_err_q),
     .D(uart_err),
     .X(per_err)
   );
-  sky130_fd_sc_hd__or3_1 _58_ (
+  sky130_fd_sc_hd__or3_1 _57_ (
     .A(timer_rdata[31]),
     .B(uart_rdata[31]),
     .C(gpio_rdata[31]),
     .X(per_rdata[31])
   );
-  sky130_fd_sc_hd__nand2_1 _59_ (
+  sky130_fd_sc_hd__nand2_1 _58_ (
     .A(per_req),
     .B(per_addr[12]),
     .Y(_06_)
   );
-  sky130_fd_sc_hd__nor4_1 _60_ (
+  sky130_fd_sc_hd__nor4_1 _59_ (
     .A(per_addr[13]),
     .B(per_addr[14]),
     .C(per_addr[15]),
     .D(_06_),
     .Y(gpio_sel)
   );
-  sky130_fd_sc_hd__or3_4 _61_ (
+  sky130_fd_sc_hd__or3_4 _60_ (
     .A(per_addr[14]),
     .B(per_addr[15]),
     .C(per_addr[12]),
     .X(_07_)
   );
-  sky130_fd_sc_hd__o311a_1 _62_ (
+  sky130_fd_sc_hd__o311a_1 _61_ (
     .A1(per_addr[13]),
     .A2(per_addr[14]),
     .A3(per_addr[15]),
@@ -42446,72 +42444,69 @@ module \$paramod$9d5a3da8d98f742b116bcb928691ac118e57cf9d\soc_fabric (clk_i, rst
     .C1(per_req),
     .X(_00_)
   );
-  sky130_fd_sc_hd__nor3_1 _63_ (
+  sky130_fd_sc_hd__nor3_1 _62_ (
     .A(per_addr[14]),
     .B(per_addr[15]),
     .C(per_addr[12]),
     .Y(_08_)
   );
-  sky130_fd_sc_hd__and3_1 _64_ (
+  sky130_fd_sc_hd__and3_1 _63_ (
     .A(per_req),
     .B(per_addr[13]),
     .C(_08_),
     .X(timer_sel)
   );
-  sky130_fd_sc_hd__nor3b_2 _65_ (
+  sky130_fd_sc_hd__nor3b_2 _64_ (
     .A(per_addr[13]),
     .B(_07_),
     .C_N(per_req),
     .Y(uart_sel)
   );
-  sky130_fd_sc_hd__inv_1 _66_ (
+  sky130_fd_sc_hd__inv_1 _65_ (
     .A(isi_req),
     .Y(_03_)
   );
-  sky130_fd_sc_hd__dfrtp_1 _67_ (
+  sky130_fd_sc_hd__dfrtp_1 _66_ (
     .CLK(clk_i),
     .D(_00_),
     .Q(page_err_q),
     .RESET_B(rst_ni)
   );
-  sky130_fd_sc_hd__conb_1 _68_ (
+  sky130_fd_sc_hd__conb_1 _67_ (
     .HI(_09_)
   );
-  sky130_fd_sc_hd__conb_1 _69_ (
-    .HI(_10_)
+  sky130_fd_sc_hd__conb_1 _68_ (
+    .LO(_10_)
   );
-  sky130_fd_sc_hd__conb_1 _70_ (
+  sky130_fd_sc_hd__conb_1 _69_ (
     .LO(_11_)
   );
-  sky130_fd_sc_hd__conb_1 _71_ (
+  sky130_fd_sc_hd__conb_1 _70_ (
     .LO(_12_)
   );
-  sky130_fd_sc_hd__conb_1 _72_ (
+  sky130_fd_sc_hd__conb_1 _71_ (
     .LO(_13_)
   );
-  sky130_fd_sc_hd__conb_1 _73_ (
+  sky130_fd_sc_hd__conb_1 _72_ (
     .LO(_14_)
   );
-  sky130_fd_sc_hd__conb_1 _74_ (
+  sky130_fd_sc_hd__conb_1 _73_ (
     .LO(_15_)
   );
-  sky130_fd_sc_hd__conb_1 _75_ (
+  sky130_fd_sc_hd__conb_1 _74_ (
     .LO(_16_)
   );
-  sky130_fd_sc_hd__conb_1 _76_ (
+  sky130_fd_sc_hd__conb_1 _75_ (
     .LO(_17_)
   );
-  sky130_fd_sc_hd__conb_1 _77_ (
+  sky130_fd_sc_hd__conb_1 _76_ (
     .LO(_18_)
   );
-  sky130_fd_sc_hd__conb_1 _78_ (
+  sky130_fd_sc_hd__conb_1 _77_ (
     .LO(_19_)
   );
-  sky130_fd_sc_hd__conb_1 _79_ (
+  sky130_fd_sc_hd__conb_1 _78_ (
     .LO(_20_)
-  );
-  sky130_fd_sc_hd__conb_1 _80_ (
-    .LO(_21_)
   );
   \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'1  \g_isram_1rw1r.u_isram  (
     .addr0(isd_addr[12:2]),
@@ -42528,7 +42523,7 @@ module \$paramod$9d5a3da8d98f742b116bcb928691ac118e57cf9d\soc_fabric (clk_i, rst
   );
   \$paramod\soc_sram_i\AW=s32'00000000000000000000000000001011\USE_PORT1=1'0  u_dsram (
     .addr0(dsr_addr[12:2]),
-    .addr1({ _21_, _20_, _19_, _18_, _17_, _16_, _15_, _14_, _13_, _12_, _11_ }),
+    .addr1({ _20_, _19_, _18_, _17_, _16_, _15_, _14_, _13_, _12_, _11_, _10_ }),
     .clk0(clk_i),
     .clk1(clk_i),
     .csb0(_04_),
@@ -42630,7 +42625,6 @@ module \$paramod$9d5a3da8d98f742b116bcb928691ac118e57cf9d\soc_fabric (clk_i, rst
     .rom_req_o(rom_req),
     .rst_ni(rst_ni)
   );
-  assign per_gnt = _10_;
 endmodule
 
 module \$paramod$b3df05b882b2e48a4f353d2956e89700c28f4d2a\cve2_ex_block (clk_i, rst_ni, alu_operator_i, alu_operand_a_i, alu_operand_b_i, alu_instr_first_cycle_i, multdiv_operator_i, mult_en_i, div_en_i, mult_sel_i, div_sel_i, multdiv_signed_mode_i, multdiv_operand_a_i, multdiv_operand_b_i, imd_val_we_o, imd_val_d_o, imd_val_q_i, alu_adder_result_ex_o, result_ex_o, branch_target_o, branch_decision_o
@@ -52634,9 +52628,9 @@ module \$paramod$eaa9894ddb8308fab98cda78b50cc933c72255b5\cve2_cs_registers (clk
   wire [7:0] \pmp_cfg_rdata[9] ;
   wire [2:0] pmp_mseccfg;
   wire [1:0] priv_lvl_q;
-  wire [0:0] \sv2v_cast_1$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3025$3854.inp ;
-  wire [0:0] \sv2v_cast_1$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3025$3855.inp ;
-  wire [1:0] \sv2v_cast_2$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3025$3856.inp ;
+  wire [0:0] \sv2v_cast_1$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3023$3854.inp ;
+  wire [0:0] \sv2v_cast_1$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3023$3855.inp ;
+  wire [1:0] \sv2v_cast_2$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3023$3856.inp ;
   wire [2:0] tmatch_control_rdata;
   wire [31:0] tmatch_value_rdata;
   wire [31:0] tselect_rdata;
@@ -75737,9 +75731,9 @@ module \$paramod$eaa9894ddb8308fab98cda78b50cc933c72255b5\cve2_cs_registers (clk
   assign \g_no_pmp_tieoffs.g_rdata[2].sv2v_tmp_D50E5  = { _05096_, _05095_, _05094_, _05093_, _05092_, _05091_, _05090_, _05089_, _05088_, _05087_, _05086_, _05085_, _05084_, _05083_, _05082_, _05081_, _05080_, _05079_, _05078_, _05077_, _05076_, _05075_, _05074_, _05073_, _05072_, _05071_, _05070_, _05069_, _05068_, _05067_, _05066_, _05065_ };
   assign \g_no_pmp_tieoffs.g_rdata[1].sv2v_tmp_D50E5  = { _05128_, _05127_, _05126_, _05125_, _05124_, _05123_, _05122_, _05121_, _05120_, _05119_, _05118_, _05117_, _05116_, _05115_, _05114_, _05113_, _05112_, _05111_, _05110_, _05109_, _05108_, _05107_, _05106_, _05105_, _05104_, _05103_, _05102_, _05101_, _05100_, _05099_, _05098_, _05097_ };
   assign \g_no_pmp_tieoffs.g_rdata[0].sv2v_tmp_D50E5  = { _05160_, _05159_, _05158_, _05157_, _05156_, _05155_, _05154_, _05153_, _05152_, _05151_, _05150_, _05149_, _05148_, _05147_, _05146_, _05145_, _05144_, _05143_, _05142_, _05141_, _05140_, _05139_, _05138_, _05137_, _05136_, _05135_, _05134_, _05133_, _05132_, _05131_, _05130_, _05129_ };
-  assign \sv2v_cast_2$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3025$3856.inp  = { _05162_, _05161_ };
-  assign \sv2v_cast_1$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3025$3855.inp  = _05163_;
-  assign \sv2v_cast_1$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3025$3854.inp  = _05164_;
+  assign \sv2v_cast_2$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3023$3856.inp  = { _05162_, _05161_ };
+  assign \sv2v_cast_1$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3023$3855.inp  = _05163_;
+  assign \sv2v_cast_1$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:3023$3854.inp  = _05164_;
   assign csr_addr = csr_addr_i;
   assign unused_csr_addr = csr_addr_i[7:5];
   assign unused_boot_addr = boot_addr_i[7:0];
@@ -122159,7 +122153,7 @@ module cve2_controller(clk_i, rst_ni, fetch_enable_i, ctrl_busy_o, illegal_insn_
   wire stall;
   wire store_err_d;
   wire store_err_q;
-  wire [6:0] \sv2v_cast_7$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:2383$389.inp ;
+  wire [6:0] \sv2v_cast_7$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:2381$389.inp ;
   wire unused_irq_timer;
   sky130_fd_sc_hd__inv_1 _340_ (
     .A(debug_mode_q),
@@ -124480,7 +124474,7 @@ module cve2_controller(clk_i, rst_ni, fetch_enable_i, ctrl_busy_o, illegal_insn_
     .LO(_339_)
   );
   assign ctrl_fsm_cs[7] = controller_run_o;
-  assign \sv2v_cast_7$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:2383$389.inp  = { _338_, _337_, _336_, _335_, _334_, _333_, _332_ };
+  assign \sv2v_cast_7$func$flow/soc/.klt/synthesize/soc-top/soc_top_sv2v.v:2381$389.inp  = { _338_, _337_, _336_, _335_, _334_, _333_, _332_ };
   assign \gen_mfip_id.sv2v_autoblock_1.i  = { _331_, _330_, _329_, _328_, _327_, _326_, _325_, _324_, _323_, _322_, _321_, _320_, _319_, _318_, _317_, _316_, _315_, _314_, _313_, _312_, _311_, _310_, _309_, _308_, _307_, _306_, _305_, _304_, _303_, _302_, _301_, _300_ };
   assign unused_irq_timer = irqs_i[17];
   assign flush_id = flush_id_o;

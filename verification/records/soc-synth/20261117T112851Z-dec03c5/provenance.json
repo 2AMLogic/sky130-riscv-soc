@@ -1,0 +1,27 @@
+{
+  "commit": "dec03c52ed5acf415bf08871abc829753ee80445",
+  "pdk_revision": "f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7",
+  "tool_versions": {
+    "klt": "0.9.1",
+    "klt_invocation": "throwaway venv: uv pip install klayout-tools==0.9.1 under /tmp -- the PIN_KLT release in scripts/setup-env.sh, which CI's signoff job also reads. The host's own klt dev build was not used. The throwaway copy's DEFAULT_YOSYS_TIMEOUT_S was raised 300 -> 1800 (2AMLogic/klayout-tools#5773: the watchdog is hard-coded with no override); defensive, the run was not near the limit.",
+    "yosys": "0.67+post (b8e7da6f40ae8f552c116bf6c359b07c6533e159)",
+    "sv2v": "v0.0.13",
+    "verilator": "5.050",
+    "iverilog": "13.0",
+    "host": "loom-worker (AWS dispatch worker)"
+  },
+  "command": "scripts/synth-soc.sh (once, TMPDIR unset); the three signoff.yml legs via klt signoff --check/--attest with the pinned klt; verification/tools/lint_rtl.sh",
+  "note": "Re-attest for PR #170 (issue #147): the 0004 decision-record citations in rtl/soc_fabric.sv and rtl/soc_sram_i.sv were rewritten to name the full filename -- a comments-and-$error-string-only edit that still invalidates attest/item1.json's recorded digests because both files are hash-bound T1 item 1 sources. The regenerated netlist is byte-identical to main's committed one (sha256 160672fe..., the digest recorded in 20261117T002826Z-b3be3df), so no logic/area/cell-count claim moves; only the two source digests and their derived hashes change, plus the manifest's evidence pin. Run made with TMPDIR unset -- klt synthesize deadlocks in Yosys' abc pass on this host under the loom sandbox TMPDIR (same note as the records this one follows). Gate-level sim not re-run: the golden transcript in 20261117T002826Z-b3be3df was produced from a byte-identical netlist.",
+  "netlist": {
+    "file": "netlist/soc_top_synth.v",
+    "sha256": "160672fe01c934855b1688b5ef3120acbfecca72446c93efa75c7658fbb9a7b6",
+    "note": "byte-identical to the netlist recorded in 20261117T002826Z-b3be3df; unchanged by this run"
+  },
+  "pinned_inputs": {
+    "cve2_commit": "d7f21568028a1114be663599bd42145dccf28928",
+    "sram_macro_commit": "ebfbf5775c8cd433ad38a4d825e46c2275231511",
+    "sram_macro_liberty_sha256": "8656384775f5e10b44bed97b7193dd3188ce8cd60b7c8e02a5a4ad9e35ed03ba"
+  },
+  "supersedes": null,
+  "related_record": "verification/records/soc-synth/20261117T002826Z-b3be3df"
+}

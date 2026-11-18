@@ -82,10 +82,11 @@ module soc_fabric #(
   // The ratified I-SRAM organization (spec/soc.md § Interconnect, row 8a):
   // one 1rw1r wrapper, port 0 for the data manager, port 1 for the fetch; a
   // data-side write and a fetch proceed in the same cycle. The ISRAM_1RW=1
-  // single-port option was removed (record 0006) -- it had no macro view, so
-  // it could never leave behavioural simulation. The generate block name is
-  // load-bearing: flow/soc/pnr_request.json pins the macro instance paths
-  // under u_fabric/g_isram_1rw1r.u_isram.
+  // single-port option was removed (record
+  // spec/decision-records/0006-drop-isram-1rw-option.md) -- it had no
+  // macro view, so it could never leave behavioural simulation. The generate
+  // block name is load-bearing: flow/soc/pnr_request.json pins the macro
+  // instance paths under u_fabric/g_isram_1rw1r.u_isram.
   if (1) begin : g_isram_1rw1r
     soc_sram_i #(
         .AW(ISRAM_AW),
@@ -106,9 +107,9 @@ module soc_fabric #(
   end
 
   // D-SRAM: the same wrapper, USE_PORT1=0. The data side is 1rw by the
-  // ratified spec; 0004-sram-macro-organization.md item 5 notes no 1rw macro
-  // view exists, so the macro build holds the 1rw1r macro here with its
-  // port 1 unused.
+  // ratified spec; spec/decision-records/0004-sram-macro-organization.md
+  // item 5 notes no 1rw macro view exists, so the macro build holds the
+  // 1rw1r macro here with its port 1 unused.
   soc_sram_i #(
       .AW(DSRAM_AW),
       .USE_PORT1(1'b0)

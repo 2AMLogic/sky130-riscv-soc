@@ -1,8 +1,9 @@
 // SRAM wrapper, 2**AW x 32 (default AW=11: 8 KB), 1rw1r, 8-bit write
 // granularity. Used for every SRAM in soc_fabric: the two-port I-SRAM uses
 // both ports (USE_PORT1=1), and the D-SRAM elaborates USE_PORT1=0 -- no
-// port-1 bank select or output mux is built. Under -DSOC_SRAM_MACRO every macro's csb1 is held high with addr1
-// zero, which is what holds the port-1 read off (0004-sram-macro-organization.md
+// port-1 bank select or output mux is built. Under -DSOC_SRAM_MACRO every
+// macro's csb1 is held high with addr1 zero, which is what holds the port-1
+// read off (record spec/decision-records/0004-sram-macro-organization.md
 // item 5). With port 1 off, dout1 is a don't-care: the behavioural build
 // drives it to a constant, while the macro build aliases bank 0's port-1
 // output (assign dout1 = bank_dout1[0]) -- a pure net rename, so Yosys
@@ -14,9 +15,9 @@
 // AW is the word-address width; the macro build supports AW=11 only.
 // Default build: behavioural model. With -DSOC_SRAM_MACRO: four
 // sky130_sram_2kbyte_1rw1r_32x512_8 macros, bank = addr[10:9]
-// (0004-sram-macro-organization.md). Under the macro build a bank's dout is
-// only valid for the cycle after
-// a read of that bank (the macro model drives X otherwise), so the registered
+// (spec/decision-records/0004-sram-macro-organization.md). Under the macro
+// build a bank's dout is only valid for the cycle after a read of that
+// bank (the macro model drives X otherwise), so the registered
 // bank select is what the output mux uses.
 // A port-1 read of the word port 0 writes in the same cycle returns the old
 // data (the macro leaves that case undefined; the fabric does not rely on it).

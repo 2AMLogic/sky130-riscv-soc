@@ -42,7 +42,8 @@ there stays one copy to keep true.
 This is the one complete list of what CI runs; `README.md` and the `ci.yml`
 header point here rather than repeating it, so a new or changed CI step is
 added here and nowhere else. Every command the two jobs of
-`.github/workflows/ci.yml` (on pull requests and `main`) run, in order, paths
+`.github/workflows/ci.yml` (on pull requests, merge-group queue entries and
+`main`) run, in order, paths
 relative to the repository root:
 
 | Job | Runs | What it covers |
@@ -51,6 +52,7 @@ relative to the repository root:
 | `lint` | `verification/tools/lint_records.py`, `verification/tools/tests/test_lint_records.py` | the record linter over `records/`, and its good/bad fixture test |
 | `lint` | `verification/tools/tests/test_fetch_cve2.sh` | the pinned-import fetcher's exit codes, both entry points, against a `file://` fixture |
 | `lint` | `verification/tools/tests/test_lint_rtl.sh`, `verification/tools/tests/test_setup_env_check.sh` | the check scripts' exit codes: `lint_rtl.sh` on an empty `rtl/` tree, `setup-env.sh --check` on each cocotb state |
+| `lint` | `verification/tools/check_workflow_triggers.py`, `verification/tools/tests/test_check_workflow_triggers.py` | the workflow triggers satisfy the merge-queue contract — `merge_group` declared with no path filters, each queue entry its own concurrency group, never cancelled — and its fixture test |
 | `lint` | `verification/tools/check_soc_rows.py`, `verification/tools/tests/test_check_soc_rows.py` | the spec row projections match `spec/soc.md`, and its fixture test |
 | `lint` | `scripts/fetch-sram-macro.sh`, `verification/tools/check_sram_standin.py`, `verification/tools/tests/test_check_sram_standin.py` | the SRAM stand-in against the pinned macro views (fetched hash-verified), and its fixture test |
 | `lint`, `sim` | sv2v at `PIN_SV2V` (sha256 `PIN_SV2V_SHA256` in `scripts/setup-env.sh`) | the pinned converter, downloaded and hash-checked per job; both jobs run it from the one shared composite action, `.github/actions/cve2-core` |

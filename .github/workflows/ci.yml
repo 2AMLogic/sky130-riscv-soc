@@ -4,16 +4,20 @@ name: CI
 # verification/README.md, section "What CI runs, and what stays local" — keep it, not this header, in step with the
 # steps. What the steps do not say:
 # - No path filters; a started main run is never cancelled (.loom/docs/ci-principles.md).
+# - Runs on pull requests, the merge queue (merge_group) and main. Each queue
+#   entry gets its own concurrency group keyed on its head SHA, so a queued
+#   entry is never superseded while pending and a started run is never cancelled.
 # - No RISC-V compiler in CI: the boot and firmware tests simulate the checked-in firmware/boot and
 #   firmware/soc hex images as they are.
 # - PDK-heavy legs (synthesis, place-and-route, DRC, LVS) stay local.
 on:
   pull_request:
+  merge_group:
   push:
     branches: [main]
 
 concurrency:
-  group: ${{ github.event_name == 'pull_request' && format('ci-pr-{0}', github.event.pull_request.number) || 'ci-main' }}
+  group: ${{ github.event_name == 'pull_request' && format('ci-pr-{0}', github.event.pull_request.number) || github.event_name == 'merge_group' && format('ci-mq-{0}', github.event.merge_group.head_sha) || 'ci-main' }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
@@ -33,6 +37,10 @@ jobs:
           verification/tools/tests/test_fetch_cve2.sh
           verification/tools/tests/test_lint_rtl.sh
           verification/tools/tests/test_setup_env_check.sh
+      - name: Workflow triggers satisfy the merge-queue contract
+        run: |
+          python3 -I verification/tools/check_workflow_triggers.py
+          python3 -I verification/tools/tests/test_check_workflow_triggers.py
       - name: Spec row projections match spec/soc.md
         run: |
           python3 -I verification/tools/check_soc_rows.py

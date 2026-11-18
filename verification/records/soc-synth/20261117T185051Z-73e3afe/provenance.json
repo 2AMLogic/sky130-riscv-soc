@@ -28,7 +28,7 @@
     "area_um2": 222095.5072,
     "instance_count": 27612,
     "sequential_area_um2": 70829.1808,
-    "combinational_only": "the uart shift-register narrowing removes one flop from the RTL, but bit 0 was already merged into the txd_o output drive, so abc's re-mapping shows up as +16 combinational cells and -12.512 um2; every sequential cell type (dfrtp_1 2132, dfstp_2 97, dlxtn_1 1, edfxtp_1 38), conb_1 count and all 8 SRAM macro instances are identical to the baseline run"
+    "combinational_only": "the uart shift-register narrowing removes one flop from the RTL, but bit 0 was already merged into the txd_o output drive, so abc's re-mapping shows up as +16 combinational cells and -12.512 um2; every sequential cell type (dfrtp_1 2683, dfstp_2 97, dlxtn_1 1, edfxtp_1 38), conb_1 count and all 8 SRAM macro instances are identical to the baseline run"
   },
   "pinned_inputs": {
     "cve2_commit": "d7f21568028a1114be663599bd42145dccf28928",

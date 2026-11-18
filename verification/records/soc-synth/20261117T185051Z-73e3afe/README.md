@@ -77,8 +77,8 @@ input-set digest and the signoff report.
 | `area_um2` | 222 108.0192 | 222 095.5072 | **−12.5120** |
 | `instance_count` | 27 596 | 27 612 | **+16** |
 | `sequential_area_um2` | 70 829.1808 | 70 829.1808 | **0** |
-| sequential cells (`dfrtp_1`/`dfstp_2`/`dlxtn_1`/`edfxtp_1`) | 2132/97/1/38 | 2132/97/1/38 | 0 |
-| `conb_1` | 6197 | 6197 | 0 |
+| sequential cells (`dfrtp_1`/`dfstp_2`/`dlxtn_1`/`edfxtp_1`) | 2683/97/1/38 | 2683/97/1/38 | 0 |
+| `conb_1` | 7301 | 7301 | 0 |
 | SRAM macro instances | 8 | 8 | 0 |
 | `soc_top` port list | — | — | identical |
 

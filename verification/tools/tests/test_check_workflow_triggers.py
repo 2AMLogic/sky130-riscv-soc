@@ -18,6 +18,8 @@ GROUP_LINE = ("  group: ${{ github.event_name == 'pull_request' && "
               "github.event_name == 'merge_group' && "
               "format('ci-mq-{0}', github.event.merge_group.head_sha) || 'ci-main' }}\n")
 
+CANCEL_LINE = "  cancel-in-progress: ${{ github.event_name == 'pull_request' }}\n"
+
 GOOD = (
     "name: ci\n"
     "on:\n"
@@ -28,7 +30,7 @@ GOOD = (
     "\n"
     "concurrency:\n"
     + GROUP_LINE +
-    "  cancel-in-progress: ${{ github.event_name == 'pull_request' }}\n"
+    CANCEL_LINE
 )
 
 SHARED_GROUP = (
@@ -38,6 +40,13 @@ SHARED_GROUP = (
 
 EMPTY_GROUP = (
     "  group: ${{ github.event_name == 'pull_request' && "
+    "format('ci-pr-{0}', github.event.pull_request.number) || "
+    "github.event_name == 'merge_group' && "
+    "format('ci-mq-{0}', github.event.merge_group.head_sha) }}\n"
+)
+
+TRUTHY_ARM_GROUP = (
+    "  group: ${{ 'ci-main' || github.event_name == 'pull_request' && "
     "format('ci-pr-{0}', github.event.pull_request.number) || "
     "github.event_name == 'merge_group' && "
     "format('ci-mq-{0}', github.event.merge_group.head_sha) }}\n"
@@ -89,32 +98,49 @@ class CheckWorkflowTriggers(unittest.TestCase):
 
     def test_group_shared_with_push_rejected(self):
         self.check_rejected(GOOD.replace(GROUP_LINE, SHARED_GROUP),
-                            "no own group keyed on github.event.merge_group.head_sha")
+                            "is not the canonical contract form")
 
     def test_group_empty_without_fallback_rejected(self):
         self.check_rejected(GOOD.replace(GROUP_LINE, EMPTY_GROUP),
-                            "must stay distinct from the pull_request and push groups")
+                            "is not the canonical contract form")
+
+    def test_group_always_truthy_first_arm_rejected(self):
+        # 'ci-main' is a truthy first arm of ||, so every event — PR, queue
+        # entry and push — would share the ci-main group.
+        self.check_rejected(GOOD.replace(GROUP_LINE, TRUTHY_ARM_GROUP),
+                            "is not the canonical contract form")
 
     def test_cancel_literal_true_rejected(self):
-        self.check_rejected(GOOD.replace("cancel-in-progress: ${{ github.event_name == 'pull_request' }}",
-                                         "cancel-in-progress: true"),
-                            "not provably false for merge_group")
+        self.check_rejected(GOOD.replace(CANCEL_LINE, "  cancel-in-progress: true\n"),
+                            "is not the canonical form")
 
     def test_cancel_true_on_push_rejected(self):
+        # inverted polarity: true exactly on merge_group, where a started queue
+        # run would be cancelled. Rejected by exact match, not by a keyword.
         self.check_rejected(
-            GOOD.replace("cancel-in-progress: ${{ github.event_name == 'pull_request' }}",
-                         "cancel-in-progress: ${{ github.event_name != 'merge_group' }}"),
-            "not provably false for merge_group")
+            GOOD.replace(CANCEL_LINE,
+                         "  cancel-in-progress: ${{ github.event_name != 'pull_request' }}\n"),
+            "is not the canonical form")
 
-    def test_cancel_false_passes(self):
-        self.check_passes(GOOD.replace("cancel-in-progress: ${{ github.event_name == 'pull_request' }}",
-                                       "cancel-in-progress: false"))
+    def test_cancel_or_main_ref_rejected(self):
+        # same polarity family: true on pull_request and on every other event
+        self.check_rejected(
+            GOOD.replace(
+                CANCEL_LINE,
+                "  cancel-in-progress: ${{ github.event_name == 'pull_request' "
+                "|| github.ref != 'refs/heads/main' }}\n"),
+            "is not the canonical form")
+
+    def test_cancel_literal_false_rejected(self):
+        # fail-closed: even the safe literal false is not the canonical form
+        self.check_rejected(GOOD.replace(CANCEL_LINE, "  cancel-in-progress: false\n"),
+                            "is not the canonical form")
 
     def test_group_prefix_not_workflow_name_rejected(self):
         with workflows_dir({"other.yml": GOOD}) as d:
             r = run(d)
             self.assertEqual(r.returncode, 1, r.stderr)
-            self.assertIn("is not the workflow name 'other'", r.stderr)
+            self.assertIn("is not the canonical contract form", r.stderr)
 
     def check_passes(self, text):
         with workflows_dir({"ci.yml": text}) as d:

@@ -31,7 +31,7 @@ module uart (
   logic [7:0] tx_hold_q;
   logic       tx_full_q;      // holding register occupied (STATUS.TX_BUSY)
   logic       tx_active_q;    // shifter running
-  logic [9:0] tx_sh_q;        // {stop, data[7:0], start}; bit 0 is on the wire
+  logic [8:0] tx_sh_q;        // {stop, data[7:0]}; bit 0 is on the wire
   logic [3:0] tx_left_q;      // bit periods left in the frame, including the current one
   logic [15:0] tx_cnt_q;
 
@@ -70,7 +70,7 @@ module uart (
       tx_hold_q    <= 8'h0;
       tx_full_q    <= 1'b0;
       tx_active_q  <= 1'b0;
-      tx_sh_q      <= 10'h3FF;
+      tx_sh_q      <= 9'h1FF;
       tx_left_q    <= 4'd0;
       tx_cnt_q     <= 16'h0;
       txd_o        <= 1'b1;
@@ -111,7 +111,7 @@ module uart (
         tx_full_q <= 1'b1;
       end
       if (tx_start) begin
-        tx_sh_q     <= {1'b1, tx_wr ? wdata_i[7:0] : tx_hold_q, 1'b0};
+        tx_sh_q     <= {1'b1, tx_wr ? wdata_i[7:0] : tx_hold_q};
         txd_o       <= 1'b0;
         tx_active_q <= 1'b1;
         tx_left_q   <= 4'd10;
@@ -123,8 +123,8 @@ module uart (
         if (tx_frame_end) begin
           tx_active_q <= 1'b0;
         end else begin
-          tx_sh_q   <= {1'b1, tx_sh_q[9:1]};
-          txd_o     <= tx_sh_q[1];
+          tx_sh_q   <= {1'b1, tx_sh_q[8:1]};
+          txd_o     <= tx_sh_q[0];
           tx_left_q <= tx_left_q - 4'd1;
         end
       end else if (tx_active_q) begin

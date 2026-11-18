@@ -27,7 +27,7 @@
       "path": "netlist/soc_top_synth.v",
       "generator": "scripts/synth-soc.sh (klt synthesize flow/soc/synth_request.json)",
       "recorded": {
-        "derived_sha256": "160672fe01c934855b1688b5ef3120acbfecca72446c93efa75c7658fbb9a7b6",
+        "derived_sha256": "4b8ecd6713e400d92499b24a59cf34058ddff875cfe9c3866fb3e2ed4b6aaf87",
         "sources": {
           "rtl/boot_rom.sv": "c916354996771d105d903205a49416d2cb56f2fe4f8643c226cdd3400a48ed0a",
           "rtl/gpio.sv": "a7800f53030b5699ba62e86da2f8e7b49c519bb53f7a3549f346fe158eb937e9",
@@ -37,7 +37,7 @@
           "rtl/soc_sram_i.sv": "6e0d3747fdc0493fd77646f6fff13c5186067eddf048b010e8df2a3419751dc2",
           "rtl/soc_top.sv": "bf3e3c84a3b879e5d1799d2ab278aa0aa8d3da482733939933ea562a7422767f",
           "rtl/timer.sv": "894cdf96da88cba81d9c14d32822cd33a547114699fc4e19d527a7087aa4c881",
-          "rtl/uart.sv": "446c2cd6fb645688e14db650ea5fa64a205c36bf6ac215a56513646397b7d306",
+          "rtl/uart.sv": "9f2cc0e1ebb59946ce9da403000eaf9b37ed25778bb44828d06bd948e0733c57",
           "reuse.lock.json": "f218ceeea54ed11f09a3325cb3336294de1fdfb3328b2c87ca857c52cfa73e10",
           "scripts/fetch-import.sh": "5589cdbaf42d6873a66c10876e9c1fd4c77981df56117143b502fb00b1e55b92",
           "scripts/fetch-cve2.sh": "e95ceba154ae33cdf42d4d2608a2256c6fea3c49820082ff73c764a5b031b986",

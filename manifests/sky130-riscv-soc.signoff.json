@@ -34,13 +34,13 @@
         "command": null,
         "kind": "generic",
         "check_status": "pass",
-        "content_hash": "sha256:6c94c45fed3a7de57458bfb8017627f59fbdddcd120475bb6cb6c5d8119c7b47",
+        "content_hash": "sha256:a5545803d725a9aaee133ae90b4fec0cb4c86b0a2b3acc5a4534ec473176e7db",
         "input_verified": true,
         "exit_status": 0,
         "artifact_binding": {
           "t1_item": 1,
           "path": null,
-          "content_hash": "sha256:6c94c45fed3a7de57458bfb8017627f59fbdddcd120475bb6cb6c5d8119c7b47",
+          "content_hash": "sha256:a5545803d725a9aaee133ae90b4fec0cb4c86b0a2b3acc5a4534ec473176e7db",
           "input_verified": true,
           "members": [
             {
@@ -48,7 +48,7 @@
                 "path": "attest/item1.json",
                 "scope": "repo"
               },
-              "content_hash": "sha256:c990fcc3d2b7c4781aac5d006efc0cd02cab3f6b69ebaeb49d4145196cc29763",
+              "content_hash": "sha256:8e82f049dfd69f96dc5244737fa872ca549480a287ca4e70fa41d99239cd69d8",
               "status": "verified"
             },
             {
@@ -72,7 +72,7 @@
                 "path": "netlist/soc_top_synth.v",
                 "scope": "repo"
               },
-              "content_hash": "sha256:160672fe01c934855b1688b5ef3120acbfecca72446c93efa75c7658fbb9a7b6",
+              "content_hash": "sha256:4b8ecd6713e400d92499b24a59cf34058ddff875cfe9c3866fb3e2ed4b6aaf87",
               "status": "verified"
             },
             {
@@ -152,7 +152,7 @@
                 "path": "rtl/uart.sv",
                 "scope": "repo"
               },
-              "content_hash": "sha256:446c2cd6fb645688e14db650ea5fa64a205c36bf6ac215a56513646397b7d306",
+              "content_hash": "sha256:9f2cc0e1ebb59946ce9da403000eaf9b37ed25778bb44828d06bd948e0733c57",
               "status": "verified"
             },
             {

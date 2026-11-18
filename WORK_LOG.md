@@ -5,6 +5,8 @@ Maintained by the Loom Guide role.
 
 ### 2026-11-18
 
+- **PR #168**: refactor: narrow the UART TX shifter to 9 bits; bit 0 was write-only
+- **Issue #153** (closed): Remove the dead tx_sh_q[0] bit in rtl/uart.sv: the start bit is driven directly, so bit 0 is never read
 - **PR #198**: fix: exact-match the workflow concurrency contract in check_workflow_triggers
 - **Issue #197** (closed): check_workflow_triggers.py: substring heuristics accept two merge-queue concurrency drift shapes
 - **PR #195**: ci: declare merge_group and give each queue entry its own concurrency group

@@ -3,6 +3,13 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-11-18
+
+- **PR #198**: fix: exact-match the workflow concurrency contract in check_workflow_triggers
+- **Issue #197** (closed): check_workflow_triggers.py: substring heuristics accept two merge-queue concurrency drift shapes
+- **PR #195**: ci: declare merge_group and give each queue entry its own concurrency group
+- **Issue #194** (closed): Merge queue: add the merge_group trigger and adapt the PR-metadata gates
+
 ### 2026-11-17
 
 - **PR #191**: chore(loom): resync installed Loom to v0.19.1306

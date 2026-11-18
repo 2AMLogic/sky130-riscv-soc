@@ -5,12 +5,15 @@
 
 For every workflow in .github/workflows (default), asserts the merge-queue
 contract (.loom/docs/ci-principles.md §2): merge_group is a declared trigger
-with no filters, no trigger is path-filtered, each merge_group run gets its own
-concurrency group keyed on github.event.merge_group.head_sha — named after the
-workflow file and distinct from the pull_request and push groups, with the
-push/main fallback present so the group is never empty — and cancel-in-progress
-is provably false for merge_group, so a started queue run is never cancelled.
-Stdlib only. Exit 1 on any violation.
+with no filters, no trigger is path-filtered, and the concurrency block matches
+the canonical contract form exactly — one `group:` expression per workflow
+prefix (the pull_request arm, the merge_group arm keyed on
+github.event.merge_group.head_sha, and the push/main fallback) and one
+`cancel-in-progress:` expression, the pull_request-only form, which is false on
+merge_group so a started queue run is never cancelled. Exact match,
+fail-closed: any other expression is rejected, since GitHub-expression
+semantics cannot be judged by substring inspection. Stdlib only. Exit 1 on any
+violation.
 """
 import re
 import sys
@@ -18,7 +21,16 @@ from pathlib import Path
 
 TRIGGER = re.compile(r"^  ([\w-]+):")
 FILTER = re.compile(r"^\s+(paths|paths-ignore|branches-ignore):")
-GROUP_MQ = re.compile(r"format\('([\w.-]+?)-mq-\{0\}',\s*github\.event\.merge_group\.head_sha\)")
+
+
+def canonical_concurrency(prefix):
+    """The exact group and cancel-in-progress expressions accepted for prefix."""
+    group = ("${{ github.event_name == 'pull_request' && "
+             f"format('{prefix}-pr-{{0}}', github.event.pull_request.number) || "
+             "github.event_name == 'merge_group' && "
+             f"format('{prefix}-mq-{{0}}', github.event.merge_group.head_sha) || "
+             f"'{prefix}-main' }}}}")
+    return group, "${{ github.event_name == 'pull_request' }}"
 
 
 def block(text, key):
@@ -79,31 +91,17 @@ def concurrency_errors(path, text):
         return errs
 
     prefix = path.stem
-    mq = GROUP_MQ.search(group)
-    if mq is None:
-        errs.append(f"{path.name}: concurrency.group gives merge_group runs no own group "
-                    f"keyed on github.event.merge_group.head_sha")
-    elif mq.group(1) != prefix:
-        errs.append(f"{path.name}: merge_group group prefix {mq.group(1)!r} is not the "
-                    f"workflow name {prefix!r}")
-    else:
-        pr_arm = f"format('{prefix}-pr-{{0}}', github.event.pull_request.number)"
-        main_arm = f"'{prefix}-main'"
-        if pr_arm not in group or main_arm not in group:
-            errs.append(f"{path.name}: concurrency.group lacks the {prefix}-pr / {prefix}-main "
-                        f"arms; the merge_group group must stay distinct from the "
-                        f"pull_request and push groups, and the group must never be empty")
-
-    expr = cancel
-    m = re.match(r"\$\{\{(.*)\}\}$", expr)
-    if m:
-        expr = m.group(1).strip()
-    # Provably false on merge_group: the literal false, or an expression that
-    # turns true only under pull_request — no merge_group term, no bare true.
-    if expr != "false" and ("merge_group" in expr or re.search(r"\btrue\b", expr)
-                            or "pull_request" not in expr):
-        errs.append(f"{path.name}: cancel-in-progress ({cancel}) is not provably false "
-                    f"for merge_group; a started queue run would be cancelled")
+    want_group, want_cancel = canonical_concurrency(prefix)
+    # Exact match against the canonical contract form: substring inspection of
+    # the arms cannot rule out reordered, always-truthy or inverted-polarity
+    # drift, so anything that is not exactly this shape is rejected.
+    if group != want_group:
+        errs.append(f"{path.name}: concurrency.group ({group}) is not the canonical "
+                    f"contract form; the only accepted expression is {want_group}")
+    if cancel != want_cancel:
+        errs.append(f"{path.name}: cancel-in-progress ({cancel}) is not the canonical form "
+                    f"({want_cancel}); only the pull_request-only expression is accepted, "
+                    f"so a started merge_group run is never cancelled")
     return errs
 
 

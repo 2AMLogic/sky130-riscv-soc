@@ -3,7 +3,7 @@
 Roadmap generated from GitHub label state by the Loom Guide role.
 
 <!-- guide:plan-body:start -->
-_Generated: 2026-11-18T19:22:56Z (snapshot; compare against live labels)_
+_Generated: 2026-11-19T05:29:38Z (snapshot; compare against live labels)_
 ## Operator Attention: Merge-Risk-Hold Pileup
 
 Judge-approved PRs under a hold (`loom:blocked` or `loom:operator`) — only a human merge decision is missing.
@@ -26,7 +26,7 @@ _None._
 
 Human-approved issues (`loom:issue`) ready for implementation — excluding held (`loom:blocked`/`loom:operator`/`loom:frozen`), `loom:building`, and issues closed by an open `loom:pr` PR (listed under Approved).
 
-- **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous
+_None._
 
 ## In Progress
 
@@ -55,7 +55,7 @@ Issues carrying `loom:curated`.
 - **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9 *(curated)*
 - **#49**: T1 item 5: riscv-arch-test on the RTL SoC via klt functional-verification *(curated)* *(held)*
 - **#69**: T1 item 8 (characterization): per-row report with Fmax, area and power per ratified corner, attested with klt signoff --attest 8 *(curated)* *(held)*
-- **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous *(curated)*
+- **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous *(curated)* *(held)*
 - **#169**: Follow-on: Work identified in PR #163 *(curated)* *(held)*
 
 ## Proposed (Architect / Hermit)
@@ -77,7 +77,7 @@ _None._
 | Operator merge-risk holds | 0 |
 | Very important | 1 |
 | Important | 1 |
-| Ready (`loom:issue`, net of holds/building/merge-pending) | 1 |
+| Ready (`loom:issue`, net of holds/building/merge-pending) | 0 |
 | In Progress (`loom:building`) | 1 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |

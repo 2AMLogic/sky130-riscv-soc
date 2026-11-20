@@ -3,6 +3,11 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-11-20
+
+- **PR #205**: chore: pin klt 0.9.2 and regenerate the signoff records
+- **Issue #203** (closed): Bump PIN_KLT 0.9.1 -> 0.9.2 and regenerate the signoff records; report on #37 what the release does and does not change for the soc_top congestion
+
 ### 2026-11-18
 
 - **PR #168**: refactor: narrow the UART TX shifter to 9 bits; bit 0 was write-only

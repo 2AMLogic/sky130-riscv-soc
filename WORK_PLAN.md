@@ -3,7 +3,7 @@
 Roadmap generated from GitHub label state by the Loom Guide role.
 
 <!-- guide:plan-body:start -->
-_Generated: 2026-11-20T11:22:05Z (snapshot; compare against live labels)_
+_Generated: 2026-11-20T19:53:19Z (snapshot; compare against live labels)_
 ## Operator Attention: Merge-Risk-Hold Pileup
 
 Judge-approved PRs under a hold (`loom:blocked` or `loom:operator`) — only a human merge decision is missing.
@@ -32,7 +32,7 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-_None._
+- **#203**: Bump PIN_KLT 0.9.1 -> 0.9.2 and regenerate the signoff records; report on #37 what the release does and does not change for the soc_top congestion
 
 ## PRs Awaiting Review
 
@@ -57,6 +57,7 @@ Issues carrying `loom:curated`.
 - **#69**: T1 item 8 (characterization): per-row report with Fmax, area and power per ratified corner, attested with klt signoff --attest 8 *(curated)* *(held)*
 - **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous *(curated)* *(held)*
 - **#169**: Follow-on: Work identified in PR #163 *(curated)* *(held)*
+- **#203**: Bump PIN_KLT 0.9.1 -> 0.9.2 and regenerate the signoff records; report on #37 what the release does and does not change for the soc_top congestion *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -78,10 +79,10 @@ _None._
 | Very important | 1 |
 | Important | 1 |
 | Ready (`loom:issue`, net of holds/building/merge-pending) | 0 |
-| In Progress (`loom:building`) | 0 |
+| In Progress (`loom:building`) | 1 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
-| Curated | 7 |
+| Curated | 8 |
 | Architect / Hermit proposals | 5 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

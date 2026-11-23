@@ -5,6 +5,8 @@ Maintained by the Loom Guide role.
 
 ### 2026-11-23
 
+- **PR #217**: lock: drop the unfetched VLSIDA/OpenRAM pin and re-attest T1 item 1
+- **Issue #122** (closed): Remove the unfetched VLSIDA/OpenRAM import from reuse.lock.json: candidate B was declined in record 0004
 - **PR #212**: chore: remove npm check scripts, point README at direct commands
 - **Issue #103** (closed): Remove the npm check scripts: check:ci runs 4 of CI's 13 commands
 - **PR #211**: fix: un-ignore record evidence logs under verification/records

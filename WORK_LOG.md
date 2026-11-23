@@ -5,6 +5,8 @@ Maintained by the Loom Guide role.
 
 ### 2026-11-23
 
+- **PR #212**: chore: remove npm check scripts, point README at direct commands
+- **Issue #103** (closed): Remove the npm check scripts: check:ci runs 4 of CI's 13 commands
 - **PR #211**: fix: un-ignore record evidence logs under verification/records
 - **Issue #162** (closed): Remove the repo-wide *.log ignore rule: it silently blocks record evidence, and four soc-pnr records cite a log it swallowed
 - **PR #210**: docs: relabel PIN_RISCV_GCC_SHA256 as an unchecked provenance digest

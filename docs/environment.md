@@ -76,7 +76,7 @@ git-ignored (`build/`); it is never committed or edited.
 
 ```bash
 scripts/fetch-cve2.sh      # download + verify every locked file -> build/cve2/upstream
-scripts/convert-cve2.sh    # sv2v -> build/cve2/cve2_top.v, then Icarus elaboration + Verilator lint
+scripts/convert-cve2.sh    # sv2v -> build/cve2/cve2_top.v, then Icarus elaboration
 ```
 
 `fetch-cve2.sh` exits non-zero on any sha256 mismatch, missing file or failed
@@ -91,8 +91,8 @@ The conversion is pinned by (CVE2 commit, `PIN_SV2V`, the command printed by
 export block in `cve2_if_stage.sv`; without it Icarus rejects the output.
 `cve2_core.f` upstream omits `cve2_csr.sv`, `cve2_pmp.sv` and `cve2_wb.sv`, so the
 lock lists them explicitly. With these, the pinned Icarus elaborates `cve2_top`
-(no Verilator alternative needed per record 0001 Gate 1); Verilator lint runs
-with width warnings from the sv2v output, which are not treated as fatal.
+(no Verilator alternative needed per record 0001 Gate 1). The converted core is
+linted separately by [`verification/tools/lint_rtl.sh`](../verification/tools/lint_rtl.sh).
 
 `convert-cve2.sh` uses `sv2v` from `PATH` or `$SV2V`. sv2v is not provisioned on
 the dispatch workers; use a throwaway download of the pinned release outside

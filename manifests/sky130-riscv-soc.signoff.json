@@ -34,13 +34,13 @@
         "command": null,
         "kind": "generic",
         "check_status": "pass",
-        "content_hash": "sha256:6fba7393310cca1e5e22d441ccb4d4e97e1303b8d17adec40e643275db9bcb07",
+        "content_hash": "sha256:a13a4aae132347d7944544496da9263b3c0c46f23419f236f96ce12272615080",
         "input_verified": true,
         "exit_status": 0,
         "artifact_binding": {
           "t1_item": 1,
           "path": null,
-          "content_hash": "sha256:6fba7393310cca1e5e22d441ccb4d4e97e1303b8d17adec40e643275db9bcb07",
+          "content_hash": "sha256:a13a4aae132347d7944544496da9263b3c0c46f23419f236f96ce12272615080",
           "input_verified": true,
           "members": [
             {
@@ -48,7 +48,7 @@
                 "path": "attest/item1.json",
                 "scope": "repo"
               },
-              "content_hash": "sha256:b180d118d237ab351f9d5f206d6120d6d726258cc061999fda6e444090d0b160",
+              "content_hash": "sha256:fafb1dc39204824089cddcfcb8ce2f566d37ffe310426895ad204336eb80a355",
               "status": "verified"
             },
             {
@@ -160,7 +160,7 @@
                 "path": "scripts/convert-cve2.sh",
                 "scope": "repo"
               },
-              "content_hash": "sha256:c2019952553730fd00b8721856cf771b58ccb9a6767aec20379a78b5e1553963",
+              "content_hash": "sha256:d8aa67f04510b02fd0715da52f74215ded4a053bd91aa78eabfdf1de97d51260",
               "status": "verified"
             },
             {

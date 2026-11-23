@@ -34,13 +34,13 @@
         "command": null,
         "kind": "generic",
         "check_status": "pass",
-        "content_hash": "sha256:a5545803d725a9aaee133ae90b4fec0cb4c86b0a2b3acc5a4534ec473176e7db",
+        "content_hash": "sha256:6fba7393310cca1e5e22d441ccb4d4e97e1303b8d17adec40e643275db9bcb07",
         "input_verified": true,
         "exit_status": 0,
         "artifact_binding": {
           "t1_item": 1,
           "path": null,
-          "content_hash": "sha256:a5545803d725a9aaee133ae90b4fec0cb4c86b0a2b3acc5a4534ec473176e7db",
+          "content_hash": "sha256:6fba7393310cca1e5e22d441ccb4d4e97e1303b8d17adec40e643275db9bcb07",
           "input_verified": true,
           "members": [
             {
@@ -48,7 +48,7 @@
                 "path": "attest/item1.json",
                 "scope": "repo"
               },
-              "content_hash": "sha256:8e82f049dfd69f96dc5244737fa872ca549480a287ca4e70fa41d99239cd69d8",
+              "content_hash": "sha256:b180d118d237ab351f9d5f206d6120d6d726258cc061999fda6e444090d0b160",
               "status": "verified"
             },
             {
@@ -80,7 +80,7 @@
                 "path": "reuse.lock.json",
                 "scope": "repo"
               },
-              "content_hash": "sha256:f218ceeea54ed11f09a3325cb3336294de1fdfb3328b2c87ca857c52cfa73e10",
+              "content_hash": "sha256:4c3c64af75d7400c6458552df40fcbab32d4d27fb5ea7d0a830c520bd4ee5a80",
               "status": "verified"
             },
             {

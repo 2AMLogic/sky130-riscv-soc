@@ -38,7 +38,7 @@
           "rtl/soc_top.sv": "bf3e3c84a3b879e5d1799d2ab278aa0aa8d3da482733939933ea562a7422767f",
           "rtl/timer.sv": "894cdf96da88cba81d9c14d32822cd33a547114699fc4e19d527a7087aa4c881",
           "rtl/uart.sv": "9f2cc0e1ebb59946ce9da403000eaf9b37ed25778bb44828d06bd948e0733c57",
-          "reuse.lock.json": "f218ceeea54ed11f09a3325cb3336294de1fdfb3328b2c87ca857c52cfa73e10",
+          "reuse.lock.json": "4c3c64af75d7400c6458552df40fcbab32d4d27fb5ea7d0a830c520bd4ee5a80",
           "scripts/fetch-import.sh": "5589cdbaf42d6873a66c10876e9c1fd4c77981df56117143b502fb00b1e55b92",
           "scripts/fetch-cve2.sh": "e95ceba154ae33cdf42d4d2608a2256c6fea3c49820082ff73c764a5b031b986",
           "scripts/convert-cve2.sh": "c2019952553730fd00b8721856cf771b58ccb9a6767aec20379a78b5e1553963",

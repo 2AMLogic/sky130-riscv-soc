@@ -1,5 +1,6 @@
 *.raw
 *.log
+!verification/records/**/*.log
 *.vcd
 *.vvp
 __pycache__/

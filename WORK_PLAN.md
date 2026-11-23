@@ -31,13 +31,13 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-_None._
+- **#132**: Remove the no-op Verilator lint from scripts/convert-cve2.sh: it prints ok when Verilator is absent
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
-_None._
+- **#215**: scripts: drop the non-gating Verilator lint from convert-cve2.sh, re-attest T1 item 1
 
 ## Approved (Awaiting Merge)
 
@@ -54,16 +54,14 @@ Issues carrying `loom:curated`.
 - **#43**: T1 item 9 (Testbenches shipped): inventory the benches and attest with klt signoff --attest 9 *(curated)*
 - **#49**: T1 item 5: riscv-arch-test on the RTL SoC via klt functional-verification *(curated)*
 - **#69**: T1 item 8 (characterization): per-row report with Fmax, area and power per ratified corner, attested with klt signoff --attest 8 *(curated)*
+- **#122**: Remove the unfetched VLSIDA/OpenRAM import from reuse.lock.json: candidate B was declined in record 0004 *(curated)*
+- **#132**: Remove the no-op Verilator lint from scripts/convert-cve2.sh: it prints ok when Verilator is absent *(curated)*
 - **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous *(curated)*
 - **#169**: Follow-on: Work identified in PR #163 *(curated)*
 
 ## Proposed (Architect / Hermit)
 
-- **#103**: Remove the npm check scripts: check:ci runs 4 of CI's 13 commands *(hermit)*
 - **#122**: Remove the unfetched VLSIDA/OpenRAM import from reuse.lock.json: candidate B was declined in record 0004 *(hermit)*
-- **#132**: Remove the no-op Verilator lint from scripts/convert-cve2.sh: it prints ok when Verilator is absent *(hermit)*
-- **#159**: Remove PIN_RISCV_GCC_SHA256, or say it is unchecked: the pin table advertises a tarball sha256 that nothing in the repo verifies *(hermit)*
-- **#162**: Remove the repo-wide *.log ignore rule: it silently blocks record evidence, and four soc-pnr records cite a log it swallowed *(hermit)*
 
 ## Epics
 
@@ -77,10 +75,10 @@ _None._
 | Very important | 1 |
 | Important | 1 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 0 |
-| PRs awaiting review | 0 |
+| In Progress (`loom:building`) | 1 |
+| PRs awaiting review | 1 |
 | Approved PRs awaiting merge | 0 |
-| Curated | 7 |
-| Architect / Hermit proposals | 5 |
+| Curated | 9 |
+| Architect / Hermit proposals | 1 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

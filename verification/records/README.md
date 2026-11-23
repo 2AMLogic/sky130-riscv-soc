@@ -16,6 +16,11 @@ records/<kind>/<timestamp>-<sha>/
   `commit` (full SHA), `pdk_revision` (open_pdks revision), `tool_versions`
   (object, tool name to version, from `scripts/setup-env.sh`'s pins) and
   `command` (the exact command that produced the record).
+- Logs inside a record directory are committed under their natural `.log`
+  name — `.gitignore` negates `!verification/records/**/*.log` for exactly
+  this tree (issue #162). `.log.txt` files in earlier landed records predate
+  that negation, exist only to dodge the repo-wide `*.log` rule, and remain
+  untouched under the append-only rule above.
 
 Records from before this layout (`toolchain-smoke/2026-10-17/`,
 `toolchain-smoke/2026-10-18/`) are named `YYYY-MM-DD` and carry a `README.md`

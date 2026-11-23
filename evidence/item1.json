@@ -101,7 +101,7 @@
         "role": "source",
         "path": "scripts/convert-cve2.sh",
         "passed": true,
-        "content_hash": "sha256:c2019952553730fd00b8721856cf771b58ccb9a6767aec20379a78b5e1553963"
+        "content_hash": "sha256:d8aa67f04510b02fd0715da52f74215ded4a053bd91aa78eabfdf1de97d51260"
       },
       {
         "check": "present",
@@ -159,7 +159,7 @@
             "path": "attest/item1.json",
             "scope": "repo"
           },
-          "content_hash": "sha256:8e82f049dfd69f96dc5244737fa872ca549480a287ca4e70fa41d99239cd69d8"
+          "content_hash": "sha256:38fed4e05a912fc3bf1a359fee7e83b67e09f73da8c6232f6b5f9d08fff2293b"
         },
         {
           "path": {
@@ -257,7 +257,7 @@
             "path": "scripts/convert-cve2.sh",
             "scope": "repo"
           },
-          "content_hash": "sha256:c2019952553730fd00b8721856cf771b58ccb9a6767aec20379a78b5e1553963"
+          "content_hash": "sha256:d8aa67f04510b02fd0715da52f74215ded4a053bd91aa78eabfdf1de97d51260"
         },
         {
           "path": {
@@ -288,7 +288,7 @@
           "content_hash": "sha256:c747166487204bfa4cc32d254eeb5a898036111c29872a3cbc0b8f8628c6ab0b"
         }
       ],
-      "content_hash": "sha256:a5545803d725a9aaee133ae90b4fec0cb4c86b0a2b3acc5a4534ec473176e7db"
+      "content_hash": "sha256:dc3b9ceb8be89a2774b6f93bf6a5f794dc04decb144bee87ae12b542d5c370f2"
     }
   }
 }

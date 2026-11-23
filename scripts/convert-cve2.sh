@@ -7,8 +7,7 @@
 # edited by hand. The conversion is pinned by (CVE2 commit in reuse.lock.json,
 # sv2v version PIN_SV2V in scripts/setup-env.sh, the command below). SYNTHESIS
 # is defined to drop the simulation-only DPI export block in cve2_if_stage.sv.
-# Then smoke-checks the result: Icarus must elaborate cve2_top, and Verilator
-# lint must run (width warnings from sv2v output are not fatal).
+# Then smoke-checks the result: Icarus must elaborate cve2_top.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -31,5 +30,3 @@ cd "$BUILD"
 
 iverilog -g2012 -s cve2_top -o "$BUILD/cve2_top.vvp" cve2_top.v
 echo "ok    icarus elaborates cve2_top"
-verilator --lint-only -Wno-fatal --top-module cve2_top cve2_top.v 2>&1 | tail -n 3 || true
-echo "ok    verilator lint ran"

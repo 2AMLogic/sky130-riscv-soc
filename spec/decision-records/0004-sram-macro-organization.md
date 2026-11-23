@@ -103,3 +103,13 @@ Read from the pinned `.v`, not yet exercised:
   [0002](0002-sram-source.md) and `spec/soc.md` § STA corners stands unchanged.
 - #37 gets: 8 macros of 683.1 x 416.54 µm, a 3.8 mm² core budget and the
   assumption behind it.
+
+## Amendment note (2026-11-23, issue #122)
+
+Decision 1 declined candidate B and imported nothing from it. The generator pin
+that [0002](0002-sram-source.md) Decision 2 recorded in `reuse.lock.json`
+(`VLSIDA/OpenRAM`, the two `macros/sram_configs/` files) served only candidate B
+and no script fetched or verified it, so it left the lock on this date. 0002 is
+unchanged and keeps the OpenRAM commit and the facts read from it as recorded
+context. The operator ruled this removal (option a) on 2026-11-23; T1 item 1 was
+re-attested for the changed `reuse.lock.json`.

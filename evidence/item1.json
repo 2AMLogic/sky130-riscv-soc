@@ -31,7 +31,7 @@
         "role": "source",
         "path": "reuse.lock.json",
         "passed": true,
-        "content_hash": "sha256:f218ceeea54ed11f09a3325cb3336294de1fdfb3328b2c87ca857c52cfa73e10"
+        "content_hash": "sha256:4c3c64af75d7400c6458552df40fcbab32d4d27fb5ea7d0a830c520bd4ee5a80"
       },
       {
         "check": "present",
@@ -159,7 +159,7 @@
             "path": "attest/item1.json",
             "scope": "repo"
           },
-          "content_hash": "sha256:38fed4e05a912fc3bf1a359fee7e83b67e09f73da8c6232f6b5f9d08fff2293b"
+          "content_hash": "sha256:fafb1dc39204824089cddcfcb8ce2f566d37ffe310426895ad204336eb80a355"
         },
         {
           "path": {
@@ -187,7 +187,7 @@
             "path": "reuse.lock.json",
             "scope": "repo"
           },
-          "content_hash": "sha256:f218ceeea54ed11f09a3325cb3336294de1fdfb3328b2c87ca857c52cfa73e10"
+          "content_hash": "sha256:4c3c64af75d7400c6458552df40fcbab32d4d27fb5ea7d0a830c520bd4ee5a80"
         },
         {
           "path": {
@@ -288,7 +288,7 @@
           "content_hash": "sha256:c747166487204bfa4cc32d254eeb5a898036111c29872a3cbc0b8f8628c6ab0b"
         }
       ],
-      "content_hash": "sha256:dc3b9ceb8be89a2774b6f93bf6a5f794dc04decb144bee87ae12b542d5c370f2"
+      "content_hash": "sha256:a13a4aae132347d7944544496da9263b3c0c46f23419f236f96ce12272615080"
     }
   }
 }

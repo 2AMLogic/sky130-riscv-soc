@@ -50,15 +50,6 @@
         { "upstream": "sky130_sram_2kbyte_1rw1r_32x512_8/sky130_sram_2kbyte_1rw1r_32x512_8.v", "sha256": "2712357fbc3d1ee3343c4bcb7d630de92ca87d869fb5d50d1d3cea967f288208" },
         { "upstream": "sky130_sram_2kbyte_1rw1r_32x512_8/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib", "sha256": "8656384775f5e10b44bed97b7193dd3188ce8cd60b7c8e02a5a4ad9e35ed03ba" }
       ]
-    },
-    {
-      "from": "VLSIDA/OpenRAM",
-      "commit": "b2b069ce119d1488cbe6883b2240bceb5c7ce29a",
-      "mode": "fetched",
-      "files": [
-        { "upstream": "macros/sram_configs/sky130_sram_4kbyte_1rw_32x1024_8.py", "sha256": "de1e58826bc268db9cc232fcb6b4856db44fa8147a2df7195e655118ca323009" },
-        { "upstream": "macros/sram_configs/sky130_sram_common.py", "sha256": "cc03f93addf4582f04531110f801a8ec28ff71a3d0f8456928d834009c671959" }
-      ]
     }
   ],
   "in_tree": [

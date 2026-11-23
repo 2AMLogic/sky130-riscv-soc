@@ -3,6 +3,14 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-11-23
+
+- **PR #211**: fix: un-ignore record evidence logs under verification/records
+- **Issue #162** (closed): Remove the repo-wide *.log ignore rule: it silently blocks record evidence, and four soc-pnr records cite a log it swallowed
+- **PR #210**: docs: relabel PIN_RISCV_GCC_SHA256 as an unchecked provenance digest
+- **Issue #159** (closed): Remove PIN_RISCV_GCC_SHA256, or say it is unchecked: the pin table advertises a tarball sha256 that nothing in the repo verifies
+- **Issue #209** (closed): WORK_PLAN priority sections do not show holds, and hand-added *(held)* annotations are wiped on every regeneration
+
 ### 2026-11-20
 
 - **PR #205**: chore: pin klt 0.9.2 and regenerate the signoff records

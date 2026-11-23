@@ -16,7 +16,7 @@ if the two disagree, the script wins.
 | Icarus Verilog | `PIN_IVERILOG` | `iverilog -V` |
 | OpenROAD | `PIN_OPENROAD`, image `PIN_OPENROAD_IMAGE` | `openroad -version`; the wrapper's image digest |
 | sv2v | `PIN_SV2V`, release-asset sha256 `PIN_SV2V_SHA256` (SystemVerilog to Verilog for CVE2) | `sv2v --version` |
-| RISC-V GCC | xPack `riscv-none-elf-gcc` `PIN_RISCV_GCC`, tarball sha256 `PIN_RISCV_GCC_SHA256`; builds the boot and SoC firmware | `riscv-none-elf-gcc --version` |
+| RISC-V GCC | xPack `riscv-none-elf-gcc` `PIN_RISCV_GCC`; builds the boot and SoC firmware. `PIN_RISCV_GCC_SHA256` is a recorded provenance digest (the toolchain tarball behind the checked-in `firmware/boot/boot_rom.hex` and `firmware/soc/*.hex`), not a checked pin | `riscv-none-elf-gcc --version` |
 | cocotb | `PIN_COCOTB` (every `verification/Makefile` target needs it) | `import cocotb` |
 
 Each `PIN_*` above is a variable in

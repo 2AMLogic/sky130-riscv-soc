@@ -132,8 +132,9 @@ Cold-start commands, from a clean checkout (tool and PDK pins are in
 python3 -m venv .venv && .venv/bin/pip install cocotb==2.0.1
 . .venv/bin/activate && scripts/setup-env.sh --check    # environment matches the pins
 make -C verification xbar                       # cocotb + Icarus: OBI crossbar, fabric, reset sync
-npm run lint                                    # record linter, its fixture test, RTL lint
-npm run test                                    # the same xbar tests as above
+python3 -I verification/tools/lint_records.py   # evidence-record linter
+verification/tools/lint_rtl.sh                  # Verilator RTL lint (LINT_REQUIRE_CORE=1 after converting CVE2)
+make -C verification periph                     # GPIO, timer, UART and peripheral-window decode tests
 scripts/fetch-cve2.sh && scripts/convert-cve2.sh     # pinned CVE2 -> build/cve2/cve2_top.v (needs sv2v)
 make -C verification boot                       # SoC top boots firmware/boot (needs the converted core)
 make -C verification soc                        # firmware tests: banner, echo, GPIO, timer interrupt (checked-in firmware/soc/*.hex)

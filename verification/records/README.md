@@ -27,4 +27,4 @@ Records from before this layout (`toolchain-smoke/2026-10-17/`,
 instead; the linter accepts that form only for them, and they are not migrated.
 New records use the layout above.
 
-Check with `python3 -I verification/tools/lint_records.py` (also `npm run lint`).
+Check with `python3 -I verification/tools/lint_records.py`.

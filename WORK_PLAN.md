@@ -44,7 +44,7 @@ _None._
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-_None._
+- **#224**: fix: cite record 0004 item 2 for the no-1rw-view note, re-attest T1 item 1
 
 ## Proposed
 
@@ -57,10 +57,11 @@ Issues carrying `loom:curated`.
 - **#69**: T1 item 8 (characterization): per-row report with Fmax, area and power per ratified corner, attested with klt signoff --attest 8 *(curated)*
 - **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous *(curated)*
 - **#169**: Follow-on: Work identified in PR #163 *(curated)*
+- **#203**: Bump PIN_KLT 0.9.1 -> 0.9.2 and regenerate the signoff records; report on #37 what the release does and does not change for the soc_top congestion *(curated)*
 
 ## Proposed (Architect / Hermit)
 
-_None._
+- **#225**: Remove the 22 dead bits of obi_xbar.rom_addr_o: boot_rom reads [11:2] only, and 23 cells (+152.65 um2) drive the rest into dangling wires *(hermit)*
 
 ## Epics
 
@@ -76,8 +77,8 @@ _None._
 | Ready (`loom:issue`) | 0 |
 | In Progress (`loom:building`) | 1 |
 | PRs awaiting review | 0 |
-| Approved PRs awaiting merge | 0 |
-| Curated | 7 |
-| Architect / Hermit proposals | 0 |
+| Approved PRs awaiting merge | 1 |
+| Curated | 8 |
+| Architect / Hermit proposals | 1 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

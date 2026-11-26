@@ -111,13 +111,14 @@ module uart (
         tx_full_q <= 1'b1;
       end
       if (tx_start) begin
-        tx_sh_q     <= {1'b1, tx_wr ? wdata_i[7:0] : tx_hold_q};
+        tx_sh_q     <= {1'b1, tx_hold_q};
         txd_o       <= 1'b0;
         tx_active_q <= 1'b1;
         tx_left_q   <= 4'd10;
         tx_cnt_q    <= div_q;
-        // the holding register is free again unless a write refills it now
-        tx_full_q   <= tx_wr;
+        // the holding register is free again; a write in this cycle is
+        // dropped because tx_full_q is still set
+        tx_full_q   <= 1'b0;
       end else if (tx_tick) begin
         tx_cnt_q <= div_q;
         if (tx_frame_end) begin

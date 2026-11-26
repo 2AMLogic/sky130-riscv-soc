@@ -1,0 +1,19 @@
+# ACT4 test configuration for the sky130-riscv-soc testbench (issue #49).
+#
+# Same fields as riscv-arch-test's config/cores/cve2/cv32e20/test_config.yaml
+# at the pinned commit; the four files below it names sit beside it.
+#   sky130-riscv-soc.yaml  UDB architecture configuration of the CVE2 core in
+#                          rtl/soc_top.sv (test selection and the generated
+#                          rvtest_config.h)
+#   link.ld                the testbench-only RAM at 0x1000_0000
+#   rvmodel_macros.h       how a test halts, prints and times on the SoC
+#   sail.json              the Sail reference model of the same configuration
+# Tool names are executables on PATH; versions are pinned in
+# scripts/setup-env.sh (PIN_SAIL, PIN_ACT_GCC) and checked before a run.
+name: sky130-riscv-soc
+compiler_exe: riscv64-unknown-elf-gcc # executable name on $PATH or full path to executable
+objdump_exe: riscv64-unknown-elf-objdump # executable name on $PATH or full path to executable, optional
+ref_model_exe: sail_riscv_sim # executable name on $PATH or full path to executable
+udb_config: sky130-riscv-soc.yaml
+linker_script: link.ld
+dut_include_dir: . # Directory containing DUT specific model_test.h header

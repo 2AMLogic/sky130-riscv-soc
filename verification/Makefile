@@ -11,6 +11,10 @@
 #                                   the macro stand-in; transcript must equal the RTL one
 #   make -C verification boot       SoC top boots firmware/boot (needs build/cve2/cve2_top.v:
 #                                   scripts/fetch-cve2.sh && scripts/convert-cve2.sh)
+#   make -C verification archtest   ACT4 architecture tests on the SoC, one cocotb test per
+#                                   selected image, through klt functional-verification (needs
+#                                   the ACT4 toolchain; scripts/build-archtest.sh builds the images)
+#   make -C verification archtest-negative  one corrupted reference result must fail its test
 #
 # A new test directory under tests/<name>/ adds a target by setting the three
 # variables below.
@@ -138,3 +142,51 @@ soc-gate:
 	    VERILOG_SOURCES="$(GATE_SRC)" \
 	    COMPILE_ARGS="-DFUNCTIONAL -DUNIT_DELAY=#0" \
 	    SIM_BUILD=$(ROOT)/sim_build/soc_gate
+
+# ACT4 architecture tests (issue #49): one cocotb test per self-checking image
+# riscv-arch-test selects for the SoC, each ending in ACT4's own pass/fail
+# halt. scripts/build-archtest.sh (needs the ACT4 toolchain,
+# ../scripts/setup-env.sh --check-act4) fetches, generates and builds the
+# images; nothing is checked in. The run goes through `klt
+# functional-verification` at PIN_KLT rather than cocotb.mk because its report
+# is the evidence: klt prints its report (ARCHTEST_FORMAT, text or json), or
+# writes the JSON report to ARCHTEST_REPORT when that is set (a record's
+# report.json). The recipe is not echoed, so stdout is klt's own. Exit status
+# is klt's: 3 once a test fails.
+# The request names its boot ROM image relative to klt's output directory, so
+# ARCHTEST_SIM has to stay exactly this deep inside verification/.
+PIN_KLT := $(shell sed -n 's/^PIN_KLT="\([^"]*\)".*/\1/p' $(ROOT)/../scripts/setup-env.sh)
+KLT ?= klt
+ARCHTEST_DIR := $(ROOT)/tests/archtest
+ARCHTEST_SIM ?= $(ROOT)/sim_build/archtest
+ARCHTEST_FORMAT ?= text
+ARCHTEST_REPORT ?=
+
+.PHONY: archtest archtest-build archtest-negative
+archtest-build:
+	@$(KLT) --version 2>/dev/null | grep -qx "klt $(PIN_KLT)" || { echo "$(KLT) is not klt $(PIN_KLT) (PIN_KLT in ../scripts/setup-env.sh): put the pinned klt first on PATH, or set KLT=" >&2; exit 1; }
+	$(ROOT)/../scripts/build-archtest.sh
+
+archtest: archtest-build
+ifneq ($(ARCHTEST_REPORT),)
+	@$(KLT) functional-verification $(ARCHTEST_DIR)/fv_request.json -o $(ARCHTEST_SIM) --format json > $(ARCHTEST_REPORT) && echo "report: $(ARCHTEST_REPORT)"
+else
+	@$(KLT) functional-verification $(ARCHTEST_DIR)/fv_request.json -o $(ARCHTEST_SIM) --format $(ARCHTEST_FORMAT)
+endif
+
+# The self-check must be able to fail: with one reference result of I-add-00
+# corrupted (ARCHTEST_PERTURB, read by the bench), that test alone is run and
+# has to fail with ACT4's fail code. (cocotb 2.0 lists the tests a testcase
+# filter leaves out as skipped, so the check counts the non-skipped ones. It
+# runs in its own output directory and leaves the suite's in place.)
+archtest-negative: archtest-build
+	@rm -rf $(ARCHTEST_SIM)-negative
+	@python3 -I -c 'import json, sys; r = json.load(open(sys.argv[1])); r["testbench"]["testcase"] = "rv32i/I/I-add-00"; json.dump(r, sys.stdout)' \
+	    $(ARCHTEST_DIR)/fv_request.json > $(ARCHTEST_SIM)-negative.request.json
+	@cd $(ARCHTEST_DIR) && ARCHTEST_PERTURB=rv32i/I/I-add-00 $(KLT) functional-verification - -o $(ARCHTEST_SIM)-negative --format json \
+	    < $(ARCHTEST_SIM)-negative.request.json > $(ARCHTEST_SIM)-negative.json; rc=$$?; \
+	if [ $$rc -ne 3 ]; then echo "archtest-negative: klt exited $$rc (3 = tests ran, one failed): $$(head -c 300 $(ARCHTEST_SIM)-negative.json)" >&2; exit 1; fi; \
+	python3 -I -c 'import json, sys; r = json.load(open(sys.argv[1])); f = [t for t in r["tests"] if t["status"] == "failed"]; \
+	    ok = len(f) == 1 and f[0]["name"] == "rv32i/I/I-add-00" and "ACT4 self-check FAILED" in f[0]["error_message"]; \
+	    print("archtest-negative: corrupted reference result rejected:", f[0]["error_message"].splitlines()[0]) if ok else sys.exit("archtest-negative: the corrupted reference result was not rejected: " + json.dumps(f))' \
+	    $(ARCHTEST_SIM)-negative.json

@@ -50,6 +50,13 @@
         { "upstream": "sky130_sram_2kbyte_1rw1r_32x512_8/sky130_sram_2kbyte_1rw1r_32x512_8.v", "sha256": "2712357fbc3d1ee3343c4bcb7d630de92ca87d869fb5d50d1d3cea967f288208" },
         { "upstream": "sky130_sram_2kbyte_1rw1r_32x512_8/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib", "sha256": "8656384775f5e10b44bed97b7193dd3188ce8cd60b7c8e02a5a4ad9e35ed03ba" }
       ]
+    },
+    {
+      "from": "riscv-non-isa/riscv-arch-test",
+      "commit": "9929db1c3a84f90f808f39f21678d9cd98776147",
+      "mode": "fetched",
+      "archive": "https://codeload.github.com/riscv-non-isa/riscv-arch-test/tar.gz/9929db1c3a84f90f808f39f21678d9cd98776147",
+      "manifest": "reuse.lock.d/riscv-arch-test-9929db1c.json"
     }
   ],
   "in_tree": [

@@ -37,6 +37,7 @@ jobs:
           verification/tools/tests/test_fetch_cve2.sh
           verification/tools/tests/test_lint_rtl.sh
           verification/tools/tests/test_setup_env_check.sh
+          python3 -I verification/tools/tests/test_archtest_manifest.py
       - name: Workflow triggers satisfy the merge-queue contract
         run: |
           python3 -I verification/tools/check_workflow_triggers.py

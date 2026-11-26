@@ -43,9 +43,9 @@ there stays one copy to keep true.
 ## Architecture tests (`riscv-arch-test`, ACT4)
 
 The ISA conformance suite of spec/soc.md § Verification plan row 1. It stays
-local: it needs Sail, a newer RISC-V GCC, Ruby with the `udb` gems and `uv`
-besides klt, Icarus and cocotb, none of which CI has. Check the host with
-`scripts/setup-env.sh --check-act4`, then:
+local: besides the klt, Icarus and cocotb the other targets need, it takes
+Sail, a newer RISC-V GCC, Ruby with the `udb` gems and `uv`, and CI has none
+of those four. Check the host with `scripts/setup-env.sh --check-act4`, then:
 
 ```
 make -C verification archtest            # build the images, run the suite, print klt's report

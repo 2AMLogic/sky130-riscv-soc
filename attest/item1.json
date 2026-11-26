@@ -39,7 +39,7 @@
           "rtl/timer.sv": "894cdf96da88cba81d9c14d32822cd33a547114699fc4e19d527a7087aa4c881",
           "rtl/uart.sv": "9f2cc0e1ebb59946ce9da403000eaf9b37ed25778bb44828d06bd948e0733c57",
           "reuse.lock.json": "af07af5ebf430e1a4677ba4da02b17eaaceb4b88605f40292bca3adb40d37d6e",
-          "scripts/fetch-import.sh": "af12a1e62440d0d97e7cecd0f2eb96d142d10e2fe1200c212a7f3d4fc2280168",
+          "scripts/fetch-import.sh": "2d15ca8849fe997159df8263c7fe1c22741e9f322fb0da26832dc496e1f800f8",
           "scripts/fetch-cve2.sh": "e95ceba154ae33cdf42d4d2608a2256c6fea3c49820082ff73c764a5b031b986",
           "scripts/convert-cve2.sh": "d8aa67f04510b02fd0715da52f74215ded4a053bd91aa78eabfdf1de97d51260",
           "scripts/fetch-sram-macro.sh": "524740e881363028389cba263ffdb801c615df430c9184f77a860fb8bad86c11",

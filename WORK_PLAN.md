@@ -26,7 +26,7 @@ _None._
 
 Human-approved issues ready for implementation (`loom:issue`).
 
-- **#225**: Remove the 22 dead bits of obi_xbar.rom_addr_o: boot_rom reads [11:2] only, and 23 cells (+152.65 um2) drive the rest into dangling wires
+_None._
 
 ## In Progress
 
@@ -60,7 +60,7 @@ Issues carrying `loom:curated`.
 
 ## Proposed (Architect / Hermit)
 
-- **#227**: Remove the unreachable UART transmit bypass at frame start *(hermit)*
+_None._
 
 ## Epics
 
@@ -73,11 +73,11 @@ _None._
 | Operator merge-risk holds | 0 |
 | Very important | 1 |
 | Important | 2 |
-| Ready (`loom:issue`) | 1 |
+| Ready (`loom:issue`) | 0 |
 | In Progress (`loom:building`) | 0 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
 | Curated | 7 |
-| Architect / Hermit proposals | 1 |
+| Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

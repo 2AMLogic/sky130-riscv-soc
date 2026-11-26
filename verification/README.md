@@ -88,8 +88,8 @@ relative to the repository root:
 | --- | --- | --- |
 | `lint` | `apt-get install -y verilator iverilog` | Verilator for RTL lint; Icarus because the CVE2 convert smoke test elaborates with it |
 | `lint` | `verification/tools/lint_records.py`, `verification/tools/tests/test_lint_records.py` | the record linter over `records/`, and its good/bad fixture test |
-| `lint` | `verification/tools/tests/test_fetch_cve2.sh` | the pinned-import fetcher's exit codes, both entry points, against a `file://` fixture |
-| `lint` | `verification/tools/tests/test_lint_rtl.sh`, `verification/tools/tests/test_setup_env_check.sh` | the check scripts' exit codes: `lint_rtl.sh` on an empty `rtl/` tree, `setup-env.sh --check` on each cocotb state |
+| `lint` | `verification/tools/tests/test_fetch_cve2.sh` | the CVE2, SRAM and ACT4 importers against local fixtures, including archive member types and staging cleanup |
+| `lint` | `verification/tools/tests/test_lint_rtl.sh`, `verification/tools/tests/test_setup_env_check.sh` | `lint_rtl.sh` on an empty `rtl/` tree, the cocotb preflight, and ACT4 checks for the selected klt executable and matching toolchain pins |
 | `lint` | `verification/tools/tests/test_archtest_manifest.py` | the ACT4 manifest tool with faked inputs: a consistent build becomes a manifest, and each inconsistency the tool promises to refuse fails naming its cause |
 | `lint` | `verification/tools/check_workflow_triggers.py`, `verification/tools/tests/test_check_workflow_triggers.py` | the workflow triggers satisfy the merge-queue contract — `merge_group` declared with no path filters, each queue entry its own concurrency group, never cancelled — and its fixture test |
 | `lint` | `verification/tools/check_soc_rows.py`, `verification/tools/tests/test_check_soc_rows.py` | the spec row projections match `spec/soc.md`, and its fixture test |

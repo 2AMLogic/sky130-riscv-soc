@@ -3,6 +3,11 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-11-26
+
+- **PR #224**: fix: cite record 0004 item 2 for the no-1rw-view note, re-attest T1 item 1
+- **Issue #169** (closed): Follow-on: Work identified in PR #163
+
 ### 2026-11-23
 
 - **PR #217**: lock: drop the unfetched VLSIDA/OpenRAM pin and re-attest T1 item 1

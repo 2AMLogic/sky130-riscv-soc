@@ -26,7 +26,7 @@ _None._
 
 Human-approved issues ready for implementation (`loom:issue`).
 
-_None._
+- **#233**: .loom/account-ranking.codex is untracked in the main checkout and not ignored: check-main-clean.sh exits 3
 
 ## In Progress
 
@@ -38,7 +38,7 @@ Issues currently being built (`loom:building`).
 
 PRs waiting on Judge (`loom:review-requested`).
 
-_None._
+- **#231**: test: run the pinned riscv-arch-test (ACT4) suite on the SoC through klt functional-verification
 
 ## Approved (Awaiting Merge)
 
@@ -57,6 +57,7 @@ Issues carrying `loom:curated`.
 - **#69**: T1 item 8 (characterization): per-row report with Fmax, area and power per ratified corner, attested with klt signoff --attest 8 *(curated)*
 - **#147**: Two decision records share the number 0004, so a bare "record 0004" citation is ambiguous *(curated)*
 - **#203**: Bump PIN_KLT 0.9.1 -> 0.9.2 and regenerate the signoff records; report on #37 what the release does and does not change for the soc_top congestion *(curated)*
+- **#233**: .loom/account-ranking.codex is untracked in the main checkout and not ignored: check-main-clean.sh exits 3 *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -73,11 +74,11 @@ _None._
 | Operator merge-risk holds | 0 |
 | Very important | 1 |
 | Important | 2 |
-| Ready (`loom:issue`) | 0 |
+| Ready (`loom:issue`) | 1 |
 | In Progress (`loom:building`) | 1 |
-| PRs awaiting review | 0 |
+| PRs awaiting review | 1 |
 | Approved PRs awaiting merge | 0 |
-| Curated | 7 |
+| Curated | 8 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

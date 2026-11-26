@@ -106,7 +106,7 @@ module soc_fabric #(
   end
 
   // D-SRAM: the same wrapper, USE_PORT1=0. The data side is 1rw by the
-  // ratified spec; 0004-sram-macro-organization.md item 5 notes no 1rw macro
+  // ratified spec; 0004-sram-macro-organization.md item 2 notes no 1rw macro
   // view exists, so the macro build holds the 1rw1r macro here with its
   // port 1 unused.
   soc_sram_i #(

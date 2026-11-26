@@ -1,0 +1,55 @@
+make: Entering directory '/home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-49/verification'
+/home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-49/verification/../scripts/build-archtest.sh
+ok    sail       sail_riscv_sim 0.16 (the ACT4 reference model)
+ok    act-gcc    riscv64-unknown-elf-gcc (g6afcc4f6d) 16.1.0
+ok    ruby       ruby 3.4.11 (2026-09-23 revision 592f1ffdb3) +PRISM [x86_64-linux]
+ok    udb        udb 0.1.17 udb-gen 0.1.16 udb_helpers 0.1.4 idlc 0.1.8
+ok    uv         uv 0.13.5 (x86_64-unknown-linux-gnu)
+ok    klt        klt 0.9.2
+ok    iverilog   Icarus Verilog version 13.0 (stable) (v13_0)
+ok    cocotb     2.0.1
+environment matches the ACT4 pins
+ok    fetched 4610 riscv-arch-test files @ 9929db1c3a84f90f808f39f21678d9cd98776147 into /home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-49/build/archtest/upstream
+ok    fetched 32 CVE2 files @ d7f21568028a1114be663599bd42145dccf28928 into /home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-49/build/cve2/upstream
++ sv2v -DSYNTHESIS -I vendor/lowrisc_ip/ip/prim/rtl -I rtl -I vendor/lowrisc_ip/dv/sv/dv_utils vendor/lowrisc_ip/ip/prim/rtl/prim_assert.sv rtl/cve2_pkg.sv vendor/lowrisc_ip/ip/prim/rtl/prim_ram_1p_pkg.sv rtl/cve2_alu.sv rtl/cve2_clock_gate.sv rtl/cve2_compressed_decoder.sv rtl/cve2_controller.sv rtl/cve2_counter.sv rtl/cve2_cs_registers.sv rtl/cve2_csr.sv rtl/cve2_decoder.sv rtl/cve2_ex_block.sv rtl/cve2_fetch_fifo.sv rtl/cve2_id_stage.sv rtl/cve2_if_stage.sv rtl/cve2_load_store_unit.sv rtl/cve2_multdiv_fast.sv rtl/cve2_multdiv_slow.sv rtl/cve2_pmp.sv rtl/cve2_prefetch_buffer.sv rtl/cve2_register_file_ff.sv rtl/cve2_wb.sv rtl/cve2_core.sv rtl/cve2_top.sv --top cve2_top -w /home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-49/build/cve2/cve2_top.v
+ok    icarus elaborates cve2_top
+Using CPython 3.14.9
+Creating virtual environment at: .venv
+   Building covergroupgen @ file:///home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-49/build/archtest/upstream/generators/coverage
+   Building testgen @ file:///home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-49/build/archtest/upstream/generators/testgen
+   Building act @ file:///home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-49/build/archtest/upstream/framework
+      Built testgen @ file:///home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-49/build/archtest/upstream/generators/testgen
+      Built act @ file:///home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-49/build/archtest/upstream/framework
+      Built covergroupgen @ file:///home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-49/build/archtest/upstream/generators/coverage
+Prepared 3 packages in 9ms
+Installed 17 packages in 5.98s
+ + act==0.3.0 (from file:///home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-49/build/archtest/upstream/framework)
+ + annotated-doc==0.0.5
+ + annotated-types==0.8.0
+ + covergroupgen==0.2.0 (from file:///home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-49/build/archtest/upstream/generators/coverage)
+ + markdown-it-py==4.2.0
+ + mdurl==0.1.2
+ + pydantic==2.13.5
+ + pydantic-core==2.46.5
+ + pygments==2.21.0
+ + pyjson5==2.0.1
+ + rich==15.0.0
+ + ruamel-yaml==0.19.1
+ + shellingham==1.5.4
+ + testgen==0.5.0 (from file:///home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-49/build/archtest/upstream/generators/testgen)
+ + typer==0.27.2
+ + typing-extensions==4.16.0
+ + typing-inspection==0.4.4
+
+✓ Generated 246 test suite(s)
+✓ DUT configs prepared: 1 config all up to date
+Selected test list: 
+/home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-49/build/archtest/wor
+k/sky130-riscv-soc/test_list.md
+✓ Build complete: 660 up-to-date
+✓ DUT configs prepared: 1 config all up to date
+ok    132 test images in images
+wrote build/archtest/rom/rom.hex
+ok    132 ACT4 test images in /home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-49/build/archtest (manifest.json)
+archtest-negative: corrupted reference result rejected: rv32i/I/I-add-00.S: ACT4 self-check FAILED
+make: Leaving directory '/home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-49/verification'

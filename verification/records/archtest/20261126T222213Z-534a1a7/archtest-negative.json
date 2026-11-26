@@ -1,0 +1,837 @@
+{
+  "schema_version": 2,
+  "engine": "icarus",
+  "hdl_toplevel": "soc_top_archtest",
+  "testbench": "test_archtest",
+  "status": "fail",
+  "test_count": 132,
+  "passed_count": 0,
+  "failed_count": 1,
+  "skipped_count": 131,
+  "tests": [
+    {
+      "name": "priv/ExceptionsSm/ExceptionsSm-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/ExceptionsSm/ExceptionsSm_medeleg_m-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/ExceptionsSm/ExceptionsSm_medeleg_s-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/ExceptionsSm/ExceptionsSm_medeleg_u-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/ExceptionsZc/ExceptionsZc-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/InterruptsSm/InterruptsSm_enable_M-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/InterruptsSm/InterruptsSm_priority_mideleg_M-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/InterruptsSm/InterruptsSm_priority_mie_M-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/InterruptsSm/InterruptsSm_priority_mip_M-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/InterruptsSm/InterruptsSm_trigger_M-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/InterruptsSm/InterruptsSm_wfi_M-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/InterruptsSm/InterruptsSm_write_stip_sstc-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_csr_insufficient_priv-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_csr_ro-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_csr_ro-01",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_inst-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_mcause-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_mcsr_access-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_mcsr_addr-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_mcsr_cntr-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_mcsr_walk-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_mcsr_walk-01",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_mcsr_walk-02",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_mcsr_walk-03",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_mcsr_walk-04",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_mcsr_walk-05",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_mcsr_walk-06",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_mcsr_walk-07",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_mcsr_walk-08",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_mcsr_walk-09",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_mcsr_walk-10",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_mcsr_walk-11",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_misa-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_mstatus_sd-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_satp_from_m-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_satp_from_s-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_scsr_from_m-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_shadow-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "priv/Sm/Sm_xret-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-add-00",
+      "status": "failed",
+      "sim_time_ns": 317030.0,
+      "real_time_s": 3.132321834564209,
+      "error_type": "AssertionError",
+      "error_message": "rv32i/I/I-add-00.S: ACT4 self-check FAILED\nconsole:\n\nRVCP-SUMMARY: TEST FAILED - Test File \"I-add-00.S\"\n\nRVCP: DEBUG INFORMATION FOLLOWS\nRVCP: Test Info: \"test: 1; cg: I_add_cg; cp: cp_rs1; bin: b0\"\nRVCP: Instruction: 0x01d00e33\nRVCP: Approximate address (failure may be slightly after this): 0x10004110\nRVCP: Register: x28\nRVCP: Bad Value:      0x3d120729\nRVCP: Expected Value: 0x3d120728\nRVCP: END OF DEBUG INFORMATION\n\n"
+    },
+    {
+      "name": "rv32i/I/I-addi-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-and-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-andi-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-auipc-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-beq-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-bge-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-bgeu-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-blt-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-bltu-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-bne-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-fence-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-jal-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-jalr-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-lb-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-lbu-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-lh-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-lhu-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-lui-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-lw-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-nop-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-or-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-ori-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-sb-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-sh-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-sll-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-slli-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-slt-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-slti-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-sltiu-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-sltu-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-sra-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-srai-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-srl-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-srli-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-sub-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-sw-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-xor-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/I/I-xori-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/M/M-div-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/M/M-divu-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/M/M-mul-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/M/M-mulh-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/M/M-mulhsu-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/M/M-mulhu-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/M/M-rem-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/M/M-remu-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Misalign/Misalign-lh-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Misalign/Misalign-lhu-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Misalign/Misalign-lw-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Misalign/Misalign-sh-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Misalign/Misalign-sw-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Misalign/MisalignZca-c.lw-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Misalign/MisalignZca-c.lwsp-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Misalign/MisalignZca-c.sw-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Misalign/MisalignZca-c.swsp-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.add-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.addi-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.addi16sp-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.addi4spn-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.and-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.andi-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.beqz-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.bnez-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.j-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.jal-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.jalr-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.jr-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.li-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.lui-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.lw-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.lwsp-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.mv-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.nop-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.or-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.slli-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.srai-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.srli-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.sub-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.sw-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.swsp-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zca/Zca-c.xor-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zicsr/Zicsr-csrrc-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zicsr/Zicsr-csrrci-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zicsr/Zicsr-csrrs-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zicsr/Zicsr-csrrsi-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zicsr/Zicsr-csrrw-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zicsr/Zicsr-csrrwi-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zifencei/Zifencei-fence.i-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zmmul/Zmmul-mul-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zmmul/Zmmul-mulh-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zmmul/Zmmul-mulhsu-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    },
+    {
+      "name": "rv32i/Zmmul/Zmmul-mulhu-00",
+      "status": "skipped",
+      "sim_time_ns": 0.0,
+      "real_time_s": 0.0
+    }
+  ],
+  "coverage": null,
+  "trace": null,
+  "environment": {
+    "engine": "icarus",
+    "engine_version": "13.0",
+    "tools": [],
+    "cocotb_version": "2.0.1",
+    "results_xml": {
+      "path": "verification/sim_build/archtest-negative/results_icarus.xml",
+      "scope": "repo",
+      "sha256": "sha256:58188b64f0fa905c4838ec555db20bd94cfe0b01c61f71ac42faa66a5aab7ee0"
+    },
+    "test_log": {
+      "path": "verification/sim_build/archtest-negative/test_icarus.log",
+      "scope": "repo",
+      "sha256": "sha256:1c27afee148ccb4aa307eb43b980e6af277cdc0b4d153510cdb270eb701be6c7"
+    },
+    "build_log": {
+      "path": "verification/sim_build/archtest-negative/build_icarus.log",
+      "scope": "repo",
+      "sha256": "sha256:6140adbc47397cdbb41658d554a3cdc9172564c29cdd2c1553d619b84ed4fc76"
+    },
+    "random_seed": 1795732275,
+    "source_defines": {},
+    "env": {
+      "COCOTB_TRUST_INERTIAL_WRITES": "1"
+    },
+    "initial_state": null,
+    "sdf": null
+  }
+}

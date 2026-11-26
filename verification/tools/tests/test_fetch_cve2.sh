@@ -125,6 +125,20 @@ check "archtest: clean fetch left the files and the symlink" $?
 [[ -z "$(find "$W" -name '.fetch-import.*' -print -quit)" ]]
 check "archtest: clean fetch leaked staging space" $?
 
+# The lock can also list files inline alongside the external manifest.
+python3 -I - "$W" <<'PYSPLIT'
+import json, sys
+from pathlib import Path
+root = Path(sys.argv[1])
+lock, manifest = root / "act_lock.json", root / "act_manifest.json"
+imp, members = json.loads(lock.read_text()), json.loads(manifest.read_text())
+name = "rtl/a.sv"
+imp["imports"][0]["files"] = [{"upstream": name, "sha256": members["files"].pop(name)}]
+lock.write_text(json.dumps(imp))
+manifest.write_text(json.dumps(members))
+PYSPLIT
+run_arch; expect "archtest: verifies inline and external file entries together" zero $?
+
 pack; manifest "$AC"
 printf 'drift\n' >> "$TREE/rtl/b.sv"; pack
 rm -rf "$W/out"

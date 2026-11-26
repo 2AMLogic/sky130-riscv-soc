@@ -44,26 +44,6 @@ for v in IMPORT LOCK OUT BASE_URL LAYOUT LABEL; do
 done
 [[ "$LAYOUT" == tree || "$LAYOUT" == flat ]] || { echo "FAIL  --layout must be tree or flat, got $LAYOUT" >&2; exit 2; }
 
-# Resolve the pin once. Archive manifests describe the entire upstream tree.
-ENTRIES_TEXT="$(python3 -I - "$LOCK" "$IMPORT" <<'PYLOCK'
-import json, sys
-from pathlib import Path
-
-lock_file = Path(sys.argv[1])
-imp = next(i for i in json.loads(lock_file.read_text())["imports"] if i["from"] == sys.argv[2])
-print(imp["commit"])
-print(imp.get("archive", "-"))
-if "archive" in imp:
-    print(lock_file.parent / imp["manifest"])
-else:
-    for f in imp["files"]:
-        print(f["sha256"], f["upstream"])
-PYLOCK
-)"
-mapfile -t ENTRIES <<<"$ENTRIES_TEXT"
-COMMIT="${ENTRIES[0]}"
-ARCHIVE="${ENTRIES[1]}"
-
 # Keep the archive and verified tree beside OUT. A full ACT4 tree is larger
 # than a worker's /tmp, and publication must stay on the same filesystem.
 parent="$(dirname -- "$OUT")"
@@ -72,10 +52,42 @@ STAGE="$(mktemp -d "$parent/.fetch-import.XXXXXXXX")"
 trap 'rm -rf "$STAGE"' EXIT
 mkdir "$STAGE/tree"
 
+# Merge inline digests with the external manifest, then hand the declared
+# objects to the appropriate downloader.
+python3 -I - "$LOCK" "$IMPORT" "$STAGE" <<'PYLOCK'
+import json, sys
+from pathlib import Path
+
+lock_file, repo, stage = Path(sys.argv[1]), sys.argv[2], Path(sys.argv[3])
+imp = next(i for i in json.loads(lock_file.read_text())["imports"] if i["from"] == repo)
+files, links = {}, {}
+if "manifest" in imp:
+    manifest_path = lock_file.parent / imp["manifest"]
+    manifest = json.loads(manifest_path.read_text())
+    if (manifest["from"], manifest["commit"]) != (repo, imp["commit"]):
+        sys.exit(f"FAIL  {manifest_path} describes {manifest['from']}@{manifest['commit']}, the lock pins {repo}@{imp['commit']}")
+    files, links = manifest["files"], manifest["symlinks"]
+for f in imp.get("files", []):
+    if files.setdefault(f["upstream"], f["sha256"]) != f["sha256"]:
+        sys.exit(f"FAIL  conflicting digests for {f['upstream']}")
+if files.keys() & links.keys():
+    sys.exit("FAIL  lock declares a path as both file and symlink")
+(stage / "pin").write_text(imp["commit"] + "\n" + imp.get("archive", "-") + "\n")
+if "archive" in imp:
+    (stage / "members.json").write_text(json.dumps({"files": files, "symlinks": links}))
+else:
+    if links:
+        sys.exit("FAIL  symlink imports require an archive")
+    (stage / "entries").write_text("".join(f"{digest} {name}\n" for name, digest in files.items()))
+PYLOCK
+mapfile -t pin < "$STAGE/pin"
+COMMIT="${pin[0]}"
+ARCHIVE="${pin[1]}"
+
 if [[ "$ARCHIVE" != "-" ]]; then
     [[ "$LAYOUT" == tree ]] || { echo "FAIL  an archive import must use --layout tree" >&2; exit 1; }
     curl -fsSL --retry 2 -o "$STAGE/archive.tar.gz" "$ARCHIVE"
-    FILES="$(python3 -I - "$STAGE" "${ENTRIES[2]}" "$IMPORT" "$COMMIT" <<'PYARCH'
+    FILES="$(python3 -I - "$STAGE" <<'PYARCH'
 import hashlib
 import json
 import shutil
@@ -83,16 +95,14 @@ import sys
 import tarfile
 from pathlib import Path
 
-stage, manifest_path, repo, commit = sys.argv[1:]
-manifest = json.loads(Path(manifest_path).read_text())
-if (manifest["from"], manifest["commit"]) != (repo, commit):
-    sys.exit(f"FAIL  {manifest_path} describes {manifest['from']}@{manifest['commit']}, the lock pins {repo}@{commit}")
+stage = Path(sys.argv[1])
+manifest = json.loads((stage / "members.json").read_text())
 files, links = manifest["files"], manifest["symlinks"]
-tree = Path(stage) / "tree"
+tree = stage / "tree"
 expected = files.keys() | links.keys()
 seen = set()
 root = None
-with tarfile.open(Path(stage) / "archive.tar.gz", "r|gz") as archive:
+with tarfile.open(stage / "archive.tar.gz", "r|gz") as archive:
     for member in archive:
         parts = member.name.split("/")
         if root is None:
@@ -129,7 +139,7 @@ print(len(files))
 PYARCH
 )"
 else
-    ENTRIES=("${ENTRIES[@]:2}")
+    mapfile -t ENTRIES < "$STAGE/entries"
     FILES="${#ENTRIES[@]}"
     for entry in "${ENTRIES[@]}"; do
         want="${entry%% *}"
@@ -147,5 +157,5 @@ else
 fi
 
 rm -rf "$OUT"
-mv "$STAGE/tree" "$OUT"
+mv -T -- "$STAGE/tree" "$OUT"
 echo "ok    fetched $FILES ${LABEL} files @ ${COMMIT} into ${OUT}"

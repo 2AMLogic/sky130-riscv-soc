@@ -6,9 +6,9 @@
 # scripts/fetch-sram-macro.sh (flat layout, one file per basename) and
 # scripts/fetch-arch-test.sh (tree layout, one archive for the whole commit,
 # verified against a manifest). Each entry point gets the same three cases —
-# clean fetch, sha256 mismatch, missing file — and the archive form three more
-# that only a whole tree has: a file the manifest does not list, a symlink to
-# the wrong target, and a manifest for another commit. Each entry point also
+# clean fetch, sha256 mismatch, missing file — and the archive form also checks
+# member types, unlisted members, symlink targets, staging cleanup and the
+# pinned identity of the manifest. Each entry point also
 # asserts that it produced its own layout and not another one. No network: the
 # lock, output directory and base URL are overridden to a fixture tree.
 set -uo pipefail
@@ -114,13 +114,16 @@ cat > "$W/act_lock.json" <<JSON
  {"from":"riscv-non-isa/riscv-arch-test","commit":"$AC","mode":"fetched",
   "archive":"file://$W/act.tgz","manifest":"act_manifest.json"}]}
 JSON
-run_arch() { ARCHTEST_LOCK="$W/act_lock.json" ARCHTEST_OUT="$W/out" "$ROOT/scripts/fetch-arch-test.sh" >"$W/log" 2>&1; }
+run_arch() { TMPDIR="$W/missing-tmp" ARCHTEST_LOCK="$W/act_lock.json" ARCHTEST_OUT="$W/out" "$ROOT/scripts/fetch-arch-test.sh" >"$W/log" 2>&1; }
 
 pack; manifest "$AC"
 rm -rf "$W/out"
 run_arch; expect "archtest: clean archive fetch exits 0" zero $?
 [[ -f "$W/out/rtl/a.sv" && -L "$W/out/link.ld" && "$(readlink "$W/out/link.ld")" == rtl/b.sv ]]
 check "archtest: clean fetch left the files and the symlink" $?
+
+[[ -z "$(find "$W" -name '.fetch-import.*' -print -quit)" ]]
+check "archtest: clean fetch leaked staging space" $?
 
 pack; manifest "$AC"
 printf 'drift\n' >> "$TREE/rtl/b.sv"; pack
@@ -142,6 +145,23 @@ rm "$TREE/rtl/c.sv"; rm "$TREE/link.ld"; ln -s rtl/a.sv "$TREE/link.ld"; pack
 rm -rf "$W/out"
 run_arch; expect "archtest: symlink to the wrong target exits non-zero" nonzero $?
 [[ ! -e "$W/out" ]]; check "archtest: wrong symlink left a partial tree" $?
+
+# Keep the expected bytes the same while changing only a member's type.
+rm "$TREE/link.ld"; ln -s rtl/b.sv "$TREE/link.ld"
+cp "$TREE/rtl/b.sv" "$TREE/rtl/copy.sv"; manifest "$AC"
+rm "$TREE/rtl/copy.sv"; ln -s b.sv "$TREE/rtl/copy.sv"; pack
+run_arch; expect "archtest: regular file supplied as a symlink is refused" nonzero $?
+rm "$TREE/rtl/copy.sv"; ln "$TREE/rtl/b.sv" "$TREE/rtl/copy.sv"; pack
+run_arch; expect "archtest: hard link in place of a regular file is refused" nonzero $?
+rm "$TREE/rtl/copy.sv"; manifest "$AC"
+rm "$TREE/link.ld"; cp "$TREE/rtl/b.sv" "$TREE/link.ld"; pack
+run_arch; expect "archtest: symlink supplied as a regular file is refused" nonzero $?
+rm "$TREE/link.ld"; ln -s rtl/b.sv "$TREE/link.ld"
+mkfifo "$TREE/extra"; pack
+run_arch; expect "archtest: unsupported member is refused" nonzero $?
+rm "$TREE/extra"
+[[ ! -e "$W/out" && -z "$(find "$W" -name '.fetch-import.*' -print -quit)" ]]
+check "archtest: rejected archive left output or staging data" $?
 
 rm "$TREE/link.ld"; ln -s rtl/b.sv "$TREE/link.ld"; pack; manifest deadbeefdeadbeefdeadbeefdeadbeefdeadbeef
 rm -rf "$W/out"

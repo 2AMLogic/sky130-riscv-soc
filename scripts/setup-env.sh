@@ -140,13 +140,37 @@ check_sail() {
     else fail sail "got '${got}', pinned ${PIN_SAIL}"; fi
 }
 
+check_act4_lock() {
+    local lock
+    lock="$(dirname "${BASH_SOURCE[0]}")/../reuse.lock.json"
+    if python3 -I - "$lock" "$PIN_SAIL" "$PIN_SAIL_SHA256" "$PIN_ACT_GCC" "$PIN_ACT_GCC_SHA256" "$PIN_ACT_RUBY" "$PIN_ACT_UDB" <<'PYLOCK'
+import json, sys
+from pathlib import Path
+
+lock, sail, sail_sha, gcc, gcc_sha, ruby, gem_versions = sys.argv[1:]
+gems = dict(zip(("udb", "udb-gen", "udb_helpers", "idlc"), gem_versions.split(), strict=True))
+expected = {
+    "sail": {"version": sail, "sha256": sail_sha},
+    "gcc": {"version": gcc, "sha256": gcc_sha},
+    "ruby": {"version": ruby, "gems": gems},
+}
+sys.exit(0 if json.loads(Path(lock).read_text()).get("act4_toolchain") == expected else 1)
+PYLOCK
+    then ok act4-lock "reuse.lock.json matches the ACT4 pins"
+    else fail act4-lock "reuse.lock.json differs from the ACT4 pins"; fi
+}
+
 run_check_act4() {
+    local klt="${KLT:-klt}" version
+    check_act4_lock
     check_sail
     check_tool act-gcc ") ${PIN_ACT_GCC}" riscv64-unknown-elf-gcc --version
     check_tool ruby "ruby ${PIN_ACT_RUBY} " ruby --version
     check_udb
     check_tool uv "uv " uv --version
-    check_tool klt "klt ${PIN_KLT}" klt --version
+    if version="$("$klt" --version 2>&1)" && [[ "$version" == "klt $PIN_KLT" ]]; then
+        ok klt "$version"
+    else fail klt "$klt reported '$version', expected 'klt $PIN_KLT'"; fi
     check_tool iverilog "version ${PIN_IVERILOG} " iverilog -V
     check_cocotb
     if [[ "$FAILED" -ne 0 ]]; then echo "environment does not match the ACT4 pins" >&2; exit 1; fi

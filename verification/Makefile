@@ -151,12 +151,12 @@ soc-gate:
 # functional-verification` at PIN_KLT rather than cocotb.mk because its report
 # is the evidence: klt prints its report (ARCHTEST_FORMAT, text or json), or
 # writes the JSON report to ARCHTEST_REPORT when that is set (a record's
-# report.json). The recipe is not echoed, so stdout is klt's own. Exit status
-# is klt's: 3 once a test fails.
+# report.json). On a test failure klt exits 3 and GNU Make exits 2.
 # The request names its boot ROM image relative to klt's output directory, so
 # ARCHTEST_SIM has to stay exactly this deep inside verification/.
-PIN_KLT := $(shell sed -n 's/^PIN_KLT="\([^"]*\)".*/\1/p' $(ROOT)/../scripts/setup-env.sh)
 KLT ?= klt
+# The negative run changes directory to resolve paths in the request.
+KLT_BIN := $(if $(findstring /,$(KLT)),$(abspath $(KLT)),$(KLT))
 ARCHTEST_DIR := $(ROOT)/tests/archtest
 ARCHTEST_SIM ?= $(ROOT)/sim_build/archtest
 ARCHTEST_FORMAT ?= text
@@ -164,14 +164,13 @@ ARCHTEST_REPORT ?=
 
 .PHONY: archtest archtest-build archtest-negative
 archtest-build:
-	@$(KLT) --version 2>/dev/null | grep -qx "klt $(PIN_KLT)" || { echo "$(KLT) is not klt $(PIN_KLT) (PIN_KLT in ../scripts/setup-env.sh): put the pinned klt first on PATH, or set KLT=" >&2; exit 1; }
-	$(ROOT)/../scripts/build-archtest.sh
+	KLT="$(KLT_BIN)" $(ROOT)/../scripts/build-archtest.sh
 
 archtest: archtest-build
 ifneq ($(ARCHTEST_REPORT),)
-	@$(KLT) functional-verification $(ARCHTEST_DIR)/fv_request.json -o $(ARCHTEST_SIM) --format json > $(ARCHTEST_REPORT) && echo "report: $(ARCHTEST_REPORT)"
+	@"$(KLT_BIN)" functional-verification $(ARCHTEST_DIR)/fv_request.json -o $(ARCHTEST_SIM) --format json > $(ARCHTEST_REPORT) && echo "report: $(ARCHTEST_REPORT)"
 else
-	@$(KLT) functional-verification $(ARCHTEST_DIR)/fv_request.json -o $(ARCHTEST_SIM) --format $(ARCHTEST_FORMAT)
+	@"$(KLT_BIN)" functional-verification $(ARCHTEST_DIR)/fv_request.json -o $(ARCHTEST_SIM) --format $(ARCHTEST_FORMAT)
 endif
 
 # The self-check must be able to fail: with one reference result of I-add-00
@@ -180,10 +179,11 @@ endif
 # filter leaves out as skipped, so the check counts the non-skipped ones. It
 # runs in its own output directory and leaves the suite's in place.)
 archtest-negative: archtest-build
+	@mkdir -p "$(dir $(ARCHTEST_SIM))"
 	@rm -rf $(ARCHTEST_SIM)-negative
 	@python3 -I -c 'import json, sys; r = json.load(open(sys.argv[1])); r["testbench"]["testcase"] = "rv32i/I/I-add-00"; json.dump(r, sys.stdout)' \
 	    $(ARCHTEST_DIR)/fv_request.json > $(ARCHTEST_SIM)-negative.request.json
-	@cd $(ARCHTEST_DIR) && ARCHTEST_PERTURB=rv32i/I/I-add-00 $(KLT) functional-verification - -o $(ARCHTEST_SIM)-negative --format json \
+	@cd $(ARCHTEST_DIR) && ARCHTEST_PERTURB=rv32i/I/I-add-00 "$(KLT_BIN)" functional-verification - -o $(ARCHTEST_SIM)-negative --format json \
 	    < $(ARCHTEST_SIM)-negative.request.json > $(ARCHTEST_SIM)-negative.json; rc=$$?; \
 	if [ $$rc -ne 3 ]; then echo "archtest-negative: klt exited $$rc (3 = tests ran, one failed): $$(head -c 300 $(ARCHTEST_SIM)-negative.json)" >&2; exit 1; fi; \
 	python3 -I -c 'import json, sys; r = json.load(open(sys.argv[1])); f = [t for t in r["tests"] if t["status"] == "failed"]; \

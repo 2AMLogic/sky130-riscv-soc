@@ -10,6 +10,7 @@ that a consistent build becomes a manifest and a selection listing, and that
 every inconsistency the tool promises to refuse fails with a message naming
 the cause.
 """
+import hashlib
 import json
 import struct
 import subprocess
@@ -114,6 +115,7 @@ class ConsistentBuild(unittest.TestCase):
         self.assertEqual(len(test["elf_sha256"]), 64)
         image = self.fx.out / test["image"]
         self.assertEqual(image.read_bytes(), struct.pack("<2I", *WORDS))  # the ELF's bytes, flattened
+        self.assertEqual(test["image_sha256"], hashlib.sha256(image.read_bytes()).hexdigest())
         self.assertEqual(image.parent, self.fx.out / "images" / "rv32i" / "I")
 
     def test_listing_names_every_selected_and_deselected_test(self):
@@ -133,7 +135,11 @@ class ConsistentBuild(unittest.TestCase):
         self.assertIn("\nrv32i/F/F-sub-01.S: parameter: MXLEN is 32", text)
 
     def test_changed_selection_stops_the_build(self):
-        self.fx.commit_listing(self.listing() + "stale line\n")
+        listing = self.listing()
+        self.fx.commit_listing(listing)
+        self.assertEqual(self.fx.run().returncode, 0)
+        self.assertTrue(self.fx.manifest()["tests"])
+        self.fx.commit_listing(listing + "stale line\n")
         r = self.fx.run()
         self.assertEqual(r.returncode, 1, r.stdout)
         self.assertIn("does not list what riscv-arch-test", r.stderr)
@@ -152,7 +158,6 @@ class ConsistentBuild(unittest.TestCase):
         fx.listing.unlink(missing_ok=True)
         self.assertEqual(fx.run().returncode, 1)
         fx.commit_listing((fx.out / "selection.txt").read_text())
-        (fx.out / "manifest.json").unlink(missing_ok=True)
         r = fx.run()
         self.assertEqual(r.returncode, 1, r.stdout)
         self.assertIn(message, r.stderr)
@@ -179,10 +184,12 @@ class ConsistentBuild(unittest.TestCase):
     def test_selected_test_without_an_elf_is_refused(self):
         fx = Fixture(self._tmp.name)
         fx.commit_listing(self.listing())
+        self.assertEqual(fx.run().returncode, 0)
         (fx.out / "work" / "sky130-riscv-soc" / "elfs" / "rv32i" / "I" / "I-add-00.elf").unlink()
         r = fx.run()
         self.assertEqual(r.returncode, 1)
         self.assertIn("selected test was not built", r.stderr)
+        self.assertFalse((fx.out / "manifest.json").exists())
 
 
 if __name__ == "__main__":

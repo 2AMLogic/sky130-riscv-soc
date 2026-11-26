@@ -53,7 +53,7 @@ make -C verification archtest ARCHTEST_REPORT=report.json   # the same run, the 
 make -C verification archtest-negative   # one corrupted reference result must fail its test
 ```
 
-`make archtest` exits with klt's status, 3 once a test fails.
+When a test fails, klt exits 3 and GNU Make exits 2.
 
 `make archtest` is the cold start: `scripts/build-archtest.sh` fetches
 riscv-arch-test at the commit pinned in `reuse.lock.json` (every file verified
@@ -63,7 +63,7 @@ produces the reference results), and writes `build/archtest/` — nothing is
 checked in except `tests/archtest/selection.txt`, the selected tests and the
 reason every other candidate is skipped, which the build regenerates and
 refuses to differ from. The suite then runs through `klt functional-verification` at
-`PIN_KLT`: the klt on `PATH` must be the pinned one and its Python must import
+`PIN_KLT`: the executable selected by `KLT` (default `klt` on `PATH`) must match the pin and its Python must import
 cocotb (a worktree-local venv with both, first on `PATH`, as the records
 describe). The target takes about seven minutes on a dispatch worker: two to
 build, five to run.

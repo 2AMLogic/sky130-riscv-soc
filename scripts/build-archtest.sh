@@ -33,6 +33,8 @@ REQUEST="$ROOT/verification/tests/archtest/fv_request.json"
 PREFIX=riscv64-unknown-elf   # the toolchain test_config.yaml names; ACT4 needs GCC 15 or later
 JOBS="${JOBS:-2}"
 
+# A bench can only use this output after the entire rebuild succeeds.
+rm -f "$BUILD/manifest.json"
 "$ROOT/scripts/setup-env.sh" --check-act4
 
 # udb and udb-gen, the Ruby gems ACT4 drives through `bundle exec`, live in the
@@ -64,9 +66,6 @@ uv sync --frozen --no-dev
     --test-dir tests --workdir "$WORK" > "$BUILD/selection.json"
 cd "$ROOT"
 
-python3 -I "$ROOT/verification/tools/archtest_manifest.py" "$BUILD/selection.json" "$WORK" "$BUILD" \
-    "$DUT/link.ld" "$REQUEST" "$PREFIX-objcopy" "$ROOT/reuse.lock.json" "$ROOT/verification/tests/archtest/selection.txt"
-
 # The boot ROM jumps to TEST_BASE (dut/link.ld), where every test's entry point is.
 ROM="$BUILD/rom"
 rm -rf "$ROM"
@@ -76,5 +75,8 @@ TEST_BASE="$(sed -n 's/^TEST_BASE = \(0x[0-9A-Fa-f]\+\);.*/\1/p' "$DUT/link.ld")
 [[ -n "$TEST_BASE" ]] || { echo "$DUT/link.ld: no TEST_BASE" >&2; exit 1; }
 printf '#define ARCHTEST_ENTRY %s\n' "$TEST_BASE" > "$ROM/entry.h"
 RISCV_PREFIX="$PREFIX" "$ROOT/firmware/build-image.sh" "$ROM" archtest_rom.S:rom.hex
+
+python3 -I "$ROOT/verification/tools/archtest_manifest.py" "$BUILD/selection.json" "$WORK" "$BUILD" \
+    "$DUT/link.ld" "$REQUEST" "$PREFIX-objcopy" "$ROOT/reuse.lock.json" "$ROOT/verification/tests/archtest/selection.txt"
 
 echo "ok    $(python3 -I -c 'import json, sys; print(len(json.load(open(sys.argv[1]))["tests"]))' "$BUILD/manifest.json") ACT4 test images in $BUILD (manifest.json)"

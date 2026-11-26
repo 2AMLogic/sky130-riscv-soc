@@ -44,115 +44,108 @@ for v in IMPORT LOCK OUT BASE_URL LAYOUT LABEL; do
 done
 [[ "$LAYOUT" == tree || "$LAYOUT" == flat ]] || { echo "FAIL  --layout must be tree or flat, got $LAYOUT" >&2; exit 2; }
 
-# "<commit>", then the archive URL or "-", then one "<sha256> <path>" line per
-# file and one "symlink <path> <target>" line per symlink.
-ENTRIES_TEXT="$(python3 -I - "$LOCK" "$IMPORT" <<'PY'
+# Resolve the pin once. Archive manifests describe the entire upstream tree.
+ENTRIES_TEXT="$(python3 -I - "$LOCK" "$IMPORT" <<'PYLOCK'
 import json, sys
 from pathlib import Path
 
 lock_file = Path(sys.argv[1])
-lock = json.load(open(lock_file))
-imp = next(i for i in lock["imports"] if i["from"] == sys.argv[2])
+imp = next(i for i in json.loads(lock_file.read_text())["imports"] if i["from"] == sys.argv[2])
 print(imp["commit"])
 print(imp.get("archive", "-"))
-for f in imp.get("files", []):
-    print(f["sha256"], f["upstream"])
-if "manifest" in imp:
-    manifest = json.load(open(lock_file.parent / imp["manifest"]))
-    if (manifest["from"], manifest["commit"]) != (imp["from"], imp["commit"]):
-        sys.exit(f"FAIL  {imp['manifest']} describes {manifest['from']}@{manifest['commit']}, the lock pins {imp['from']}@{imp['commit']}")
-    for path, digest in sorted(manifest["files"].items()):
-        print(digest, path)
-    for path, target in sorted(manifest["symlinks"].items()):
-        print("symlink", path, target)
-PY
+if "archive" in imp:
+    print(lock_file.parent / imp["manifest"])
+else:
+    for f in imp["files"]:
+        print(f["sha256"], f["upstream"])
+PYLOCK
 )"
 mapfile -t ENTRIES <<<"$ENTRIES_TEXT"
 COMMIT="${ENTRIES[0]}"
 ARCHIVE="${ENTRIES[1]}"
-ENTRIES=("${ENTRIES[@]:2}")
-BASE="$BASE_URL/$COMMIT"
 
-# Every path the lock lists, for the nothing-else check below.
-declare -A LOCKED=()
-FILES=0
-for entry in "${ENTRIES[@]}"; do
-    if [[ "$entry" == symlink\ * ]]; then
-        read -r _ path _ <<<"$entry"
-    else
-        read -r _ path <<<"$entry"
-        FILES=$((FILES + 1))
-    fi
-    LOCKED["$path"]=1
-done
-if [[ "$ARCHIVE" != "-" && "$LAYOUT" != tree ]]; then
-    echo "FAIL  an archive import must use --layout tree" >&2
-    exit 1
-fi
-
-STAGE="$(mktemp -d)"
+# Keep the archive and verified tree beside OUT. A full ACT4 tree is larger
+# than a worker's /tmp, and publication must stay on the same filesystem.
+parent="$(dirname -- "$OUT")"
+mkdir -p "$parent"
+STAGE="$(mktemp -d "$parent/.fetch-import.XXXXXXXX")"
 trap 'rm -rf "$STAGE"' EXIT
-mkdir -p "$STAGE/tree"
+mkdir "$STAGE/tree"
 
 if [[ "$ARCHIVE" != "-" ]]; then
-    # The archive holds one top-level directory (<repository>-<commit>).
-    if ! curl -fsSL --retry 2 -o "$STAGE/archive.tar.gz" "$ARCHIVE"; then
-        echo "FAIL  archive download failed ($ARCHIVE)" >&2
-        exit 1
-    fi
-    if ! tar -xzf "$STAGE/archive.tar.gz" -C "$STAGE/tree" --strip-components=1; then
-        echo "FAIL  archive is not a gzip tarball ($ARCHIVE)" >&2
-        exit 1
-    fi
-fi
+    [[ "$LAYOUT" == tree ]] || { echo "FAIL  an archive import must use --layout tree" >&2; exit 1; }
+    curl -fsSL --retry 2 -o "$STAGE/archive.tar.gz" "$ARCHIVE"
+    FILES="$(python3 -I - "$STAGE" "${ENTRIES[2]}" "$IMPORT" "$COMMIT" <<'PYARCH'
+import hashlib
+import json
+import shutil
+import sys
+import tarfile
+from pathlib import Path
 
-for entry in "${ENTRIES[@]}"; do
-    if [[ "$entry" == symlink\ * ]]; then
-        read -r _ path target <<<"$entry"
+stage, manifest_path, repo, commit = sys.argv[1:]
+manifest = json.loads(Path(manifest_path).read_text())
+if (manifest["from"], manifest["commit"]) != (repo, commit):
+    sys.exit(f"FAIL  {manifest_path} describes {manifest['from']}@{manifest['commit']}, the lock pins {repo}@{commit}")
+files, links = manifest["files"], manifest["symlinks"]
+tree = Path(stage) / "tree"
+expected = files.keys() | links.keys()
+seen = set()
+root = None
+with tarfile.open(Path(stage) / "archive.tar.gz", "r|gz") as archive:
+    for member in archive:
+        parts = member.name.split("/")
+        if root is None:
+            root = parts[0]
+        if parts[0] != root or any(p in ("", ".", "..") for p in parts):
+            sys.exit(f"FAIL  unexpected archive path: {member.name}")
+        name = "/".join(parts[1:]) or "."
+        if member.isdir() and name not in expected:
+            (tree / name).mkdir(parents=True, exist_ok=True)
+            continue
+        if name in seen:
+            sys.exit(f"FAIL  duplicate archive member: {name}")
+        seen.add(name)
+        dest = tree / name
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        if member.type in (tarfile.REGTYPE, tarfile.AREGTYPE) and name in files:
+            with archive.extractfile(member) as src, dest.open("xb") as dst:
+                shutil.copyfileobj(src, dst)
+            with dest.open("rb") as src:
+                digest = hashlib.file_digest(src, "sha256").hexdigest()
+            if digest != files[name]:
+                sys.exit(f"FAIL  {name}: sha256 {digest}, lock says {files[name]}")
+            dest.chmod(member.mode & 0o777)
+        elif member.issym() and name in links and member.linkname == links[name]:
+            continue  # Create checked links after the last file has been written.
+        else:
+            sys.exit(f"FAIL  {name}: archive member type, path or link target differs from the lock")
+missing = expected - seen
+if missing:
+    sys.exit(f"FAIL  {min(missing)}: not in the fetched tree")
+for name, target in links.items():
+    (tree / name).symlink_to(target)
+print(len(files))
+PYARCH
+)"
+else
+    ENTRIES=("${ENTRIES[@]:2}")
+    FILES="${#ENTRIES[@]}"
+    for entry in "${ENTRIES[@]}"; do
+        want="${entry%% *}"
+        path="${entry#* }"
         dest="$STAGE/tree/$path"
-        [[ -L "$dest" ]] || { echo "FAIL  $path: not a symlink in the fetched tree" >&2; exit 1; }
-        got="$(readlink "$dest")"
-        [[ "$got" == "$target" ]] || { echo "FAIL  $path: symlink to $got, lock says $target" >&2; exit 1; }
-        continue
-    fi
-    want="${entry%% *}"
-    path="${entry#* }"
-    if [[ "$LAYOUT" == tree ]]; then
-        dest="$STAGE/tree/$path"
-    else
-        dest="$STAGE/tree/$(basename "$path")"
-    fi
-    if [[ "$ARCHIVE" == "-" ]]; then
+        if [[ "$LAYOUT" == flat ]]; then dest="$STAGE/tree/$(basename "$path")"; fi
         mkdir -p "$(dirname "$dest")"
-        if ! curl -fsS --retry 2 -o "$dest" "$BASE/$path"; then
-            echo "FAIL  $path: download failed ($BASE/$path)" >&2
+        curl -fsS --retry 2 -o "$dest" "$BASE_URL/$COMMIT/$path"
+        got="$(sha256sum "$dest" | cut -d' ' -f1)"
+        if [[ "$got" != "$want" ]]; then
+            echo "FAIL  $path: sha256 $got, lock says $want" >&2
             exit 1
         fi
-    elif [[ ! -f "$dest" ]]; then
-        echo "FAIL  $path: not in the fetched tree" >&2
-        exit 1
-    fi
-    got="$(sha256sum "$dest" | cut -d' ' -f1)"
-    if [[ "$got" != "$want" ]]; then
-        echo "FAIL  $path: sha256 $got, lock says $want" >&2
-        exit 1
-    fi
-done
-
-# A tree layout holds exactly what the lock lists: a file or symlink that is
-# there and not in the lock is as much a mismatch as a wrong digest.
-if [[ "$LAYOUT" == tree ]]; then
-    while IFS= read -r -d '' found; do
-        rel="${found#"$STAGE/tree/"}"
-        if [[ -z "${LOCKED[$rel]:-}" ]]; then
-            echo "FAIL  $rel: in the fetched tree, not in the lock" >&2
-            exit 1
-        fi
-    done < <(find "$STAGE/tree" \( -type f -o -type l \) -print0)
+    done
 fi
 
 rm -rf "$OUT"
-mkdir -p "$(dirname "$OUT")"
 mv "$STAGE/tree" "$OUT"
-trap - EXIT
 echo "ok    fetched $FILES ${LABEL} files @ ${COMMIT} into ${OUT}"

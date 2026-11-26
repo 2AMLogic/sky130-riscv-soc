@@ -59,6 +59,25 @@
       "manifest": "reuse.lock.d/riscv-arch-test-9929db1c.json"
     }
   ],
+  "act4_toolchain": {
+    "sail": {
+      "version": "0.16",
+      "sha256": "f9bb8a32b8f3eddbdf69b3a29d96dff4ba1e77f45877165e0478418367da6bee"
+    },
+    "gcc": {
+      "version": "16.1.0",
+      "sha256": "fe7dadf99dfaee59855b4be5f8d491dc66593bec295090e155a3ec51f0d14f56"
+    },
+    "ruby": {
+      "version": "3.4.11",
+      "gems": {
+        "udb": "0.1.17",
+        "udb-gen": "0.1.16",
+        "udb_helpers": "0.1.4",
+        "idlc": "0.1.8"
+      }
+    }
+  },
   "in_tree": [
     {
       "block": "sram-macro",

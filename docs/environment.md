@@ -1,6 +1,6 @@
 # Environment
 
-The PDK and open toolchain are pinned in one place: the variables at the top
+The PDK and open toolchain versions are set by the variables at the top
 of [`scripts/setup-env.sh`](../scripts/setup-env.sh). This page describes them;
 if the two disagree, the script wins.
 
@@ -22,8 +22,9 @@ if the two disagree, the script wins.
 
 Each `PIN_*` above is a variable in
 [`scripts/setup-env.sh`](../scripts/setup-env.sh). No pinned value is copied
-onto this page, so a pin bump is a change to that one file;
-`scripts/setup-env.sh --check` prints the live values.
+onto this page. For ACT4, update the matching `act4_toolchain` entry in
+`reuse.lock.json` as well. `scripts/setup-env.sh --check-act4` checks both copies for agreement.
+`scripts/setup-env.sh --check` prints the standard toolchain versions.
 
 The `open_pdks` revision matches the one `2AMLogic/sky130-modexp` records in
 its decision record `0008-requalification-under-open-pdks-f6eeac7.md`.

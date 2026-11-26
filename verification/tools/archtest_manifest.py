@@ -17,8 +17,8 @@ It then finds each selected test's ELF under WORKDIR/<config>/elfs, flattens
 each to a binary image with the toolchain's objcopy and writes
 OUTDIR/manifest.json: the test RAM's base and size (from LINK.LD), the result
 block the tests halt with (dut/rvmodel_macros.h), and one entry per selected
-test with its image, load address, entry point, signature range and the ELF's
-sha256.  Fails, leaving no manifest, when a selected test has no ELF, when an
+test with its image, load address, entry point, signature range and the SHA-256
+digests of the image and ELF.  Fails, leaving no manifest, when a selected test has no ELF, when an
 ELF is not linked for the RAM LINK.LD describes, or when REQUEST.json's ISRAM_AW
 does not match that RAM's depth.  Images and manifest paths are relative to
 OUTDIR, so the directory can be moved.
@@ -144,6 +144,8 @@ def main():
         print(__doc__.split("\n\n", 1)[1].strip(), file=sys.stderr)
         return 2
     selection_file, workdir, outdir, link_script, request, objcopy, lock, committed = (Path(a) for a in sys.argv[1:])
+    manifest_path = outdir / "manifest.json"
+    manifest_path.unlink(missing_ok=True)
     nm = str(objcopy).replace("objcopy", "nm")  # the toolchain names its binutils alike (act does the same)
     selection = json.loads(selection_file.read_text())
     commit = locked_commit(lock)
@@ -201,6 +203,7 @@ def main():
             {
                 "name": name,
                 "image": str(image.relative_to(outdir)),
+                "image_sha256": hashlib.sha256(data).hexdigest(),
                 "load_address": load_address,
                 "entry": entry,
                 "elf": str(elf.relative_to(outdir)),
@@ -220,7 +223,9 @@ def main():
         "halt": {"word": HALT_WORD, "pass_code": PASS_CODE, "fail_code": FAIL_CODE},
         "tests": tests,
     }
-    (outdir / "manifest.json").write_text(json.dumps(manifest, indent=1) + "\n")
+    pending = manifest_path.with_suffix(".json.tmp")
+    pending.write_text(json.dumps(manifest, indent=1) + "\n")
+    pending.replace(manifest_path)
     print(f"ok    {len(tests)} test images in {images.relative_to(outdir)}")
     return 0
 

@@ -39,6 +39,7 @@ this one follows whatever the test prints.
 build/archtest/manifest.json (scripts/build-archtest.sh) lists the selected
 tests and their images; `ARCHTEST_MANIFEST` overrides where it is read from.
 """
+import hashlib
 import json
 import os
 import struct
@@ -76,7 +77,10 @@ def read_manifest():
     try:
         manifest = json.loads(MANIFEST.read_text())
         for test in manifest["tests"]:
-            test["bytes"] = (MANIFEST.parent / test["image"]).read_bytes()
+            data = (MANIFEST.parent / test["image"]).read_bytes()
+            if hashlib.sha256(data).hexdigest() != test["image_sha256"]:
+                raise ValueError(f"{test['image']}: image SHA-256 differs from the manifest")
+            test["bytes"] = data
     except (OSError, ValueError, KeyError) as e:
         raise RuntimeError(f"no readable test manifest at {MANIFEST} (scripts/build-archtest.sh writes it): {e}") from None
     return manifest

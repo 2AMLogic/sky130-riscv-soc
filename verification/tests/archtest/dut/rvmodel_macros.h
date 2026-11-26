@@ -1,4 +1,5 @@
 // rvmodel_macros.h
+// SPDX-License-Identifier: Apache-2.0
 // RVMODEL macro definitions for the sky130-riscv-soc testbench (rtl/soc_top.sv,
 // issue #49): how an ACT4 test talks to the SoC it runs on.
 //

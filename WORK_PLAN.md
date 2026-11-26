@@ -32,7 +32,7 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-_None._
+- **#49**: T1 item 5: riscv-arch-test on the RTL SoC via klt functional-verification
 
 ## PRs Awaiting Review
 
@@ -74,7 +74,7 @@ _None._
 | Very important | 1 |
 | Important | 2 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 0 |
+| In Progress (`loom:building`) | 1 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
 | Curated | 7 |

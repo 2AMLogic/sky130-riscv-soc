@@ -94,6 +94,11 @@ results.xml
 /.loom-local/
 # <<< loom-managed <<<
 
+# Loom runtime ranking file (token pool `--ranking`), rewritten in the main
+# checkout while sweeps run. Lives outside the managed block above because the
+# installer rewrites that block; the durable fix is upstream in Loom (#233).
+.loom/account-ranking.codex
+
 # Repo Skills machine-local install metadata (absolute source path + timestamp)
 .claude/skills/repo/.install-local.json
 

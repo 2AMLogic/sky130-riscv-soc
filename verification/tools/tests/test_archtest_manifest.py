@@ -12,8 +12,11 @@ the cause.
 """
 import hashlib
 import json
+import os
+import shutil
 import struct
 import subprocess
+import tarfile
 import sys
 import tempfile
 import unittest
@@ -117,6 +120,68 @@ class ConsistentBuild(unittest.TestCase):
         self.assertEqual(image.read_bytes(), struct.pack("<2I", *WORDS))  # the ELF's bytes, flattened
         self.assertEqual(test["image_sha256"], hashlib.sha256(image.read_bytes()).hexdigest())
         self.assertEqual(image.parent, self.fx.out / "images" / "rv32i" / "I")
+
+    def test_cold_builder_uses_the_fetched_directory_and_lock(self):
+        root = self.fx.root / "checkout"
+        scripts = root / "scripts"
+        tools = root / "verification" / "tools"
+        dut = root / "verification" / "tests" / "archtest" / "dut"
+        firmware = root / "firmware"
+        for directory in (scripts, tools, dut, firmware):
+            directory.mkdir(parents=True)
+        for name in ("build-archtest.sh", "fetch-arch-test.sh", "fetch-import.sh"):
+            shutil.copy(MANIFEST.parents[2] / "scripts" / name, scripts)
+        shutil.copy(MANIFEST, tools)
+        shutil.copy(self.fx.out / "dut" / "link.ld", dut)
+        shutil.copy(self.fx.out / "request.json", dut.parent / "fv_request.json")
+        (dut / "archtest_rom.S").touch()
+        (dut.parent / "selection.txt").write_text(self.listing())
+
+        # A file:// archive with a different pin from the checkout's default.
+        gemfile = self.fx.root / "Gemfile"
+        gemfile.write_text("# fixture source\n")
+        archive = self.fx.root / "act.tgz"
+        member = "framework/src/act/data/Gemfile"
+        with tarfile.open(archive, "w:gz") as tar:
+            tar.add(gemfile, arcname=f"upstream/{member}")
+        lock = json.loads((self.fx.out / "lock.json").read_text())
+        lock["imports"][0].update(archive=archive.as_uri(), files=[
+            {"upstream": member, "sha256": hashlib.sha256(gemfile.read_bytes()).hexdigest()},
+        ])
+        (self.fx.root / "selected.lock").write_text(json.dumps(lock))
+        shutil.copy(MANIFEST.parents[2] / "reuse.lock.json", root)
+
+        def stub(path, body):
+            path.write_text("#!/bin/sh\nset -eu\n" + body + "\n")
+            path.chmod(0o755)
+
+        # Stand in for the external toolchain. Bundler and every uv invocation
+        # must see the file that the real fetcher just verified.
+        for path in (scripts / "setup-env.sh", scripts / "fetch-cve2.sh",
+                     scripts / "convert-cve2.sh", firmware / "build-image.sh"):
+            stub(path, "exit 0")
+        bin_dir = self.fx.out / "bin"
+        stub(bin_dir / "bundle", 'cmp "$BUNDLE_GEMFILE" "$FIXTURE/Gemfile"')
+        stub(bin_dir / "uv", f'''cmp "{member}" "$FIXTURE/Gemfile"
+case "${{4:-}}" in
+    act) cp -R "$FIXTURE/build/work" "$7" ;;
+    python) cat "$FIXTURE/build/selection.json" ;;
+esac''')
+        for name in ("objcopy", "nm"):
+            (bin_dir / f"riscv64-unknown-elf-{name}").symlink_to(name)
+
+        # Run outside the checkout with relative overrides, like make -C.
+        result = subprocess.run(
+            [scripts / "build-archtest.sh"], cwd=self.fx.root, capture_output=True, text=True,
+            env={**os.environ, "PATH": f"{bin_dir}:{os.environ['PATH']}", "FIXTURE": str(self.fx.root),
+                 "ARCHTEST_OUT": "alternate source", "ARCHTEST_LOCK": "selected.lock"},
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        build = root / "build" / "archtest"
+        self.assertFalse((build / "upstream").exists())
+        manifest = json.loads((build / "manifest.json").read_text())
+        self.assertEqual(manifest["riscv_arch_test"], COMMIT)
+        self.assertEqual([test["name"] for test in manifest["tests"]], ["rv32i/I/I-add-00.S"])
 
     def test_listing_names_every_selected_and_deselected_test(self):
         text = self.listing()

@@ -7,7 +7,8 @@
 #   scripts/setup-env.sh --check        verify PDK revision and tool versions
 #                                       against the pins below; exit 1 on mismatch
 #   scripts/setup-env.sh --check-act4   verify the ACT4 toolchain of the
-#                                       architecture tests alone; no PDK needed
+#                                       architecture tests, including a zero-time
+#                                       cocotb run through ${KLT:-klt}; no PDK needed
 #
 # This file is the single source of truth for the pins; docs/environment.md
 # describes them by variable name and copies no values. It never installs a
@@ -99,7 +100,14 @@ check_openroad() {
 
 check_cocotb() {
     local got
-    got="$(python3 -c 'import cocotb;print(cocotb.__version__)' 2>/dev/null || true)"
+    if [[ $# -gt 0 ]]; then
+        if ! got="$(python3 -I "$(dirname "${BASH_SOURCE[0]}")/../verification/tools/klt_cocotb_version.py" "$1")"; then
+            fail cocotb "could not read the version from $1 functional-verification"
+            return
+        fi
+    else
+        got="$(python3 -c 'import cocotb;print(cocotb.__version__)' 2>/dev/null || true)"
+    fi
     if [[ "$got" == "$PIN_COCOTB" ]]; then ok cocotb "$got"
     else fail cocotb "got '${got:-not installed}', pinned ${PIN_COCOTB}"; fi
 }
@@ -142,7 +150,7 @@ check_sail() {
 
 check_act4_lock() {
     local lock
-    lock="$(dirname "${BASH_SOURCE[0]}")/../reuse.lock.json"
+    lock="${ARCHTEST_LOCK:-$(dirname "${BASH_SOURCE[0]}")/../reuse.lock.json}"
     if python3 -I - "$lock" "$PIN_SAIL" "$PIN_SAIL_SHA256" "$PIN_ACT_GCC" "$PIN_ACT_GCC_SHA256" "$PIN_ACT_RUBY" "$PIN_ACT_UDB" <<'PYLOCK'
 import json, sys
 from pathlib import Path
@@ -156,8 +164,8 @@ expected = {
 }
 sys.exit(0 if json.loads(Path(lock).read_text()).get("act4_toolchain") == expected else 1)
 PYLOCK
-    then ok act4-lock "reuse.lock.json matches the ACT4 pins"
-    else fail act4-lock "reuse.lock.json differs from the ACT4 pins"; fi
+    then ok act4-lock "$lock matches the ACT4 pins"
+    else fail act4-lock "$lock differs from the ACT4 pins"; fi
 }
 
 run_check_act4() {
@@ -170,9 +178,9 @@ run_check_act4() {
     check_tool uv "uv " uv --version
     if version="$("$klt" --version 2>&1)" && [[ "$version" == "klt $PIN_KLT" ]]; then
         ok klt "$version"
+        check_cocotb "$klt"
     else fail klt "$klt reported '$version', expected 'klt $PIN_KLT'"; fi
     check_tool iverilog "version ${PIN_IVERILOG} " iverilog -V
-    check_cocotb
     if [[ "$FAILED" -ne 0 ]]; then echo "environment does not match the ACT4 pins" >&2; exit 1; fi
     echo "environment matches the ACT4 pins"
 }

@@ -21,12 +21,14 @@
 # (scripts/fetch-cve2.sh and scripts/convert-cve2.sh, run here).
 #
 # JOBS (default 2) bounds the parallel builds: the suite runs on shared hosts.
-# Overrides: ARCHTEST_LOCK, ARCHTEST_OUT (scripts/fetch-arch-test.sh), JOBS.
+# ARCHTEST_LOCK selects the lock for preflight, fetch and manifest. ARCHTEST_OUT
+# selects the fetched ACT4 source directory. Relative paths use the caller's cwd.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BUILD="$ROOT/build/archtest"
-ACT="$BUILD/upstream"
+export ARCHTEST_OUT="${ARCHTEST_OUT:-$BUILD/upstream}"
+export ARCHTEST_LOCK="${ARCHTEST_LOCK:-$ROOT/reuse.lock.json}"
 WORK="$BUILD/work"
 DUT="$ROOT/verification/tests/archtest/dut"
 REQUEST="$ROOT/verification/tests/archtest/fv_request.json"
@@ -47,15 +49,17 @@ export PATH
 "$ROOT/scripts/fetch-cve2.sh"
 "$ROOT/scripts/convert-cve2.sh"
 
+mkdir -p "$BUILD"
+CDPATH='' pushd -- "$ARCHTEST_OUT" >/dev/null
+
 # ACT4 runs `bundle install` into the Ruby prefix when the udb gems do not
 # satisfy its Gemfile.lock. Refuse before it can: installing is the host's job.
-GEMFILE="$ACT/framework/src/act/data/Gemfile"
+GEMFILE="$PWD/framework/src/act/data/Gemfile"
 if ! BUNDLE_GEMFILE="$GEMFILE" bundle check >/dev/null 2>&1; then
     echo "the udb gems are not installed at the versions $GEMFILE.lock pins (scripts/setup-env.sh --check-act4 names what is missing)" >&2
     exit 1
 fi
 
-cd "$ACT"
 # ACT4's own environment, from its uv.lock: the act, testgen and covergroupgen
 # programs. --frozen never updates the lock, --no-dev leaves out its linters.
 UV=(uv run --frozen --no-dev)
@@ -64,7 +68,7 @@ uv sync --frozen --no-dev
 "${UV[@]}" act "$DUT/test_config.yaml" --workdir "$WORK" --jobs "$JOBS"
 "${UV[@]}" python "$ROOT/verification/tools/archtest_select.py" "$DUT/test_config.yaml" \
     --test-dir tests --workdir "$WORK" > "$BUILD/selection.json"
-cd "$ROOT"
+popd >/dev/null
 
 # The boot ROM jumps to TEST_BASE (dut/link.ld), where every test's entry point is.
 ROM="$BUILD/rom"
@@ -77,6 +81,6 @@ printf '#define ARCHTEST_ENTRY %s\n' "$TEST_BASE" > "$ROM/entry.h"
 RISCV_PREFIX="$PREFIX" "$ROOT/firmware/build-image.sh" "$ROM" archtest_rom.S:rom.hex
 
 python3 -I "$ROOT/verification/tools/archtest_manifest.py" "$BUILD/selection.json" "$WORK" "$BUILD" \
-    "$DUT/link.ld" "$REQUEST" "$PREFIX-objcopy" "$ROOT/reuse.lock.json" "$ROOT/verification/tests/archtest/selection.txt"
+    "$DUT/link.ld" "$REQUEST" "$PREFIX-objcopy" "$ARCHTEST_LOCK" "$ROOT/verification/tests/archtest/selection.txt"
 
 echo "ok    $(python3 -I -c 'import json, sys; print(len(json.load(open(sys.argv[1]))["tests"]))' "$BUILD/manifest.json") ACT4 test images in $BUILD (manifest.json)"

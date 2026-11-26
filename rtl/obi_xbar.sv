@@ -49,7 +49,7 @@ module obi_xbar #(
 
     // boot ROM (read-only; shared)
     output logic        rom_req_o,
-    output logic [31:0] rom_addr_o,
+    output logic [11:2] rom_addr_o,
     input  logic [31:0] rom_rdata_i,
 
     // instruction SRAM port 0 (data manager: read/write)
@@ -112,7 +112,7 @@ module obi_xbar #(
 
   // Boot ROM: instruction manager wins.
   assign rom_req_o  = i_to_rom || d_to_rom;
-  assign rom_addr_o = i_to_rom ? i_addr_i : d_addr_i;
+  assign rom_addr_o = i_to_rom ? i_addr_i[11:2] : d_addr_i[11:2];
 
   // Instruction SRAM: port 1 for fetch, port 0 for the data manager.
   assign isi_req_o  = i_req_i && i_tgt == T_ISR;

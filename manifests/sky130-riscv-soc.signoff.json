@@ -34,13 +34,13 @@
         "command": null,
         "kind": "generic",
         "check_status": "pass",
-        "content_hash": "sha256:a6924cabbc6a55c52b3189fa58937b50705556a668b110a906acdfd0716be2bf",
+        "content_hash": "sha256:7b0888807b93ec4f9bd33422d6b9cb49a6e71cd17a075af5ae25330dbdf3c553",
         "input_verified": true,
         "exit_status": 0,
         "artifact_binding": {
           "t1_item": 1,
           "path": null,
-          "content_hash": "sha256:a6924cabbc6a55c52b3189fa58937b50705556a668b110a906acdfd0716be2bf",
+          "content_hash": "sha256:7b0888807b93ec4f9bd33422d6b9cb49a6e71cd17a075af5ae25330dbdf3c553",
           "input_verified": true,
           "members": [
             {
@@ -48,7 +48,7 @@
                 "path": "attest/item1.json",
                 "scope": "repo"
               },
-              "content_hash": "sha256:e4b35ac68d393158f937296bd74d8a31cd47968290d1ef9fe6b0665780363cab",
+              "content_hash": "sha256:7f934962c21e9f992c3eb6d52273d5a683116ca5b6a71012030706cc4f32632e",
               "status": "verified"
             },
             {
@@ -72,7 +72,7 @@
                 "path": "netlist/soc_top_synth.v",
                 "scope": "repo"
               },
-              "content_hash": "sha256:4b8ecd6713e400d92499b24a59cf34058ddff875cfe9c3866fb3e2ed4b6aaf87",
+              "content_hash": "sha256:6d13b4d80f0534bb7faf50bcf9aecf4d4a7e7c20a5f915867736aabccc553a2f",
               "status": "verified"
             },
             {
@@ -104,7 +104,7 @@
                 "path": "rtl/obi_xbar.sv",
                 "scope": "repo"
               },
-              "content_hash": "sha256:5c34f60038eeb5dd97d64c3161179ae9cadcb969c5917ea9093873525ef20940",
+              "content_hash": "sha256:b052f98181394b90a184ab4650abaf7f92972985af401cae79f5269e8c7300f8",
               "status": "verified"
             },
             {
@@ -120,7 +120,7 @@
                 "path": "rtl/soc_fabric.sv",
                 "scope": "repo"
               },
-              "content_hash": "sha256:37c7397e7991133a6f7227e10a4d7eba726df24ab83be98fc2f88c55eaf39ff9",
+              "content_hash": "sha256:f961c03eb1915855d5e435e9e154872b23aef0269d6cd7e42f97a8da71da25ff",
               "status": "verified"
             },
             {

@@ -41,7 +41,8 @@ module soc_fabric #(
     output logic        irq_timer_o
 );
   logic        rom_req;
-  logic [31:0] rom_addr, rom_rdata;
+  logic [11:2] rom_addr;
+  logic [31:0] rom_rdata;
   logic        isd_req, isd_we, isi_req;
   logic [3:0]  isd_be;
   logic [31:0] isd_addr, isd_wdata, isd_rdata, isi_addr, isi_rdata;
@@ -75,7 +76,7 @@ module soc_fabric #(
   boot_rom u_rom (
       .clk_i,
       .req_i  (rom_req),
-      .addr_i (rom_addr[11:2]),
+      .addr_i (rom_addr),
       .rdata_o(rom_rdata)
   );
 

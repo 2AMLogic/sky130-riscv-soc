@@ -27,13 +27,13 @@
       "path": "netlist/soc_top_synth.v",
       "generator": "scripts/synth-soc.sh (klt synthesize flow/soc/synth_request.json)",
       "recorded": {
-        "derived_sha256": "4b8ecd6713e400d92499b24a59cf34058ddff875cfe9c3866fb3e2ed4b6aaf87",
+        "derived_sha256": "6d13b4d80f0534bb7faf50bcf9aecf4d4a7e7c20a5f915867736aabccc553a2f",
         "sources": {
           "rtl/boot_rom.sv": "c916354996771d105d903205a49416d2cb56f2fe4f8643c226cdd3400a48ed0a",
           "rtl/gpio.sv": "a7800f53030b5699ba62e86da2f8e7b49c519bb53f7a3549f346fe158eb937e9",
-          "rtl/obi_xbar.sv": "5c34f60038eeb5dd97d64c3161179ae9cadcb969c5917ea9093873525ef20940",
+          "rtl/obi_xbar.sv": "b052f98181394b90a184ab4650abaf7f92972985af401cae79f5269e8c7300f8",
           "rtl/rst_sync.sv": "4dce9a6ba45905a9569e2965beefe2d8ddac56d1e7a6c934ce09e28b92999f73",
-          "rtl/soc_fabric.sv": "37c7397e7991133a6f7227e10a4d7eba726df24ab83be98fc2f88c55eaf39ff9",
+          "rtl/soc_fabric.sv": "f961c03eb1915855d5e435e9e154872b23aef0269d6cd7e42f97a8da71da25ff",
           "rtl/soc_sram_i.sv": "6e0d3747fdc0493fd77646f6fff13c5186067eddf048b010e8df2a3419751dc2",
           "rtl/soc_top.sv": "bf3e3c84a3b879e5d1799d2ab278aa0aa8d3da482733939933ea562a7422767f",
           "rtl/timer.sv": "894cdf96da88cba81d9c14d32822cd33a547114699fc4e19d527a7087aa4c881",

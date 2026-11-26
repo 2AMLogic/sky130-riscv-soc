@@ -99,7 +99,7 @@ boot and firmware tests pass on the RTL under Icarus. The architectural half
 has not run: `riscv-arch-test` on the SoC is still open
 ([#49](https://github.com/2AMLogic/sky130-riscv-soc/issues/49)). `soc_top` has
 also been synthesized ahead of that rung
-([record](verification/records/soc-synth/20261117T185051Z-73e3afe/), and the
+([record](verification/records/soc-synth/20261126T082834Z-69d441b/), and the
 banner test passes on the netlist), but the *next* rung is "synthesized with
 timing met at the target" — timing met at the slow corner `ss_100C_1v60`. The
 only timing run recorded is a pre-route, netlist-level estimate at

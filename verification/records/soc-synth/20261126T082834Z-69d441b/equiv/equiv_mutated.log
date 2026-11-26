@@ -1,0 +1,510 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.67+post (git sha1 b8e7da6f40ae8f552c116bf6c359b07c6533e159, Release, GNU /usr/bin/c++ 13.3.0)
+
+-- Executing script file `verification/records/soc-synth/20261126T082834Z-69d441b/equiv/equiv_mutated.ys' --
+
+1. Executing Verilog-2005 frontend: build/equiv/xbar_old.v
+Parsing Verilog input from `build/equiv/xbar_old.v' to AST representation.
+Generating RTLIL representation for module `\obi_xbar_old'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: build/equiv/xbar_new_mut.v
+Parsing Verilog input from `build/equiv/xbar_new_mut.v' to AST representation.
+Generating RTLIL representation for module `\obi_xbar_new'.
+Successfully finished Verilog frontend.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\obi_xbar_old.$proc$build/equiv/xbar_old.v:169$64'.
+Found and cleaned up 1 empty switch in `\obi_xbar_old.$proc$build/equiv/xbar_old.v:110$3'.
+Cleaned up 2 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 2 switch rules as full_case in process $proc$build/equiv/xbar_old.v:169$64 in module obi_xbar_old.
+Marked 1 switch rules as full_case in process $proc$build/equiv/xbar_old.v:150$51 in module obi_xbar_old.
+Marked 10 switch rules as full_case in process $proc$build/equiv/xbar_old.v:110$3 in module obi_xbar_old.
+Removed a total of 0 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 2 redundant assignments.
+Promoted 9 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_ni in `\obi_xbar_old.$proc$build/equiv/xbar_old.v:150$51'.
+
+3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~14 debug messages>
+
+3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\obi_xbar_old.$proc$build/equiv/xbar_old.v:187$65'.
+Creating decoders for process `\obi_xbar_old.$proc$build/equiv/xbar_old.v:169$64'.
+     1/2: $1\d_rdata_o[31:0]
+     2/2: $1\i_rdata_o[31:0]
+Creating decoders for process `\obi_xbar_old.$proc$build/equiv/xbar_old.v:150$51'.
+     1/4: $0\d_pend_q[0:0]
+     2/4: $0\i_pend_q[0:0]
+     3/4: $0\d_sel_q[2:0]
+     4/4: $0\i_sel_q[2:0]
+Creating decoders for process `\obi_xbar_old.$proc$build/equiv/xbar_old.v:110$3'.
+     1/10: $1\d_tgt[2:0]
+     2/10: $4\decode$func$build/equiv/xbar_old.v:116$2.$result[2:0]$31
+     3/10: $3\decode$func$build/equiv/xbar_old.v:116$2.$result[2:0]$29
+     4/10: $2\decode$func$build/equiv/xbar_old.v:116$2.$result[2:0]$26
+     5/10: $1\decode$func$build/equiv/xbar_old.v:116$2.$result[2:0]$23
+     6/10: $1\i_tgt[2:0]
+     7/10: $4\decode$func$build/equiv/xbar_old.v:113$1.$result[2:0]$17
+     8/10: $3\decode$func$build/equiv/xbar_old.v:113$1.$result[2:0]$15
+     9/10: $2\decode$func$build/equiv/xbar_old.v:113$1.$result[2:0]$12
+    10/10: $1\decode$func$build/equiv/xbar_old.v:113$1.$result[2:0]$9
+
+3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\obi_xbar_old.\_sv2v_0' from process `\obi_xbar_old.$proc$build/equiv/xbar_old.v:187$65'.
+No latch inferred for signal `\obi_xbar_old.\i_rdata_o' from process `\obi_xbar_old.$proc$build/equiv/xbar_old.v:169$64'.
+No latch inferred for signal `\obi_xbar_old.\d_rdata_o' from process `\obi_xbar_old.$proc$build/equiv/xbar_old.v:169$64'.
+No latch inferred for signal `\obi_xbar_old.\i_tgt' from process `\obi_xbar_old.$proc$build/equiv/xbar_old.v:110$3'.
+No latch inferred for signal `\obi_xbar_old.\d_tgt' from process `\obi_xbar_old.$proc$build/equiv/xbar_old.v:110$3'.
+
+3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\obi_xbar_old.\i_pend_q' using process `\obi_xbar_old.$proc$build/equiv/xbar_old.v:150$51'.
+  created $adff cell `$procdff$215' with positive edge clock and positive level reset.
+Creating register for signal `\obi_xbar_old.\d_pend_q' using process `\obi_xbar_old.$proc$build/equiv/xbar_old.v:150$51'.
+  created $adff cell `$procdff$220' with positive edge clock and positive level reset.
+Creating register for signal `\obi_xbar_old.\i_sel_q' using process `\obi_xbar_old.$proc$build/equiv/xbar_old.v:150$51'.
+  created $adff cell `$procdff$225' with positive edge clock and positive level reset.
+Creating register for signal `\obi_xbar_old.\d_sel_q' using process `\obi_xbar_old.$proc$build/equiv/xbar_old.v:150$51'.
+  created $adff cell `$procdff$230' with positive edge clock and positive level reset.
+
+3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `obi_xbar_old.$proc$build/equiv/xbar_old.v:187$65'.
+Found and cleaned up 2 empty switches in `\obi_xbar_old.$proc$build/equiv/xbar_old.v:169$64'.
+Removing empty process `obi_xbar_old.$proc$build/equiv/xbar_old.v:169$64'.
+Found and cleaned up 2 empty switches in `\obi_xbar_old.$proc$build/equiv/xbar_old.v:150$51'.
+Removing empty process `obi_xbar_old.$proc$build/equiv/xbar_old.v:150$51'.
+Found and cleaned up 10 empty switches in `\obi_xbar_old.$proc$build/equiv/xbar_old.v:110$3'.
+Removing empty process `obi_xbar_old.$proc$build/equiv/xbar_old.v:110$3'.
+Cleaned up 14 empty switches.
+
+3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module obi_xbar_old.
+<suppressed ~22 debug messages>
+
+4. Executing PROC pass (convert processes to netlists).
+
+4.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:170$129'.
+Found and cleaned up 1 empty switch in `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:112$68'.
+Cleaned up 2 empty switches.
+
+4.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 2 switch rules as full_case in process $proc$build/equiv/xbar_new_mut.v:170$129 in module obi_xbar_new.
+Marked 1 switch rules as full_case in process $proc$build/equiv/xbar_new_mut.v:151$116 in module obi_xbar_new.
+Marked 10 switch rules as full_case in process $proc$build/equiv/xbar_new_mut.v:112$68 in module obi_xbar_new.
+Removed a total of 0 dead cases.
+
+4.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 2 redundant assignments.
+Promoted 9 assignments to connections.
+
+4.4. Executing PROC_INIT pass (extract init attributes).
+
+4.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_ni in `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:151$116'.
+
+4.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~14 debug messages>
+
+4.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:186$130'.
+Creating decoders for process `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:170$129'.
+     1/2: $1\d_rdata_o[31:0]
+     2/2: $1\i_rdata_o[31:0]
+Creating decoders for process `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:151$116'.
+     1/4: $0\d_pend_q[0:0]
+     2/4: $0\i_pend_q[0:0]
+     3/4: $0\d_sel_q[2:0]
+     4/4: $0\i_sel_q[2:0]
+Creating decoders for process `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:112$68'.
+     1/10: $1\d_tgt[2:0]
+     2/10: $4\decode$func$build/equiv/xbar_new_mut.v:118$67.$result[2:0]$96
+     3/10: $3\decode$func$build/equiv/xbar_new_mut.v:118$67.$result[2:0]$94
+     4/10: $2\decode$func$build/equiv/xbar_new_mut.v:118$67.$result[2:0]$91
+     5/10: $1\decode$func$build/equiv/xbar_new_mut.v:118$67.$result[2:0]$88
+     6/10: $1\i_tgt[2:0]
+     7/10: $4\decode$func$build/equiv/xbar_new_mut.v:115$66.$result[2:0]$82
+     8/10: $3\decode$func$build/equiv/xbar_new_mut.v:115$66.$result[2:0]$80
+     9/10: $2\decode$func$build/equiv/xbar_new_mut.v:115$66.$result[2:0]$77
+    10/10: $1\decode$func$build/equiv/xbar_new_mut.v:115$66.$result[2:0]$74
+
+4.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\obi_xbar_new.\_sv2v_0' from process `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:186$130'.
+No latch inferred for signal `\obi_xbar_new.\i_rdata_o' from process `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:170$129'.
+No latch inferred for signal `\obi_xbar_new.\d_rdata_o' from process `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:170$129'.
+No latch inferred for signal `\obi_xbar_new.\i_tgt' from process `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:112$68'.
+No latch inferred for signal `\obi_xbar_new.\d_tgt' from process `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:112$68'.
+
+4.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\obi_xbar_new.\i_pend_q' using process `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:151$116'.
+  created $adff cell `$procdff$315' with positive edge clock and positive level reset.
+Creating register for signal `\obi_xbar_new.\d_pend_q' using process `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:151$116'.
+  created $adff cell `$procdff$320' with positive edge clock and positive level reset.
+Creating register for signal `\obi_xbar_new.\i_sel_q' using process `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:151$116'.
+  created $adff cell `$procdff$325' with positive edge clock and positive level reset.
+Creating register for signal `\obi_xbar_new.\d_sel_q' using process `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:151$116'.
+  created $adff cell `$procdff$330' with positive edge clock and positive level reset.
+
+4.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:186$130'.
+Found and cleaned up 2 empty switches in `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:170$129'.
+Removing empty process `obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:170$129'.
+Found and cleaned up 2 empty switches in `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:151$116'.
+Removing empty process `obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:151$116'.
+Found and cleaned up 10 empty switches in `\obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:112$68'.
+Removing empty process `obi_xbar_new.$proc$build/equiv/xbar_new_mut.v:112$68'.
+Cleaned up 14 empty switches.
+
+4.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module obi_xbar_new.
+<suppressed ~22 debug messages>
+
+5. Executing EQUIV_MAKE pass (creating equiv checking module).
+Presumably equivalent wires: rom_addr_o_narrow_gold ($ternary$build/equiv/xbar_old.v:126$39_Y_gold [11:2]), rom_addr_o_narrow_gate ($ternary$build/equiv/xbar_new_mut.v:127$104_Y_gate) -> rom_addr_o_narrow
+Presumably equivalent wires: d_sel_q_gold (\d_sel_q_gold), d_sel_q_gate (\d_sel_q_gate) -> d_sel_q
+Presumably equivalent wires: i_sel_q_gold (\i_sel_q_gold), i_sel_q_gate (\i_sel_q_gate) -> i_sel_q
+Presumably equivalent wires: d_pend_q_gold (\d_pend_q_gold), d_pend_q_gate (\d_pend_q_gate) -> d_pend_q
+Presumably equivalent wires: i_pend_q_gold (\i_pend_q_gold), i_pend_q_gate (\i_pend_q_gate) -> i_pend_q
+Presumably equivalent wires: d_to_rom_gold ($logic_and$build/equiv/xbar_old.v:123$37_Y_gold), d_to_rom_gate ($logic_and$build/equiv/xbar_new_mut.v:125$102_Y_gate) -> d_to_rom
+Presumably equivalent wires: i_to_rom_gold ($logic_and$build/equiv/xbar_old.v:122$35_Y_gold), i_to_rom_gate ($logic_and$build/equiv/xbar_new_mut.v:124$100_Y_gate) -> i_to_rom
+Presumably equivalent wires: d_tgt_gold ($procmux$146_Y_gold), d_tgt_gate ($procmux$246_Y_gate) -> d_tgt
+Presumably equivalent wires: i_tgt_gold ($procmux$179_Y_gold), i_tgt_gate ($procmux$279_Y_gate) -> i_tgt
+Presumably equivalent wires: per_err_i_gold (\per_err_i_gold), per_err_i_gate (\per_err_i_gate) -> per_err_i
+Presumably equivalent wires: per_rdata_i_gold (\per_rdata_i_gold), per_rdata_i_gate (\per_rdata_i_gate) -> per_rdata_i
+Presumably equivalent wires: per_wdata_o_gold (\d_wdata_i_gold), per_wdata_o_gate (\d_wdata_i_gate) -> per_wdata_o
+Presumably equivalent wires: per_be_o_gold (\d_be_i_gold), per_be_o_gate (\d_be_i_gate) -> per_be_o
+Presumably equivalent wires: per_we_o_gold (\d_we_i_gold), per_we_o_gate (\d_we_i_gate) -> per_we_o
+Presumably equivalent wires: per_addr_o_gold (\d_addr_i_gold), per_addr_o_gate (\d_addr_i_gate) -> per_addr_o
+Presumably equivalent wires: per_req_o_gold ($logic_and$build/equiv/xbar_old.v:139$47_Y_gold), per_req_o_gate ($logic_and$build/equiv/xbar_new_mut.v:140$112_Y_gate) -> per_req_o
+Presumably equivalent wires: dsr_rdata_i_gold (\dsr_rdata_i_gold), dsr_rdata_i_gate (\dsr_rdata_i_gate) -> dsr_rdata_i
+Presumably equivalent wires: dsr_wdata_o_gold (\d_wdata_i_gold), dsr_wdata_o_gate (\d_wdata_i_gate) -> dsr_wdata_o
+Presumably equivalent wires: dsr_be_o_gold (\d_be_i_gold), dsr_be_o_gate (\d_be_i_gate) -> dsr_be_o
+Presumably equivalent wires: dsr_we_o_gold (\d_we_i_gold), dsr_we_o_gate (\d_we_i_gate) -> dsr_we_o
+Presumably equivalent wires: dsr_addr_o_gold (\d_addr_i_gold), dsr_addr_o_gate (\d_addr_i_gate) -> dsr_addr_o
+Presumably equivalent wires: dsr_req_o_gold ($logic_and$build/equiv/xbar_old.v:134$45_Y_gold), dsr_req_o_gate ($logic_and$build/equiv/xbar_new_mut.v:135$110_Y_gate) -> dsr_req_o
+Presumably equivalent wires: isi_rdata_i_gold (\isi_rdata_i_gold), isi_rdata_i_gate (\isi_rdata_i_gate) -> isi_rdata_i
+Presumably equivalent wires: isi_addr_o_gold (\i_addr_i_gold), isi_addr_o_gate (\i_addr_i_gate) -> isi_addr_o
+Presumably equivalent wires: isi_req_o_gold ($logic_and$build/equiv/xbar_old.v:127$41_Y_gold), isi_req_o_gate ($logic_and$build/equiv/xbar_new_mut.v:128$106_Y_gate) -> isi_req_o
+Presumably equivalent wires: isd_rdata_i_gold (\isd_rdata_i_gold), isd_rdata_i_gate (\isd_rdata_i_gate) -> isd_rdata_i
+Presumably equivalent wires: isd_wdata_o_gold (\d_wdata_i_gold), isd_wdata_o_gate (\d_wdata_i_gate) -> isd_wdata_o
+Presumably equivalent wires: isd_be_o_gold (\d_be_i_gold), isd_be_o_gate (\d_be_i_gate) -> isd_be_o
+Presumably equivalent wires: isd_we_o_gold (\d_we_i_gold), isd_we_o_gate (\d_we_i_gate) -> isd_we_o
+Presumably equivalent wires: isd_addr_o_gold (\d_addr_i_gold), isd_addr_o_gate (\d_addr_i_gate) -> isd_addr_o
+Presumably equivalent wires: isd_req_o_gold ($logic_and$build/equiv/xbar_old.v:129$43_Y_gold), isd_req_o_gate ($logic_and$build/equiv/xbar_new_mut.v:130$108_Y_gate) -> isd_req_o
+Presumably equivalent wires: rom_rdata_i_gold (\rom_rdata_i_gold), rom_rdata_i_gate (\rom_rdata_i_gate) -> rom_rdata_i
+Presumably equivalent wires: rom_req_o_gold ($logic_or$build/equiv/xbar_old.v:124$38_Y_gold), rom_req_o_gate ($logic_or$build/equiv/xbar_new_mut.v:126$103_Y_gate) -> rom_req_o
+Presumably equivalent wires: d_err_o_gold ($logic_and$build/equiv/xbar_old.v:168$63_Y_gold), d_err_o_gate ($logic_and$build/equiv/xbar_new_mut.v:169$128_Y_gate) -> d_err_o
+Presumably equivalent wires: d_rdata_o_gold ($procmux$132_Y_gold), d_rdata_o_gate ($procmux$232_Y_gate) -> d_rdata_o
+Presumably equivalent wires: d_rvalid_o_gold (\d_pend_q_gold), d_rvalid_o_gate (\d_pend_q_gate) -> d_rvalid_o
+Presumably equivalent wires: d_wdata_i_gold (\d_wdata_i_gold), d_wdata_i_gate (\d_wdata_i_gate) -> d_wdata_i
+Presumably equivalent wires: d_be_i_gold (\d_be_i_gold), d_be_i_gate (\d_be_i_gate) -> d_be_i
+Presumably equivalent wires: d_we_i_gold (\d_we_i_gold), d_we_i_gate (\d_we_i_gate) -> d_we_i
+Presumably equivalent wires: d_addr_i_gold (\d_addr_i_gold), d_addr_i_gate (\d_addr_i_gate) -> d_addr_i
+Presumably equivalent wires: d_gnt_o_gold ($ternary$build/equiv/xbar_old.v:145$50_Y_gold), d_gnt_o_gate ($ternary$build/equiv/xbar_new_mut.v:146$115_Y_gate) -> d_gnt_o
+Presumably equivalent wires: d_req_i_gold (\d_req_i_gold), d_req_i_gate (\d_req_i_gate) -> d_req_i
+Presumably equivalent wires: i_err_o_gold ($logic_and$build/equiv/xbar_old.v:167$58_Y_gold), i_err_o_gate ($logic_and$build/equiv/xbar_new_mut.v:168$123_Y_gate) -> i_err_o
+Presumably equivalent wires: i_rdata_o_gold ($procmux$138_Y_gold), i_rdata_o_gate ($procmux$238_Y_gate) -> i_rdata_o
+Presumably equivalent wires: i_rvalid_o_gold (\i_pend_q_gold), i_rvalid_o_gate (\i_pend_q_gate) -> i_rvalid_o
+Presumably equivalent wires: i_we_i_gold (\i_we_i_gold), i_we_i_gate (\i_we_i_gate) -> i_we_i
+Presumably equivalent wires: i_addr_i_gold (\i_addr_i_gold), i_addr_i_gate (\i_addr_i_gate) -> i_addr_i
+Presumably equivalent wires: i_gnt_o_gold (1'1), i_gnt_o_gate (1'1) -> i_gnt_o
+Presumably equivalent wires: i_req_i_gold (\i_req_i_gold), i_req_i_gate (\i_req_i_gate) -> i_req_i
+Presumably equivalent wires: rst_ni_gold (\rst_ni_gold), rst_ni_gate (\rst_ni_gate) -> rst_ni
+Presumably equivalent wires: clk_i_gold (\clk_i_gold), clk_i_gate (\clk_i_gate) -> clk_i
+Presumably equivalent wires: _sv2v_0_gold (1'0), _sv2v_0_gate (1'0) -> _sv2v_0
+Changing input A of cell $procmux$243_gate ($mux): \i_sel_q_gate -> \i_sel_q
+Changing input A of cell $procmux$241_gate ($mux): \d_sel_q_gate -> \d_sel_q
+Changing input A of cell $procmux$240_CMP0_gate ($logic_not): \i_sel_q_gate -> \i_sel_q
+Changing input A of cell $procmux$239_CMP0_gate ($eq): \i_sel_q_gate -> \i_sel_q
+Changing input A of cell $procmux$236_CMP0_gate ($logic_not): \d_sel_q_gate -> \d_sel_q
+Changing input A of cell $procmux$235_CMP0_gate ($eq): \d_sel_q_gate -> \d_sel_q
+Changing input A of cell $procmux$234_CMP0_gate ($eq): \d_sel_q_gate -> \d_sel_q
+Changing input A of cell $procmux$233_CMP0_gate ($eq): \d_sel_q_gate -> \d_sel_q
+Changing input A of cell $logic_and$build/equiv/xbar_new_mut.v:169$128_gate ($logic_and): \d_pend_q_gate -> \d_rvalid_o
+Changing input A of cell $eq$build/equiv/xbar_new_mut.v:169$125_gate ($eq): \d_sel_q_gate -> \d_sel_q
+Changing input A of cell $eq$build/equiv/xbar_new_mut.v:169$124_gate ($eq): \d_sel_q_gate -> \d_sel_q
+Changing input A of cell $logic_and$build/equiv/xbar_new_mut.v:168$123_gate ($logic_and): \i_pend_q_gate -> \i_rvalid_o
+Changing input A of cell $eq$build/equiv/xbar_new_mut.v:168$122_gate ($eq): \i_sel_q_gate -> \i_sel_q
+Changing input B of cell $logic_and$build/equiv/xbar_new_mut.v:163$121_gate ($logic_and): $ternary$build/equiv/xbar_new_mut.v:146$115_Y_gate -> \d_gnt_o
+Changing input B of cell $logic_and$build/equiv/xbar_new_mut.v:160$119_gate ($logic_and): $ternary$build/equiv/xbar_new_mut.v:146$115_Y_gate -> \d_gnt_o
+Changing input A of cell $procmux$143_gold ($mux): \i_sel_q_gold -> \i_sel_q
+Changing input A of cell $procmux$141_gold ($mux): \d_sel_q_gold -> \d_sel_q
+Changing input A of cell $procmux$140_CMP0_gold ($logic_not): \i_sel_q_gold -> \i_sel_q
+Changing input A of cell $procmux$139_CMP0_gold ($eq): \i_sel_q_gold -> \i_sel_q
+Changing input A of cell $procmux$136_CMP0_gold ($logic_not): \d_sel_q_gold -> \d_sel_q
+Changing input A of cell $procmux$135_CMP0_gold ($eq): \d_sel_q_gold -> \d_sel_q
+Changing input A of cell $procmux$134_CMP0_gold ($eq): \d_sel_q_gold -> \d_sel_q
+Changing input A of cell $procmux$133_CMP0_gold ($eq): \d_sel_q_gold -> \d_sel_q
+Changing input A of cell $logic_and$build/equiv/xbar_old.v:168$63_gold ($logic_and): \d_pend_q_gold -> \d_rvalid_o
+Changing input A of cell $eq$build/equiv/xbar_old.v:168$60_gold ($eq): \d_sel_q_gold -> \d_sel_q
+Changing input A of cell $eq$build/equiv/xbar_old.v:168$59_gold ($eq): \d_sel_q_gold -> \d_sel_q
+Changing input A of cell $logic_and$build/equiv/xbar_old.v:167$58_gold ($logic_and): \i_pend_q_gold -> \i_rvalid_o
+Changing input A of cell $eq$build/equiv/xbar_old.v:167$57_gold ($eq): \i_sel_q_gold -> \i_sel_q
+Changing input B of cell $logic_and$build/equiv/xbar_old.v:162$56_gold ($logic_and): $ternary$build/equiv/xbar_old.v:145$50_Y_gold -> \d_gnt_o
+Changing input B of cell $logic_and$build/equiv/xbar_old.v:159$54_gold ($logic_and): $ternary$build/equiv/xbar_old.v:145$50_Y_gold -> \d_gnt_o
+
+6. Executing HIERARCHY pass (managing design hierarchy).
+
+6.1. Analyzing design hierarchy..
+Top module:  \equiv
+
+6.2. Analyzing design hierarchy..
+Top module:  \equiv
+Removing unused module `\obi_xbar_new'.
+Removing unused module `\obi_xbar_old'.
+Removed 2 unused modules.
+
+7. Executing ASYNC2SYNC pass.
+Replacing equiv.$procdff$315_gate ($adff): ARST=\rst_ni_gate, D=$logic_and$build/equiv/xbar_new_mut.v:159$118_Y_gate, Q=\i_pend_q_gate
+Replacing equiv.$procdff$320_gate ($adff): ARST=\rst_ni_gate, D=$logic_and$build/equiv/xbar_new_mut.v:160$119_Y_gate, Q=\d_pend_q_gate
+Replacing equiv.$procdff$330_gate ($adff): ARST=\rst_ni_gate, D=$procmux$241_Y_gate, Q=\d_sel_q_gate
+Replacing equiv.$procdff$325_gate ($adff): ARST=\rst_ni_gate, D=$procmux$243_Y_gate, Q=\i_sel_q_gate
+Replacing equiv.$procdff$215_gold ($adff): ARST=\rst_ni_gold, D=$logic_and$build/equiv/xbar_old.v:158$53_Y_gold, Q=\i_pend_q_gold
+Replacing equiv.$procdff$220_gold ($adff): ARST=\rst_ni_gold, D=$logic_and$build/equiv/xbar_old.v:159$54_Y_gold, Q=\d_pend_q_gold
+Replacing equiv.$procdff$230_gold ($adff): ARST=\rst_ni_gold, D=$procmux$141_Y_gold, Q=\d_sel_q_gold
+Replacing equiv.$procdff$225_gold ($adff): ARST=\rst_ni_gold, D=$procmux$143_Y_gold, Q=\i_sel_q_gold
+
+8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \equiv..
+Removed 21 unused cells and 169 unused wires.
+<suppressed ~29 debug messages>
+
+9. Executing EQUIV_SIMPLE pass.
+Found 90 unproven $equiv cells (15 groups) in equiv:
+  Trying to prove $equiv for \i_rvalid_o:ezsat
+ success!
+ Grouping SAT models for \i_rdata_o:
+  Trying to prove $equiv for \i_rdata_o [0]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [1]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [2]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [3]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [4]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [5]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [6]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [7]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [8]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [9]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [10]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [11]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [12]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [13]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [14]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [15]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [16]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [17]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [18]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [19]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [20]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [21]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [22]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [23]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [24]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [25]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [26]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [27]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [28]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [29]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [30]:ezsat
+ success!
+  Trying to prove $equiv for \i_rdata_o [31]:ezsat
+ success!
+  Trying to prove $equiv for \i_err_o:ezsat
+ success!
+  Trying to prove $equiv for \d_gnt_o:ezsat
+ success!
+  Trying to prove $equiv for \d_rvalid_o:ezsat
+ezsat
+ success!
+ Grouping SAT models for \d_rdata_o:
+  Trying to prove $equiv for \d_rdata_o [0]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [1]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [2]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [3]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [4]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [5]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [6]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [7]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [8]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [9]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [10]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [11]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [12]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [13]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [14]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [15]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [16]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [17]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [18]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [19]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [20]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [21]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [22]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [23]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [24]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [25]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [26]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [27]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [28]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [29]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [30]:ezsat
+ success!
+  Trying to prove $equiv for \d_rdata_o [31]:ezsat
+ success!
+  Trying to prove $equiv for \d_err_o:ezsat
+ success!
+  Trying to prove $equiv for \rom_req_o:ezsat
+ success!
+  Trying to prove $equiv for \isd_req_o:ezsat
+ success!
+  Trying to prove $equiv for \isi_req_o:ezsat
+ success!
+  Trying to prove $equiv for \dsr_req_o:ezsat
+ success!
+  Trying to prove $equiv for \per_req_o:ezsat
+ success!
+ Grouping SAT models for \i_sel_q:
+  Trying to prove $equiv for \i_sel_q [0]:ezsat
+ezsat
+ success!
+  Trying to prove $equiv for \i_sel_q [1]:ezsat
+ success!
+  Trying to prove $equiv for \i_sel_q [2]:ezsat
+ success!
+ Grouping SAT models for \d_sel_q:
+  Trying to prove $equiv for \d_sel_q [0]:ezsat
+ezsat
+ success!
+  Trying to prove $equiv for \d_sel_q [1]:ezsat
+ success!
+  Trying to prove $equiv for \d_sel_q [2]:ezsat
+ success!
+ Grouping SAT models for \rom_addr_o_narrow:
+  Trying to prove $equiv for \rom_addr_o_narrow [0]:ezsat
+ failed.
+  Trying to prove $equiv for \rom_addr_o_narrow [1]:ezsat
+ success!
+  Trying to prove $equiv for \rom_addr_o_narrow [2]:ezsat
+ success!
+  Trying to prove $equiv for \rom_addr_o_narrow [3]:ezsat
+ success!
+  Trying to prove $equiv for \rom_addr_o_narrow [4]:ezsat
+ success!
+  Trying to prove $equiv for \rom_addr_o_narrow [5]:ezsat
+ success!
+  Trying to prove $equiv for \rom_addr_o_narrow [6]:ezsat
+ success!
+  Trying to prove $equiv for \rom_addr_o_narrow [7]:ezsat
+ success!
+  Trying to prove $equiv for \rom_addr_o_narrow [8]:ezsat
+ success!
+  Trying to prove $equiv for \rom_addr_o_narrow [9]:ezsat
+ success!
+Proved 89 previously unproven $equiv cells.
+
+10. Executing EQUIV_INDUCT pass.
+Found 1 unproven $equiv cells in module equiv:
+  Proving existence of base case for step 1. (12818 clauses over 5003 variables)
+  Proving induction step 1. (25883 clauses over 10082 variables)
+  Proof for induction step failed. Extending to next time step.
+  Proving existence of base case for step 2. (25884 clauses over 10082 variables)
+  Proving induction step 2. (38949 clauses over 15161 variables)
+  Proof for induction step failed. Extending to next time step.
+  Proving existence of base case for step 3. (38950 clauses over 15161 variables)
+  Proving induction step 3. (52015 clauses over 20240 variables)
+  Proof for induction step failed. Extending to next time step.
+  Proving existence of base case for step 4. (52016 clauses over 20240 variables)
+  Proving induction step 4. (65081 clauses over 25319 variables)
+  Proof for induction step failed. Extending to next time step.
+  Proving existence of base case for step 5. (65082 clauses over 25319 variables)
+  Proving induction step 5. (78147 clauses over 30398 variables)
+  Proof for induction step failed. Trying to prove individual $equiv from workset.
+  Trying to prove $equiv for \rom_addr_o_narrow [0]: failed.
+Proved 0 previously unproven $equiv cells.
+
+11. Executing EQUIV_STATUS pass.
+Found 330 $equiv cells in equiv:
+  Of those cells 329 are proven and 1 are unproven.
+  Unproven $equiv $auto$equiv_make.cc:258:find_same_wires$331: \rom_addr_o_wide_gold [2] \rom_addr_o_narrow_gate [0]
+Found a total of 1 unproven $equiv cells.
+ERROR: Found 1 unproven $equiv cells in 'equiv_status -assert'.

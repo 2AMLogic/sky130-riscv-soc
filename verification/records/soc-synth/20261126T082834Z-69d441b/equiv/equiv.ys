@@ -1,0 +1,23 @@
+# Sequential equivalence of obi_xbar before and after the rom_addr_o narrowing
+# (Yosys 0.67+post, name-matched induction). Inputs are generated, never
+# committed: run from the repository root as described in ../README.md.
+#
+#   build/equiv/xbar_old.v  = sv2v of make_copies.py's xbar_old.sv
+#   build/equiv/xbar_new.v  = sv2v of make_copies.py's xbar_new.sv
+#
+# Every port of the narrowed module and every internal wire keeps its name in
+# both copies, so equiv_make pairs them one to one (330 $equiv cells: the 324
+# output bits of the narrowed module and its 6 state bits). The 32-bit
+# rom_addr_o of the old copy stays internal (rom_addr_o_wide) and is paired
+# nowhere except through rom_addr_o[11:2].
+read_verilog build/equiv/xbar_old.v
+read_verilog build/equiv/xbar_new.v
+proc obi_xbar_old
+proc obi_xbar_new
+equiv_make obi_xbar_old obi_xbar_new equiv
+hierarchy -top equiv
+async2sync
+opt_clean
+equiv_simple -seq 5
+equiv_induct -seq 5
+equiv_status -assert

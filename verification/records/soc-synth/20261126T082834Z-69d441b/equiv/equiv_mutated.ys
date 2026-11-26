@@ -1,0 +1,17 @@
+# Negative control for equiv.ys: the narrowed copy with bit 2 of the
+# instruction manager's ROM address forced to 0 (make_copies.py --mutate-new).
+# This must FAIL: exactly rom_addr_o_narrow[0] stays unproven and
+# equiv_status -assert exits non-zero.
+#
+#   build/equiv/xbar_new_mut.v  = sv2v of make_copies.py's xbar_new_mut.sv
+read_verilog build/equiv/xbar_old.v
+read_verilog build/equiv/xbar_new_mut.v
+proc obi_xbar_old
+proc obi_xbar_new
+equiv_make obi_xbar_old obi_xbar_new equiv
+hierarchy -top equiv
+async2sync
+opt_clean
+equiv_simple -seq 5
+equiv_induct -seq 5
+equiv_status -assert

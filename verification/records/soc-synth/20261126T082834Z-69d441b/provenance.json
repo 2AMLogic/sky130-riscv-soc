@@ -1,0 +1,54 @@
+{
+  "commit": "69d441b37622454320badc992653b1c17553eb60",
+  "pdk_revision": "f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7",
+  "tool_versions": {
+    "klt": "0.9.2",
+    "klt_invocation": "uvx --from \"klayout-tools==0.9.2\" klt -- the PIN_KLT release in scripts/setup-env.sh, which CI's signoff job also reads (klt_git_commit 046ba74652fc096bd97071fc3237f7159dd40183 in both synth results). The host's own klt dev build (0.9.3.dev) was not used. No timeout relaxation was needed.",
+    "yosys": "0.67+post (b8e7da6f40ae8f552c116bf6c359b07c6533e159)",
+    "sv2v": "v0.0.13",
+    "verilator": "5.050",
+    "iverilog": "13.0",
+    "cocotb": "2.0.1",
+    "host": "loom-crew-1 (shared AWS dispatch worker; load average about 31 on 16 CPUs during these runs, so soc-gate took 623 s of wall time)"
+  },
+  "command": "scripts/synth-soc.sh (x2, PATH shim to uvx --from klayout-tools==0.9.2, TMPDIR unset: unmodified main @ f4b8d9c in a detached scratch worktree, then the tree of commit 69d441b); verilator --lint-only -Wall -Wno-MULTITOP --top-module soc_fabric over the fabric sources (both trees); verification/tools/lint_rtl.sh (default, LINT_REQUIRE_CORE=1 and SRAM_MACRO_V forms); make -C verification xbar periph boot soc soc-negative; make -C verification soc-gate; the three signoff.yml legs via klt signoff --check; the RTL equivalence check under equiv/ (yosys -s equiv/equiv.ys, equiv/equiv_aw10.ys and the equiv/equiv_mutated.ys negative control)",
+  "note": "Resynthesis for issue #225: obi_xbar.rom_addr_o narrowed from 32 bits to the 10 bits boot_rom reads ([11:2]); boot_rom's address port has been [11:2] since the initial commit and decode() already matches a[31:12] == 0 before T_ROM can be selected, so the other 22 bits drove dangling wires in soc_fabric. synth_result.json is this commit's klt output; synth_result_baseline.json is the unmodified-main run's, kept so the before figures are auditable rather than asserted. The baseline run reproduced main's committed netlist byte-for-byte (sha256 4b8ecd67...), and re-running the synthesis on this tree a second time reproduced 6d13b4d8... byte-for-byte, so the delta is the RTL change, not the toolchain. Both runs used TMPDIR unset -- klt synthesize deadlocks in Yosys' abc pass on this host under the loom sandbox TMPDIR (same note as the records this one follows; filed at 2AMLogic/klayout-tools); every committed netlist was produced that way. instance_count and instance_counts_by_type are klt's hierarchical counts (a module instantiated N times under soc_top contributes its cells N times; verified per cell type against the netlist); the netlist text holds 23864 -> 23844 unique standard cells.",
+  "netlist": {
+    "file": "netlist/soc_top_synth.v",
+    "sha256": "6d13b4d80f0534bb7faf50bcf9aecf4d4a7e7c20a5f915867736aabccc553a2f",
+    "lines": 145425
+  },
+  "baseline": {
+    "tree": "main @ f4b8d9cd7c34d2681f1b02452099d20ca1aefe44 (the parent of the commit above; the #224 merge plus a docs-only change)",
+    "netlist_sha256": "4b8ecd6713e400d92499b24a59cf34058ddff875cfe9c3866fb3e2ed4b6aaf87",
+    "area_um2": 222095.5072,
+    "instance_count": 27612,
+    "sequential_area_um2": 70829.1808,
+    "netlist_lines": 145505
+  },
+  "after": {
+    "area_um2": 221981.648,
+    "instance_count": 27592,
+    "sequential_area_um2": 70829.1808,
+    "combinational_only": "the entire delta sits in obi_xbar (314 -> 294 standard cells, 2061.9776 -> 1948.1184 um2 priced from the Liberty view); soc_fabric keeps its 58 cells and changes two lines (wire [31:0] rom_addr -> wire [11:2], and u_rom's addr_i). The 23 dead cells are gone (20 nor2b_1 on rom_addr_o[31:12], 2 mux2_2 on [1:0], 1 buf_2 whose 10 loads were all dead) and abc's re-mapping of the rest of obi_xbar adds back a net 3 cells (+38.7872 um2). Every sequential cell type (dfrtp_1 2683, dfstp_2 97, dlxtn_1 1, edfxtp_1 38), conb_1 (7301), all 8 SRAM macro instances and the soc_top port list are identical to the baseline run; 37 of 40 modules are byte-identical and cve2_register_file_ff differs only in the order its instances are emitted."
+  },
+  "pinned_inputs": {
+    "cve2_commit": "d7f21568028a1114be663599bd42145dccf28928",
+    "sram_macro_commit": "ebfbf5775c8cd433ad38a4d825e46c2275231511",
+    "sram_macro_liberty_sha256": "8656384775f5e10b44bed97b7193dd3188ce8cd60b7c8e02a5a4ad9e35ed03ba",
+    "std_cell_liberty_deck_sha256": "8e78e14442062dba34d414fca6490b2f6b96038d4510d1438ca44fee31487135",
+    "rtl_obi_xbar_sha256_before": "5c34f60038eeb5dd97d64c3161179ae9cadcb969c5917ea9093873525ef20940",
+    "rtl_obi_xbar_sha256_after": "b052f98181394b90a184ab4650abaf7f92972985af401cae79f5269e8c7300f8"
+  },
+  "supersedes": {
+    "netlist_sha256": "4b8ecd6713e400d92499b24a59cf34058ddff875cfe9c3866fb3e2ed4b6aaf87",
+    "recorded_in": "verification/records/soc-synth/20261117T185051Z-73e3afe",
+    "note": "records/soc-sta-preroute/ and records/soc-pnr/ bind that netlist and so describe a netlist one change old. This change is combinational-only (sequential_area_um2 identical at 70829.1808, every flop count identical), so no recorded timing claim moves in the unsafe direction -- but re-running pre-route STA and P&R on the current netlist is outstanding work, not covered here. The SRAM macro instance hierarchy is unchanged, so flow/soc/pnr_request.json macro paths remain valid. Global route on soc_top still fails (GRT-0116, macro-interior congestion); nothing in this change claims to fix that."
+  },
+  "equivalence_check": {
+    "tool": "yosys equiv_make / equiv_simple -seq 5 / equiv_induct -seq 5 / equiv_status -assert on sv2v output",
+    "result": "330 of 330 $equiv cells proven at both ISRAM_AW/DSRAM_AW = 11 (default) and 10: all 324 output bits of the narrowed obi_xbar against the 32-bit original (rom_addr_o compared on [11:2]) and its 6 state bits",
+    "negative_control": "with bit 2 of the instruction manager's ROM address forced to 0 in the narrowed copy, exactly rom_addr_o_narrow[0] stays unproven and equiv_status -assert exits 1",
+    "logs": ["equiv/equiv.log", "equiv/equiv_aw10.log", "equiv/equiv_mutated.log"]
+  }
+}

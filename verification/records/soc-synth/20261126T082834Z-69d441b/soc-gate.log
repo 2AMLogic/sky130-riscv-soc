@@ -1,0 +1,34 @@
+make: Entering directory '/home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/verification'
+SOC_GATE=1 make -f /home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/verification/cocotb.mk \
+    TESTDIR=/home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/verification/tests/soc TOPLEVEL=soc_top MODULE=test_banner \
+    VERILOG_SOURCES="/home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/netlist/soc_top_synth.v /home/ubuntu/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/verilog/primitives.v /home/ubuntu/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v /home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/verification/models/sky130_sram_2kbyte_1rw1r_32x512_8_standin.v" \
+    COMPILE_ARGS="-DFUNCTIONAL -DUNIT_DELAY=#0" \
+    SIM_BUILD=/home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/verification/sim_build/soc_gate
+make[1]: Entering directory '/home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/verification'
+rm -f /home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/verification/sim_build/soc_gate/results.xml
+"make" -f /home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/verification/cocotb.mk /home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/verification/sim_build/soc_gate/results.xml
+make[2]: Entering directory '/home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/verification'
+/home/ubuntu/.local/bin/iverilog -o /home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/verification/sim_build/soc_gate/sim.vvp -s soc_top -g2012 -DFUNCTIONAL -DUNIT_DELAY=#0  /home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/netlist/soc_top_synth.v /home/ubuntu/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/verilog/primitives.v /home/ubuntu/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v /home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/verification/models/sky130_sram_2kbyte_1rw1r_32x512_8_standin.v
+/home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/.venv/lib/python3.12/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
+rm -f /home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/verification/sim_build/soc_gate/results.xml
+COCOTB_TEST_MODULES=test_banner COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=soc_top TOPLEVEL_LANG=verilog \
+         /home/ubuntu/.local/bin/vvp -M /home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/.venv/lib/python3.12/site-packages/cocotb/libs -m libcocotbvpi_icarus   /home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/verification/sim_build/soc_gate/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.12.4 interpreter at /home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/.venv/bin/python3
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1795681873
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/.venv/lib/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_banner.banner_matches_golden (1/1)
+1476100.00ns INFO     cocotb.regression                  test_banner.banner_matches_golden passed
+1476100.00ns INFO     cocotb.regression                  *******************************************************************************************
+                                                         ** TEST                               STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                         *******************************************************************************************
+                                                         ** test_banner.banner_matches_golden   PASS     1476100.00         623.52       2367.38  **
+                                                         *******************************************************************************************
+                                                         ** TESTS=1 PASS=1 FAIL=0 SKIP=0                 1476100.00         623.52       2367.37  **
+                                                         *******************************************************************************************
+make[2]: Leaving directory '/home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/verification'
+make[1]: Leaving directory '/home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/verification'
+make: Leaving directory '/home/ubuntu/GitHub/sky130-riscv-soc/.loom/worktrees/issue-225/verification'

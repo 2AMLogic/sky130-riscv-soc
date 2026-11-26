@@ -1,0 +1,16 @@
+# Same as equiv.ys at the alternate SRAM depth (ISRAM_AW=10 DSRAM_AW=10,
+# 1024 words), where obi_xbar's region decode differs.
+#
+#   build/equiv/xbar_old_aw10.v  = sv2v of make_copies.py's xbar_old_aw10.sv
+#   build/equiv/xbar_new_aw10.v  = sv2v of make_copies.py's xbar_new_aw10.sv
+read_verilog build/equiv/xbar_old_aw10.v
+read_verilog build/equiv/xbar_new_aw10.v
+proc obi_xbar_old
+proc obi_xbar_new
+equiv_make obi_xbar_old obi_xbar_new equiv
+hierarchy -top equiv
+async2sync
+opt_clean
+equiv_simple -seq 5
+equiv_induct -seq 5
+equiv_status -assert

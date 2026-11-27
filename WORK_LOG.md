@@ -3,6 +3,10 @@
 Chronological record of merged PRs and closed issues, newest first.
 Maintained by the Loom Guide role.
 
+### 2026-11-27
+
+- **PR #231**: test: run the pinned riscv-arch-test (ACT4) suite on the SoC through klt functional-verification
+
 ### 2026-11-26
 
 - **PR #235**: chore: ignore Loom's .loom/account-ranking.codex runtime file

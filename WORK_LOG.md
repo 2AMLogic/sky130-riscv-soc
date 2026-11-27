@@ -5,6 +5,8 @@ Maintained by the Loom Guide role.
 
 ### 2026-11-27
 
+- **PR #239**: docs: record first ACT4 run in README and re-attest item 10
+- **Issue #237** (closed): Update the README maturity status with the first ACT4 run
 - **PR #231**: test: run the pinned riscv-arch-test (ACT4) suite on the SoC through klt functional-verification
 
 ### 2026-11-26

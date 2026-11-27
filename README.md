@@ -96,7 +96,11 @@ multi-corner STA closed → shuttle seat → measured silicon (bench Fmax).
 **Current position: part-way through "SoC RTL passing the architectural tests
 and firmware tests in simulation".** The firmware half is done — the cocotb
 boot and firmware tests pass on the RTL under Icarus. The architectural half
-has not run: `riscv-arch-test` on the SoC is still open
+(`riscv-arch-test`, ACT4) has run on the SoC
+([record](verification/records/archtest/20261126T233012Z-ab320f4/)): of 132
+selected tests, 131 passed, one failed (`priv/Sm/Sm_mcsr_cntr-00`, disposition
+tracked in [#221](https://github.com/2AMLogic/sky130-riscv-soc/issues/221)),
+and zero were skipped, so the all-pass milestone remains open
 ([#49](https://github.com/2AMLogic/sky130-riscv-soc/issues/49)). `soc_top` has
 also been synthesized ahead of that rung
 ([record](verification/records/soc-synth/20261117T185051Z-73e3afe/), and the

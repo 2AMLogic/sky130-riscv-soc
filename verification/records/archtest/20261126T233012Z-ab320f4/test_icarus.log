@@ -1,0 +1,1110 @@
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.12.4 interpreter at /workspace/work/2amlogic-sky130-riscv-soc-95e09076/.loom/worktrees/2amlogic-sky130-riscv-soc-95e09076/issue-49/build/doctor-231.9RIApF/venv/bin/python
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1795735365
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /workspace/work/2amlogic-sky130-riscv-soc-95e09076/.loom/worktrees/2amlogic-sky130-riscv-soc-95e09076/issue-49/build/doctor-231.9RIApF/venv/lib/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_archtest.priv/ExceptionsSm/ExceptionsSm-00 (1/132)
+153030.00ns INFO     cocotb.soc_top_archtest            console:
+                                                        
+                                                        RVCP-SUMMARY: TEST PASSED - Test File "ExceptionsSm-00.S"
+                                                        
+153030.00ns INFO     cocotb.soc_top_archtest            priv/ExceptionsSm/ExceptionsSm-00.S: ACT4 self-check passed after 7648 clocks
+153030.00ns INFO     cocotb.regression                  test_archtest.priv/ExceptionsSm/ExceptionsSm-00 passed
+153030.00ns INFO     cocotb.regression                  running test_archtest.priv/ExceptionsSm/ExceptionsSm_medeleg_m-00 (2/132)
+222080.00ns INFO     cocotb.soc_top_archtest            console:
+                                                        
+                                                        RVCP-SUMMARY: TEST PASSED - Test File "ExceptionsSm_medeleg_m-00.S"
+                                                        
+222080.00ns INFO     cocotb.soc_top_archtest            priv/ExceptionsSm/ExceptionsSm_medeleg_m-00.S: ACT4 self-check passed after 3448 clocks
+222080.00ns INFO     cocotb.regression                  test_archtest.priv/ExceptionsSm/ExceptionsSm_medeleg_m-00 passed
+222080.00ns INFO     cocotb.regression                  running test_archtest.priv/ExceptionsSm/ExceptionsSm_medeleg_s-00 (3/132)
+291130.00ns INFO     cocotb.soc_top_archtest            console:
+                                                        
+                                                        RVCP-SUMMARY: TEST PASSED - Test File "ExceptionsSm_medeleg_s-00.S"
+                                                        
+291130.00ns INFO     cocotb.soc_top_archtest            priv/ExceptionsSm/ExceptionsSm_medeleg_s-00.S: ACT4 self-check passed after 3448 clocks
+291130.00ns INFO     cocotb.regression                  test_archtest.priv/ExceptionsSm/ExceptionsSm_medeleg_s-00 passed
+291130.00ns INFO     cocotb.regression                  running test_archtest.priv/ExceptionsSm/ExceptionsSm_medeleg_u-00 (4/132)
+360180.00ns INFO     cocotb.soc_top_archtest            console:
+                                                        
+                                                        RVCP-SUMMARY: TEST PASSED - Test File "ExceptionsSm_medeleg_u-00.S"
+                                                        
+360180.00ns INFO     cocotb.soc_top_archtest            priv/ExceptionsSm/ExceptionsSm_medeleg_u-00.S: ACT4 self-check passed after 3448 clocks
+360180.00ns INFO     cocotb.regression                  test_archtest.priv/ExceptionsSm/ExceptionsSm_medeleg_u-00 passed
+360180.00ns INFO     cocotb.regression                  running test_archtest.priv/ExceptionsZc/ExceptionsZc-00 (5/132)
+465230.00ns INFO     cocotb.soc_top_archtest            console:
+                                                        
+                                                        RVCP-SUMMARY: TEST PASSED - Test File "ExceptionsZc-00.S"
+                                                        
+465230.00ns INFO     cocotb.soc_top_archtest            priv/ExceptionsZc/ExceptionsZc-00.S: ACT4 self-check passed after 5248 clocks
+465230.00ns INFO     cocotb.regression                  test_archtest.priv/ExceptionsZc/ExceptionsZc-00 passed
+465230.00ns INFO     cocotb.regression                  running test_archtest.priv/InterruptsSm/InterruptsSm_enable_M-00 (6/132)
+542280.01ns INFO     cocotb.soc_top_archtest            console:
+                                                        
+                                                        RVCP-SUMMARY: TEST PASSED - Test File "InterruptsSm_enable_M-00.S"
+                                                        
+542280.01ns INFO     cocotb.soc_top_archtest            priv/InterruptsSm/InterruptsSm_enable_M-00.S: ACT4 self-check passed after 3848 clocks
+542280.01ns INFO     cocotb.regression                  test_archtest.priv/InterruptsSm/InterruptsSm_enable_M-00 passed
+542280.01ns INFO     cocotb.regression                  running test_archtest.priv/InterruptsSm/InterruptsSm_priority_mideleg_M-00 (7/132)
+619330.01ns INFO     cocotb.soc_top_archtest            console:
+                                                        
+                                                        RVCP-SUMMARY: TEST PASSED - Test File "InterruptsSm_priority_mideleg_M-00.S"
+                                                        
+619330.01ns INFO     cocotb.soc_top_archtest            priv/InterruptsSm/InterruptsSm_priority_mideleg_M-00.S: ACT4 self-check passed after 3848 clocks
+619330.01ns INFO     cocotb.regression                  test_archtest.priv/InterruptsSm/InterruptsSm_priority_mideleg_M-00 passed
+619330.01ns INFO     cocotb.regression                  running test_archtest.priv/InterruptsSm/InterruptsSm_priority_mie_M-00 (8/132)
+692380.01ns INFO     cocotb.soc_top_archtest            console:
+                                                        
+                                                        RVCP-SUMMARY: TEST PASSED - Test File "InterruptsSm_priority_mie_M-00.S"
+                                                        
+692380.01ns INFO     cocotb.soc_top_archtest            priv/InterruptsSm/InterruptsSm_priority_mie_M-00.S: ACT4 self-check passed after 3648 clocks
+692380.01ns INFO     cocotb.regression                  test_archtest.priv/InterruptsSm/InterruptsSm_priority_mie_M-00 passed
+692380.01ns INFO     cocotb.regression                  running test_archtest.priv/InterruptsSm/InterruptsSm_priority_mip_M-00 (9/132)
+765430.01ns INFO     cocotb.soc_top_archtest            console:
+                                                        
+                                                        RVCP-SUMMARY: TEST PASSED - Test File "InterruptsSm_priority_mip_M-00.S"
+                                                        
+765430.01ns INFO     cocotb.soc_top_archtest            priv/InterruptsSm/InterruptsSm_priority_mip_M-00.S: ACT4 self-check passed after 3648 clocks
+765430.01ns INFO     cocotb.regression                  test_archtest.priv/InterruptsSm/InterruptsSm_priority_mip_M-00 passed
+765430.01ns INFO     cocotb.regression                  running test_archtest.priv/InterruptsSm/InterruptsSm_trigger_M-00 (10/132)
+854480.01ns INFO     cocotb.soc_top_archtest            console:
+                                                        
+                                                        RVCP-SUMMARY: TEST PASSED - Test File "InterruptsSm_trigger_M-00.S"
+                                                        
+854480.01ns INFO     cocotb.soc_top_archtest            priv/InterruptsSm/InterruptsSm_trigger_M-00.S: ACT4 self-check passed after 4448 clocks
+854480.01ns INFO     cocotb.regression                  test_archtest.priv/InterruptsSm/InterruptsSm_trigger_M-00 passed
+854480.01ns INFO     cocotb.regression                  running test_archtest.priv/InterruptsSm/InterruptsSm_wfi_M-00 (11/132)
+1739530.01ns INFO     cocotb.soc_top_archtest            console:
+                                                         
+                                                         RVCP-SUMMARY: TEST PASSED - Test File "InterruptsSm_wfi_M-00.S"
+                                                         
+1739530.01ns INFO     cocotb.soc_top_archtest            priv/InterruptsSm/InterruptsSm_wfi_M-00.S: ACT4 self-check passed after 44248 clocks
+1739530.01ns INFO     cocotb.regression                  test_archtest.priv/InterruptsSm/InterruptsSm_wfi_M-00 passed
+1739530.01ns INFO     cocotb.regression                  running test_archtest.priv/InterruptsSm/InterruptsSm_write_stip_sstc-00 (12/132)
+1812580.01ns INFO     cocotb.soc_top_archtest            console:
+                                                         
+                                                         RVCP-SUMMARY: TEST PASSED - Test File "InterruptsSm_write_stip_sstc-00.S"
+                                                         
+1812580.01ns INFO     cocotb.soc_top_archtest            priv/InterruptsSm/InterruptsSm_write_stip_sstc-00.S: ACT4 self-check passed after 3648 clocks
+1812580.01ns INFO     cocotb.regression                  test_archtest.priv/InterruptsSm/InterruptsSm_write_stip_sstc-00 passed
+1812580.01ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_csr_insufficient_priv-00 (13/132)
+1957630.01ns INFO     cocotb.soc_top_archtest            console:
+                                                         
+                                                         RVCP-SUMMARY: TEST PASSED - Test File "Sm_csr_insufficient_priv-00.S"
+                                                         
+1957630.01ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_csr_insufficient_priv-00.S: ACT4 self-check passed after 7248 clocks
+1957630.01ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_csr_insufficient_priv-00 passed
+1957630.01ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_csr_ro-00 (14/132)
+4402680.01ns INFO     cocotb.soc_top_archtest            console:
+                                                         
+                                                         RVCP-SUMMARY: TEST PASSED - Test File "Sm_csr_ro-00.S"
+                                                         
+4402680.01ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_csr_ro-00.S: ACT4 self-check passed after 122248 clocks
+4402680.01ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_csr_ro-00 passed
+4402680.01ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_csr_ro-01 (15/132)
+6847730.01ns INFO     cocotb.soc_top_archtest            console:
+                                                         
+                                                         RVCP-SUMMARY: TEST PASSED - Test File "Sm_csr_ro-01.S"
+                                                         
+6847730.01ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_csr_ro-01.S: ACT4 self-check passed after 122248 clocks
+6847730.01ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_csr_ro-01 passed
+6847730.01ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_inst-00 (16/132)
+6908780.01ns INFO     cocotb.soc_top_archtest            console:
+                                                         
+                                                         RVCP-SUMMARY: TEST PASSED - Test File "Sm_inst-00.S"
+                                                         
+6908780.01ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_inst-00.S: ACT4 self-check passed after 3048 clocks
+6908780.01ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_inst-00 passed
+6908780.01ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_mcause-00 (17/132)
+6969830.02ns INFO     cocotb.soc_top_archtest            console:
+                                                         
+                                                         RVCP-SUMMARY: TEST PASSED - Test File "Sm_mcause-00.S"
+                                                         
+6969830.02ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_mcause-00.S: ACT4 self-check passed after 3048 clocks
+6969830.02ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_mcause-00 passed
+6969830.02ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_mcsr_access-00 (18/132)
+7406880.02ns INFO     cocotb.soc_top_archtest            console:
+                                                         
+                                                         RVCP-SUMMARY: TEST PASSED - Test File "Sm_mcsr_access-00.S"
+                                                         
+7406880.02ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_mcsr_access-00.S: ACT4 self-check passed after 21848 clocks
+7406880.02ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_mcsr_access-00 passed
+7406880.02ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_mcsr_addr-00 (19/132)
+7475930.02ns INFO     cocotb.soc_top_archtest            console:
+                                                         
+                                                         RVCP-SUMMARY: TEST PASSED - Test File "Sm_mcsr_addr-00.S"
+                                                         
+7475930.02ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_mcsr_addr-00.S: ACT4 self-check passed after 3448 clocks
+7475930.02ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_mcsr_addr-00 passed
+7475930.02ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_mcsr_cntr-00 (20/132)
+7868980.02ns INFO     cocotb.soc_top_archtest            console:
+                                                         
+                                                         RVCP-SUMMARY: TEST FAILED - Test File "Sm_mcsr_cntr-00.S"
+                                                         
+                                                         RVCP: DEBUG INFORMATION FOLLOWS
+                                                         RVCP: Test Info: "test: 547; cg: Sm_mcsr_cg; cp: cp_mtime_write; bin: h"
+                                                         RVCP: Instruction: 0xc8102373
+                                                         RVCP: Approximate address (failure may be slightly after this): 0x10006bc8
+                                                         RVCP: Register: x6
+                                                         RVCP: Bad Value:      0x40001fbd
+                                                         RVCP: Expected Value: 0x0200bfb5
+                                                         RVCP: END OF DEBUG INFORMATION
+                                                         
+7868980.02ns WARNING  ...<locals>.make.<locals>.archtest priv/Sm/Sm_mcsr_cntr-00.S: ACT4 self-check FAILED
+                                                         console:
+                                                         
+                                                         RVCP-SUMMARY: TEST FAILED - Test File "Sm_mcsr_cntr-00.S"
+                                                         
+                                                         RVCP: DEBUG INFORMATION FOLLOWS
+                                                         RVCP: Test Info: "test: 547; cg: Sm_mcsr_cg; cp: cp_mtime_write; bin: h"
+                                                         RVCP: Instruction: 0xc8102373
+                                                         RVCP: Approximate address (failure may be slightly after this): 0x10006bc8
+                                                         RVCP: Register: x6
+                                                         RVCP: Bad Value:      0x40001fbd
+                                                         RVCP: Expected Value: 0x0200bfb5
+                                                         RVCP: END OF DEBUG INFORMATION
+                                                         
+                                                         Traceback (most recent call last):
+                                                           File "/workspace/work/2amlogic-sky130-riscv-soc-95e09076/.loom/worktrees/2amlogic-sky130-riscv-soc-95e09076/issue-49/verification/tests/archtest/test_archtest.py", line 194, in archtest
+                                                             await run_act_test(dut, manifest, test)
+                                                           File "/workspace/work/2amlogic-sky130-riscv-soc-95e09076/.loom/worktrees/2amlogic-sky130-riscv-soc-95e09076/issue-49/verification/tests/archtest/test_archtest.py", line 183, in run_act_test
+                                                             raise AssertionError(f"{name}: {verdict}\nconsole:\n{text}")
+                                                         AssertionError: priv/Sm/Sm_mcsr_cntr-00.S: ACT4 self-check FAILED
+                                                         console:
+                                                         
+                                                         RVCP-SUMMARY: TEST FAILED - Test File "Sm_mcsr_cntr-00.S"
+                                                         
+                                                         RVCP: DEBUG INFORMATION FOLLOWS
+                                                         RVCP: Test Info: "test: 547; cg: Sm_mcsr_cg; cp: cp_mtime_write; bin: h"
+                                                         RVCP: Instruction: 0xc8102373
+                                                         RVCP: Approximate address (failure may be slightly after this): 0x10006bc8
+                                                         RVCP: Register: x6
+                                                         RVCP: Bad Value:      0x40001fbd
+                                                         RVCP: Expected Value: 0x0200bfb5
+                                                         RVCP: END OF DEBUG INFORMATION
+                                                         
+7868980.02ns WARNING  cocotb.regression                  test_archtest.priv/Sm/Sm_mcsr_cntr-00 failed
+7868980.02ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_mcsr_walk-00 (21/132)
+9718030.02ns INFO     cocotb.soc_top_archtest            console:
+                                                         
+                                                         RVCP-SUMMARY: TEST PASSED - Test File "Sm_mcsr_walk-00.S"
+                                                         
+9718030.02ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_mcsr_walk-00.S: ACT4 self-check passed after 92448 clocks
+9718030.02ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_mcsr_walk-00 passed
+9718030.02ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_mcsr_walk-01 (22/132)
+10707080.02ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Sm_mcsr_walk-01.S"
+                                                          
+10707080.02ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_mcsr_walk-01.S: ACT4 self-check passed after 49448 clocks
+10707080.02ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_mcsr_walk-01 passed
+10707080.02ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_mcsr_walk-02 (23/132)
+10824130.02ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Sm_mcsr_walk-02.S"
+                                                          
+10824130.02ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_mcsr_walk-02.S: ACT4 self-check passed after 5848 clocks
+10824130.02ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_mcsr_walk-02 passed
+10824130.02ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_mcsr_walk-03 (24/132)
+10941180.02ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Sm_mcsr_walk-03.S"
+                                                          
+10941180.02ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_mcsr_walk-03.S: ACT4 self-check passed after 5848 clocks
+10941180.02ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_mcsr_walk-03 passed
+10941180.02ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_mcsr_walk-04 (25/132)
+11058230.02ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Sm_mcsr_walk-04.S"
+                                                          
+11058230.02ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_mcsr_walk-04.S: ACT4 self-check passed after 5848 clocks
+11058230.02ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_mcsr_walk-04 passed
+11058230.02ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_mcsr_walk-05 (26/132)
+11175280.03ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Sm_mcsr_walk-05.S"
+                                                          
+11175280.03ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_mcsr_walk-05.S: ACT4 self-check passed after 5848 clocks
+11175280.03ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_mcsr_walk-05 passed
+11175280.03ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_mcsr_walk-06 (27/132)
+11292330.03ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Sm_mcsr_walk-06.S"
+                                                          
+11292330.03ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_mcsr_walk-06.S: ACT4 self-check passed after 5848 clocks
+11292330.03ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_mcsr_walk-06 passed
+11292330.03ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_mcsr_walk-07 (28/132)
+11409380.03ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Sm_mcsr_walk-07.S"
+                                                          
+11409380.03ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_mcsr_walk-07.S: ACT4 self-check passed after 5848 clocks
+11409380.03ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_mcsr_walk-07 passed
+11409380.03ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_mcsr_walk-08 (29/132)
+11526430.03ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Sm_mcsr_walk-08.S"
+                                                          
+11526430.03ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_mcsr_walk-08.S: ACT4 self-check passed after 5848 clocks
+11526430.03ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_mcsr_walk-08 passed
+11526430.03ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_mcsr_walk-09 (30/132)
+11615480.03ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Sm_mcsr_walk-09.S"
+                                                          
+11615480.03ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_mcsr_walk-09.S: ACT4 self-check passed after 4448 clocks
+11615480.03ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_mcsr_walk-09 passed
+11615480.03ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_mcsr_walk-10 (31/132)
+12584530.03ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Sm_mcsr_walk-10.S"
+                                                          
+12584530.03ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_mcsr_walk-10.S: ACT4 self-check passed after 48448 clocks
+12584530.03ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_mcsr_walk-10 passed
+12584530.03ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_mcsr_walk-11 (32/132)
+13545580.03ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Sm_mcsr_walk-11.S"
+                                                          
+13545580.03ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_mcsr_walk-11.S: ACT4 self-check passed after 48048 clocks
+13545580.03ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_mcsr_walk-11 passed
+13545580.03ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_misa-00 (33/132)
+13606630.03ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Sm_misa-00.S"
+                                                          
+13606630.03ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_misa-00.S: ACT4 self-check passed after 3048 clocks
+13606630.03ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_misa-00 passed
+13606630.03ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_mstatus_sd-00 (34/132)
+13703680.03ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Sm_mstatus_sd-00.S"
+                                                          
+13703680.03ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_mstatus_sd-00.S: ACT4 self-check passed after 4848 clocks
+13703680.03ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_mstatus_sd-00 passed
+13703680.03ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_satp_from_m-00 (35/132)
+13764730.03ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Sm_satp_from_m-00.S"
+                                                          
+13764730.03ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_satp_from_m-00.S: ACT4 self-check passed after 3048 clocks
+13764730.03ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_satp_from_m-00 passed
+13764730.03ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_satp_from_s-00 (36/132)
+13825780.04ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Sm_satp_from_s-00.S"
+                                                          
+13825780.04ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_satp_from_s-00.S: ACT4 self-check passed after 3048 clocks
+13825780.04ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_satp_from_s-00 passed
+13825780.04ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_scsr_from_m-00 (37/132)
+13886830.04ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Sm_scsr_from_m-00.S"
+                                                          
+13886830.04ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_scsr_from_m-00.S: ACT4 self-check passed after 3048 clocks
+13886830.04ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_scsr_from_m-00 passed
+13886830.04ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_shadow-00 (38/132)
+13943880.04ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Sm_shadow-00.S"
+                                                          
+13943880.04ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_shadow-00.S: ACT4 self-check passed after 2848 clocks
+13943880.04ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_shadow-00 passed
+13943880.04ns INFO     cocotb.regression                  running test_archtest.priv/Sm/Sm_xret-00 (39/132)
+14236930.04ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Sm_xret-00.S"
+                                                          
+14236930.04ns INFO     cocotb.soc_top_archtest            priv/Sm/Sm_xret-00.S: ACT4 self-check passed after 14648 clocks
+14236930.04ns INFO     cocotb.regression                  test_archtest.priv/Sm/Sm_xret-00 passed
+14236930.04ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-add-00 (40/132)
+14393980.04ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-add-00.S"
+                                                          
+14393980.04ns INFO     cocotb.soc_top_archtest            rv32i/I/I-add-00.S: ACT4 self-check passed after 7848 clocks
+14393980.04ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-add-00 passed
+14393980.04ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-addi-00 (41/132)
+14523030.04ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-addi-00.S"
+                                                          
+14523030.04ns INFO     cocotb.soc_top_archtest            rv32i/I/I-addi-00.S: ACT4 self-check passed after 6448 clocks
+14523030.04ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-addi-00 passed
+14523030.04ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-and-00 (42/132)
+14680080.04ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-and-00.S"
+                                                          
+14680080.04ns INFO     cocotb.soc_top_archtest            rv32i/I/I-and-00.S: ACT4 self-check passed after 7848 clocks
+14680080.04ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-and-00 passed
+14680080.04ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-andi-00 (43/132)
+14809130.04ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-andi-00.S"
+                                                          
+14809130.04ns INFO     cocotb.soc_top_archtest            rv32i/I/I-andi-00.S: ACT4 self-check passed after 6448 clocks
+14809130.04ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-andi-00 passed
+14809130.04ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-auipc-00 (44/132)
+14874180.04ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-auipc-00.S"
+                                                          
+14874180.04ns INFO     cocotb.soc_top_archtest            rv32i/I/I-auipc-00.S: ACT4 self-check passed after 3248 clocks
+14874180.04ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-auipc-00 passed
+14874180.04ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-beq-00 (45/132)
+15035230.04ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-beq-00.S"
+                                                          
+15035230.04ns INFO     cocotb.soc_top_archtest            rv32i/I/I-beq-00.S: ACT4 self-check passed after 8048 clocks
+15035230.04ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-beq-00 passed
+15035230.04ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-bge-00 (46/132)
+15204280.04ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-bge-00.S"
+                                                          
+15204280.04ns INFO     cocotb.soc_top_archtest            rv32i/I/I-bge-00.S: ACT4 self-check passed after 8448 clocks
+15204280.04ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-bge-00 passed
+15204280.04ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-bgeu-00 (47/132)
+15373330.05ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-bgeu-00.S"
+                                                          
+15373330.05ns INFO     cocotb.soc_top_archtest            rv32i/I/I-bgeu-00.S: ACT4 self-check passed after 8448 clocks
+15373330.05ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-bgeu-00 passed
+15373330.05ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-blt-00 (48/132)
+15538380.05ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-blt-00.S"
+                                                          
+15538380.05ns INFO     cocotb.soc_top_archtest            rv32i/I/I-blt-00.S: ACT4 self-check passed after 8248 clocks
+15538380.05ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-blt-00 passed
+15538380.05ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-bltu-00 (49/132)
+15707430.05ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-bltu-00.S"
+                                                          
+15707430.05ns INFO     cocotb.soc_top_archtest            rv32i/I/I-bltu-00.S: ACT4 self-check passed after 8448 clocks
+15707430.05ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-bltu-00 passed
+15707430.05ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-bne-00 (50/132)
+15880480.05ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-bne-00.S"
+                                                          
+15880480.05ns INFO     cocotb.soc_top_archtest            rv32i/I/I-bne-00.S: ACT4 self-check passed after 8648 clocks
+15880480.05ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-bne-00 passed
+15880480.05ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-fence-00 (51/132)
+15941530.05ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-fence-00.S"
+                                                          
+15941530.05ns INFO     cocotb.soc_top_archtest            rv32i/I/I-fence-00.S: ACT4 self-check passed after 3048 clocks
+15941530.05ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-fence-00 passed
+15941530.05ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-jal-00 (52/132)
+16326580.05ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-jal-00.S"
+                                                          
+16326580.05ns INFO     cocotb.soc_top_archtest            rv32i/I/I-jal-00.S: ACT4 self-check passed after 19248 clocks
+16326580.05ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-jal-00 passed
+16326580.05ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-jalr-00 (53/132)
+16459630.05ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-jalr-00.S"
+                                                          
+16459630.05ns INFO     cocotb.soc_top_archtest            rv32i/I/I-jalr-00.S: ACT4 self-check passed after 6648 clocks
+16459630.05ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-jalr-00 passed
+16459630.05ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-lb-00 (54/132)
+16544680.05ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-lb-00.S"
+                                                          
+16544680.05ns INFO     cocotb.soc_top_archtest            rv32i/I/I-lb-00.S: ACT4 self-check passed after 4248 clocks
+16544680.05ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-lb-00 passed
+16544680.05ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-lbu-00 (55/132)
+16629730.05ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-lbu-00.S"
+                                                          
+16629730.05ns INFO     cocotb.soc_top_archtest            rv32i/I/I-lbu-00.S: ACT4 self-check passed after 4248 clocks
+16629730.05ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-lbu-00 passed
+16629730.05ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-lh-00 (56/132)
+16710780.05ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-lh-00.S"
+                                                          
+16710780.05ns INFO     cocotb.soc_top_archtest            rv32i/I/I-lh-00.S: ACT4 self-check passed after 4048 clocks
+16710780.05ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-lh-00 passed
+16710780.05ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-lhu-00 (57/132)
+16791830.06ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-lhu-00.S"
+                                                          
+16791830.06ns INFO     cocotb.soc_top_archtest            rv32i/I/I-lhu-00.S: ACT4 self-check passed after 4048 clocks
+16791830.06ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-lhu-00 passed
+16791830.06ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-lui-00 (58/132)
+16856880.06ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-lui-00.S"
+                                                          
+16856880.06ns INFO     cocotb.soc_top_archtest            rv32i/I/I-lui-00.S: ACT4 self-check passed after 3248 clocks
+16856880.06ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-lui-00 passed
+16856880.06ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-lw-00 (59/132)
+16937930.06ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-lw-00.S"
+                                                          
+16937930.06ns INFO     cocotb.soc_top_archtest            rv32i/I/I-lw-00.S: ACT4 self-check passed after 4048 clocks
+16937930.06ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-lw-00 passed
+16937930.06ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-nop-00 (60/132)
+16994980.06ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-nop-00.S"
+                                                          
+16994980.06ns INFO     cocotb.soc_top_archtest            rv32i/I/I-nop-00.S: ACT4 self-check passed after 2848 clocks
+16994980.06ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-nop-00 passed
+16994980.06ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-or-00 (61/132)
+17152030.06ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-or-00.S"
+                                                          
+17152030.06ns INFO     cocotb.soc_top_archtest            rv32i/I/I-or-00.S: ACT4 self-check passed after 7848 clocks
+17152030.06ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-or-00 passed
+17152030.06ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-ori-00 (62/132)
+17281080.06ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-ori-00.S"
+                                                          
+17281080.06ns INFO     cocotb.soc_top_archtest            rv32i/I/I-ori-00.S: ACT4 self-check passed after 6448 clocks
+17281080.06ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-ori-00 passed
+17281080.06ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-sb-00 (63/132)
+17398130.06ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-sb-00.S"
+                                                          
+17398130.06ns INFO     cocotb.soc_top_archtest            rv32i/I/I-sb-00.S: ACT4 self-check passed after 5848 clocks
+17398130.06ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-sb-00 passed
+17398130.06ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-sh-00 (64/132)
+17511180.06ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-sh-00.S"
+                                                          
+17511180.06ns INFO     cocotb.soc_top_archtest            rv32i/I/I-sh-00.S: ACT4 self-check passed after 5648 clocks
+17511180.06ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-sh-00 passed
+17511180.06ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-sll-00 (65/132)
+17668230.06ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-sll-00.S"
+                                                          
+17668230.06ns INFO     cocotb.soc_top_archtest            rv32i/I/I-sll-00.S: ACT4 self-check passed after 7848 clocks
+17668230.06ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-sll-00 passed
+17668230.06ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-slli-00 (66/132)
+17765280.07ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-slli-00.S"
+                                                          
+17765280.07ns INFO     cocotb.soc_top_archtest            rv32i/I/I-slli-00.S: ACT4 self-check passed after 4848 clocks
+17765280.07ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-slli-00 passed
+17765280.07ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-slt-00 (67/132)
+17922330.07ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-slt-00.S"
+                                                          
+17922330.07ns INFO     cocotb.soc_top_archtest            rv32i/I/I-slt-00.S: ACT4 self-check passed after 7848 clocks
+17922330.07ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-slt-00 passed
+17922330.07ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-slti-00 (68/132)
+18051380.07ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-slti-00.S"
+                                                          
+18051380.07ns INFO     cocotb.soc_top_archtest            rv32i/I/I-slti-00.S: ACT4 self-check passed after 6448 clocks
+18051380.07ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-slti-00 passed
+18051380.07ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-sltiu-00 (69/132)
+18180430.07ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-sltiu-00.S"
+                                                          
+18180430.07ns INFO     cocotb.soc_top_archtest            rv32i/I/I-sltiu-00.S: ACT4 self-check passed after 6448 clocks
+18180430.07ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-sltiu-00 passed
+18180430.07ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-sltu-00 (70/132)
+18337480.07ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-sltu-00.S"
+                                                          
+18337480.07ns INFO     cocotb.soc_top_archtest            rv32i/I/I-sltu-00.S: ACT4 self-check passed after 7848 clocks
+18337480.07ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-sltu-00 passed
+18337480.07ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-sra-00 (71/132)
+18494530.07ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-sra-00.S"
+                                                          
+18494530.07ns INFO     cocotb.soc_top_archtest            rv32i/I/I-sra-00.S: ACT4 self-check passed after 7848 clocks
+18494530.07ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-sra-00 passed
+18494530.07ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-srai-00 (72/132)
+18591580.07ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-srai-00.S"
+                                                          
+18591580.07ns INFO     cocotb.soc_top_archtest            rv32i/I/I-srai-00.S: ACT4 self-check passed after 4848 clocks
+18591580.07ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-srai-00 passed
+18591580.07ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-srl-00 (73/132)
+18748630.07ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-srl-00.S"
+                                                          
+18748630.07ns INFO     cocotb.soc_top_archtest            rv32i/I/I-srl-00.S: ACT4 self-check passed after 7848 clocks
+18748630.07ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-srl-00 passed
+18748630.07ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-srli-00 (74/132)
+18845680.07ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-srli-00.S"
+                                                          
+18845680.07ns INFO     cocotb.soc_top_archtest            rv32i/I/I-srli-00.S: ACT4 self-check passed after 4848 clocks
+18845680.07ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-srli-00 passed
+18845680.07ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-sub-00 (75/132)
+19002730.07ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-sub-00.S"
+                                                          
+19002730.07ns INFO     cocotb.soc_top_archtest            rv32i/I/I-sub-00.S: ACT4 self-check passed after 7848 clocks
+19002730.07ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-sub-00 passed
+19002730.07ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-sw-00 (76/132)
+19115780.07ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-sw-00.S"
+                                                          
+19115780.07ns INFO     cocotb.soc_top_archtest            rv32i/I/I-sw-00.S: ACT4 self-check passed after 5648 clocks
+19115780.07ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-sw-00 passed
+19115780.07ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-xor-00 (77/132)
+19272830.08ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-xor-00.S"
+                                                          
+19272830.08ns INFO     cocotb.soc_top_archtest            rv32i/I/I-xor-00.S: ACT4 self-check passed after 7848 clocks
+19272830.08ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-xor-00 passed
+19272830.08ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-xori-00 (78/132)
+19401880.08ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "I-xori-00.S"
+                                                          
+19401880.08ns INFO     cocotb.soc_top_archtest            rv32i/I/I-xori-00.S: ACT4 self-check passed after 6448 clocks
+19401880.08ns INFO     cocotb.regression                  test_archtest.rv32i/I/I-xori-00 passed
+19401880.08ns INFO     cocotb.regression                  running test_archtest.rv32i/M/M-div-00 (79/132)
+19830930.08ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "M-div-00.S"
+                                                          
+19830930.08ns INFO     cocotb.soc_top_archtest            rv32i/M/M-div-00.S: ACT4 self-check passed after 21448 clocks
+19830930.08ns INFO     cocotb.regression                  test_archtest.rv32i/M/M-div-00 passed
+19830930.08ns INFO     cocotb.regression                  running test_archtest.rv32i/M/M-divu-00 (80/132)
+20259980.08ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "M-divu-00.S"
+                                                          
+20259980.08ns INFO     cocotb.soc_top_archtest            rv32i/M/M-divu-00.S: ACT4 self-check passed after 21448 clocks
+20259980.08ns INFO     cocotb.regression                  test_archtest.rv32i/M/M-divu-00 passed
+20259980.08ns INFO     cocotb.regression                  running test_archtest.rv32i/M/M-mul-00 (81/132)
+20433030.08ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "M-mul-00.S"
+                                                          
+20433030.08ns INFO     cocotb.soc_top_archtest            rv32i/M/M-mul-00.S: ACT4 self-check passed after 8648 clocks
+20433030.08ns INFO     cocotb.regression                  test_archtest.rv32i/M/M-mul-00 passed
+20433030.08ns INFO     cocotb.regression                  running test_archtest.rv32i/M/M-mulh-00 (82/132)
+20614080.08ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "M-mulh-00.S"
+                                                          
+20614080.08ns INFO     cocotb.soc_top_archtest            rv32i/M/M-mulh-00.S: ACT4 self-check passed after 9048 clocks
+20614080.08ns INFO     cocotb.regression                  test_archtest.rv32i/M/M-mulh-00 passed
+20614080.08ns INFO     cocotb.regression                  running test_archtest.rv32i/M/M-mulhsu-00 (83/132)
+20799130.08ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "M-mulhsu-00.S"
+                                                          
+20799130.08ns INFO     cocotb.soc_top_archtest            rv32i/M/M-mulhsu-00.S: ACT4 self-check passed after 9248 clocks
+20799130.08ns INFO     cocotb.regression                  test_archtest.rv32i/M/M-mulhsu-00 passed
+20799130.08ns INFO     cocotb.regression                  running test_archtest.rv32i/M/M-mulhu-00 (84/132)
+20984180.08ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "M-mulhu-00.S"
+                                                          
+20984180.08ns INFO     cocotb.soc_top_archtest            rv32i/M/M-mulhu-00.S: ACT4 self-check passed after 9248 clocks
+20984180.08ns INFO     cocotb.regression                  test_archtest.rv32i/M/M-mulhu-00 passed
+20984180.08ns INFO     cocotb.regression                  running test_archtest.rv32i/M/M-rem-00 (85/132)
+21413230.08ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "M-rem-00.S"
+                                                          
+21413230.08ns INFO     cocotb.soc_top_archtest            rv32i/M/M-rem-00.S: ACT4 self-check passed after 21448 clocks
+21413230.08ns INFO     cocotb.regression                  test_archtest.rv32i/M/M-rem-00 passed
+21413230.08ns INFO     cocotb.regression                  running test_archtest.rv32i/M/M-remu-00 (86/132)
+21842280.09ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "M-remu-00.S"
+                                                          
+21842280.09ns INFO     cocotb.soc_top_archtest            rv32i/M/M-remu-00.S: ACT4 self-check passed after 21448 clocks
+21842280.09ns INFO     cocotb.regression                  test_archtest.rv32i/M/M-remu-00 passed
+21842280.09ns INFO     cocotb.regression                  running test_archtest.rv32i/Misalign/Misalign-lh-00 (87/132)
+21919330.09ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Misalign-lh-00.S"
+                                                          
+21919330.09ns INFO     cocotb.soc_top_archtest            rv32i/Misalign/Misalign-lh-00.S: ACT4 self-check passed after 3848 clocks
+21919330.09ns INFO     cocotb.regression                  test_archtest.rv32i/Misalign/Misalign-lh-00 passed
+21919330.09ns INFO     cocotb.regression                  running test_archtest.rv32i/Misalign/Misalign-lhu-00 (88/132)
+21996380.09ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Misalign-lhu-00.S"
+                                                          
+21996380.09ns INFO     cocotb.soc_top_archtest            rv32i/Misalign/Misalign-lhu-00.S: ACT4 self-check passed after 3848 clocks
+21996380.09ns INFO     cocotb.regression                  test_archtest.rv32i/Misalign/Misalign-lhu-00 passed
+21996380.09ns INFO     cocotb.regression                  running test_archtest.rv32i/Misalign/Misalign-lw-00 (89/132)
+22073430.09ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Misalign-lw-00.S"
+                                                          
+22073430.09ns INFO     cocotb.soc_top_archtest            rv32i/Misalign/Misalign-lw-00.S: ACT4 self-check passed after 3848 clocks
+22073430.09ns INFO     cocotb.regression                  test_archtest.rv32i/Misalign/Misalign-lw-00 passed
+22073430.09ns INFO     cocotb.regression                  running test_archtest.rv32i/Misalign/Misalign-sh-00 (90/132)
+22154480.09ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Misalign-sh-00.S"
+                                                          
+22154480.09ns INFO     cocotb.soc_top_archtest            rv32i/Misalign/Misalign-sh-00.S: ACT4 self-check passed after 4048 clocks
+22154480.09ns INFO     cocotb.regression                  test_archtest.rv32i/Misalign/Misalign-sh-00 passed
+22154480.09ns INFO     cocotb.regression                  running test_archtest.rv32i/Misalign/Misalign-sw-00 (91/132)
+22235530.09ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Misalign-sw-00.S"
+                                                          
+22235530.09ns INFO     cocotb.soc_top_archtest            rv32i/Misalign/Misalign-sw-00.S: ACT4 self-check passed after 4048 clocks
+22235530.09ns INFO     cocotb.regression                  test_archtest.rv32i/Misalign/Misalign-sw-00 passed
+22235530.09ns INFO     cocotb.regression                  running test_archtest.rv32i/Misalign/MisalignZca-c.lw-00 (92/132)
+22316580.09ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "MisalignZca-c.lw-00.S"
+                                                          
+22316580.09ns INFO     cocotb.soc_top_archtest            rv32i/Misalign/MisalignZca-c.lw-00.S: ACT4 self-check passed after 4048 clocks
+22316580.09ns INFO     cocotb.regression                  test_archtest.rv32i/Misalign/MisalignZca-c.lw-00 passed
+22316580.09ns INFO     cocotb.regression                  running test_archtest.rv32i/Misalign/MisalignZca-c.lwsp-00 (93/132)
+22397630.09ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "MisalignZca-c.lwsp-00.S"
+                                                          
+22397630.09ns INFO     cocotb.soc_top_archtest            rv32i/Misalign/MisalignZca-c.lwsp-00.S: ACT4 self-check passed after 4048 clocks
+22397630.09ns INFO     cocotb.regression                  test_archtest.rv32i/Misalign/MisalignZca-c.lwsp-00 passed
+22397630.09ns INFO     cocotb.regression                  running test_archtest.rv32i/Misalign/MisalignZca-c.sw-00 (94/132)
+22486680.09ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "MisalignZca-c.sw-00.S"
+                                                          
+22486680.09ns INFO     cocotb.soc_top_archtest            rv32i/Misalign/MisalignZca-c.sw-00.S: ACT4 self-check passed after 4448 clocks
+22486680.09ns INFO     cocotb.regression                  test_archtest.rv32i/Misalign/MisalignZca-c.sw-00 passed
+22486680.09ns INFO     cocotb.regression                  running test_archtest.rv32i/Misalign/MisalignZca-c.swsp-00 (95/132)
+22579730.09ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "MisalignZca-c.swsp-00.S"
+                                                          
+22579730.09ns INFO     cocotb.soc_top_archtest            rv32i/Misalign/MisalignZca-c.swsp-00.S: ACT4 self-check passed after 4648 clocks
+22579730.09ns INFO     cocotb.regression                  test_archtest.rv32i/Misalign/MisalignZca-c.swsp-00 passed
+22579730.09ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.add-00 (96/132)
+22716780.09ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.add-00.S"
+                                                          
+22716780.09ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.add-00.S: ACT4 self-check passed after 6848 clocks
+22716780.09ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.add-00 passed
+22716780.09ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.addi-00 (97/132)
+22821830.10ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.addi-00.S"
+                                                          
+22821830.10ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.addi-00.S: ACT4 self-check passed after 5248 clocks
+22821830.10ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.addi-00 passed
+22821830.10ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.addi16sp-00 (98/132)
+22898880.10ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.addi16sp-00.S"
+                                                          
+22898880.10ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.addi16sp-00.S: ACT4 self-check passed after 3848 clocks
+22898880.10ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.addi16sp-00 passed
+22898880.10ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.addi4spn-00 (99/132)
+23019930.10ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.addi4spn-00.S"
+                                                          
+23019930.10ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.addi4spn-00.S: ACT4 self-check passed after 6048 clocks
+23019930.10ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.addi4spn-00 passed
+23019930.10ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.and-00 (100/132)
+23128980.10ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.and-00.S"
+                                                          
+23128980.10ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.and-00.S: ACT4 self-check passed after 5448 clocks
+23128980.10ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.and-00 passed
+23128980.10ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.andi-00 (101/132)
+23222030.10ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.andi-00.S"
+                                                          
+23222030.10ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.andi-00.S: ACT4 self-check passed after 4648 clocks
+23222030.10ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.andi-00 passed
+23222030.10ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.beqz-00 (102/132)
+23291080.10ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.beqz-00.S"
+                                                          
+23291080.10ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.beqz-00.S: ACT4 self-check passed after 3448 clocks
+23291080.10ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.beqz-00 passed
+23291080.10ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.bnez-00 (103/132)
+23360130.10ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.bnez-00.S"
+                                                          
+23360130.10ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.bnez-00.S: ACT4 self-check passed after 3448 clocks
+23360130.10ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.bnez-00 passed
+23360130.10ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.j-00 (104/132)
+23489180.10ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.j-00.S"
+                                                          
+23489180.10ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.j-00.S: ACT4 self-check passed after 6448 clocks
+23489180.10ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.j-00 passed
+23489180.10ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.jal-00 (105/132)
+23622230.10ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.jal-00.S"
+                                                          
+23622230.10ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.jal-00.S: ACT4 self-check passed after 6648 clocks
+23622230.10ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.jal-00 passed
+23622230.10ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.jalr-00 (106/132)
+23703280.11ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.jalr-00.S"
+                                                          
+23703280.11ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.jalr-00.S: ACT4 self-check passed after 4048 clocks
+23703280.11ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.jalr-00 passed
+23703280.11ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.jr-00 (107/132)
+23780330.11ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.jr-00.S"
+                                                          
+23780330.11ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.jr-00.S: ACT4 self-check passed after 3848 clocks
+23780330.11ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.jr-00 passed
+23780330.11ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.li-00 (108/132)
+23861380.11ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.li-00.S"
+                                                          
+23861380.11ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.li-00.S: ACT4 self-check passed after 4048 clocks
+23861380.11ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.li-00 passed
+23861380.11ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.lui-00 (109/132)
+23942430.11ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.lui-00.S"
+                                                          
+23942430.11ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.lui-00.S: ACT4 self-check passed after 4048 clocks
+23942430.11ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.lui-00 passed
+23942430.11ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.lw-00 (110/132)
+24011480.11ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.lw-00.S"
+                                                          
+24011480.11ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.lw-00.S: ACT4 self-check passed after 3448 clocks
+24011480.11ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.lw-00 passed
+24011480.11ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.lwsp-00 (111/132)
+24092530.11ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.lwsp-00.S"
+                                                          
+24092530.11ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.lwsp-00.S: ACT4 self-check passed after 4048 clocks
+24092530.11ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.lwsp-00 passed
+24092530.11ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.mv-00 (112/132)
+24189580.11ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.mv-00.S"
+                                                          
+24189580.11ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.mv-00.S: ACT4 self-check passed after 4848 clocks
+24189580.11ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.mv-00 passed
+24189580.11ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.nop-00 (113/132)
+24250630.11ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.nop-00.S"
+                                                          
+24250630.11ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.nop-00.S: ACT4 self-check passed after 3048 clocks
+24250630.11ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.nop-00 passed
+24250630.11ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.or-00 (114/132)
+24359680.11ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.or-00.S"
+                                                          
+24359680.11ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.or-00.S: ACT4 self-check passed after 5448 clocks
+24359680.11ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.or-00 passed
+24359680.11ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.slli-00 (115/132)
+24464730.11ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.slli-00.S"
+                                                          
+24464730.11ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.slli-00.S: ACT4 self-check passed after 5248 clocks
+24464730.11ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.slli-00 passed
+24464730.11ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.srai-00 (116/132)
+24561780.11ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.srai-00.S"
+                                                          
+24561780.11ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.srai-00.S: ACT4 self-check passed after 4848 clocks
+24561780.11ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.srai-00 passed
+24561780.11ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.srli-00 (117/132)
+24658830.12ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.srli-00.S"
+                                                          
+24658830.12ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.srli-00.S: ACT4 self-check passed after 4848 clocks
+24658830.12ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.srli-00 passed
+24658830.12ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.sub-00 (118/132)
+24767880.12ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.sub-00.S"
+                                                          
+24767880.12ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.sub-00.S: ACT4 self-check passed after 5448 clocks
+24767880.12ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.sub-00 passed
+24767880.12ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.sw-00 (119/132)
+24864930.12ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.sw-00.S"
+                                                          
+24864930.12ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.sw-00.S: ACT4 self-check passed after 4848 clocks
+24864930.12ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.sw-00 passed
+24864930.12ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.swsp-00 (120/132)
+24993980.12ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.swsp-00.S"
+                                                          
+24993980.12ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.swsp-00.S: ACT4 self-check passed after 6448 clocks
+24993980.12ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.swsp-00 passed
+24993980.12ns INFO     cocotb.regression                  running test_archtest.rv32i/Zca/Zca-c.xor-00 (121/132)
+25103030.12ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zca-c.xor-00.S"
+                                                          
+25103030.12ns INFO     cocotb.soc_top_archtest            rv32i/Zca/Zca-c.xor-00.S: ACT4 self-check passed after 5448 clocks
+25103030.12ns INFO     cocotb.regression                  test_archtest.rv32i/Zca/Zca-c.xor-00 passed
+25103030.12ns INFO     cocotb.regression                  running test_archtest.rv32i/Zicsr/Zicsr-csrrc-00 (122/132)
+25208080.12ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zicsr-csrrc-00.S"
+                                                          
+25208080.12ns INFO     cocotb.soc_top_archtest            rv32i/Zicsr/Zicsr-csrrc-00.S: ACT4 self-check passed after 5248 clocks
+25208080.12ns INFO     cocotb.regression                  test_archtest.rv32i/Zicsr/Zicsr-csrrc-00 passed
+25208080.12ns INFO     cocotb.regression                  running test_archtest.rv32i/Zicsr/Zicsr-csrrci-00 (123/132)
+25293130.12ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zicsr-csrrci-00.S"
+                                                          
+25293130.12ns INFO     cocotb.soc_top_archtest            rv32i/Zicsr/Zicsr-csrrci-00.S: ACT4 self-check passed after 4248 clocks
+25293130.12ns INFO     cocotb.regression                  test_archtest.rv32i/Zicsr/Zicsr-csrrci-00 passed
+25293130.12ns INFO     cocotb.regression                  running test_archtest.rv32i/Zicsr/Zicsr-csrrs-00 (124/132)
+25398180.12ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zicsr-csrrs-00.S"
+                                                          
+25398180.12ns INFO     cocotb.soc_top_archtest            rv32i/Zicsr/Zicsr-csrrs-00.S: ACT4 self-check passed after 5248 clocks
+25398180.12ns INFO     cocotb.regression                  test_archtest.rv32i/Zicsr/Zicsr-csrrs-00 passed
+25398180.12ns INFO     cocotb.regression                  running test_archtest.rv32i/Zicsr/Zicsr-csrrsi-00 (125/132)
+25483230.12ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zicsr-csrrsi-00.S"
+                                                          
+25483230.12ns INFO     cocotb.soc_top_archtest            rv32i/Zicsr/Zicsr-csrrsi-00.S: ACT4 self-check passed after 4248 clocks
+25483230.12ns INFO     cocotb.regression                  test_archtest.rv32i/Zicsr/Zicsr-csrrsi-00 passed
+25483230.12ns INFO     cocotb.regression                  running test_archtest.rv32i/Zicsr/Zicsr-csrrw-00 (126/132)
+25588280.12ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zicsr-csrrw-00.S"
+                                                          
+25588280.12ns INFO     cocotb.soc_top_archtest            rv32i/Zicsr/Zicsr-csrrw-00.S: ACT4 self-check passed after 5248 clocks
+25588280.12ns INFO     cocotb.regression                  test_archtest.rv32i/Zicsr/Zicsr-csrrw-00 passed
+25588280.12ns INFO     cocotb.regression                  running test_archtest.rv32i/Zicsr/Zicsr-csrrwi-00 (127/132)
+25673330.13ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zicsr-csrrwi-00.S"
+                                                          
+25673330.13ns INFO     cocotb.soc_top_archtest            rv32i/Zicsr/Zicsr-csrrwi-00.S: ACT4 self-check passed after 4248 clocks
+25673330.13ns INFO     cocotb.regression                  test_archtest.rv32i/Zicsr/Zicsr-csrrwi-00 passed
+25673330.13ns INFO     cocotb.regression                  running test_archtest.rv32i/Zifencei/Zifencei-fence.i-00 (128/132)
+25742380.13ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zifencei-fence.i-00.S"
+                                                          
+25742380.13ns INFO     cocotb.soc_top_archtest            rv32i/Zifencei/Zifencei-fence.i-00.S: ACT4 self-check passed after 3448 clocks
+25742380.13ns INFO     cocotb.regression                  test_archtest.rv32i/Zifencei/Zifencei-fence.i-00 passed
+25742380.13ns INFO     cocotb.regression                  running test_archtest.rv32i/Zmmul/Zmmul-mul-00 (129/132)
+25919430.13ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zmmul-mul-00.S"
+                                                          
+25919430.13ns INFO     cocotb.soc_top_archtest            rv32i/Zmmul/Zmmul-mul-00.S: ACT4 self-check passed after 8848 clocks
+25919430.13ns INFO     cocotb.regression                  test_archtest.rv32i/Zmmul/Zmmul-mul-00 passed
+25919430.13ns INFO     cocotb.regression                  running test_archtest.rv32i/Zmmul/Zmmul-mulh-00 (130/132)
+26104480.13ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zmmul-mulh-00.S"
+                                                          
+26104480.13ns INFO     cocotb.soc_top_archtest            rv32i/Zmmul/Zmmul-mulh-00.S: ACT4 self-check passed after 9248 clocks
+26104480.13ns INFO     cocotb.regression                  test_archtest.rv32i/Zmmul/Zmmul-mulh-00 passed
+26104480.13ns INFO     cocotb.regression                  running test_archtest.rv32i/Zmmul/Zmmul-mulhsu-00 (131/132)
+26293530.13ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zmmul-mulhsu-00.S"
+                                                          
+26293530.13ns INFO     cocotb.soc_top_archtest            rv32i/Zmmul/Zmmul-mulhsu-00.S: ACT4 self-check passed after 9448 clocks
+26293530.13ns INFO     cocotb.regression                  test_archtest.rv32i/Zmmul/Zmmul-mulhsu-00 passed
+26293530.13ns INFO     cocotb.regression                  running test_archtest.rv32i/Zmmul/Zmmul-mulhu-00 (132/132)
+26478580.13ns INFO     cocotb.soc_top_archtest            console:
+                                                          
+                                                          RVCP-SUMMARY: TEST PASSED - Test File "Zmmul-mulhu-00.S"
+                                                          
+26478580.13ns INFO     cocotb.soc_top_archtest            rv32i/Zmmul/Zmmul-mulhu-00.S: ACT4 self-check passed after 9248 clocks
+26478580.13ns INFO     cocotb.regression                  test_archtest.rv32i/Zmmul/Zmmul-mulhu-00 passed
+26478580.13ns INFO     cocotb.regression                  ****************************************************************************************************************************
+                                                          ** TEST                                                                STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                          ****************************************************************************************************************************
+                                                          ** test_archtest.priv/ExceptionsSm/ExceptionsSm-00                      PASS      153030.00           2.36      64896.52  **
+                                                          ** test_archtest.priv/ExceptionsSm/ExceptionsSm_medeleg_m-00            PASS       69050.00           0.98      70159.52  **
+                                                          ** test_archtest.priv/ExceptionsSm/ExceptionsSm_medeleg_s-00            PASS       69050.00           1.06      65099.75  **
+                                                          ** test_archtest.priv/ExceptionsSm/ExceptionsSm_medeleg_u-00            PASS       69050.00           1.07      64672.78  **
+                                                          ** test_archtest.priv/ExceptionsZc/ExceptionsZc-00                      PASS      105050.00           1.82      57615.82  **
+                                                          ** test_archtest.priv/InterruptsSm/InterruptsSm_enable_M-00             PASS       77050.00           1.09      70801.80  **
+                                                          ** test_archtest.priv/InterruptsSm/InterruptsSm_priority_mideleg_M-00   PASS       77050.00           1.10      70074.14  **
+                                                          ** test_archtest.priv/InterruptsSm/InterruptsSm_priority_mie_M-00       PASS       73050.00           1.10      66351.34  **
+                                                          ** test_archtest.priv/InterruptsSm/InterruptsSm_priority_mip_M-00       PASS       73050.00           1.01      72136.41  **
+                                                          ** test_archtest.priv/InterruptsSm/InterruptsSm_trigger_M-00            PASS       89050.00           1.25      71064.27  **
+                                                          ** test_archtest.priv/InterruptsSm/InterruptsSm_wfi_M-00                PASS      885050.00           1.50     589336.97  **
+                                                          ** test_archtest.priv/InterruptsSm/InterruptsSm_write_stip_sstc-00      PASS       73050.00           1.06      69110.96  **
+                                                          ** test_archtest.priv/Sm/Sm_csr_insufficient_priv-00                    PASS      145050.00           2.25      64411.80  **
+                                                          ** test_archtest.priv/Sm/Sm_csr_ro-00                                   PASS     2445050.00          36.55      66891.36  **
+                                                          ** test_archtest.priv/Sm/Sm_csr_ro-01                                   PASS     2445050.00          38.84      62948.08  **
+                                                          ** test_archtest.priv/Sm/Sm_inst-00                                     PASS       61050.00           1.01      60725.16  **
+                                                          ** test_archtest.priv/Sm/Sm_mcause-00                                   PASS       61050.00           1.01      60293.33  **
+                                                          ** test_archtest.priv/Sm/Sm_mcsr_access-00                              PASS      437050.00           6.26      69767.31  **
+                                                          ** test_archtest.priv/Sm/Sm_mcsr_addr-00                                PASS       69050.00           1.14      60704.46  **
+                                                          ** test_archtest.priv/Sm/Sm_mcsr_cntr-00                                FAIL      393050.00           6.43      61172.68  **
+                                                          ** test_archtest.priv/Sm/Sm_mcsr_walk-00                                PASS     1849050.00          28.58      64695.68  **
+                                                          ** test_archtest.priv/Sm/Sm_mcsr_walk-01                                PASS      989050.00          15.25      64876.07  **
+                                                          ** test_archtest.priv/Sm/Sm_mcsr_walk-02                                PASS      117050.00           2.31      50732.51  **
+                                                          ** test_archtest.priv/Sm/Sm_mcsr_walk-03                                PASS      117050.00           2.01      58135.38  **
+                                                          ** test_archtest.priv/Sm/Sm_mcsr_walk-04                                PASS      117050.00           1.96      59632.26  **
+                                                          ** test_archtest.priv/Sm/Sm_mcsr_walk-05                                PASS      117050.00           1.99      58680.60  **
+                                                          ** test_archtest.priv/Sm/Sm_mcsr_walk-06                                PASS      117050.00           2.08      56232.92  **
+                                                          ** test_archtest.priv/Sm/Sm_mcsr_walk-07                                PASS      117050.00           2.20      53282.91  **
+                                                          ** test_archtest.priv/Sm/Sm_mcsr_walk-08                                PASS      117050.00           2.24      52283.54  **
+                                                          ** test_archtest.priv/Sm/Sm_mcsr_walk-09                                PASS       89050.00           1.54      57911.93  **
+                                                          ** test_archtest.priv/Sm/Sm_mcsr_walk-10                                PASS      969050.00          14.70      65920.40  **
+                                                          ** test_archtest.priv/Sm/Sm_mcsr_walk-11                                PASS      961050.00          15.75      61001.32  **
+                                                          ** test_archtest.priv/Sm/Sm_misa-00                                     PASS       61050.00           1.01      60671.04  **
+                                                          ** test_archtest.priv/Sm/Sm_mstatus_sd-00                               PASS       97050.00           1.88      51714.66  **
+                                                          ** test_archtest.priv/Sm/Sm_satp_from_m-00                              PASS       61050.00           1.23      49553.15  **
+                                                          ** test_archtest.priv/Sm/Sm_satp_from_s-00                              PASS       61050.00           1.00      61264.12  **
+                                                          ** test_archtest.priv/Sm/Sm_scsr_from_m-00                              PASS       61050.00           1.11      54773.32  **
+                                                          ** test_archtest.priv/Sm/Sm_shadow-00                                   PASS       57050.00           1.10      52018.92  **
+                                                          ** test_archtest.priv/Sm/Sm_xret-00                                     PASS      293050.00           5.36      54629.64  **
+                                                          ** test_archtest.rv32i/I/I-add-00                                       PASS      157050.00           3.35      46896.53  **
+                                                          ** test_archtest.rv32i/I/I-addi-00                                      PASS      129050.00           2.98      43335.33  **
+                                                          ** test_archtest.rv32i/I/I-and-00                                       PASS      157050.00           3.06      51286.14  **
+                                                          ** test_archtest.rv32i/I/I-andi-00                                      PASS      129050.00           2.63      49087.35  **
+                                                          ** test_archtest.rv32i/I/I-auipc-00                                     PASS       65050.00           1.28      50839.15  **
+                                                          ** test_archtest.rv32i/I/I-beq-00                                       PASS      161050.00           3.38      47664.30  **
+                                                          ** test_archtest.rv32i/I/I-bge-00                                       PASS      169050.00           3.60      46917.14  **
+                                                          ** test_archtest.rv32i/I/I-bgeu-00                                      PASS      169050.00           3.83      44115.34  **
+                                                          ** test_archtest.rv32i/I/I-blt-00                                       PASS      165050.00           3.61      45660.64  **
+                                                          ** test_archtest.rv32i/I/I-bltu-00                                      PASS      169050.00           3.58      47201.59  **
+                                                          ** test_archtest.rv32i/I/I-bne-00                                       PASS      173050.00           3.39      51077.66  **
+                                                          ** test_archtest.rv32i/I/I-fence-00                                     PASS       61050.00           1.11      55002.77  **
+                                                          ** test_archtest.rv32i/I/I-jal-00                                       PASS      385050.00           2.65     145495.69  **
+                                                          ** test_archtest.rv32i/I/I-jalr-00                                      PASS      133050.00           2.34      56859.64  **
+                                                          ** test_archtest.rv32i/I/I-lb-00                                        PASS       85050.00           2.01      42354.15  **
+                                                          ** test_archtest.rv32i/I/I-lbu-00                                       PASS       85050.00           1.63      52115.97  **
+                                                          ** test_archtest.rv32i/I/I-lh-00                                        PASS       81050.00           1.48      54805.72  **
+                                                          ** test_archtest.rv32i/I/I-lhu-00                                       PASS       81050.00           1.35      60087.51  **
+                                                          ** test_archtest.rv32i/I/I-lui-00                                       PASS       65050.00           1.03      62948.46  **
+                                                          ** test_archtest.rv32i/I/I-lw-00                                        PASS       81050.00           1.50      54014.45  **
+                                                          ** test_archtest.rv32i/I/I-nop-00                                       PASS       57050.00           0.96      59708.44  **
+                                                          ** test_archtest.rv32i/I/I-or-00                                        PASS      157050.00           2.81      55794.23  **
+                                                          ** test_archtest.rv32i/I/I-ori-00                                       PASS      129050.00           2.43      53047.15  **
+                                                          ** test_archtest.rv32i/I/I-sb-00                                        PASS      117050.00           2.02      58017.86  **
+                                                          ** test_archtest.rv32i/I/I-sh-00                                        PASS      113050.00           2.29      49409.51  **
+                                                          ** test_archtest.rv32i/I/I-sll-00                                       PASS      157050.00           2.95      53179.44  **
+                                                          ** test_archtest.rv32i/I/I-slli-00                                      PASS       97050.00           1.92      50582.80  **
+                                                          ** test_archtest.rv32i/I/I-slt-00                                       PASS      157050.00           2.89      54434.54  **
+                                                          ** test_archtest.rv32i/I/I-slti-00                                      PASS      129050.00           2.58      49932.31  **
+                                                          ** test_archtest.rv32i/I/I-sltiu-00                                     PASS      129050.00           2.43      53205.55  **
+                                                          ** test_archtest.rv32i/I/I-sltu-00                                      PASS      157050.00           2.75      57089.80  **
+                                                          ** test_archtest.rv32i/I/I-sra-00                                       PASS      157050.00           2.83      55523.72  **
+                                                          ** test_archtest.rv32i/I/I-srai-00                                      PASS       97050.00           1.94      49978.66  **
+                                                          ** test_archtest.rv32i/I/I-srl-00                                       PASS      157050.00           3.55      44212.70  **
+                                                          ** test_archtest.rv32i/I/I-srli-00                                      PASS       97050.00           2.62      37041.39  **
+                                                          ** test_archtest.rv32i/I/I-sub-00                                       PASS      157050.00           4.34      36193.72  **
+                                                          ** test_archtest.rv32i/I/I-sw-00                                        PASS      113050.00           2.63      42953.96  **
+                                                          ** test_archtest.rv32i/I/I-xor-00                                       PASS      157050.00           4.42      35546.78  **
+                                                          ** test_archtest.rv32i/I/I-xori-00                                      PASS      129050.00           3.56      36252.58  **
+                                                          ** test_archtest.rv32i/M/M-div-00                                       PASS      429050.00           5.59      76792.38  **
+                                                          ** test_archtest.rv32i/M/M-divu-00                                      PASS      429050.00           5.57      77024.11  **
+                                                          ** test_archtest.rv32i/M/M-mul-00                                       PASS      173050.00           3.84      45110.01  **
+                                                          ** test_archtest.rv32i/M/M-mulh-00                                      PASS      181050.00           3.48      52033.81  **
+                                                          ** test_archtest.rv32i/M/M-mulhsu-00                                    PASS      185050.00           3.80      48755.87  **
+                                                          ** test_archtest.rv32i/M/M-mulhu-00                                     PASS      185050.00           3.33      55566.81  **
+                                                          ** test_archtest.rv32i/M/M-rem-00                                       PASS      429050.00           4.15     103373.26  **
+                                                          ** test_archtest.rv32i/M/M-remu-00                                      PASS      429050.00           3.94     108906.45  **
+                                                          ** test_archtest.rv32i/Misalign/Misalign-lh-00                          PASS       77050.00           1.06      72750.91  **
+                                                          ** test_archtest.rv32i/Misalign/Misalign-lhu-00                         PASS       77050.00           1.17      65978.67  **
+                                                          ** test_archtest.rv32i/Misalign/Misalign-lw-00                          PASS       77050.00           1.17      66067.78  **
+                                                          ** test_archtest.rv32i/Misalign/Misalign-sh-00                          PASS       81050.00           1.27      63603.41  **
+                                                          ** test_archtest.rv32i/Misalign/Misalign-sw-00                          PASS       81050.00           1.31      61820.88  **
+                                                          ** test_archtest.rv32i/Misalign/MisalignZca-c.lw-00                     PASS       81050.00           1.27      63913.45  **
+                                                          ** test_archtest.rv32i/Misalign/MisalignZca-c.lwsp-00                   PASS       81050.00           1.33      60852.36  **
+                                                          ** test_archtest.rv32i/Misalign/MisalignZca-c.sw-00                     PASS       89050.00           1.54      57848.98  **
+                                                          ** test_archtest.rv32i/Misalign/MisalignZca-c.swsp-00                   PASS       93050.00           1.43      65066.48  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.add-00                                 PASS      137050.00           2.95      46520.61  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.addi-00                                PASS      105050.00           2.81      37338.17  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.addi16sp-00                            PASS       77050.00           2.17      35470.04  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.addi4spn-00                            PASS      121050.00           3.70      32698.54  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.and-00                                 PASS      109050.00           2.89      37732.57  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.andi-00                                PASS       93050.00           2.43      38328.47  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.beqz-00                                PASS       69050.00           1.73      39930.68  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.bnez-00                                PASS       69050.00           1.55      44476.65  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.j-00                                   PASS      129050.00           1.74      73958.54  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.jal-00                                 PASS      133050.00           1.92      69224.04  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.jalr-00                                PASS       81050.00           1.78      45516.32  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.jr-00                                  PASS       77050.00           1.39      55305.87  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.li-00                                  PASS       81050.00           1.42      57082.02  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.lui-00                                 PASS       81050.00           1.62      50002.11  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.lw-00                                  PASS       69050.00           1.51      45633.22  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.lwsp-00                                PASS       81050.00           1.89      42814.44  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.mv-00                                  PASS       97050.00           2.39      40582.88  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.nop-00                                 PASS       61050.00           1.38      44222.42  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.or-00                                  PASS      109050.00           2.67      40817.69  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.slli-00                                PASS      105050.00           2.46      42780.53  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.srai-00                                PASS       97050.00           2.35      41354.75  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.srli-00                                PASS       97050.00           2.42      40084.75  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.sub-00                                 PASS      109050.00           2.75      39587.16  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.sw-00                                  PASS       97050.00           1.91      50876.87  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.swsp-00                                PASS      129050.00           2.71      47539.53  **
+                                                          ** test_archtest.rv32i/Zca/Zca-c.xor-00                                 PASS      109050.00           2.50      43680.66  **
+                                                          ** test_archtest.rv32i/Zicsr/Zicsr-csrrc-00                             PASS      105050.00           2.90      36187.12  **
+                                                          ** test_archtest.rv32i/Zicsr/Zicsr-csrrci-00                            PASS       85050.00           2.05      41406.87  **
+                                                          ** test_archtest.rv32i/Zicsr/Zicsr-csrrs-00                             PASS      105050.00           2.43      43152.05  **
+                                                          ** test_archtest.rv32i/Zicsr/Zicsr-csrrsi-00                            PASS       85050.00           1.75      48612.27  **
+                                                          ** test_archtest.rv32i/Zicsr/Zicsr-csrrw-00                             PASS      105050.00           2.36      44584.55  **
+                                                          ** test_archtest.rv32i/Zicsr/Zicsr-csrrwi-00                            PASS       85050.00           1.99      42673.22  **
+                                                          ** test_archtest.rv32i/Zifencei/Zifencei-fence.i-00                     PASS       69050.00           1.51      45624.93  **
+                                                          ** test_archtest.rv32i/Zmmul/Zmmul-mul-00                               PASS      177050.00           4.08      43342.78  **
+                                                          ** test_archtest.rv32i/Zmmul/Zmmul-mulh-00                              PASS      185050.00           3.92      47169.95  **
+                                                          ** test_archtest.rv32i/Zmmul/Zmmul-mulhsu-00                            PASS      189050.00           4.12      45929.06  **
+                                                          ** test_archtest.rv32i/Zmmul/Zmmul-mulhu-00                             PASS      185050.00           3.82      48445.41  **
+                                                          ****************************************************************************************************************************
+                                                          ** TESTS=132 PASS=131 FAIL=1 SKIP=0                                             26478580.13         447.21      59207.76  **
+                                                          ****************************************************************************************************************************

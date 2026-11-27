@@ -1,0 +1,1733 @@
+{
+ "schema": 1,
+ "config": "sky130-riscv-soc",
+ "riscv_arch_test": "9929db1c3a84f90f808f39f21678d9cd98776147",
+ "ram": {
+  "base": 268435456,
+  "words": 131072,
+  "aw": 17
+ },
+ "halt": {
+  "word": 0,
+  "pass_code": 123456789,
+  "fail_code": 1
+ },
+ "tests": [
+  {
+   "name": "priv/ExceptionsSm/ExceptionsSm-00.S",
+   "image": "images/priv/ExceptionsSm/ExceptionsSm-00.bin",
+   "image_sha256": "363cbd787974f08b1ed73c35566386d6dc4f266dbdbb3bf0116b5cda7b86a32b",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/ExceptionsSm/ExceptionsSm-00.elf",
+   "elf_sha256": "159be03eedf5f91d732bb48737dfe68e80f24e716d542110a5e825b700aeb517",
+   "signature": [
+    268513920,
+    268538816
+   ]
+  },
+  {
+   "name": "priv/ExceptionsSm/ExceptionsSm_medeleg_m-00.S",
+   "image": "images/priv/ExceptionsSm/ExceptionsSm_medeleg_m-00.bin",
+   "image_sha256": "baa9c8d7bfaedf0568d7a2a40d298786a83f1da56676cf521726001d4406bb63",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/ExceptionsSm/ExceptionsSm_medeleg_m-00.elf",
+   "elf_sha256": "7cf73fb22006d06315c1158a9097de7d436488422e8311e504e0650e4f3e73aa",
+   "signature": [
+    268493264,
+    268517408
+   ]
+  },
+  {
+   "name": "priv/ExceptionsSm/ExceptionsSm_medeleg_s-00.S",
+   "image": "images/priv/ExceptionsSm/ExceptionsSm_medeleg_s-00.bin",
+   "image_sha256": "ac7f8ea255a10bd8384db8022c53d141b623ed27d012152440eb12d282140f07",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/ExceptionsSm/ExceptionsSm_medeleg_s-00.elf",
+   "elf_sha256": "571d60974a36e25550b2f8782da3b3290f1ea548297e58e3578d70eccefd1267",
+   "signature": [
+    268493264,
+    268517408
+   ]
+  },
+  {
+   "name": "priv/ExceptionsSm/ExceptionsSm_medeleg_u-00.S",
+   "image": "images/priv/ExceptionsSm/ExceptionsSm_medeleg_u-00.bin",
+   "image_sha256": "8812ba8d53745aeb37abafe33c325dc3bd63eb92146178647430e27a1572105f",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/ExceptionsSm/ExceptionsSm_medeleg_u-00.elf",
+   "elf_sha256": "a3e1de8eeeaedb91aeebf9c7da5c2b0e1674422e9d63bb0504e24d884a4400a3",
+   "signature": [
+    268493264,
+    268517408
+   ]
+  },
+  {
+   "name": "priv/ExceptionsZc/ExceptionsZc-00.S",
+   "image": "images/priv/ExceptionsZc/ExceptionsZc-00.bin",
+   "image_sha256": "53aa6307de39726b39aca4f584a7910af856b0fba413dcc5e7b7b57cc78495b1",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/ExceptionsZc/ExceptionsZc-00.elf",
+   "elf_sha256": "e3edb7920fa7d533ac81c8b5be612b6ddb84dc60c49f4a35d0415b36cc5abe64",
+   "signature": [
+    268509232,
+    268561136
+   ]
+  },
+  {
+   "name": "priv/InterruptsSm/InterruptsSm_enable_M-00.S",
+   "image": "images/priv/InterruptsSm/InterruptsSm_enable_M-00.bin",
+   "image_sha256": "806b268c56589b740bb77153830bf8aca5df811b9ca36e0ae595008c8ed1aefa",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/InterruptsSm/InterruptsSm_enable_M-00.elf",
+   "elf_sha256": "720b3a9578b2e8f1254b9435b689d55931237a7dccd0d1dfc303dbbd938c6888",
+   "signature": [
+    268478416,
+    268502496
+   ]
+  },
+  {
+   "name": "priv/InterruptsSm/InterruptsSm_priority_mideleg_M-00.S",
+   "image": "images/priv/InterruptsSm/InterruptsSm_priority_mideleg_M-00.bin",
+   "image_sha256": "b5ef05810cce57b7121166206e0513094a1a9889af894bc6d765ec960a43909a",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/InterruptsSm/InterruptsSm_priority_mideleg_M-00.elf",
+   "elf_sha256": "e19dd55c19ddbf260d6bd20b4dbbcc220d9ce9c35e323e6fe0b8c1a68e4f08a8",
+   "signature": [
+    268479568,
+    268503744
+   ]
+  },
+  {
+   "name": "priv/InterruptsSm/InterruptsSm_priority_mie_M-00.S",
+   "image": "images/priv/InterruptsSm/InterruptsSm_priority_mie_M-00.bin",
+   "image_sha256": "a06234f8220f90032fc3602abf9a3b67d34014239cc2d365fbb552ded6c56b4f",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/InterruptsSm/InterruptsSm_priority_mie_M-00.elf",
+   "elf_sha256": "f5dd8d3c8a7137ad03bd20b3efe6ce9c2c6d46ff0a40caafbe63d223ee3aecb4",
+   "signature": [
+    268478944,
+    268503104
+   ]
+  },
+  {
+   "name": "priv/InterruptsSm/InterruptsSm_priority_mip_M-00.S",
+   "image": "images/priv/InterruptsSm/InterruptsSm_priority_mip_M-00.bin",
+   "image_sha256": "d8a105491b40ba9f46666583646bccff1b618d4f05d97e1d5aad612bf1cfa585",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/InterruptsSm/InterruptsSm_priority_mip_M-00.elf",
+   "elf_sha256": "7e9122afb3d4d857cfbf9e43ae41f7f70bee0494c1223c5e950ad8b8f6483114",
+   "signature": [
+    268478944,
+    268503104
+   ]
+  },
+  {
+   "name": "priv/InterruptsSm/InterruptsSm_trigger_M-00.S",
+   "image": "images/priv/InterruptsSm/InterruptsSm_trigger_M-00.bin",
+   "image_sha256": "1a05ea3ae49d971e63812b2a16b02005101f0c40769858d9a2d5f2318c90d022",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/InterruptsSm/InterruptsSm_trigger_M-00.elf",
+   "elf_sha256": "6b5544bee43531aa642baeeaa3dff937c94236e43cfcb9d885f024677d49c61f",
+   "signature": [
+    268499200,
+    268523280
+   ]
+  },
+  {
+   "name": "priv/InterruptsSm/InterruptsSm_wfi_M-00.S",
+   "image": "images/priv/InterruptsSm/InterruptsSm_wfi_M-00.bin",
+   "image_sha256": "f696481edb8fe611d11da8655bc6b96445678fd24c7bafb3ccad21331d7cd5b5",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/InterruptsSm/InterruptsSm_wfi_M-00.elf",
+   "elf_sha256": "5d45aa5c777662172e9b3b302e2a5982648b5398561dd36bf5187be41be69539",
+   "signature": [
+    268477584,
+    268501664
+   ]
+  },
+  {
+   "name": "priv/InterruptsSm/InterruptsSm_write_stip_sstc-00.S",
+   "image": "images/priv/InterruptsSm/InterruptsSm_write_stip_sstc-00.bin",
+   "image_sha256": "513c62677eccd22d55bf54e25b06d60b3daf0e001229ee35e25867284a95bbe1",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/InterruptsSm/InterruptsSm_write_stip_sstc-00.elf",
+   "elf_sha256": "89b465ff8826abe0cc42ca35d532e6e4b3f4fc8c96e2b0031c723f90053c642f",
+   "signature": [
+    268477712,
+    268501808
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_csr_insufficient_priv-00.S",
+   "image": "images/priv/Sm/Sm_csr_insufficient_priv-00.bin",
+   "image_sha256": "919f1dbfbf6c32e92a90efb25ec751f669ba0df5a7f448a9d111e45e84464592",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_csr_insufficient_priv-00.elf",
+   "elf_sha256": "25109622dca954c6cccaeb9186331553f24f693d52569e0a328ac492235c05cb",
+   "signature": [
+    268478416,
+    268502560
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_csr_ro-00.S",
+   "image": "images/priv/Sm/Sm_csr_ro-00.bin",
+   "image_sha256": "cb0ff8a444775b8761c00aa235fd11c6578a2524cb9eab77941e7eb51042f51b",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_csr_ro-00.elf",
+   "elf_sha256": "3a176803abf08bb9304d526dcee42303e97012256141743317506511b8ee72ff",
+   "signature": [
+    268521312,
+    268547440
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_csr_ro-01.S",
+   "image": "images/priv/Sm/Sm_csr_ro-01.bin",
+   "image_sha256": "52862d464bccf7b85941347c96d4fdbf521c6bd7303e8e67dc643786d7b7974f",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_csr_ro-01.elf",
+   "elf_sha256": "2e0c639a0fb9ce180f31fe3c3596763e3cdeda493be4ba8393a197faca937337",
+   "signature": [
+    268521312,
+    268547440
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_inst-00.S",
+   "image": "images/priv/Sm/Sm_inst-00.bin",
+   "image_sha256": "a275108b67594d6ebab28eae5e6a0fde9963a610576c53f9874de139ca1dd607",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_inst-00.elf",
+   "elf_sha256": "fd070eb1fc0af485f8e809f6e1ffaa2105cf1d508640f444dddb53e25fde08ca",
+   "signature": [
+    268477696,
+    268501776
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_mcause-00.S",
+   "image": "images/priv/Sm/Sm_mcause-00.bin",
+   "image_sha256": "ed3d5711831f9eb618d108841eb46666bb4f0f65b916b27b6b1a3a9cfac663f6",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_mcause-00.elf",
+   "elf_sha256": "b32d84457d960af9db2637b6e3669855567f2e110a1263560ecb0f3307c6baad",
+   "signature": [
+    268479600,
+    268503808
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_mcsr_access-00.S",
+   "image": "images/priv/Sm/Sm_mcsr_access-00.bin",
+   "image_sha256": "cd169c31aeec35f6e4ee376d6361d4ebf6127b536cbadd9a79f63855a7d911a5",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_mcsr_access-00.elf",
+   "elf_sha256": "3bce14b35ea4a586165ea465c59de988ec190aee3445daaefab07a40039fe40a",
+   "signature": [
+    268508608,
+    268533504
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_mcsr_addr-00.S",
+   "image": "images/priv/Sm/Sm_mcsr_addr-00.bin",
+   "image_sha256": "71e8482edac2af99b2604bc94b72706991618f5284bd47030e61b7cd476c1ad4",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_mcsr_addr-00.elf",
+   "elf_sha256": "e3912567463f054f740c42fd33498723c6171f461c2d1f9881b20f4bf1129134",
+   "signature": [
+    268496160,
+    268521280
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_mcsr_cntr-00.S",
+   "image": "images/priv/Sm/Sm_mcsr_cntr-00.bin",
+   "image_sha256": "e6c10cbdcf91ab17d335774fbac2e13e028a6d7c768950a30ab486744d4d33fe",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_mcsr_cntr-00.elf",
+   "elf_sha256": "685ecd62ae5fec69892a150a73f1a585d1eb2fb4717183bec0db68bef670dfb4",
+   "signature": [
+    268513312,
+    268538416
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_mcsr_walk-00.S",
+   "image": "images/priv/Sm/Sm_mcsr_walk-00.bin",
+   "image_sha256": "cdddc29b5296619cf3923f1326e91ff13eae5b7027fcd7526256953341243b6a",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_mcsr_walk-00.elf",
+   "elf_sha256": "f25bd6b9e726a7e59a4969bfe74e6541cab286e737c45b153ca64c7cf71d1245",
+   "signature": [
+    268522224,
+    268547872
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_mcsr_walk-01.S",
+   "image": "images/priv/Sm/Sm_mcsr_walk-01.bin",
+   "image_sha256": "5bfafd6682165f8c149449e3e385a81c2be04d2f3f3f3259b45fe8870f5b9166",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_mcsr_walk-01.elf",
+   "elf_sha256": "fb2479e948707144dbb702fc3b8d7f2b95658e474d1aeaa68f9fafaba968bd44",
+   "signature": [
+    268529680,
+    268555808
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_mcsr_walk-02.S",
+   "image": "images/priv/Sm/Sm_mcsr_walk-02.bin",
+   "image_sha256": "6a103aa38acaf295a732c17bafc04299f14d3f26cc044a4f7eb8e527ce339791",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_mcsr_walk-02.elf",
+   "elf_sha256": "97dc59f5c406f07b03dbec180012914eb8dc953af1bd2b5c0ffc21bcb9eb870d",
+   "signature": [
+    268530576,
+    268556704
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_mcsr_walk-03.S",
+   "image": "images/priv/Sm/Sm_mcsr_walk-03.bin",
+   "image_sha256": "5328b7d0b280cc7e8ad44eafc856cc3cfbd73afb2dda3d9abe6aefee1aa41e97",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_mcsr_walk-03.elf",
+   "elf_sha256": "c626ba9ea629c5fd5eb296eee7cd11622458a8c49844ffa7e2d2ee35fb389ff2",
+   "signature": [
+    268531472,
+    268557600
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_mcsr_walk-04.S",
+   "image": "images/priv/Sm/Sm_mcsr_walk-04.bin",
+   "image_sha256": "ef8092167d77d072bd68db58d2702022cabb1b6c57ba282366ceea4574c824ea",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_mcsr_walk-04.elf",
+   "elf_sha256": "c30aa4731086193bd5c093defadd9cfc52eda05a5a6638aa919567c1e6aa9ee1",
+   "signature": [
+    268531984,
+    268558112
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_mcsr_walk-05.S",
+   "image": "images/priv/Sm/Sm_mcsr_walk-05.bin",
+   "image_sha256": "cd3474169715f806c002f7bab1207ee97b7e9783e67a33a11c6a625144c16f19",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_mcsr_walk-05.elf",
+   "elf_sha256": "fcd2764f4fdd1515f0201fa01f5e3ce8a8fbbb5eb956ff50413155bb041d9426",
+   "signature": [
+    268531984,
+    268558112
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_mcsr_walk-06.S",
+   "image": "images/priv/Sm/Sm_mcsr_walk-06.bin",
+   "image_sha256": "4b67b42ae54b1a1b11ac573dd6497a64f00bd12178c7562e9e360e74396df1ed",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_mcsr_walk-06.elf",
+   "elf_sha256": "d7f3b9b0a1f0d18a673eef52e96caef0d9ea34f61d17fba3e0edcb409e535a66",
+   "signature": [
+    268531984,
+    268558112
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_mcsr_walk-07.S",
+   "image": "images/priv/Sm/Sm_mcsr_walk-07.bin",
+   "image_sha256": "0755831fc0138e176a7d2e9d91b1b5a244bea0424b51f2598f0aca5c7d8f04b4",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_mcsr_walk-07.elf",
+   "elf_sha256": "96a4b2967290695dee99f2708463f26f6ad2634e147b0319e7d3c711b1b4e125",
+   "signature": [
+    268531984,
+    268558112
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_mcsr_walk-08.S",
+   "image": "images/priv/Sm/Sm_mcsr_walk-08.bin",
+   "image_sha256": "64e8db93fc9acfd7e75d46c63c9332a30497c2f529e8de51ff0dfd0d9f1d4c74",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_mcsr_walk-08.elf",
+   "elf_sha256": "bb14795c1423a2fb98e05be5f660c555037de375e3e95182d46762108fc22ce1",
+   "signature": [
+    268531984,
+    268558112
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_mcsr_walk-09.S",
+   "image": "images/priv/Sm/Sm_mcsr_walk-09.bin",
+   "image_sha256": "4511a7f55a97f6aa7c55099fce281a2f6023009430327261bfc5c3c734757333",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_mcsr_walk-09.elf",
+   "elf_sha256": "81f457acd44b3111b10756928798ccaf80fc66e282824b786fde41f762d2ecc5",
+   "signature": [
+    268512832,
+    268537936
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_mcsr_walk-10.S",
+   "image": "images/priv/Sm/Sm_mcsr_walk-10.bin",
+   "image_sha256": "3512702d117fe8ad5a960c13b0962cc03c3519574e12062885b16b628382561e",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_mcsr_walk-10.elf",
+   "elf_sha256": "7129ce24ef12cec7830bde1f28f2f373f278901ff744bb929902a7d0d3e843a3",
+   "signature": [
+    268523968,
+    268549600
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_mcsr_walk-11.S",
+   "image": "images/priv/Sm/Sm_mcsr_walk-11.bin",
+   "image_sha256": "793dcf72810da6fbe6a5c0d6b6b06452e89b1bd09ff0c81ea46f91f8081af836",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_mcsr_walk-11.elf",
+   "elf_sha256": "643b56719dbc90591914106f703ef28d59b86340b94f994324379df65b3564ee",
+   "signature": [
+    268532752,
+    268558880
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_misa-00.S",
+   "image": "images/priv/Sm/Sm_misa-00.bin",
+   "image_sha256": "adb9da9c26e00a7a51bb0fcc83065bbf2ad16ff11454a1457998eb76ce577d80",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_misa-00.elf",
+   "elf_sha256": "2ff263417b5649b097a3696b3d845b4d0a74fb64776418746a2b407100d776a3",
+   "signature": [
+    268478688,
+    268502848
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_mstatus_sd-00.S",
+   "image": "images/priv/Sm/Sm_mstatus_sd-00.bin",
+   "image_sha256": "281f307902fb5c7dee250deccdd0311f6c86e8a8f820ba7539cbbbe4eef062b8",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_mstatus_sd-00.elf",
+   "elf_sha256": "aa91bf800b756c5e9c00829316acc8edc0452d033bae4dbabbe919039b9580e3",
+   "signature": [
+    268504480,
+    268529072
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_satp_from_m-00.S",
+   "image": "images/priv/Sm/Sm_satp_from_m-00.bin",
+   "image_sha256": "c7d8ed4f1d979e6e24bf14222a85186ee393c29f2a61f4db286df63fc4a0406a",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_satp_from_m-00.elf",
+   "elf_sha256": "baeb7b6f44236eecdb0494327e84f882327ca10487181441f9eedf86ccbd5ec4",
+   "signature": [
+    268477424,
+    268501504
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_satp_from_s-00.S",
+   "image": "images/priv/Sm/Sm_satp_from_s-00.bin",
+   "image_sha256": "84d25ccd45e9e42fbb4126a4e804fc73c1827d904e81f560ba04172c505ddcaa",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_satp_from_s-00.elf",
+   "elf_sha256": "7bfe9fcd1ac3946cff30243c7d1b15bc76afc41d53ccc911f4a8399fca9b30ae",
+   "signature": [
+    268477424,
+    268501504
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_scsr_from_m-00.S",
+   "image": "images/priv/Sm/Sm_scsr_from_m-00.bin",
+   "image_sha256": "0c5dc084bdb75998fad5d57600e1d3c877a12475f7ce287fe3e96eb81168cd2e",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_scsr_from_m-00.elf",
+   "elf_sha256": "cc10aa16064d66abd68996f74a3f1e7aa91fb9ee6671056b0f552a540a05b403",
+   "signature": [
+    268479808,
+    268504032
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_shadow-00.S",
+   "image": "images/priv/Sm/Sm_shadow-00.bin",
+   "image_sha256": "4b366784ad85028649e7082b0369a4f931a8dbc9d4d2f95cbf9aac198278873b",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_shadow-00.elf",
+   "elf_sha256": "528c16c5bfa872abc360bb5aa5cf8ec66e41c34cc88bb2c2c8619e6033e52fdd",
+   "signature": [
+    268480768,
+    268505056
+   ]
+  },
+  {
+   "name": "priv/Sm/Sm_xret-00.S",
+   "image": "images/priv/Sm/Sm_xret-00.bin",
+   "image_sha256": "e8fb56d5abd2f7ffbaa8aa10961a1e4954c351dfdd4cf228fd7d528a6a173300",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/priv/Sm/Sm_xret-00.elf",
+   "elf_sha256": "42ff11a14e882aa4de16b4079e4ac71c129aa187314cecceca8d2c7472cc94d8",
+   "signature": [
+    268504720,
+    268529376
+   ]
+  },
+  {
+   "name": "rv32i/I/I-add-00.S",
+   "image": "images/rv32i/I/I-add-00.bin",
+   "image_sha256": "e11e1514fe0618e165993cfb50090b4816a3717649a177b9e57cc743e4ee227d",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-add-00.elf",
+   "elf_sha256": "6c092b3aa6ee344d09028d0055e81e52dd152e490fcc05e92bad2621043f9655",
+   "signature": [
+    268522032,
+    268523680
+   ]
+  },
+  {
+   "name": "rv32i/I/I-addi-00.S",
+   "image": "images/rv32i/I/I-addi-00.bin",
+   "image_sha256": "0b4d6b3fb817adc0bb0040d5558630fbe37d2c4a4fbc9c5df5c6cf03b9ae8d9f",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-addi-00.elf",
+   "elf_sha256": "d84a66926d4c116135591209bc1940788a404d35fe6b9ea9fa63145c1941bc3b",
+   "signature": [
+    268521904,
+    268523456
+   ]
+  },
+  {
+   "name": "rv32i/I/I-and-00.S",
+   "image": "images/rv32i/I/I-and-00.bin",
+   "image_sha256": "50b2d9d8ddd374e4620973b07945373095eb4feabeddbb2b85ab69625a976c43",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-and-00.elf",
+   "elf_sha256": "971a4e47a19a023998aa64e22376f9644ba07869cec967e05e44b8d71daed41d",
+   "signature": [
+    268522032,
+    268523680
+   ]
+  },
+  {
+   "name": "rv32i/I/I-andi-00.S",
+   "image": "images/rv32i/I/I-andi-00.bin",
+   "image_sha256": "308ca2cd75e16e855e7db184598c727f3a17db462f98eab43fb482a1f3292053",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-andi-00.elf",
+   "elf_sha256": "5c4b596b2b5f83cd058b21ca7056c2a97457ef7ad9884a2d798f5dd992e3bc64",
+   "signature": [
+    268521904,
+    268523456
+   ]
+  },
+  {
+   "name": "rv32i/I/I-auipc-00.S",
+   "image": "images/rv32i/I/I-auipc-00.bin",
+   "image_sha256": "908293efa084f865eed793a9231fe0ead0640bfefcb7dfcbd6bb30d6f767e3eb",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-auipc-00.elf",
+   "elf_sha256": "1455155e3d875c9ceb008cd4913eab5bf30b541eb480aaf96a22c6c1d1bf4c62",
+   "signature": [
+    268480496,
+    268480800
+   ]
+  },
+  {
+   "name": "rv32i/I/I-beq-00.S",
+   "image": "images/rv32i/I/I-beq-00.bin",
+   "image_sha256": "c0c34e991aade7f6734cd527046b6a3bdd0a402ce253a616f08395ecf1d59e4e",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-beq-00.elf",
+   "elf_sha256": "e1d90daa799d614d91eb75974150393e36626344536835ff96d32fa6ed53f72e",
+   "signature": [
+    268548800,
+    268550512
+   ]
+  },
+  {
+   "name": "rv32i/I/I-bge-00.S",
+   "image": "images/rv32i/I/I-bge-00.bin",
+   "image_sha256": "e550b06df3e58415e3a21067847a558cc9cf4757f92e22ff54b03a0922473fed",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-bge-00.elf",
+   "elf_sha256": "3c493dda46e9040f1a623eefcb684cdbe2ddfb3bfa5ff9540fe932d748b87776",
+   "signature": [
+    268548800,
+    268550512
+   ]
+  },
+  {
+   "name": "rv32i/I/I-bgeu-00.S",
+   "image": "images/rv32i/I/I-bgeu-00.bin",
+   "image_sha256": "763f0e6824eae40f20e14b7f39656f433543e630e7fc0df55458a01f19830fde",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-bgeu-00.elf",
+   "elf_sha256": "5f32cf0ee60ab252fb00b8f657df8481e4322c7a096391d204e370b44b5b6fcc",
+   "signature": [
+    268549056,
+    268550768
+   ]
+  },
+  {
+   "name": "rv32i/I/I-blt-00.S",
+   "image": "images/rv32i/I/I-blt-00.bin",
+   "image_sha256": "8ce6ef31fb2209ab9c7b6f754c19f737b70c7dc55c247bb84109d8a7d95f334f",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-blt-00.elf",
+   "elf_sha256": "c76450244aa747bf35b51c77377816faee5c9e071d03878449821681b78284e5",
+   "signature": [
+    268548800,
+    268550512
+   ]
+  },
+  {
+   "name": "rv32i/I/I-bltu-00.S",
+   "image": "images/rv32i/I/I-bltu-00.bin",
+   "image_sha256": "979211c9a8c4c08b82fb2d8302058bcbd51136a82bcafb32535eaaeb07beb86c",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-bltu-00.elf",
+   "elf_sha256": "6acdf3351d0966083396ac50d0dbc7d8d0cc472ad639e1bb9b2c82b126fcc57f",
+   "signature": [
+    268549056,
+    268550768
+   ]
+  },
+  {
+   "name": "rv32i/I/I-bne-00.S",
+   "image": "images/rv32i/I/I-bne-00.bin",
+   "image_sha256": "9f6cdc8da8989ce31f03fddbd45972b34c7867fb572a7e5eb7a12e3dba766aed",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-bne-00.elf",
+   "elf_sha256": "cd179770207a00be82b9ba0a198688cf29cc08cd601ef31262ca10217a2cdec9",
+   "signature": [
+    268548800,
+    268550512
+   ]
+  },
+  {
+   "name": "rv32i/I/I-fence-00.S",
+   "image": "images/rv32i/I/I-fence-00.bin",
+   "image_sha256": "3540752ea8e0c42fcc0183f71e45e82a683c154701bda6ff0ceed0f106fc469b",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-fence-00.elf",
+   "elf_sha256": "3ecf635cfd96b33e0f5eefaf3d8f94e220a4b8e74193ccc90731fce139de4a0c",
+   "signature": [
+    268496064,
+    268496144
+   ]
+  },
+  {
+   "name": "rv32i/I/I-jal-00.S",
+   "image": "images/rv32i/I/I-jal-00.bin",
+   "image_sha256": "565b061946ab5bdc10f1fbd1ff20c2257752151a0823f8e4c677550d86a8ba9c",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-jal-00.elf",
+   "elf_sha256": "b0e60e952bb7ad3c4e50cd612a7a8a011bc8f67294b9294a715017ada320e5f7",
+   "signature": [
+    268594800,
+    268595312
+   ]
+  },
+  {
+   "name": "rv32i/I/I-jalr-00.S",
+   "image": "images/rv32i/I/I-jalr-00.bin",
+   "image_sha256": "3e15fee6f718de372e153f402e655fdbd8748c552a663d93cf1e13de3b27d233",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-jalr-00.elf",
+   "elf_sha256": "fc7be0f222c44af5ed5ffbdb5c84b71108fc0316e3faf1a17c282e21c3a5a6a9",
+   "signature": [
+    268500352,
+    268501376
+   ]
+  },
+  {
+   "name": "rv32i/I/I-lb-00.S",
+   "image": "images/rv32i/I/I-lb-00.bin",
+   "image_sha256": "ec4633a9f1a7d87819dcf3eccc73b6e9c451ef3dbe62a3c1f22dba6091d875a5",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-lb-00.elf",
+   "elf_sha256": "0c7510ba7d9d63fca4c4dc342f5f191d1d32f038fdf44e65d232d3862530314a",
+   "signature": [
+    268500576,
+    268501152
+   ]
+  },
+  {
+   "name": "rv32i/I/I-lbu-00.S",
+   "image": "images/rv32i/I/I-lbu-00.bin",
+   "image_sha256": "ddccae1bb82134c1cf9a9a7c5b08c82252e2aadbbaac5dea8fb809c7c80ace18",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-lbu-00.elf",
+   "elf_sha256": "090d2d45bef7306f6d21eac4c884db6711a33ca8d055b2737ca9ef0048d80674",
+   "signature": [
+    268500704,
+    268501280
+   ]
+  },
+  {
+   "name": "rv32i/I/I-lh-00.S",
+   "image": "images/rv32i/I/I-lh-00.bin",
+   "image_sha256": "7e165ca5062237f13aee65925c5780e29fd4bdffdcd62840cbabc27adbc45c3c",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-lh-00.elf",
+   "elf_sha256": "e3b4841faaa982530e3615dc56b8012c1154945f9174f6c1438573be434fc3bd",
+   "signature": [
+    268500352,
+    268500912
+   ]
+  },
+  {
+   "name": "rv32i/I/I-lhu-00.S",
+   "image": "images/rv32i/I/I-lhu-00.bin",
+   "image_sha256": "2094187f2ad2db3215c3777c2efdbb3d031a02f5bc7054511fccc8c3c4c2e4ab",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-lhu-00.elf",
+   "elf_sha256": "6d50c3893db8388eea2ed989b7f96bb83fe71df69b77d3e36ec4d19e64cf6607",
+   "signature": [
+    268500480,
+    268501040
+   ]
+  },
+  {
+   "name": "rv32i/I/I-lui-00.S",
+   "image": "images/rv32i/I/I-lui-00.bin",
+   "image_sha256": "edd176865f810cb5087a4fdcae51659ef1e0742ed75ce7eccf9fb13afec73c31",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-lui-00.elf",
+   "elf_sha256": "1d05c983e0afbfa9ea239c96a232043b427adb12bf40f2978c20c3870190ce9b",
+   "signature": [
+    268480384,
+    268480688
+   ]
+  },
+  {
+   "name": "rv32i/I/I-lw-00.S",
+   "image": "images/rv32i/I/I-lw-00.bin",
+   "image_sha256": "472244e5d69f9b44e87e0525d2dbe640c62280335c54c3827c82846fda658621",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-lw-00.elf",
+   "elf_sha256": "78a9f20e977bf065ae81a8a76803c8bec819295683cae2d170d3a2f0788ac42f",
+   "signature": [
+    268500240,
+    268500800
+   ]
+  },
+  {
+   "name": "rv32i/I/I-nop-00.S",
+   "image": "images/rv32i/I/I-nop-00.bin",
+   "image_sha256": "31f21a2275e96cf0d18b6a0da7ff20fe239a3ef91eebe0aa62d974c64aba96f7",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-nop-00.elf",
+   "elf_sha256": "3b00741a11e123d8f75b2bbf3facdce51ad79fc02527741828b5d1145ce23bae",
+   "signature": [
+    268477328,
+    268477408
+   ]
+  },
+  {
+   "name": "rv32i/I/I-or-00.S",
+   "image": "images/rv32i/I/I-or-00.bin",
+   "image_sha256": "9ae3c6ba8aa2e926af7a8ed3cb538f5b653be941ba7712d18b16ffba849feaa3",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-or-00.elf",
+   "elf_sha256": "32dbfaab3aac5b02872b6b1ff6a14481ac0019e19abf26e380a736447fadd370",
+   "signature": [
+    268521632,
+    268523280
+   ]
+  },
+  {
+   "name": "rv32i/I/I-ori-00.S",
+   "image": "images/rv32i/I/I-ori-00.bin",
+   "image_sha256": "fa3c608da7e381d131e74f2a2a208430af90529a259ff34b6c214830cf0eb21f",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-ori-00.elf",
+   "elf_sha256": "197dc5d2a47c1e68fd8a5e8f4a880b35e8f188bfab75b6724851f24a797f3f37",
+   "signature": [
+    268521536,
+    268523088
+   ]
+  },
+  {
+   "name": "rv32i/I/I-sb-00.S",
+   "image": "images/rv32i/I/I-sb-00.bin",
+   "image_sha256": "3688ffd8659e75c29e6af5bf6af827f0d7d5d091ef45b18e6077907df239d28a",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-sb-00.elf",
+   "elf_sha256": "1ae3eb421a885f9872413a3f70459214921e035c60ac2715c691f15115375a97",
+   "signature": [
+    268499648,
+    268500160
+   ]
+  },
+  {
+   "name": "rv32i/I/I-sh-00.S",
+   "image": "images/rv32i/I/I-sh-00.bin",
+   "image_sha256": "16900bfe589c2a066795137dcd9cd5e891541fc53ab524c5ec98bcbcea9314a6",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-sh-00.elf",
+   "elf_sha256": "c1696d06d2cf9838f9d782fbf095cf50b61ddbcb33a77db798e0f0adc0c5d333",
+   "signature": [
+    268499408,
+    268499888
+   ]
+  },
+  {
+   "name": "rv32i/I/I-sll-00.S",
+   "image": "images/rv32i/I/I-sll-00.bin",
+   "image_sha256": "6d0056146d8876fdd4d1d6900ca63bf05d3570e435b7098aed3d75f9a71560f7",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-sll-00.elf",
+   "elf_sha256": "eae0c2a410c08a991b1c8c2cbd15f224f3547be0546e29c142ebbe3470dafa85",
+   "signature": [
+    268522032,
+    268523680
+   ]
+  },
+  {
+   "name": "rv32i/I/I-slli-00.S",
+   "image": "images/rv32i/I/I-slli-00.bin",
+   "image_sha256": "7499e7d6146e0f6fb739112ae78d019584fe40bff619e0f5ed93552b5c4811b3",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-slli-00.elf",
+   "elf_sha256": "01cb3cd9838abcd1fa209409a11f899184e52fb72fc73dc08704a714dce9b9b0",
+   "signature": [
+    268506992,
+    268507856
+   ]
+  },
+  {
+   "name": "rv32i/I/I-slt-00.S",
+   "image": "images/rv32i/I/I-slt-00.bin",
+   "image_sha256": "898f257b0b1963a7223e8681353c3f04c0856b2a28adcd35722d7f039761de28",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-slt-00.elf",
+   "elf_sha256": "f1a362255cb56744c5d91b427290bfc4123a0f624eec97fd4bc65488793fd222",
+   "signature": [
+    268522288,
+    268523920
+   ]
+  },
+  {
+   "name": "rv32i/I/I-slti-00.S",
+   "image": "images/rv32i/I/I-slti-00.bin",
+   "image_sha256": "5f45b63e4f8283c3348bf46cd00044eaf3148af0738b3f955c74627006130f4c",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-slti-00.elf",
+   "elf_sha256": "4a220512670e6ab00c497b36141f6fd2b49360d8acc72ae18e52ddf98d2a6cf9",
+   "signature": [
+    268522048,
+    268523584
+   ]
+  },
+  {
+   "name": "rv32i/I/I-sltiu-00.S",
+   "image": "images/rv32i/I/I-sltiu-00.bin",
+   "image_sha256": "295f1ee92ed4e60c783f5be26f4a75e021bda4f95c58f54a6ea0078b959ec057",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-sltiu-00.elf",
+   "elf_sha256": "e35b2cdd8d8351f76b3204e31b90b42affefdfcd4b57bc9e2639908bb3701078",
+   "signature": [
+    268522416,
+    268523952
+   ]
+  },
+  {
+   "name": "rv32i/I/I-sltu-00.S",
+   "image": "images/rv32i/I/I-sltu-00.bin",
+   "image_sha256": "ca7fb613e8d4f854b5959d4b00f24d63c6daa3cd05eafbf1cc5432f17d4dd7a9",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-sltu-00.elf",
+   "elf_sha256": "b0df7bae6017d3500ef81420ea29fe9e443b011ce0193ffab528fd96f3a3e5c4",
+   "signature": [
+    268522672,
+    268524304
+   ]
+  },
+  {
+   "name": "rv32i/I/I-sra-00.S",
+   "image": "images/rv32i/I/I-sra-00.bin",
+   "image_sha256": "ea62b3d6397dbc527ff6a7790a6fb84c273305a52998c75c8319b02e8ed89519",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-sra-00.elf",
+   "elf_sha256": "3c42e66d59872fd1b68d0eab2fd3a4789a75ec0955b66336fb6559cb793b0dca",
+   "signature": [
+    268522032,
+    268523680
+   ]
+  },
+  {
+   "name": "rv32i/I/I-srai-00.S",
+   "image": "images/rv32i/I/I-srai-00.bin",
+   "image_sha256": "e889becdd3a652e4182c843921a1910ceb90cfa155cc29d0a989ddc68456f08d",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-srai-00.elf",
+   "elf_sha256": "215a7eb89a5d72885be8f7555e90893711e7c6ae949f8b0c9271bae86bb7d802",
+   "signature": [
+    268506992,
+    268507856
+   ]
+  },
+  {
+   "name": "rv32i/I/I-srl-00.S",
+   "image": "images/rv32i/I/I-srl-00.bin",
+   "image_sha256": "9b89a8c07ea059d56fc959d5aacae15675ed8dd46d7250d00a9789a4f22175d9",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-srl-00.elf",
+   "elf_sha256": "b53963318616b4e19494ec499907476e1cd49fd2a3d1b71a7464bf02dccf9ad1",
+   "signature": [
+    268522032,
+    268523680
+   ]
+  },
+  {
+   "name": "rv32i/I/I-srli-00.S",
+   "image": "images/rv32i/I/I-srli-00.bin",
+   "image_sha256": "84aded69f6116ad89286cb99452245a72ad0a9447dd5aae0bf9518c52cd6ccd7",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-srli-00.elf",
+   "elf_sha256": "68cd86a28a15d135a4344c47cd06b7f7b080b844741a63f8f7c9a505d80331ab",
+   "signature": [
+    268506992,
+    268507856
+   ]
+  },
+  {
+   "name": "rv32i/I/I-sub-00.S",
+   "image": "images/rv32i/I/I-sub-00.bin",
+   "image_sha256": "db546616e7c2201f8064145e19365e46c547e8c75ced3c4d7974975b3527c382",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-sub-00.elf",
+   "elf_sha256": "91594c1dd39136d2f1979ec0cfd9fa8ab3022b245cbe89adc1a998fa898b5a18",
+   "signature": [
+    268522032,
+    268523680
+   ]
+  },
+  {
+   "name": "rv32i/I/I-sw-00.S",
+   "image": "images/rv32i/I/I-sw-00.bin",
+   "image_sha256": "3032bb8cb01c42e022630a82bc8fb48f5dfbe773bfc3bcd414c8eabf012dc763",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-sw-00.elf",
+   "elf_sha256": "209fd8a06028b41af9555654ba04b5c54358ddabb711c4cc3a74746d96c4ad92",
+   "signature": [
+    268499280,
+    268499744
+   ]
+  },
+  {
+   "name": "rv32i/I/I-xor-00.S",
+   "image": "images/rv32i/I/I-xor-00.bin",
+   "image_sha256": "845c1e72b0d4d6a45f2d31b0841aa6230f513099a63dec177c1fa4b65c951a81",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-xor-00.elf",
+   "elf_sha256": "44053031007937e2b52424ac892128522bdc3c04f9ce17edbbae0a95be89a065",
+   "signature": [
+    268522032,
+    268523680
+   ]
+  },
+  {
+   "name": "rv32i/I/I-xori-00.S",
+   "image": "images/rv32i/I/I-xori-00.bin",
+   "image_sha256": "e979fde64b4e6880f2e835815d81dbf5f32c7965d9cb5167a5d95429b2ec1811",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/I/I-xori-00.elf",
+   "elf_sha256": "12c74bc1d1ad69b95be78d3e7d962a437f513cc55e5e66482a3e21d34da7b1cd",
+   "signature": [
+    268521904,
+    268523456
+   ]
+  },
+  {
+   "name": "rv32i/M/M-div-00.S",
+   "image": "images/rv32i/M/M-div-00.bin",
+   "image_sha256": "3a9ef1a78c8ca1f4763a27f0a3ad5ffd2c0eb9c8ba94206b792fb2ce5128ce90",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/M/M-div-00.elf",
+   "elf_sha256": "32ed659b0d3946d68931d61a7b7c0e9c38431544290646960c1f5d0372b27935",
+   "signature": [
+    268522032,
+    268523680
+   ]
+  },
+  {
+   "name": "rv32i/M/M-divu-00.S",
+   "image": "images/rv32i/M/M-divu-00.bin",
+   "image_sha256": "7ecf6496a5a2d2b0d05e2740ab601210c21d09798aa1113e78f2bab278c4f1e3",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/M/M-divu-00.elf",
+   "elf_sha256": "05b6bf378859efd1bd0763d3dd74b0f6350785ef508b2b50320980921e2bc9ec",
+   "signature": [
+    268522416,
+    268524064
+   ]
+  },
+  {
+   "name": "rv32i/M/M-mul-00.S",
+   "image": "images/rv32i/M/M-mul-00.bin",
+   "image_sha256": "b21c85c3d58fa449536043e3023f4c9815193e20526273c8c4317b5e409eff07",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/M/M-mul-00.elf",
+   "elf_sha256": "32e65eb2b6a646fc0b56f11440f21f35ea7fa489f0cd2336ce9ddd36f90cb547",
+   "signature": [
+    268522032,
+    268523680
+   ]
+  },
+  {
+   "name": "rv32i/M/M-mulh-00.S",
+   "image": "images/rv32i/M/M-mulh-00.bin",
+   "image_sha256": "a8a77a8a76a3308014764e29252d7208565f9c2320a54ac83a70915a954e1b9a",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/M/M-mulh-00.elf",
+   "elf_sha256": "c18a5826608f17f9713efaf6b37253d20196b485b15b0d2c21bc4fedce112fd6",
+   "signature": [
+    268522416,
+    268524064
+   ]
+  },
+  {
+   "name": "rv32i/M/M-mulhsu-00.S",
+   "image": "images/rv32i/M/M-mulhsu-00.bin",
+   "image_sha256": "9e95bb839e709ade9bf8b9d55ac30fd29dc04fac376926ba87397e59a5336620",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/M/M-mulhsu-00.elf",
+   "elf_sha256": "8bb9bde1d7d1bd212b4719061aed4e561c0de06f8f279074f5f2c1dc9ef608a3",
+   "signature": [
+    268523216,
+    268524864
+   ]
+  },
+  {
+   "name": "rv32i/M/M-mulhu-00.S",
+   "image": "images/rv32i/M/M-mulhu-00.bin",
+   "image_sha256": "0115f957b08bc167aaab5f5bfa398a5a3bba58b65d0e4b735c5411970f02183c",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/M/M-mulhu-00.elf",
+   "elf_sha256": "753758e7ed3b3ea21556f0f188f23ca0c5a1696ae719804db6a747e39d5a881e",
+   "signature": [
+    268522816,
+    268524464
+   ]
+  },
+  {
+   "name": "rv32i/M/M-rem-00.S",
+   "image": "images/rv32i/M/M-rem-00.bin",
+   "image_sha256": "db51cd3476ee61fe549dab6419bad8a0d2940f4fcb0ff6a1765599d3c0f6c85a",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/M/M-rem-00.elf",
+   "elf_sha256": "6f0f813f18f580503a894595c8281631817210e4c181d3b1ba53111aeee45ae0",
+   "signature": [
+    268522032,
+    268523680
+   ]
+  },
+  {
+   "name": "rv32i/M/M-remu-00.S",
+   "image": "images/rv32i/M/M-remu-00.bin",
+   "image_sha256": "799f30095a6359a246ab5eed493d7048fe872027d2b0c265cefd5a8c4efce0be",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/M/M-remu-00.elf",
+   "elf_sha256": "4de3d8664bbd59c3b089ffa527d1bdfa1466b56826ba653cf4c884e9692b5ca9",
+   "signature": [
+    268522416,
+    268524064
+   ]
+  },
+  {
+   "name": "rv32i/Misalign/Misalign-lh-00.S",
+   "image": "images/rv32i/Misalign/Misalign-lh-00.bin",
+   "image_sha256": "3bd55636ac014422fbd3a52231f403908f8d249a8210e419deb30deb98b89503",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Misalign/Misalign-lh-00.elf",
+   "elf_sha256": "2d0ec8d411a51ce3283897e64d96bf6344f01ea68160edad5295e594b5073906",
+   "signature": [
+    268479744,
+    268479968
+   ]
+  },
+  {
+   "name": "rv32i/Misalign/Misalign-lhu-00.S",
+   "image": "images/rv32i/Misalign/Misalign-lhu-00.bin",
+   "image_sha256": "af55d42401e32b29728fe254a218de566ce5f7c1b5d30944beeece79399dfa8f",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Misalign/Misalign-lhu-00.elf",
+   "elf_sha256": "2e783941b50b267ee43bde364e460661d82eb6f4e015391cabe6ef94388d0557",
+   "signature": [
+    268479792,
+    268480016
+   ]
+  },
+  {
+   "name": "rv32i/Misalign/Misalign-lw-00.S",
+   "image": "images/rv32i/Misalign/Misalign-lw-00.bin",
+   "image_sha256": "7406f213c13a6dbe818ca20facf9c7b69578326a4a11a335195085b23bf027f8",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Misalign/Misalign-lw-00.elf",
+   "elf_sha256": "3a658a1c7da13240e31decf281ac0a183c1f65a24f15d4ed9631579dd51cf024",
+   "signature": [
+    268479728,
+    268479952
+   ]
+  },
+  {
+   "name": "rv32i/Misalign/Misalign-sh-00.S",
+   "image": "images/rv32i/Misalign/Misalign-sh-00.bin",
+   "image_sha256": "dae642b6ad5686186e2ac458987b60d0095277b3f53d8ee3696b9635229c067b",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Misalign/Misalign-sh-00.elf",
+   "elf_sha256": "c8764cc40d2bffe1ad6c2721aa3ae5d01391d484925d800e91e93eca9c77ac82",
+   "signature": [
+    268494976,
+    268495344
+   ]
+  },
+  {
+   "name": "rv32i/Misalign/Misalign-sw-00.S",
+   "image": "images/rv32i/Misalign/Misalign-sw-00.bin",
+   "image_sha256": "8b5564dfdc1743e2a88d489ed93e4403a071ee353f7c1ea361db86744106b434",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Misalign/Misalign-sw-00.elf",
+   "elf_sha256": "209373f2ca40798f3208f2d164b8288a88303571d0864d74e886a943aa037c97",
+   "signature": [
+    268494960,
+    268495328
+   ]
+  },
+  {
+   "name": "rv32i/Misalign/MisalignZca-c.lw-00.S",
+   "image": "images/rv32i/Misalign/MisalignZca-c.lw-00.bin",
+   "image_sha256": "55466d0242d0e29b36a9cb7d744ed1cfaad20af68a941be6e653cb66f68338c4",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Misalign/MisalignZca-c.lw-00.elf",
+   "elf_sha256": "a862870dc9154e8b29d9c4116cc5924b594714e23575fc0d95a00e8e291fbf27",
+   "signature": [
+    268479936,
+    268480160
+   ]
+  },
+  {
+   "name": "rv32i/Misalign/MisalignZca-c.lwsp-00.S",
+   "image": "images/rv32i/Misalign/MisalignZca-c.lwsp-00.bin",
+   "image_sha256": "0ba8e799c83a35b796167ee20a3cbf369bd237553dc39686d9eea0bac54549b8",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Misalign/MisalignZca-c.lwsp-00.elf",
+   "elf_sha256": "0b9d4f43df05949b869557c8bca03c5e550f7154796aa17605e3c7ef289c9af1",
+   "signature": [
+    268480000,
+    268480224
+   ]
+  },
+  {
+   "name": "rv32i/Misalign/MisalignZca-c.sw-00.S",
+   "image": "images/rv32i/Misalign/MisalignZca-c.sw-00.bin",
+   "image_sha256": "a9ed69e7fa46f7f2a6e1c9ab5c50b12948e3758a4a9681c8618905903f200302",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Misalign/MisalignZca-c.sw-00.elf",
+   "elf_sha256": "475b96dab834103c6e7e260d8c1b5db3c9ae5d2ce269d4d8f24b1c172bdca5fe",
+   "signature": [
+    268495072,
+    268495440
+   ]
+  },
+  {
+   "name": "rv32i/Misalign/MisalignZca-c.swsp-00.S",
+   "image": "images/rv32i/Misalign/MisalignZca-c.swsp-00.bin",
+   "image_sha256": "fd689ce9e4cf59056f6eb6806298303119641a3b1b2003ea8df3ba10ef10ef07",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Misalign/MisalignZca-c.swsp-00.elf",
+   "elf_sha256": "428e3e58c1ce9fc399c3a4a9403b2214575f25e51456f9d9e729b7e45aa1286f",
+   "signature": [
+    268495104,
+    268495472
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.add-00.S",
+   "image": "images/rv32i/Zca/Zca-c.add-00.bin",
+   "image_sha256": "6d21432916830b8a49bb6e1cb643aaa00e8e1bb4f8d0907a80feaaaa407a2450",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.add-00.elf",
+   "elf_sha256": "1aba8c656407007c4fef6361735091278e4b2718750963e6d9fba043e2663f40",
+   "signature": [
+    268517808,
+    268519056
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.addi-00.S",
+   "image": "images/rv32i/Zca/Zca-c.addi-00.bin",
+   "image_sha256": "0eeea245edf1dc65c2fcacd0a9f4a32ff008b824654a502d65d434ace7a00540",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.addi-00.elf",
+   "elf_sha256": "31480b95bf4b80c3bfea25d13b8b210efc4f997da4a7037645b38acbdc4db919",
+   "signature": [
+    268512704,
+    268513648
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.addi16sp-00.S",
+   "image": "images/rv32i/Zca/Zca-c.addi16sp-00.bin",
+   "image_sha256": "8e8f65989360a0471af1cc2b086e02b30282fa21df836c7b0af19d1df05e2da7",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.addi16sp-00.elf",
+   "elf_sha256": "4313328c3b22b31cc3c985df7d1450a7645f4d2d6b0a98348cfe5aca0ed041d7",
+   "signature": [
+    268482064,
+    268482384
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.addi4spn-00.S",
+   "image": "images/rv32i/Zca/Zca-c.addi4spn-00.bin",
+   "image_sha256": "db956e9d72ac1fc3b478961390ac937df74b6d0b213bb5618aa7cd41b3408989",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.addi4spn-00.elf",
+   "elf_sha256": "bbf8d8700cd21150e3b5bd7e25782f29f3b833ac5abec6afa5317f68adf655a3",
+   "signature": [
+    268513632,
+    268514752
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.and-00.S",
+   "image": "images/rv32i/Zca/Zca-c.and-00.bin",
+   "image_sha256": "d4113fc9eba80a7b2771bcfced655a7f70ad2bcaf5e6cc91e1d69d3959a01fdc",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.and-00.elf",
+   "elf_sha256": "4940df9844dc8cf6335cd2b4fd61274befa34b9cf47965d14e4bbf63ffcd21f6",
+   "signature": [
+    268511120,
+    268511968
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.andi-00.S",
+   "image": "images/rv32i/Zca/Zca-c.andi-00.bin",
+   "image_sha256": "0740bf569a23f0aaef066535613abcbf169e4ac2d020eaf11947c92e38469486",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.andi-00.elf",
+   "elf_sha256": "109eafa62b2114ddc254f45f0cedba2a36ea6e0a1c9ee00f13e7f30cf948addb",
+   "signature": [
+    268509968,
+    268510752
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.beqz-00.S",
+   "image": "images/rv32i/Zca/Zca-c.beqz-00.bin",
+   "image_sha256": "925b5a07409f1a754c97afc524ef3745cddaab97849de03bf8d578470fbb65d3",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.beqz-00.elf",
+   "elf_sha256": "72d2f7061aabe1c6a3407f8a0e42fd01b2a518fd2746d2f863b4c40fe7d36dfa",
+   "signature": [
+    268479712,
+    268479936
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.bnez-00.S",
+   "image": "images/rv32i/Zca/Zca-c.bnez-00.bin",
+   "image_sha256": "3e6f4d5024f8c8342f9541278bb28a56cee3bafd18ef22c86cfff1d5ad1b449f",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.bnez-00.elf",
+   "elf_sha256": "359f1665f8991c96ee2f57382f327720a06870a702ffe8807a75a966119f8341",
+   "signature": [
+    268479712,
+    268479936
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.j-00.S",
+   "image": "images/rv32i/Zca/Zca-c.j-00.bin",
+   "image_sha256": "0ee2086721a25028736a60e602a86578a0437a6b8102f47d8c601c7db10335a5",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.j-00.elf",
+   "elf_sha256": "3c869b06c5ff019a7d8fa0f36d8d91f152d73508add27c48c3c38ef17c7576b1",
+   "signature": [
+    268511376,
+    268511616
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.jal-00.S",
+   "image": "images/rv32i/Zca/Zca-c.jal-00.bin",
+   "image_sha256": "c9d1257add247255549c45d038bd71ad61cf14550527d181b76094951e3c3c37",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.jal-00.elf",
+   "elf_sha256": "00f81ff247f16bc2df244478db374330233f6a276e2a0825d7a4e1f1ddf055dc",
+   "signature": [
+    268511440,
+    268511680
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.jalr-00.S",
+   "image": "images/rv32i/Zca/Zca-c.jalr-00.bin",
+   "image_sha256": "f5539dfd99f4660a49a794672a052f6be988397bea7421ebd617d5a9d49947a7",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.jalr-00.elf",
+   "elf_sha256": "d84f446007c634112d245257ce617df68c61f03a0ad2d309b1b5aa5271bb2fd5",
+   "signature": [
+    268495824,
+    268496192
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.jr-00.S",
+   "image": "images/rv32i/Zca/Zca-c.jr-00.bin",
+   "image_sha256": "b06bdb48b99f9f144a0ccc8a92073725d7945cecf7026de59537d59d125865eb",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.jr-00.elf",
+   "elf_sha256": "aca2b1ae3a51b6ffcfa12be882496809917bfa1e29300ee894887dbedac4cf58",
+   "signature": [
+    268495760,
+    268496000
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.li-00.S",
+   "image": "images/rv32i/Zca/Zca-c.li-00.bin",
+   "image_sha256": "33274d6b2caedae559e33a0aca649ede818937dc27f5424b5d9043596ed83702",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.li-00.elf",
+   "elf_sha256": "20ad639c2c300d108cd0ed6d187d97ff094d7a40da81ddaebafe43cfdbaab8f9",
+   "signature": [
+    268500288,
+    268500800
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.lui-00.S",
+   "image": "images/rv32i/Zca/Zca-c.lui-00.bin",
+   "image_sha256": "1c7431e37c8c668dd7a545bb6fc76516cb400af8f532b4813373b16eabb8b82a",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.lui-00.elf",
+   "elf_sha256": "3b0f6d366d1c3df4e1a40eb5a3492a61a8c45440bdd494ac826ec34cc79bfce4",
+   "signature": [
+    268500320,
+    268500816
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.lw-00.S",
+   "image": "images/rv32i/Zca/Zca-c.lw-00.bin",
+   "image_sha256": "a2c8ebd05ad66a8293fc6039af50c336bc4cc245f60a69db6c6ca8dc3ad26b73",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.lw-00.elf",
+   "elf_sha256": "a393b8f290de2d99796683767a21d97675cf2eef5e077efe8858cf085de1c2cb",
+   "signature": [
+    268480880,
+    268481200
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.lwsp-00.S",
+   "image": "images/rv32i/Zca/Zca-c.lwsp-00.bin",
+   "image_sha256": "6bb6c583d48c8692db1ec93126677b3633852555360727c5e945e6ea687fc493",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.lwsp-00.elf",
+   "elf_sha256": "9ac489e10f5b806e58117bf14a4fda8a129413bfca8f4953a8ac04ff63a51951",
+   "signature": [
+    268500048,
+    268500528
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.mv-00.S",
+   "image": "images/rv32i/Zca/Zca-c.mv-00.bin",
+   "image_sha256": "81bbeaeb21204c1e46e3a409cd85ad6bbc399a6b3b2f0410cd755e17b3b91693",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.mv-00.elf",
+   "elf_sha256": "87c75c536f2985b3928de9ff87f52659fbec2a02f0dbfa47ed8301b137f918d8",
+   "signature": [
+    268502432,
+    268503056
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.nop-00.S",
+   "image": "images/rv32i/Zca/Zca-c.nop-00.bin",
+   "image_sha256": "ce147e97f958e6ba6d40b7f540b83cbeb6aefcb35187ca4efbffa62c163ec48b",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.nop-00.elf",
+   "elf_sha256": "a2e6b3ffdd9da5adbd41a3144bc5b5e149df14e5ff8c3b73389015c79bfd91a4",
+   "signature": [
+    268481136,
+    268481216
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.or-00.S",
+   "image": "images/rv32i/Zca/Zca-c.or-00.bin",
+   "image_sha256": "ec0032e611ba44e354f827ccc4fce9af0fac03e37420379ba10f98cf2aee1197",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.or-00.elf",
+   "elf_sha256": "b5cb518899c173c6e9695d0247904d0e36ad63afea6d042f9369fb018f3d985c",
+   "signature": [
+    268510928,
+    268511776
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.slli-00.S",
+   "image": "images/rv32i/Zca/Zca-c.slli-00.bin",
+   "image_sha256": "63b5813005e3a01dd2ff92c91611759dea174d68e38ca8131a37811f27f59e2b",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.slli-00.elf",
+   "elf_sha256": "7c1f038b11ca86ba998b65488083feadba3d52b2acc4f5786cf9cbf4e5b841d4",
+   "signature": [
+    268510592,
+    268511488
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.srai-00.S",
+   "image": "images/rv32i/Zca/Zca-c.srai-00.bin",
+   "image_sha256": "8edaf9ccd5296e23d0005a68ec9017a95ef36fa09784c7a295f8c94f5b53345b",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.srai-00.elf",
+   "elf_sha256": "d8bdec8f7107367e510ea779d373ea574cb8acfc093b2fd6df6b5c0cfaf25902",
+   "signature": [
+    268509184,
+    268509984
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.srli-00.S",
+   "image": "images/rv32i/Zca/Zca-c.srli-00.bin",
+   "image_sha256": "be6fd7033e453d4a0ce5e259c04b75418b1d0285b5791e9b4e7eded14049b6c0",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.srli-00.elf",
+   "elf_sha256": "9cc2c4b311a17a73cd8f14b9708352d1c696756defa7eaa58a320a611675b072",
+   "signature": [
+    268509184,
+    268509984
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.sub-00.S",
+   "image": "images/rv32i/Zca/Zca-c.sub-00.bin",
+   "image_sha256": "d6d348522f3d4d27dae2ea49b4b59eeacde943d56201411bb949cd6b1d883bb3",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.sub-00.elf",
+   "elf_sha256": "4dbf160b95bdd43fa5bd90483b9912e8b8eac6964e8df625125b60056b2896ce",
+   "signature": [
+    268511120,
+    268511968
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.sw-00.S",
+   "image": "images/rv32i/Zca/Zca-c.sw-00.bin",
+   "image_sha256": "c5de36d5c606a42e8718407715be46ee53a2bc5c6bb4662301ec798298dfe3d0",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.sw-00.elf",
+   "elf_sha256": "49984fd0694ecdf51d850dd52aa53084f8fbdd99f7587a51fec4ce25a87982e3",
+   "signature": [
+    268497488,
+    268497808
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.swsp-00.S",
+   "image": "images/rv32i/Zca/Zca-c.swsp-00.bin",
+   "image_sha256": "5397fe5ce8382c1136e0a9f95a4f05d3ae26df67575c60bb016a094d3c8dd2d5",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.swsp-00.elf",
+   "elf_sha256": "1172eca63ad1eb38122809f4712aa7e80eacd6940a6531545ff353ab4d53f6f5",
+   "signature": [
+    268500912,
+    268501424
+   ]
+  },
+  {
+   "name": "rv32i/Zca/Zca-c.xor-00.S",
+   "image": "images/rv32i/Zca/Zca-c.xor-00.bin",
+   "image_sha256": "9db53ad7468459f8897ead97726b84db23781e273b0b441e37629388dc2fa907",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zca/Zca-c.xor-00.elf",
+   "elf_sha256": "37e33a89f9900355413b973e15037ba1185b54da973c685221bdf23cf51e7c71",
+   "signature": [
+    268511120,
+    268511968
+   ]
+  },
+  {
+   "name": "rv32i/Zicsr/Zicsr-csrrc-00.S",
+   "image": "images/rv32i/Zicsr/Zicsr-csrrc-00.bin",
+   "image_sha256": "880fb1b3e002b67e8a063284e2084a289ab8797243a10bd93b255456813ca552",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zicsr/Zicsr-csrrc-00.elf",
+   "elf_sha256": "1223ad6b52d385b59660b320b6e951dcdb471658790065f0ff7d5beab5dbc078",
+   "signature": [
+    268500464,
+    268501408
+   ]
+  },
+  {
+   "name": "rv32i/Zicsr/Zicsr-csrrci-00.S",
+   "image": "images/rv32i/Zicsr/Zicsr-csrrci-00.bin",
+   "image_sha256": "22b6874c9eaff19a425989d7b3c33cfe6af9c211f6924b1a0c1104c054eed51d",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zicsr/Zicsr-csrrci-00.elf",
+   "elf_sha256": "8aa5c524fc868db9fd143ddb79496c37082b67987efc7bebed446a09d44834c1",
+   "signature": [
+    268497520,
+    268498112
+   ]
+  },
+  {
+   "name": "rv32i/Zicsr/Zicsr-csrrs-00.S",
+   "image": "images/rv32i/Zicsr/Zicsr-csrrs-00.bin",
+   "image_sha256": "579ff269a8899fdb7972be728ef038e3de542be6f801c41d23577674338dcaf1",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zicsr/Zicsr-csrrs-00.elf",
+   "elf_sha256": "ca577acbadfc574da1162c9020059dec29b1e9f3bb862811daad825483494f10",
+   "signature": [
+    268500464,
+    268501408
+   ]
+  },
+  {
+   "name": "rv32i/Zicsr/Zicsr-csrrsi-00.S",
+   "image": "images/rv32i/Zicsr/Zicsr-csrrsi-00.bin",
+   "image_sha256": "3cefa6cccf1d6b80cfb26e2c06249370b78212ee6029273a507d7d87fe1d4b11",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zicsr/Zicsr-csrrsi-00.elf",
+   "elf_sha256": "144a62d2f45dbb19ff5bc7475459de9eed151b34b9027ccb52f1b80db1c40c20",
+   "signature": [
+    268497520,
+    268498112
+   ]
+  },
+  {
+   "name": "rv32i/Zicsr/Zicsr-csrrw-00.S",
+   "image": "images/rv32i/Zicsr/Zicsr-csrrw-00.bin",
+   "image_sha256": "85c9336581c2f98f5ddf5a61bdc5e2f714cbd0b57257e60f4f21bbc5c81f2a5c",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zicsr/Zicsr-csrrw-00.elf",
+   "elf_sha256": "311bdc70a07c1d93b43099d7febd25a9cbb7df1d8b2e88f79389d46254633935",
+   "signature": [
+    268500464,
+    268501408
+   ]
+  },
+  {
+   "name": "rv32i/Zicsr/Zicsr-csrrwi-00.S",
+   "image": "images/rv32i/Zicsr/Zicsr-csrrwi-00.bin",
+   "image_sha256": "a5c83f382acb2941dcbaa13ab42eda29be231d8759f01dfd2dd534f03e0d7a55",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zicsr/Zicsr-csrrwi-00.elf",
+   "elf_sha256": "2c2c343d0b9e9f3a490a8cbb0385ff8657d157ea855228d4b99ece98fefe75b9",
+   "signature": [
+    268497520,
+    268498112
+   ]
+  },
+  {
+   "name": "rv32i/Zifencei/Zifencei-fence.i-00.S",
+   "image": "images/rv32i/Zifencei/Zifencei-fence.i-00.bin",
+   "image_sha256": "c58176c33b84563200aab597601047732da73e5834b98e8006bf4359c98cef9a",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zifencei/Zifencei-fence.i-00.elf",
+   "elf_sha256": "95c0eeaf99636bcef125495ef902c7b7b484496c820079acdd0f6ed9e4e27ef5",
+   "signature": [
+    268477632,
+    268477728
+   ]
+  },
+  {
+   "name": "rv32i/Zmmul/Zmmul-mul-00.S",
+   "image": "images/rv32i/Zmmul/Zmmul-mul-00.bin",
+   "image_sha256": "2ec2a157396991224da32bf0e986b8ffacf0e1e5dcbfb21bfbe142e8a6ad70dc",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zmmul/Zmmul-mul-00.elf",
+   "elf_sha256": "3253721ea0b75da2f5379003d9e8a056f90161ebe57d4be9e9b6e8468d352761",
+   "signature": [
+    268523616,
+    268525264
+   ]
+  },
+  {
+   "name": "rv32i/Zmmul/Zmmul-mulh-00.S",
+   "image": "images/rv32i/Zmmul/Zmmul-mulh-00.bin",
+   "image_sha256": "4f4cd867fdfbdf2b0a6e471240941bda94e0f68f8f69809ee4b5c712e276a107",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zmmul/Zmmul-mulh-00.elf",
+   "elf_sha256": "3efbfb1ced1494b4945d9ee0afd91ecabe50675fa3edeec6689280676ab3e085",
+   "signature": [
+    268524000,
+    268525648
+   ]
+  },
+  {
+   "name": "rv32i/Zmmul/Zmmul-mulhsu-00.S",
+   "image": "images/rv32i/Zmmul/Zmmul-mulhsu-00.bin",
+   "image_sha256": "3dc749c6b9b72b58be4eba53fa0e2f53526167a3c7eb7c3d3b5181a73b61cc7f",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zmmul/Zmmul-mulhsu-00.elf",
+   "elf_sha256": "b93ccae41988d3b49fc3ec15b61f2fda6e0807c5859995d97dc2ee03f30abbf8",
+   "signature": [
+    268524784,
+    268526432
+   ]
+  },
+  {
+   "name": "rv32i/Zmmul/Zmmul-mulhu-00.S",
+   "image": "images/rv32i/Zmmul/Zmmul-mulhu-00.bin",
+   "image_sha256": "161d23de11fdb1baa6c1345455197b021a61b694826fe1f56c4ab9b3b4d0c3a0",
+   "load_address": 268451840,
+   "entry": 268451840,
+   "elf": "work/sky130-riscv-soc/elfs/rv32i/Zmmul/Zmmul-mulhu-00.elf",
+   "elf_sha256": "ad3210065457ea5e1daf065a8c2513913cfb63668ac90d1c22a3198183378048",
+   "signature": [
+    268524400,
+    268526048
+   ]
+  }
+ ]
+}

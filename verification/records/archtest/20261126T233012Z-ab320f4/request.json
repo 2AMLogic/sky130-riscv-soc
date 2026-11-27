@@ -1,0 +1,27 @@
+{
+  "schema": "klt.functional_verification.request/1",
+  "engine": "icarus",
+  "sources": [
+    "soc_top_archtest.sv",
+    "../../../rtl/obi_xbar.sv",
+    "../../../rtl/boot_rom.sv",
+    "../../../rtl/soc_sram_i.sv",
+    "../../../rtl/uart.sv",
+    "../../../rtl/gpio.sv",
+    "../../../rtl/timer.sv",
+    "../../../rtl/soc_fabric.sv",
+    "../../../rtl/rst_sync.sv",
+    "../../../build/cve2/cve2_top.v",
+    "../../../rtl/soc_top.sv"
+  ],
+  "hdl_toplevel": "soc_top_archtest",
+  "parameters": {
+    "ISRAM_AW": 17
+  },
+  "testbench": {
+    "module": "test_archtest"
+  },
+  "env": {
+    "COCOTB_TRUST_INERTIAL_WRITES": "1"
+  }
+}

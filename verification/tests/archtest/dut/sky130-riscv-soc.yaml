@@ -1,0 +1,222 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/riscv/riscv-unified-db/main/spec/schemas/config_schema.json
+
+# Copyright (c) 2026, 10xEngineers, Harvey Mudd College and Eclipse Foundation
+# SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
+
+# UDB Architecture Configuration for the sky130-riscv-soc (CVE2 core in soc_top).
+#
+# Derived from riscv-arch-test's own config/cores/cve2/cv32e20/cv32e20.yaml at
+# the pinned commit, with exactly the values that differ when the core sits in
+# this SoC (rtl/soc_top.sv):
+#   - MHPMCounterWidth is 40, so HPM_COUNTER3..12_WIDTH are 40 (CVE2's own
+#     default; the upstream CV32E20 config says 64 for all of them).
+#   - irq_external_i and irq_software_i are tied to 0, so no machine external
+#     or machine software interrupt can ever be pending: MEI_INTR_IMPL and
+#     MSI_INTR_IMPL are false and ACT deselects the tests that need them.
+#     MTI stays true: the SoC timer drives irq_timer_i.
+# Every other value is the core's, unmodified. Keep this file truthful to the
+# DUT: a parameter claimed here that the RTL does not implement turns valid
+# tests into false failures (#221).
+---
+$schema: config_schema.json#
+kind: architecture configuration
+type: fully configured
+name: sky130-riscv-soc
+description: sky130-riscv-soc (CVE2 CV32E20 core in rtl/soc_top.sv) - RV32IMC configuration DUT
+implemented_extensions:
+  - { name: I, version: "= 2.1" }
+  - { name: M, version: "= 2.0" }
+  - { name: Zmmul, version: "= 1.0.0" }
+  - { name: C, version: "= 2.0" }
+  - { name: Zca, version: "= 1.0.0" }
+  - { name: Zicsr, version: "= 2.0" }
+  - { name: Zifencei, version: "= 2.0" }
+  - { name: Sm, version: "= 1.12.0" }
+
+params:
+  NON_STANDARD_EXTENSION_IMPLEMENTED: false
+  # XLEN parameters (VERIFIED)
+  MXLEN: 32
+  PHYS_ADDR_WIDTH: 32
+
+  # MISA (!VERIFIED)
+  MUTABLE_MISA_M: false
+  MUTABLE_MISA_C: false
+  MISA_CSR_IMPLEMENTED: true
+
+  # endianness (VERIFIED)
+  M_MODE_ENDIANNESS: little
+
+  # trap/exception behavior (VERIFIED)
+  TRAP_ON_ECALL_FROM_M: true
+  TRAP_ON_EBREAK: true
+  TRAP_ON_UNIMPLEMENTED_INSTRUCTION: true
+  TRAP_ON_RESERVED_INSTRUCTION: true
+  TRAP_ON_UNIMPLEMENTED_CSR: false
+  TRAP_ON_ILLEGAL_WLRL: false
+
+  # MTVAL reporting (VERIFIED)
+  REPORT_VA_IN_MTVAL_ON_BREAKPOINT: false
+  REPORT_VA_IN_MTVAL_ON_LOAD_MISALIGNED: false
+  REPORT_VA_IN_MTVAL_ON_STORE_AMO_MISALIGNED: false
+  REPORT_VA_IN_MTVAL_ON_INSTRUCTION_MISALIGNED: false
+  REPORT_VA_IN_MTVAL_ON_LOAD_ACCESS_FAULT: true
+  REPORT_VA_IN_MTVAL_ON_STORE_AMO_ACCESS_FAULT: true
+  REPORT_VA_IN_MTVAL_ON_INSTRUCTION_ACCESS_FAULT: true
+  REPORT_ENCODING_IN_MTVAL_ON_ILLEGAL_INSTRUCTION: true
+  MTVAL_WIDTH: 32
+
+  # Misaligned load/store support (VERIFIED)
+  MISALIGNED_LDST: true
+  MISALIGNED_LDST_EXCEPTION_PRIORITY: low # LSU documentation says: “If an error response is received for the first transaction, the second transaction will still be issued and ignored.” means that Misalignment does not cause an exception
+  MISALIGNED_MAX_ATOMICITY_GRANULE_SIZE: 0 # no A extension, no atomicity requirements
+  MISALIGNED_SPLIT_STRATEGY: custom # from LSU docs
+
+  # CSR / implementation IDs (VERIFIED)
+  ARCH_ID_VALUE: 0x23
+  # IMP_ID_VALUE omitted — cs_registers.rst § "Machine Implementation ID (mimpid)": Reset Value 0x0000_0000 (read-only-0 == not implemented per spec)
+  VENDOR_ID_BANK: 0xC
+  VENDOR_ID_OFFSET: 0x2
+
+  # MTVEC (VERIFIED)
+  MTVEC_MODES: [1]
+  MTVEC_ACCESS: rw
+  MTVEC_ILLEGAL_WRITE_BEHAVIOR: custom
+  MTVEC_BASE_ALIGNMENT_VECTORED: 256
+  #MTVEC_BASE_ALIGNMENT_DIRECT: 256
+  #Parameter is not defined by this config: 'MTVEC_BASE_ALIGNMENT_DIRECT'.
+  #  Needs: ((`Sm=1.11.0`{false} || `Sm=1.12.0`{true} || `Sm=1.13.0`{false}) && !`(MTVEC_ACCESS=="ro")`{false} && (!`Sm=1.11.0`{false} || !`Sm=1.12.0`{true}) && (!`Sm=1.11.0`{false} || !`Sm=1.13.0`{false}) && (!`Sm=1.12.0`{true} || !`Sm=1.13.0`{false}) && `Sm>=0`{true} && `(MTVEC_ACCESS=="rw")`{true} && `$array_includes?(MTVEC_MODES, 0)`{false})
+
+  # Sm params (VERIFIED)
+  WFI_U_MODE: true
+  # SoC wiring (rtl/soc_top.sv): irq_external_i and irq_software_i are tied to 0.
+  MEI_INTR_IMPL: false
+  MSI_INTR_IMPL: false
+  MTI_INTR_IMPL: true
+  WFI_FINITE: true
+  PRECISE_SYNCHRONOUS_EXCEPTIONS: true # VERIFIED — exception_interrupts.rst § "Exceptions and Interrupts": mepc set to current program counter; 2-stage in-order pipeline has no imprecise exception path
+  MARCHID_IMPLEMENTED: true # VERIFIED — cs_registers.rst § "Machine Architecture ID (marchid)": CSR (0xF12) implemented with fixed CSR_MARCHID_VALUE; value 0x23 (35 decimal) allocated specifically to cve2
+  MIMPID_IMPLEMENTED: false # VERIFIED — cs_registers.rst § "Machine Implementation ID (mimpid)": Reset Value 0x0000_0000; CSR_MIMPID_VALUE parameter hardcoded to 0 (read-only-0 == not implemented per spec)
+  PMA_GRANULARITY: 2 # VERIFIED — no PMA hardware; load_store_unit.rst § "Data-Side Memory Interface": data_be_o[3:0] byte enable on 32-bit OBI bus => 4-byte (2^2) natural granule
+
+  # CONFIG PTR (VERIFIED)
+  CONFIG_PTR_ADDRESS: 0x0 # mconfigptr (0xF15) not listed in CVE2 manual CSR table (01_specification/index.rst § "Control and Status Registers (CSRs)"); defaults to 0
+
+  # HPM: MHPMCounterNum = 10, MHPMCounterWidth = 40 in rtl/soc_top.sv (cve2_top.sv:18-19 defaults)
+  HPM_EVENTS: [0]
+  HPM_COUNTER_EN: [
+      false,
+      false,
+      false, # indexes 0..2 (MCYCLE, MINSTRET, MHPM2)
+      true,
+      true,
+      true,
+      true,
+      true, # 3..7
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false, #  8..15
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false, # 16..23
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false, # 24..31
+    ]
+  HPM_COUNTER3_WIDTH: 40
+  HPM_COUNTER4_WIDTH: 40
+  HPM_COUNTER5_WIDTH: 40
+  HPM_COUNTER6_WIDTH: 40
+  HPM_COUNTER7_WIDTH: 40
+  HPM_COUNTER8_WIDTH: 40
+  HPM_COUNTER9_WIDTH: 40
+  HPM_COUNTER10_WIDTH: 40
+  HPM_COUNTER11_WIDTH: 40
+  HPM_COUNTER12_WIDTH: 40
+  MCOUNTINHIBIT_IMPLEMENTED: true
+  COUNTINHIBIT_EN:
+    [
+      true,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+    ]
+  NUM_PMP_ENTRIES: 0
+  MCOUNTENABLE_EN:
+    [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+    ]

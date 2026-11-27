@@ -1,0 +1,86 @@
+{
+  "commit": "ab320f43210388ae91e712b4452912d09acc6cb2",
+  "pdk_revision": "f6eeac7dad085ffcc829ccfd721f7b4ce39edcf7 (pinned; the sky130 PDK is not used by this simulation record)",
+  "tool_versions": {
+    "klt": "klt 0.9.2",
+    "iverilog": "13.0",
+    "cocotb": "2.0.1",
+    "sail": "0.16",
+    "riscv64-unknown-elf-gcc": "riscv64-unknown-elf-gcc (g6afcc4f6d) 16.1.0",
+    "ruby": "ruby 3.4.11 (2026-09-23 revision 592f1ffdb3) +PRISM [x86_64-linux]",
+    "udb_gems": "udb 0.1.17 udb-gen 0.1.16 udb_helpers 0.1.4 idlc 0.1.8",
+    "uv": "uv 0.13.5 (x86_64-unknown-linux-musl)",
+    "act_python": "Python 3.14.9",
+    "sv2v": "sv2v v0.0.13"
+  },
+  "command": "make -k -C verification archtest-negative archtest ARCHTEST_REPORT=/workspace/work/2amlogic-sky130-riscv-soc-95e09076/.loom/worktrees/2amlogic-sky130-riscv-soc-95e09076/issue-49/build/doctor-231.9RIApF/report.json",
+  "result": {
+    "selected": 132,
+    "passed": 131,
+    "failed": 1,
+    "skipped": 0,
+    "failed_tests": [
+      "priv/Sm/Sm_mcsr_cntr-00"
+    ],
+    "note": "priv/Sm/Sm_mcsr_cntr-00.S fails ACT4's self-check on cp_mtime_write, the case its generator emits for a DUT without a time CSR: #221. It is recorded, not skipped; how it is dispositioned is #221's decision.",
+    "random_seed": 1795735365
+  },
+  "negative_check": "archtest-negative.json and negative-test_icarus.log record one executed test, rv32i/I/I-add-00. The bench verified the image digest before perturbing its first reference result.",
+  "request_sha256": "3a50b31d8117eda60d839def1f111a08a97c35478719d3b16fed93a3712feb19",
+  "request_copy": "request.json is a byte-identical copy of verification/tests/archtest/fv_request.json. Relative paths resolve from that test directory.",
+  "rtl_sources": {
+    "soc_top_archtest.sv": "85f3dfd440696bc2163a5487b038ec76c1d93f17f497808a4ea9461947195229",
+    "../../../rtl/obi_xbar.sv": "5c34f60038eeb5dd97d64c3161179ae9cadcb969c5917ea9093873525ef20940",
+    "../../../rtl/boot_rom.sv": "c916354996771d105d903205a49416d2cb56f2fe4f8643c226cdd3400a48ed0a",
+    "../../../rtl/soc_sram_i.sv": "6e0d3747fdc0493fd77646f6fff13c5186067eddf048b010e8df2a3419751dc2",
+    "../../../rtl/uart.sv": "9f2cc0e1ebb59946ce9da403000eaf9b37ed25778bb44828d06bd948e0733c57",
+    "../../../rtl/gpio.sv": "a7800f53030b5699ba62e86da2f8e7b49c519bb53f7a3549f346fe158eb937e9",
+    "../../../rtl/timer.sv": "894cdf96da88cba81d9c14d32822cd33a547114699fc4e19d527a7087aa4c881",
+    "../../../rtl/soc_fabric.sv": "37c7397e7991133a6f7227e10a4d7eba726df24ab83be98fc2f88c55eaf39ff9",
+    "../../../rtl/rst_sync.sv": "4dce9a6ba45905a9569e2965beefe2d8ddac56d1e7a6c934ce09e28b92999f73",
+    "../../../build/cve2/cve2_top.v": "f2a58b0721e99f53c5121c0a192e54ea26721bd800f95aed955c196250c7ab81",
+    "../../../rtl/soc_top.sv": "bf3e3c84a3b879e5d1799d2ab278aa0aa8d3da482733939933ea562a7422767f"
+  },
+  "bench_and_config": {
+    "verification/tests/archtest/test_archtest.py": "59aeec053e59ccffe38f35c7bf9516ebba5bf8d2b7bc3de2a4524dbd37320b5a",
+    "verification/tests/archtest/dut/test_config.yaml": "00cb5ac49e2b4d8021948b3b30a5dc784f7583fad1474f3e6202bfc2bba55bd9",
+    "verification/tests/archtest/dut/sky130-riscv-soc.yaml": "f0f989bf8ba1f5c1f02a3a9412164ce11cbb46f5610375e127381bf104915197",
+    "verification/tests/archtest/dut/link.ld": "a62371c7761b6ada1e2ffa34b0ab6d5ce0c7c98699aa5247be1e293d98e087a2",
+    "verification/tests/archtest/dut/rvmodel_macros.h": "077b4b8374e005952a362a3ccd2d1c9ea6474bf3d30b6a785dda33033c352362",
+    "verification/tests/archtest/dut/sail.json": "78e1b224aec04160bcf87f131955204deede5f2a669ddd5230b5df0752315336",
+    "verification/tests/archtest/dut/archtest_rom.S": "2c3eb82f7c1d3468b403bf47b2b9f3d0089332b769b5e91ec82444e8faf876ff",
+    "verification/tests/archtest/selection.txt": "7cd3177d75993e08aa622c4a4d6c37fd32dfb390fb6cb81a27fd90120e854647",
+    "verification/tests/lib/soc_top_bench.py": "f5dcfeb8c1c5cb5b5b2694326629a99eb7ceda00cc577ee6823702b68ba83d70",
+    "scripts/build-archtest.sh": "b0cfdf70b2a28580aeb5d34e0d105cd140dde52b3493af1888c53ae1529392cd",
+    "scripts/fetch-arch-test.sh": "30aa7347cc4a211e9b3f471b421eee750a9958f1e2ed7c9626a72fbd8f18e804",
+    "scripts/fetch-import.sh": "2d15ca8849fe997159df8263c7fe1c22741e9f322fb0da26832dc496e1f800f8",
+    "verification/tools/archtest_select.py": "1a5c8b978bec6183c380a59c59fa3e69fa8e3518e822089c895f45bec6a75418",
+    "verification/tools/archtest_manifest.py": "dfaa5f2365450e9c5d146d92682a9792280bee5deb65a78f7ff77bbeb9d51cb9",
+    "reuse.lock.json": "af07af5ebf430e1a4677ba4da02b17eaaceb4b88605f40292bca3adb40d37d6e",
+    "reuse.lock.d/riscv-arch-test-9929db1c.json": "46a0e9f98867d49bb04865e32ca309b209100de12cf476f3d17191db0e30f4de",
+    "verification/Makefile": "23c1114934b63308f7e0c83aa704699324aff95a6981b1a0f4a08bfccdf113af",
+    "scripts/setup-env.sh": "25e080435bf7a810ded340b2853df8b53ddcbe9f7754d91c3a33813cf10748bc"
+  },
+  "converted_core": {
+    "file": "build/cve2/cve2_top.v",
+    "sha256": "f2a58b0721e99f53c5121c0a192e54ea26721bd800f95aed955c196250c7ab81",
+    "cve2_commit": "d7f21568028a1114be663599bd42145dccf28928",
+    "note": "generated by scripts/convert-cve2.sh (sv2v v0.0.13); the RTL entry for ../../../build/cve2/cve2_top.v in rtl_sources"
+  },
+  "riscv_arch_test": {
+    "commit": "9929db1c3a84f90f808f39f21678d9cd98776147",
+    "files": 4610,
+    "symlinks": 108,
+    "manifest": "reuse.lock.d/riscv-arch-test-9929db1c.json",
+    "fetched_by": "scripts/fetch-arch-test.sh (tarball, every file and symlink verified)"
+  },
+  "images": "manifest.json records SHA-256 for each flattened image (image_sha256) and its source ELF (elf_sha256). The bench verified the flattened image bytes before loading or perturbing them.",
+  "selection": "verification/tests/archtest/selection.txt at this commit: the 132 selected tests and every other of the 7167 candidates with the reason ACT4 rejected it",
+  "report_artifacts": {
+    "results_xml": "sha256:4f6a90d3d245c6829ab6b772f6e701278ba30f9c55b4ba3b708d385ba6297871",
+    "test_log": "sha256:3f7634d0bb008ed3f2213304bca95ed8c4ede295e3d88823708798074fbb73b0",
+    "build_log": "sha256:399933504354a8ae5bca3b233bff03fc332fcf7e41cc690f2183abbf8c0d5575"
+  },
+  "manifest_sha256": "7ee363821039c6c40b2da3735be38ab2054eeae9bf5604cfa98ac91a5a8bc1e7",
+  "boot_rom_sha256": "f39b02a8e796991d7f7a3d45d631450e1b917f753576340401d7baeba82fc932"
+}

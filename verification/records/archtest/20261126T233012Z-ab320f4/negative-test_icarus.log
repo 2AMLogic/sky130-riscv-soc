@@ -1,0 +1,65 @@
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.12.4 interpreter at /workspace/work/2amlogic-sky130-riscv-soc-95e09076/.loom/worktrees/2amlogic-sky130-riscv-soc-95e09076/issue-49/build/doctor-231.9RIApF/venv/bin/python
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1795735359
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /workspace/work/2amlogic-sky130-riscv-soc-95e09076/.loom/worktrees/2amlogic-sky130-riscv-soc-95e09076/issue-49/build/doctor-231.9RIApF/venv/lib/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns WARNING  py.warnings                        /workspace/work/2amlogic-sky130-riscv-soc-95e09076/.loom/worktrees/2amlogic-sky130-riscv-soc-95e09076/issue-49/build/doctor-231.9RIApF/venv/lib/python3.12/site-packages/cocotb/_init.py:102: DeprecationWarning: COCOTB_TESTCASE is deprecated in favor of COCOTB_TEST_FILTER
+                                                          _setup_regression_manager()
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_archtest.rv32i/I/I-add-00 (1/1)
+    60.00ns WARNING  cocotb.u_soc                       rv32i/I/I-add-00.S: one bit of its first reference result flipped (ARCHTEST_PERTURB)
+317030.00ns INFO     cocotb.soc_top_archtest            console:
+                                                        
+                                                        RVCP-SUMMARY: TEST FAILED - Test File "I-add-00.S"
+                                                        
+                                                        RVCP: DEBUG INFORMATION FOLLOWS
+                                                        RVCP: Test Info: "test: 1; cg: I_add_cg; cp: cp_rs1; bin: b0"
+                                                        RVCP: Instruction: 0x01d00e33
+                                                        RVCP: Approximate address (failure may be slightly after this): 0x10004110
+                                                        RVCP: Register: x28
+                                                        RVCP: Bad Value:      0x3d120729
+                                                        RVCP: Expected Value: 0x3d120728
+                                                        RVCP: END OF DEBUG INFORMATION
+                                                        
+317030.00ns WARNING  ...<locals>.make.<locals>.archtest rv32i/I/I-add-00.S: ACT4 self-check FAILED
+                                                        console:
+                                                        
+                                                        RVCP-SUMMARY: TEST FAILED - Test File "I-add-00.S"
+                                                        
+                                                        RVCP: DEBUG INFORMATION FOLLOWS
+                                                        RVCP: Test Info: "test: 1; cg: I_add_cg; cp: cp_rs1; bin: b0"
+                                                        RVCP: Instruction: 0x01d00e33
+                                                        RVCP: Approximate address (failure may be slightly after this): 0x10004110
+                                                        RVCP: Register: x28
+                                                        RVCP: Bad Value:      0x3d120729
+                                                        RVCP: Expected Value: 0x3d120728
+                                                        RVCP: END OF DEBUG INFORMATION
+                                                        
+                                                        Traceback (most recent call last):
+                                                          File "/workspace/work/2amlogic-sky130-riscv-soc-95e09076/.loom/worktrees/2amlogic-sky130-riscv-soc-95e09076/issue-49/verification/tests/archtest/test_archtest.py", line 194, in archtest
+                                                            await run_act_test(dut, manifest, test)
+                                                          File "/workspace/work/2amlogic-sky130-riscv-soc-95e09076/.loom/worktrees/2amlogic-sky130-riscv-soc-95e09076/issue-49/verification/tests/archtest/test_archtest.py", line 183, in run_act_test
+                                                            raise AssertionError(f"{name}: {verdict}\nconsole:\n{text}")
+                                                        AssertionError: rv32i/I/I-add-00.S: ACT4 self-check FAILED
+                                                        console:
+                                                        
+                                                        RVCP-SUMMARY: TEST FAILED - Test File "I-add-00.S"
+                                                        
+                                                        RVCP: DEBUG INFORMATION FOLLOWS
+                                                        RVCP: Test Info: "test: 1; cg: I_add_cg; cp: cp_rs1; bin: b0"
+                                                        RVCP: Instruction: 0x01d00e33
+                                                        RVCP: Approximate address (failure may be slightly after this): 0x10004110
+                                                        RVCP: Register: x28
+                                                        RVCP: Bad Value:      0x3d120729
+                                                        RVCP: Expected Value: 0x3d120728
+                                                        RVCP: END OF DEBUG INFORMATION
+                                                        
+317030.00ns WARNING  cocotb.regression                  test_archtest.rv32i/I/I-add-00 failed
+317030.00ns INFO     cocotb.regression                  ****************************************************************************************
+                                                        ** TEST                            STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ****************************************************************************************
+                                                        ** test_archtest.rv32i/I/I-add-00   FAIL      317030.00           5.00      63367.25  **
+                                                        ****************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0               317030.00           5.01      63249.93  **
+                                                        ****************************************************************************************

@@ -138,6 +138,7 @@ make -C verification periph                     # GPIO, timer, UART and peripher
 scripts/fetch-cve2.sh && scripts/convert-cve2.sh     # pinned CVE2 -> build/cve2/cve2_top.v (needs sv2v)
 make -C verification boot                       # SoC top boots firmware/boot (needs the converted core)
 make -C verification soc                        # firmware tests: banner, echo, GPIO, timer interrupt (checked-in firmware/soc/*.hex)
+make -C verification archtest                   # riscv-arch-test (ACT4) on the SoC, through klt; builds the images first (needs the ACT4 toolchain: scripts/setup-env.sh --check-act4)
 scripts/synth-soc.sh                            # fetch, convert, klt synthesize soc_top -> netlist/soc_top_synth.v, rewrites attest/item1.json (needs klt, Yosys, sv2v, the sky130A PDK)
 make -C verification soc-gate                   # banner on the synthesized netlist, ~6 min, local only (needs the PDK cell models)
 firmware/soc/build.sh --check                   # soc hex files match their .S sources (needs the pinned RISC-V GCC)

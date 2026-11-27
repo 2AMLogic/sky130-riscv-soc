@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 # Exit-code tests for the pinned-import fetcher against a local file:// upstream.
 #
-# The fetcher is scripts/fetch-import.sh, reached through both of its entry
-# points: scripts/fetch-cve2.sh (tree layout) and scripts/fetch-sram-macro.sh
-# (flat layout, one file per basename). Each entry point gets the same three
-# cases — clean fetch, sha256 mismatch, missing file — plus an assertion that
-# it produced its own layout and not the other one. No network: the lock,
-# output directory and base URL are overridden to a fixture tree.
+# The fetcher is scripts/fetch-import.sh, reached through its three entry
+# points: scripts/fetch-cve2.sh (tree layout, one file per download),
+# scripts/fetch-sram-macro.sh (flat layout, one file per basename) and
+# scripts/fetch-arch-test.sh (tree layout, one archive for the whole commit,
+# verified against a manifest). Each entry point gets the same three cases —
+# clean fetch, sha256 mismatch, missing file — and the archive form also checks
+# member types, unlisted members, symlink targets, staging cleanup and the
+# pinned identity of the manifest. Each entry point also
+# asserts that it produced its own layout and not another one. No network: the
+# lock, output directory and base URL are overridden to a fixture tree.
 set -uo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
@@ -74,5 +78,109 @@ for entry in cve2 sram; do
     [[ ! -e "$W/out" ]]; check "$entry: missing file left a partial tree" $?
     cp "$W/victim.orig" "$victim"
 done
+
+# ---- scripts/fetch-arch-test.sh: the whole commit as one archive -------------
+# The fixture is a tarball with one top-level directory, like the one GitHub
+# serves for a commit, and a manifest beside the lock that lists every file and
+# symlink in it.
+
+AC=00112233445566778899aabbccddeeff00112233   # riscv-non-isa/riscv-arch-test fixture commit
+TREE="$W/act/riscv-arch-test-$AC"              # $TREE is stripped off by --strip-components=1
+mkdir -p "$TREE/rtl"
+printf 'module a; endmodule\n' > "$TREE/rtl/a.sv"
+printf 'module b; endmodule\n' > "$TREE/rtl/b.sv"
+ln -s rtl/b.sv "$TREE/link.ld"
+
+pack() { tar -czf "$W/act.tgz" -C "$W/act" "riscv-arch-test-$AC"; }   # repack the fixture as it is now
+manifest() {
+    python3 -I - "$W" "$AC" "$1" > "$W/act_manifest.json" <<'JSON'
+import hashlib, json, os, sys
+tree = os.path.join(sys.argv[1], "act", "riscv-arch-test-" + sys.argv[2])
+files, symlinks = {}, {}
+for root, _, names in os.walk(tree):
+    for name in names:
+        path = os.path.join(root, name)
+        rel = os.path.relpath(path, tree)
+        if os.path.islink(path):
+            symlinks[rel] = os.readlink(path)
+        else:
+            files[rel] = hashlib.sha256(open(path, "rb").read()).hexdigest()
+print(json.dumps({"from": "riscv-non-isa/riscv-arch-test", "commit": sys.argv[3],
+                  "files": files, "symlinks": symlinks}))
+JSON
+}
+cat > "$W/act_lock.json" <<JSON
+{"schema":1,"imports":[
+ {"from":"riscv-non-isa/riscv-arch-test","commit":"$AC","mode":"fetched",
+  "archive":"file://$W/act.tgz","manifest":"act_manifest.json"}]}
+JSON
+run_arch() { TMPDIR="$W/missing-tmp" ARCHTEST_LOCK="$W/act_lock.json" ARCHTEST_OUT="$W/out" "$ROOT/scripts/fetch-arch-test.sh" >"$W/log" 2>&1; }
+
+pack; manifest "$AC"
+rm -rf "$W/out"
+run_arch; expect "archtest: clean archive fetch exits 0" zero $?
+[[ -f "$W/out/rtl/a.sv" && -L "$W/out/link.ld" && "$(readlink "$W/out/link.ld")" == rtl/b.sv ]]
+check "archtest: clean fetch left the files and the symlink" $?
+
+[[ -z "$(find "$W" -name '.fetch-import.*' -print -quit)" ]]
+check "archtest: clean fetch leaked staging space" $?
+
+# The lock can also list files inline alongside the external manifest.
+python3 -I - "$W" <<'PYSPLIT'
+import json, sys
+from pathlib import Path
+root = Path(sys.argv[1])
+lock, manifest = root / "act_lock.json", root / "act_manifest.json"
+imp, members = json.loads(lock.read_text()), json.loads(manifest.read_text())
+name = "rtl/a.sv"
+imp["imports"][0]["files"] = [{"upstream": name, "sha256": members["files"].pop(name)}]
+lock.write_text(json.dumps(imp))
+manifest.write_text(json.dumps(members))
+PYSPLIT
+run_arch; expect "archtest: verifies inline and external file entries together" zero $?
+
+pack; manifest "$AC"
+printf 'drift\n' >> "$TREE/rtl/b.sv"; pack
+rm -rf "$W/out"
+run_arch; expect "archtest: sha256 mismatch exits non-zero" nonzero $?
+[[ ! -e "$W/out" ]]; check "archtest: mismatch left a partial tree" $?
+
+sed -i '$d' "$TREE/rtl/b.sv"; rm "$TREE/rtl/b.sv"; pack
+rm -rf "$W/out"
+run_arch; expect "archtest: file missing from the archive exits non-zero" nonzero $?
+[[ ! -e "$W/out" ]]; check "archtest: missing file left a partial tree" $?
+
+printf 'module b; endmodule\n' > "$TREE/rtl/b.sv"; printf 'module c; endmodule\n' > "$TREE/rtl/c.sv"; pack
+rm -rf "$W/out"
+run_arch; expect "archtest: file absent from the manifest exits non-zero" nonzero $?
+[[ ! -e "$W/out" ]]; check "archtest: unlisted file left a partial tree" $?
+
+rm "$TREE/rtl/c.sv"; rm "$TREE/link.ld"; ln -s rtl/a.sv "$TREE/link.ld"; pack
+rm -rf "$W/out"
+run_arch; expect "archtest: symlink to the wrong target exits non-zero" nonzero $?
+[[ ! -e "$W/out" ]]; check "archtest: wrong symlink left a partial tree" $?
+
+# Keep the expected bytes the same while changing only a member's type.
+rm "$TREE/link.ld"; ln -s rtl/b.sv "$TREE/link.ld"
+cp "$TREE/rtl/b.sv" "$TREE/rtl/copy.sv"; manifest "$AC"
+rm "$TREE/rtl/copy.sv"; ln -s b.sv "$TREE/rtl/copy.sv"; pack
+run_arch; expect "archtest: regular file supplied as a symlink is refused" nonzero $?
+rm "$TREE/rtl/copy.sv"; ln "$TREE/rtl/b.sv" "$TREE/rtl/copy.sv"; pack
+run_arch; expect "archtest: hard link in place of a regular file is refused" nonzero $?
+rm "$TREE/rtl/copy.sv"; manifest "$AC"
+rm "$TREE/link.ld"; cp "$TREE/rtl/b.sv" "$TREE/link.ld"; pack
+run_arch; expect "archtest: symlink supplied as a regular file is refused" nonzero $?
+rm "$TREE/link.ld"; ln -s rtl/b.sv "$TREE/link.ld"
+mkfifo "$TREE/extra"; pack
+run_arch; expect "archtest: unsupported member is refused" nonzero $?
+rm "$TREE/extra"
+[[ ! -e "$W/out" && -z "$(find "$W" -name '.fetch-import.*' -print -quit)" ]]
+check "archtest: rejected archive left output or staging data" $?
+
+rm "$TREE/link.ld"; ln -s rtl/b.sv "$TREE/link.ld"; pack; manifest deadbeefdeadbeefdeadbeefdeadbeefdeadbeef
+rm -rf "$W/out"
+run_arch; expect "archtest: manifest for another commit exits non-zero" nonzero $?
+[[ ! -e "$W/out" ]]; check "archtest: foreign manifest left a partial tree" $?
+grep -q "describes riscv-non-isa/riscv-arch-test@deadbeef" "$W/log"; check "archtest: the foreign manifest is named in the error" $?
 
 exit "$FAILS"
